@@ -1,0 +1,3 @@
+[console_scripts]
+fastMLST = fastMLST.main:main
+
