@@ -19,8 +19,9 @@ def build_diamond_databases():
     except OSError as error:
         if error.errno == 17:
             console.print_to_system(
-                "The directory './dmnd/' already exists. Skipping database creation..."
+                "ALERT: The directory './dmnd/' already exists. Exiting!"
                 )
+            exit()
         else:
             raise
     else:
@@ -36,16 +37,18 @@ def extract_cdses():
         os.mkdir('fasta')
     except OSError as error:
         if error.errno == 17:
-            console.print_to_system("The directory './fasta/' already exists. Exiting!")
+            console.print_to_system("ALERT: The directory './fasta/' already exists. Exiting!")
             exit()
         else:
             raise
     else:
+        seen = set()
         for filename in glob.glob(parser.get_gbks()):
             console.print_to_system('Extracting CDS annotations from ' + filename)
-            get_cds_from_genbank(filename)
+            
+            get_cds_from_genbank(filename, seen)
 
-def get_cds_from_genbank(filename):
+def get_cds_from_genbank(filename, seen):
     '''extract CDS translations from genbank files into ./fasta/*.fasta'''
     lines = []
     records = io.get_records_from_genbank(filename)
@@ -53,12 +56,18 @@ def get_cds_from_genbank(filename):
         for feature in record.features:
             try:
                 if feature.type == "CDS":
-                    lines.append(">" + feature.qualifiers.get("locus_tag")[0])
+                    locus_tag = f'{record.id}_{feature.qualifiers.get("locus_tag")[0]}'
+                    if locus_tag in seen:
+                        raise ValueError(f'{filename} contains duplicate: {locus_tag}')
+                    seen.add(locus_tag)
+                    lines.append(">" + locus_tag)
                     lines.append(str(feature.qualifiers.get("translation")[0]))
             except TypeError:
                 console.print_to_system(
                     "ALERT: " + feature.qualifiers.get("locus_tag")[0] + 'has no translation!'
                     )
+    if not lines:
+        console.print_to_system("ALERT: No CDS Features in" + filename)
     filename = io.change_extension(filename, "fasta")
     filename = "fasta/" + filename
     io.write_to_file(filename, lines)

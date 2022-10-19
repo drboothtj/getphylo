@@ -8,7 +8,7 @@ set_seed()
 '''
 import glob
 from random import shuffle
-from getphylo import console, extract, parser
+from getphylo import console, extract, parser, screen
 
 def set_seed():
     '''get the seed genome name'''
@@ -27,9 +27,12 @@ def main():
     checkpoint = parser.get_checkpoint()
     if checkpoint < 2:
         extract.extract_data()
-    #if checkpoint < Y screen.main(checkpoint)
+    if checkpoint < 3:
+        screen.get_target_proteins(seed)
+
     #if checkpoint < Y align.main(checkpoint)
     #if checkpoint < Y tree.main(checkpoint)
-
+    #add custom error types for files existing
+    #add logging
 if __name__ == "__main__":
     main()

@@ -2,6 +2,7 @@
 Create an argument parser using argparse
 
 Functions:
+    get_seed_thresholds -> loci_to_find, loci_min_length, loci_max_length
     get_checkpoint() -> checkpoint
     get_gbks() -> gbks
     get_parser() -> parser
@@ -10,6 +11,18 @@ Functions:
 '''
 
 import argparse
+
+def get_seed_thresholds():
+    '''get thresholds used in identfying seed singletons'''
+    args = parse_args()
+    loci_to_find = args.find
+    if loci_to_find is not None:
+        loci_to_find = int(loci_to_find)
+    else:
+        loci_to_find = -1
+    loci_min_length = int(args.minlength)
+    loci_max_length = int(args.maxlength)
+    return loci_to_find, loci_min_length, loci_max_length
 
 def get_checkpoint():
     '''get checkpoint from the parser'''
@@ -53,13 +66,22 @@ def get_parser():
         )
         )
     parser.add_argument(
-        '-l',
-        '--length',
+        '-min',
+        '--minlength',
         default=200,
         help=(
             'interger indicating the minimum length of loci to be included in the analysis '
             '(default: 200)'
-        )  
+        )
+        )
+    parser.add_argument(
+        '-max',
+        '--maxlength',
+        default=2000,
+        help=(
+            'interger indicating the minimum length of loci to be included in the analysis '
+            '(default: 2000)'
+        )
         )
     parser.add_argument(
         '-p',
@@ -79,6 +101,8 @@ def get_parser():
             '(checkpoint info: '
             '1: skip extraction of CDSs from genbank; '
             '2: skip creation of diamond databases; '
+            '3: skip identifying singletons from seed genome'
+            '4: ...'
         )
         )
     return parser
