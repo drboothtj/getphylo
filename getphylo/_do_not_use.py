@@ -10,9 +10,6 @@ from collections import Counter
 from random import shuffle
 from fastMLST import console, diamond, extract, fasttree, io, muscle, parser
 
-
-#clean into more modules!
-
 def concatenate_alignments():
     concatenated_fasta = []
     for file in glob.glob("./aligned_fasta/*.fasta"):
@@ -20,24 +17,9 @@ def concatenate_alignments():
         concatenated_fasta.append(lines)
     io.write_to_file("./aligned_fasta/concatenated_alignment.fasta", lines)
 
-def do_alignments():
-    try:
-        os.mkdir('aligned_fasta')
-    except OSError as e:
-        if e.errno == 17:
-            console.print_to_system("The directory './aligned_fasta/' already exists. Skipping alignments...")
-        else:
-            raise
-    else:    
-        console.print_to_system("Building alignments...")
-        for file in glob.glob("./unaligned_fasta/*.fasta"):
-            outfile = "aligned_fasta/" + file.split("/")[2]
-            muscle.run_muscle(file, outfile)
 
-def get_loci_from_file(file):
-    loci = io.read_file(file)
-    loci = [locus[:len(locus) -2] for locus in loci] #remove newline
-    return loci   
+
+
 
 def get_fasta_for_alignment(loci_list):
     try:
@@ -66,15 +48,6 @@ def get_fasta_for_alignment(loci_list):
                         write_lines.append(sequence)
                         break
             io.write_to_file("unaligned_fasta/" + locus + ".fasta", write_lines)
-
-def get_locus(file, locus):
-    fasta = io.read_file(file)
-    line_number = 0
-    for line in fasta:
-        line_number += 1
-        if locus in line:
-            sequence = fasta[line_number]
-    return sequence
 
 def get_unique_hits_from_tsv(file):
     hits = []  
@@ -148,41 +121,8 @@ def parse_args():
     args = arg_parser.parse_args()
     return args
 
-def screen_target_loci(target_loci):
-    try: os.mkdir('tsvs')
-    except OSError as e:
-        if e.errno == 17:
-            console.print_to_system("The directory './tsvs/' already exists. Skipping locus screening...")
-        else:
-            raise
-    else:
-        console.print_to_system("Screening target loci against other genomes...")
-        if target_loci is None:
-            target_loci = get_loci_from_file('seed_loci.txt') #catch error if missing
-        
-        diamond_databases = glob.glob('dmnd/*.dmnd')
 
-        for database in diamond_databases:
-            output = database.split("/")[1]
-            output = "tsvs/" + io.change_extension(output, "tsv")
-            diamond.run_diamond_search("seed_loci.fasta", database, output)
-        #unique_hits.append(get_unique_hits_from_tsv(io.change_extension(database, "tsv")))
-        #allow fiddling with dmnd options
 
-def score_locus(locus, files):
-    presence_counter = 0
-    unique_flag = True
-    for file in files:
-        counter = 0
-        lines = io.read_file(file)
-        for line in lines:
-            if locus in line:
-                counter += 1
-        if counter > 0:
-            presence_counter += 1
-        if counter > 1:
-            unique_flag = False
-    return presence_counter, unique_flag
 
 def set_seed(seed):
     if seed is None:
@@ -195,35 +135,7 @@ def set_seed(seed):
     console.print_to_system("The seed genome is " + seed + "...")
     return seed
 
-def threshold_loci(target_loci, presence_threshold, minimum_loci):
-    if os.path.exists('final_loci.txt'):
-        console.print_to_system('final_loci.txt already exists. Skipping thresholding.')
-    else:
-        if target_loci is None:
-            target_loci = get_loci_from_file('seed_loci.txt') #catch error if missing
-        console.print_to_system("Thresholding targets...")
-        final_loci = []
-        thresholding_data = ["locus;" + "presence;" + "unique"]
-        for locus in target_loci:
-            presence, unique = score_locus(locus, glob.glob("tsvs/*.tsv"))
-            presence_percent = (presence / len(glob.glob("tsvs/*.tsv"))) * 100
-            thresholding_string = str(locus) + ";" + str(presence_percent) + ";" + str(unique)
-            thresholding_data.append(thresholding_string)
-            if presence_percent >= presence_threshold and unique is True:
-                final_loci.append(locus)
-        
-        #add a flag to write thesholding results...
-        io.write_to_file("thresholding_data.txt", thresholding_data)
-        
-        ###new function!###
-        number_of_loci = len(final_loci)
-        console.print_to_system(str(number_of_loci) + " loci selected for MLST...")
-        if number_of_loci < minimum_loci:
-            console.print_to_system("Number of loci below defined threshold. Exiting...")
-            exit()
 
-        io.write_to_file("final_loci.txt", final_loci)
-        return final_loci
 
 def main():
     ###PRINT START###
@@ -246,9 +158,8 @@ def main():
     extract.extract_data(list_of_genbanks)
     target_loci = identify_target_genes(seed, loci_to_find, loci_min_length) #get singletons and write to files
     screen_target_loci(target_loci)
-    final_loci = threshold_loci(target_loci, presence_threshold, minimum_loci)
-    get_fasta_for_alignment(final_loci)
-    do_alignments()
+    
+    
     #trim_alignments()
     concatenate_alignments()
     make_trees()

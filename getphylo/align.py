@@ -33,7 +33,6 @@ def get_fasta_for_alignments(loci_list):
                         sequence_name = f">{filename.split('/')[1].split('.')[0]}_{line[1]}"
                         write_lines.append(sequence_name)
                         write_lines.append(sequence)
-                        break
             io.write_to_file("unaligned_fasta/" + locus + ".fasta", write_lines)
 
 

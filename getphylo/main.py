@@ -8,7 +8,7 @@ set_seed()
 '''
 import glob
 from random import shuffle
-from getphylo import align, console, extract, parser, screen
+from getphylo import align, console, extract, parser, screen, trees
 
 def set_seed():
     '''get the seed genome name'''
@@ -33,14 +33,18 @@ def main():
         final_loci = screen.get_loci_from_file('final_loci.txt')
     if checkpoint < 8:
         align.make_alignments(checkpoint, final_loci)
+    if checkpoint <9: 
+        trees.make_trees()
+    console.print_to_system("Analysis complete. Thank you for using getphylo!")
 
     #if checkpoint < Y align.main(checkpoint)
     #if checkpoint < Y tree.main(checkpoint)
-    #add custom error types for files existing
+    #add custom error types for files existing etc.
     #add logging
     #allow screening multiple genomes for target loci (loop screening)
     #structure as single diamond database
     #generate bio utils library
     #add reading and writing details at each cp
+    #add file/directory check as io function!
 if __name__ == "__main__":
     main()
