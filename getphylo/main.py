@@ -8,7 +8,7 @@ set_seed()
 '''
 import glob
 from random import shuffle
-from getphylo import console, extract, parser, screen
+from getphylo import align, console, extract, parser, screen
 
 def set_seed():
     '''get the seed genome name'''
@@ -26,13 +26,21 @@ def main():
     console.print_to_system("The seed genome is " + seed)
     checkpoint = parser.get_checkpoint()
     if checkpoint < 2:
-        extract.extract_data()
-    if checkpoint < 3:
-        screen.get_target_proteins(seed)
+        extract.extract_data(checkpoint)
+    if checkpoint < 5:
+        final_loci = screen.get_target_proteins(checkpoint, seed)
+    if checkpoint > 4:
+        final_loci = screen.get_loci_from_file('final_loci.txt')
+    if checkpoint < 8:
+        align.make_alignments(checkpoint, final_loci)
 
     #if checkpoint < Y align.main(checkpoint)
     #if checkpoint < Y tree.main(checkpoint)
     #add custom error types for files existing
     #add logging
+    #allow screening multiple genomes for target loci (loop screening)
+    #structure as single diamond database
+    #generate bio utils library
+    #add reading and writing details at each cp
 if __name__ == "__main__":
     main()

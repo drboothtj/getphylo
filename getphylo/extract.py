@@ -26,7 +26,6 @@ def build_diamond_databases():
             raise
     else:
         for file in glob.glob("fasta/*.fasta"):
-            console.print_to_system('Building diamond database for ' + file)
             dmnd_database = io.change_extension(file, "dmnd").split('/')[1]
             dmnd_database = ("dmnd/" + dmnd_database)
             diamond.make_diamond_database(file, dmnd_database)
@@ -45,7 +44,6 @@ def extract_cdses():
         seen = set()
         for filename in glob.glob(parser.get_gbks()):
             console.print_to_system('Extracting CDS annotations from ' + filename)
-            
             get_cds_from_genbank(filename, seen)
 
 def get_cds_from_genbank(filename, seen):
@@ -72,10 +70,11 @@ def get_cds_from_genbank(filename, seen):
     filename = "fasta/" + filename
     io.write_to_file(filename, lines)
 
-def extract_data():
+def extract_data(checkpoint):
     '''called from main to build fasta and diamond databases from the provided genbankfiles'''
-    checkpoint = parser.get_checkpoint()
     if checkpoint < 1:
+        console.print_to_system("CHECKPOINT 0: Extracting CDSs...")
         extract_cdses()
     if checkpoint < 2:
+        console.print_to_system("CHECKPOINT 1: Building diamond databases...")
         build_diamond_databases()

@@ -12,6 +12,13 @@ Functions:
 
 import argparse
 
+def get_loci_tresholds():
+    '''get thresholds screening'''
+    args = parse_args()
+    presence_threshold = args.presence
+    minimum_loci = args.minloci
+    return presence_threshold, minimum_loci
+
 def get_seed_thresholds():
     '''get thresholds used in identfying seed singletons'''
     args = parse_args()
@@ -84,9 +91,19 @@ def get_parser():
         )
         )
     parser.add_argument(
+        '-ml',
+        '--minloci',
+        default=1, #set types for args!!
+        help=(
+            'minimum number of loci required to continue to alignment and tree building steps '
+            '(default: 1)'
+        )
+        )
+    parser.add_argument(
         '-p',
         '--presence',
         default=100,
+        type=float,
         help=(
             'interger indicating the percentage of genomes each loci must be present in '
             '(default: 100)'
@@ -102,7 +119,8 @@ def get_parser():
             '1: skip extraction of CDSs from genbank; '
             '2: skip creation of diamond databases; '
             '3: skip identifying singletons from seed genome'
-            '4: ...'
+            '4: skip confirming singletons in other genomes'
+            '5: skip thresholding and identifying final loci for alignments'
         )
         )
     return parser
@@ -121,3 +139,4 @@ def parse_args():
 
     #add extra dmnd options
     #add max threshold?
+    #set types for args!!
