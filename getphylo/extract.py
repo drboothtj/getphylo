@@ -58,7 +58,7 @@ def get_cds_from_genbank(filename, seen):
                     if locus_tag in seen:
                         raise ValueError(f'{filename} contains duplicate: {locus_tag}')
                     seen.add(locus_tag)
-                    lines.append(">" + locus_tag.replace".","_")
+                    lines.append(">" + locus_tag.replace(".","_"))
                     lines.append(str(feature.qualifiers.get("translation")[0]))
             except TypeError:
                 console.print_to_system(
