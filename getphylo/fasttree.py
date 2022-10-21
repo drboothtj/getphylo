@@ -5,7 +5,7 @@ Functions:
 
 
 '''
-from fastMLST import console, io
+from getphylo import console, io
 
 def run_fasttree(filename, outfile=None):
     '''Run fasttree on a protein alignment'''

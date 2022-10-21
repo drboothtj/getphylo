@@ -7,7 +7,7 @@ Functions:
 '''
 import os
 import glob
-from fastMLST import console, fasttree, io
+from getphylo import console, fasttree, io
 
 def make_trees():
     '''main routine for trees'''

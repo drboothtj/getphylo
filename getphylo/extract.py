@@ -61,9 +61,15 @@ def get_cds_from_genbank(filename, seen):
                     lines.append(">" + locus_tag.replace(".","_"))
                     lines.append(str(feature.qualifiers.get("translation")[0]))
             except TypeError:
-                console.print_to_system(
-                    "ALERT: " + feature.qualifiers.get("locus_tag")[0] + 'has no translation!'
-                    )
+                if feature.qualifiers.get("locus_tag") is None:
+                    console.print_to_system(
+                        "ALERT: No locus tag in " + record.id
+                        )
+                    exit()
+                else:
+                    console.print_to_system(
+                        "ALERT: " + feature.qualifiers.get("locus_tag")[0] + 'has no translation!'
+                        )
     if not lines:
         console.print_to_system("ALERT: No CDS Features in" + filename)
     filename = io.change_extension(filename, "fasta")

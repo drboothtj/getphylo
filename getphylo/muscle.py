@@ -3,9 +3,8 @@ Runs MUSCLE on a provided fasta file.
 
 Functions:
 
-
 '''
-from fastMLST import console
+from getphylo import console
 
 def run_muscle(filename, outname=None):
     '''Run MUSCLE aligner on protein fasta file'''
