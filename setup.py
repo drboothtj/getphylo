@@ -15,6 +15,6 @@ setup(
     url="https://github.com/DrBoothTJ/getphylo",
     license='GNU General Public License v3.0',
     python_requires='>=3.7',
-    install_requires=[],
+    install_requires=['Bio'],
     entry_points={'console_scripts': ["getphylo=getphylo.main:main"]}
 )
