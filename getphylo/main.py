@@ -13,10 +13,19 @@ from getphylo import align, console, extract, parser, screen, trees
 def set_seed():
     '''get the seed genome name'''
     seed = parser.get_seed()
+    checkpoint = parser.get_checkpoint()
     if seed is None:
-        gbks = glob.glob(parser.get_gbks())
-        shuffle(gbks)
-        seed = gbks[0]
+        if checkpoint > 0:
+            console.print_to_system(
+                'ALERT: A checkpoint has been set! Please ensure the seed is defined. Exiting!'
+                )
+            exit()
+        else:
+            gbks = glob.glob(parser.get_gbks())
+            seed = gbks[0]
+            console.print_to_system(
+                f'No seed defined. Using first file in glob ({seed}) as seed.'
+                )
     return seed
 
 def main():
@@ -33,7 +42,7 @@ def main():
         final_loci = screen.get_loci_from_file('final_loci.txt')
     if checkpoint < 8:
         align.make_alignments(checkpoint, final_loci)
-    if checkpoint <9: 
+    if checkpoint < 9: 
         trees.make_trees()
     console.print_to_system("Analysis complete. Thank you for using getphylo!")
 
