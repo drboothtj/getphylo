@@ -5,11 +5,11 @@
 <!-- Title: G Pages: 1 -->
 
 <svg
-   width="599pt"
-   height="423pt"
-   viewBox="0.00 0.00 598.74 423.28"
+   width="639pt"
+   height="430pt"
+   viewBox="0.00 0.00 638.52 429.71"
    version="1.1"
-   id="svg400"
+   id="svg378"
    sodipodi:docname="getphylo.svg"
    inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -17,92 +17,18 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
-     id="defs404">
+     id="defs382">
     <style
-       id="style39">.edge&gt;path:hover{stroke-width:8}</style>
+       id="style4">.edge&gt;path:hover{stroke-width:8}</style>
     <style
-       id="style64">.edge&gt;path:hover{stroke-width:8}</style>
+       id="style301">.edge&gt;path:hover{stroke-width:8}</style>
     <style
-       id="style73">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style82">.edge&gt;path:hover{stroke-width:8}</style>
+       id="style44">.edge&gt;path:hover{stroke-width:8}</style>
     <style
        id="style93">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style48">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style10">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style55">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style28">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style19">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style115">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style224">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style253">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style175">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style195">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style215">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style273">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style320">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style311">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style329">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style135">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style124">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style186">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style144">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style155">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style235">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style244">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style104">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style293">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style206">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style166">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style264">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style284">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style302">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style358">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style367">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style349">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style376">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style385">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style392">.edge&gt;path:hover{stroke-width:8}</style>
-    <style
-       id="style340">.edge&gt;path:hover{stroke-width:8}</style>
   </defs>
   <sodipodi:namedview
-     id="namedview402"
+     id="namedview380"
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
@@ -111,647 +37,882 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="pt"
      showgrid="false"
-     inkscape:zoom="0.93403289"
-     inkscape:cx="493.02332"
-     inkscape:cy="104.92136"
+     inkscape:zoom="1.2994186"
+     inkscape:cx="359.00671"
+     inkscape:cy="361.70022"
      inkscape:window-width="1920"
      inkscape:window-height="1137"
-     inkscape:window-x="1912"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="graph0" />
+     inkscape:current-layer="svg378" />
+  <polygon
+     fill="#ffffff"
+     stroke="transparent"
+     points="634.52,-425.71 634.52,4 -4,4 -4,-425.71 "
+     id="polygon6"
+     transform="translate(4,425.71)" />
   <g
-     id="graph0"
-     class="graph"
-     transform="scale(1 1) rotate(0) translate(4 419.28)">
+     id="node1"
+     class="node"
+     transform="translate(4,425.71)">
     <title
-       id="title2">G</title>
+       id="title8">Bio</title>
     <style
-       id="style4">.edge&gt;path:hover{stroke-width:8}</style>
-    <!-- Bio -->
-    <!-- getphylo_io -->
-    <!-- Bio&#45;&gt;getphylo_io -->
-    <!-- Bio_SeqIO -->
-    <!-- Bio_SeqIO&#45;&gt;getphylo_io -->
-    <!-- getphylo_align -->
-    <!-- getphylo_main -->
-    <!-- getphylo_align&#45;&gt;getphylo_main -->
-    <!-- getphylo_console -->
-    <!-- getphylo_console&#45;&gt;getphylo_align -->
-    <!-- getphylo_diamond -->
-    <!-- getphylo_console&#45;&gt;getphylo_diamond -->
-    <!-- getphylo_extract -->
-    <!-- getphylo_console&#45;&gt;getphylo_extract -->
-    <!-- getphylo_fasttree -->
-    <!-- getphylo_console&#45;&gt;getphylo_fasttree -->
-    <!-- getphylo_console&#45;&gt;getphylo_main -->
-    <!-- getphylo_muscle -->
-    <!-- getphylo_console&#45;&gt;getphylo_muscle -->
-    <!-- getphylo_screen -->
-    <!-- getphylo_console&#45;&gt;getphylo_screen -->
-    <!-- getphylo_trees -->
-    <!-- getphylo_console&#45;&gt;getphylo_trees -->
-    <!-- getphylo_diamond&#45;&gt;getphylo_extract -->
-    <!-- getphylo_diamond&#45;&gt;getphylo_screen -->
-    <!-- getphylo_extract&#45;&gt;getphylo_main -->
-    <!-- getphylo_fasttree&#45;&gt;getphylo_trees -->
-    <!-- getphylo_io&#45;&gt;getphylo_align -->
-    <!-- getphylo_io&#45;&gt;getphylo_extract -->
-    <!-- getphylo_io&#45;&gt;getphylo_fasttree -->
-    <!-- getphylo_io&#45;&gt;getphylo_screen -->
-    <!-- getphylo_io&#45;&gt;getphylo_trees -->
-    <!-- getphylo_muscle&#45;&gt;getphylo_align -->
-    <!-- getphylo_parser -->
-    <!-- getphylo_parser&#45;&gt;getphylo_align -->
-    <!-- getphylo_parser&#45;&gt;getphylo_extract -->
-    <!-- getphylo_parser&#45;&gt;getphylo_main -->
-    <!-- getphylo_parser&#45;&gt;getphylo_screen -->
-    <!-- getphylo_screen&#45;&gt;getphylo_align -->
-    <!-- getphylo_screen&#45;&gt;getphylo_main -->
-    <!-- getphylo_trees&#45;&gt;getphylo_main -->
-    <g
-       id="g2042">
-      <polygon
-         fill="white"
-         stroke="transparent"
-         points="-4,4 -4,-419.28 594.74,-419.28 594.74,4 -4,4"
-         id="polygon6" />
-      <ellipse
-         fill="#c24747"
-         stroke="#000000"
-         cx="371.67001"
-         cy="-397.28"
-         rx="27"
-         ry="18"
-         id="ellipse12" />
-      <text
-         text-anchor="middle"
-         x="371.67001"
-         y="-394.78"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#ffffff"
-         id="text14">Bio</text>
-      <ellipse
-         fill="#0ce9e9"
-         stroke="#000000"
-         cx="454.67001"
-         cy="-243.64"
-         rx="41.59"
-         ry="18"
-         id="ellipse21" />
-      <text
-         text-anchor="middle"
-         x="454.67001"
-         y="-241.14"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text23">getphylo.io</text>
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 393.48,-386.32 c 21.87,11.54 53.38,32.92 61.19,63.25"
-         id="path30" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 454.67,-323.07 c 4.13,16.67912 4.24,35.98028 3.26,51.39"
-         id="path32"
-         style="stroke-width:1.02005" />
-      <polygon
-         fill="#c24747"
-         stroke="#000000"
-         points="454.44,-271.9 461.41,-271.31 457.07,-261.64 "
-         id="polygon34" />
-      <ellipse
-         fill="#b83d3d"
-         stroke="#000000"
-         cx="454.67001"
-         cy="-397.28"
-         rx="37.849998"
-         ry="18"
-         id="ellipse41" />
-      <text
-         text-anchor="middle"
-         x="454.67001"
-         y="-394.78"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#ffffff"
-         id="text43">Bio.SeqIO</text>
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 452.29,-379.11 c -1.53,15.03 -2.44,37.33 2.38,56.04"
-         id="path50" />
-      <ellipse
-         fill="#339999"
-         stroke="#000000"
-         cx="233.67"
-         cy="-90"
-         rx="50.75"
-         ry="18"
-         id="ellipse57" />
-      <text
-         text-anchor="middle"
-         x="233.67"
-         y="-87.5"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#ffffff"
-         id="text59">getphylo.align</text>
-      <ellipse
-         fill="#3a8888"
-         stroke="#000000"
-         cx="360.67001"
-         cy="-18"
-         rx="51.43"
-         ry="18"
-         id="ellipse66" />
-      <text
-         text-anchor="middle"
-         x="360.67001"
-         y="-15.5"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#ffffff"
-         id="text68">getphylo.main</text>
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 259.99,-74.5 c 18.98,10.47 44.82,24.71 65.57,36.14"
-         id="path75" />
-      <polygon
-         fill="#339999"
-         stroke="#000000"
-         points="323.95,-35.25 327.32,-41.38 334.39,-33.49 "
-         id="polygon77" />
-      <ellipse
-         fill="#10f9f9"
-         stroke="#000000"
-         cx="312.67001"
-         cy="-322.07001"
-         rx="43.68"
-         ry="21.43"
-         id="ellipse84" />
-      <text
-         text-anchor="middle"
-         x="312.67001"
-         y="-325.07001"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text86">getphylo.</text>
-      <text
-         text-anchor="middle"
-         x="312.67001"
-         y="-314.07001"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text88">console</text>
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 269.25,-321.56771 c -80.42,5.99161 -246.1,24.36179 -264.58,74.90009"
-         id="path95"
-         style="stroke-width:1.00688" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 4.67,-246.66762 c -30.17,83.70168 98.42,127.2027 175.2,145.34955"
-         id="path97"
-         style="stroke-width:1.01398" />
-      <polygon
-         fill="#10f9f9"
-         stroke="#000000"
-         points="189.88,-99.04 179.35,-97.79 180.88,-104.63 "
-         id="polygon99"
-         transform="matrix(1,0,0,1.0138073,0,1.3501959)" />
-      <ellipse
-         fill="#31c4c4"
-         stroke="#000000"
-         cx="312.67001"
-         cy="-243.64"
-         rx="43.68"
-         ry="21.43"
-         id="ellipse106" />
-      <text
-         text-anchor="middle"
-         x="312.67001"
-         y="-246.64"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text108">getphylo.</text>
-      <text
-         text-anchor="middle"
-         x="312.67001"
-         y="-235.64"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text110">diamond</text>
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 312.67,-300.59 c 0,7.86 0,17.01 0,25.6"
-         id="path117" />
-      <polygon
-         fill="#10f9f9"
-         stroke="#000000"
-         points="309.17,-274.91 316.17,-274.91 312.67,-264.91 "
-         id="polygon119" />
-      <ellipse
-         fill="#35a1a1"
-         stroke="#000000"
-         cx="258.67001"
-         cy="-165.21001"
-         rx="43.68"
-         ry="21.43"
-         id="ellipse126" />
-      <text
-         text-anchor="middle"
-         x="258.67001"
-         y="-168.21001"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text128">getphylo.</text>
-      <text
-         text-anchor="middle"
-         x="258.67001"
-         y="-157.21001"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text130">extract</text>
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 289.61,-303.7 c -11.29,9.97 -23.77,23.54 -29.94,38.85 -8.68,21.54 -8.44,47.94 -6.3,68.01"
-         id="path137" />
-      <polygon
-         fill="#10f9f9"
-         stroke="#000000"
-         points="249.93,-196.18 256.87,-197.06 254.67,-186.7 "
-         id="polygon139" />
-      <ellipse
-         fill="#3ab0b0"
-         stroke="#000000"
-         cx="508.67001"
-         cy="-165.21001"
-         rx="43.68"
-         ry="21.43"
-         id="ellipse146" />
-      <text
-         text-anchor="middle"
-         x="508.67001"
-         y="-168.21001"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text148">getphylo.</text>
-      <text
-         text-anchor="middle"
-         x="508.67001"
-         y="-157.21001"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text150">fasttree</text>
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 355.08,-316.55 c 70.67,8.65 206.7,30.48 225.59,71.91"
-         id="path157" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 580.67,-244.64 c 10.29,23.34612 -10.66,44.2075 -32.56,58.65"
-         id="path159"
-         style="stroke-width:1.0175" />
-      <polygon
-         fill="#10f9f9"
-         stroke="#000000"
-         points="546.18,-188.92 549.78,-182.92 539.4,-180.78 "
-         id="polygon161" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 580.67,-166.21 c -20.05,51.48634 -36.2,62.01302 -81,93.603216 -26.63,18.77952 -60.58,32.087601 -88.26,40.766784"
-         id="path168"
-         style="stroke-width:1.00753" />
-      <polygon
-         fill="#10f9f9"
-         stroke="#000000"
-         points="410.1,-35.11 412.1,-28.4 401.52,-28.9 "
-         id="polygon170" />
-      <ellipse
-         fill="#3db8b8"
-         stroke="#000000"
-         cx="114.67"
-         cy="-165.21001"
-         rx="43.68"
-         ry="21.43"
-         id="ellipse177" />
-      <text
-         text-anchor="middle"
-         x="114.67"
-         y="-168.21001"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text179">getphylo.</text>
-      <text
-         text-anchor="middle"
-         x="114.67"
-         y="-157.21001"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text181">muscle</text>
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 4.67,-246.66762 c -11.96,34.26107 26.72,56.01243 61.46,68.27809"
-         id="path188"
-         style="stroke-width:1.03007" />
-      <polygon
-         fill="#10f9f9"
-         stroke="#000000"
-         points="67.28,-181.6 75.78,-175.27 65.19,-174.92 "
-         id="polygon190"
-         transform="matrix(1,0,0,1.0295334,0,5.1659776)" />
-      <ellipse
-         fill="#2bacac"
-         stroke="#000000"
-         cx="364.67001"
-         cy="-165.21001"
-         rx="43.68"
-         ry="21.43"
-         id="ellipse197" />
-      <text
-         text-anchor="middle"
-         x="364.67001"
-         y="-168.21001"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text199">getphylo.</text>
-      <text
-         text-anchor="middle"
-         x="364.67001"
-         y="-157.21001"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text201">screen</text>
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 335.79,-303.73 c 11.32,9.97 23.79,23.54 29.88,38.88 8.58,21.58 7.78,47.98 5.14,68.04"
-         id="path208" />
-      <polygon
-         fill="#10f9f9"
-         stroke="#000000"
-         points="367.32,-197.1 374.24,-196.03 369.26,-186.68 "
-         id="polygon210" />
-      <ellipse
-         fill="#38a8a8"
-         stroke="#000000"
-         cx="439.67001"
-         cy="-90"
-         rx="51.43"
-         ry="18"
-         id="ellipse217" />
-      <text
-         text-anchor="middle"
-         x="439.67001"
-         y="-87.5"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text219">getphylo.trees</text>
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 580.67,-244.64 c 14.1,31.71884 12.49,46.01336 0,78.43"
-         id="path226"
-         style="stroke-width:1.013" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 580.67,-166.21 c -13.75,35.88518 -52.5,54.95241 -85.9,64.94"
-         id="path228"
-         style="stroke-width:1.01576" />
-      <polygon
-         fill="#10f9f9"
-         stroke="#000000"
-         points="493.8,-104.63 495.63,-97.87 485.06,-98.65 "
-         id="polygon230" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 299.05,-223.35 c -6.33,8.96 -13.98,19.78 -20.9,29.58"
-         id="path237" />
-      <polygon
-         fill="#31c4c4"
-         stroke="#000000"
-         points="275.21,-195.68 280.92,-191.64 272.3,-185.49 "
-         id="polygon239" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 325.8,-223.35 c 6.09,8.96 13.45,19.78 20.12,29.58"
-         id="path246" />
-      <polygon
-         fill="#31c4c4"
-         stroke="#000000"
-         points="343.04,-191.79 348.82,-195.73 351.56,-185.49 "
-         id="polygon248" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 293.7,-152.29 c 25.79,11.13 57.88,30.68 66.97,61.29"
-         id="path255" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 360.67,-89 c 4.06,13.65 4.4,29.47 3.58,42.62"
-         id="path257" />
-      <polygon
-         fill="#35a1a1"
-         stroke="#000000"
-         points="360.73,-46.35 367.71,-45.73 363.34,-36.08 "
-         id="polygon259" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 491.26,-145.74 c -8.91,9.45 -19.85,21.06 -29.36,31.15"
-         id="path266" />
-      <polygon
-         fill="#3ab0b0"
-         stroke="#000000"
-         points="459.28,-116.9 464.37,-112.1 454.97,-107.23 "
-         id="polygon268" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 453.93,-225.56 c -1.42,16.4 -5.53,41.28 -17.26,59.35"
-         id="path275" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 436.67,-166.21 c -6.71,10.65815 -8.48,14.204 -19,20.83185 -39.06,24.59415 -89.33,38.54046 -127.46,46.16815"
-         id="path277"
-         style="stroke-width:1.01527" />
-      <polygon
-         fill="#0ce9e9"
-         stroke="#000000"
-         points="289.49,-102.63 290.77,-95.75 280.3,-97.36 "
-         id="polygon279" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 424.48,-230.87 c -32.93,12.84 -85.88,33.49 -123.06,47.99"
-         id="path286" />
-      <polygon
-         fill="#0ce9e9"
-         stroke="#000000"
-         points="299.9,-186.05 302.44,-179.52 291.85,-179.15 "
-         id="polygon288" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 466.39,-226.06 c 6.66,9.43 15.16,21.46 22.8,32.27"
-         id="path295" />
-      <polygon
-         fill="#0ce9e9"
-         stroke="#000000"
-         points="486.44,-191.61 492.16,-195.65 495.07,-185.46 "
-         id="polygon297" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 436.46,-227.17 c -12.28,10.42 -28.74,24.41 -42.81,36.35"
-         id="path304" />
-      <polygon
-         fill="#0ce9e9"
-         stroke="#000000"
-         points="391.06,-193.21 395.59,-187.87 385.7,-184.07 "
-         id="polygon306" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 436.67,-166.21 c -8.69,13.97243 -8.14,32.60929 -5.32,47.98"
-         id="path313"
-         style="stroke-width:1.02152" />
-      <polygon
-         fill="#0ce9e9"
-         stroke="#000000"
-         points="428.02,-117.11 434.84,-118.7 433.71,-108.17 "
-         id="polygon315" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 140.79,-148.15 c 17.6,10.83 40.96,25.21 59.85,36.83"
-         id="path322" />
-      <polygon
-         fill="#3db8b8"
-         stroke="#000000"
-         points="198.89,-108.29 202.56,-114.25 209.24,-106.03 "
-         id="polygon324" />
-      <ellipse
-         fill="#22e7e7"
-         stroke="#000000"
-         cx="168.67"
-         cy="-243.64"
-         rx="43.68"
-         ry="21.43"
-         id="ellipse331" />
-      <text
-         text-anchor="middle"
-         x="168.67"
-         y="-246.64"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text333">getphylo.</text>
-      <text
-         text-anchor="middle"
-         x="168.67"
-         y="-235.64"
-         font-family="Helvetica, sans-Serif"
-         font-size="10px"
-         fill="#000000"
-         id="text335">parser</text>
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 175.45,-222.31 c 6.91,20.16 18.3,51.79 30.22,78.31 4.03,8.97 8.9,18.53 13.44,27.03"
-         id="path342" />
-      <polygon
-         fill="#22e7e7"
-         stroke="#000000"
-         points="216.18,-115.03 222.33,-118.37 224.03,-107.91 "
-         id="polygon344" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 189.55,-224.91 c 11.95,10.15 27.13,23.04 40.22,34.15"
-         id="path351" />
-      <polygon
-         fill="#22e7e7"
-         stroke="#000000"
-         points="227.71,-187.91 232.24,-193.25 237.6,-184.11 "
-         id="polygon353" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 130.18,-233.35 c -24.26,8.05 -53.69,22.41 -68.51,46.92 -9.75,16.14 -9.03,25.88 0,42.43 46.48,85.13 165.95,112.29 239.03,120.95"
-         id="path360" />
-      <polygon
-         fill="#22e7e7"
-         stroke="#000000"
-         points="300.37,-19.56 301.14,-26.52 310.69,-21.95 "
-         id="polygon362" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 201.92,-229.67 c 32.95,12.84 83.56,32.58 119.59,46.63"
-         id="path369" />
-      <polygon
-         fill="#22e7e7"
-         stroke="#000000"
-         points="320.67,-179.61 323.22,-186.14 331.26,-179.24 "
-         id="polygon371" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 336.89,-148.69 c -19.98,11.17 -47.06,26.3 -68.47,38.27"
-         id="path378" />
-      <polygon
-         fill="#2bacac"
-         stroke="#000000"
-         points="266.65,-113.44 270.07,-107.33 259.63,-105.51 "
-         id="polygon380" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 359.94,-143.9 c -2.62,14.94 -4.41,35.57 0.73,52.9"
-         id="path387" />
-      <path
-         fill="none"
-         stroke="#000000"
-         d="m 421.75,-73.12 c -10.43,9.25 -23.76,21.05 -35.3,31.28"
-         id="path394" />
-      <polygon
-         fill="#38a8a8"
-         stroke="#000000"
-         points="383.97,-44.32 388.61,-39.08 378.8,-35.06 "
-         id="polygon396" />
-    </g>
+       id="style10">.edge&gt;path:hover{stroke-width:8}</style>
+    <ellipse
+       fill="#c24747"
+       stroke="#000000"
+       cx="120.67"
+       cy="-403.70999"
+       rx="27"
+       ry="18"
+       id="ellipse12" />
+    <text
+       text-anchor="middle"
+       x="120.67"
+       y="-401.20999"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#ffffff"
+       id="text14">Bio</text>
+  </g>
+  <g
+     id="node8"
+     class="node"
+     transform="translate(4,425.71)">
+    <title
+       id="title17">getphylo_io</title>
+    <style
+       id="style19">.edge&gt;path:hover{stroke-width:8}</style>
+    <ellipse
+       fill="#0bd6d6"
+       stroke="#000000"
+       cx="120.67"
+       cy="-250.07001"
+       rx="41.59"
+       ry="18"
+       id="ellipse21" />
+    <text
+       text-anchor="middle"
+       x="120.67"
+       y="-247.57001"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text23">getphylo.io</text>
+  </g>
+  <g
+     id="edge1"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title26">Bio-&gt;getphylo_io</title>
+    <style
+       id="style28">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 118.29,-385.54 c -1.53,15.04 -2.43,37.34 2.38,56.05"
+       id="path30" />
+  </g>
+  <g
+     id="node2"
+     class="node"
+     transform="translate(4,425.71)">
+    <title
+       id="title33">Bio_SeqIO</title>
+    <style
+       id="style35">.edge&gt;path:hover{stroke-width:8}</style>
+    <ellipse
+       fill="#b83d3d"
+       stroke="#000000"
+       cx="37.669998"
+       cy="-403.70999"
+       rx="37.849998"
+       ry="18"
+       id="ellipse37" />
+    <text
+       text-anchor="middle"
+       x="37.669998"
+       y="-401.20999"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#ffffff"
+       id="text39">Bio.SeqIO</text>
+  </g>
+  <path
+     fill="none"
+     stroke="#000000"
+     d="m 67.61,35.20001 c 21.52,11.96 49.73,32.55 57.06,61.02"
+     id="path46" />
+  <path
+     fill="none"
+     stroke="#000000"
+     d="m 124.67,96.22 c 4.13,16.66872 4.24,35.98029 3.26,51.39001"
+     id="path48"
+     style="stroke-width:1.02005" />
+  <polygon
+     fill="#b83d3d"
+     stroke="#000000"
+     points="127.41,-277.73 123.07,-268.07 120.44,-278.33 "
+     id="polygon50"
+     transform="translate(4,425.71001)" />
+  <g
+     id="node3"
+     class="node"
+     transform="translate(4,425.71)">
+    <title
+       id="title53">getphylo_align</title>
+    <style
+       id="style55">.edge&gt;path:hover{stroke-width:8}</style>
+    <ellipse
+       fill="#35a1a1"
+       stroke="#000000"
+       cx="298.67001"
+       cy="-93.209999"
+       rx="50.75"
+       ry="18"
+       id="ellipse57" />
+    <text
+       text-anchor="middle"
+       x="298.67001"
+       y="-90.709999"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text59">getphylo.align</text>
+  </g>
+  <g
+     id="node9"
+     class="node"
+     transform="translate(4,425.71)">
+    <title
+       id="title62">getphylo_main</title>
+    <style
+       id="style64">.edge&gt;path:hover{stroke-width:8}</style>
+    <ellipse
+       fill="#378181"
+       stroke="#000000"
+       cx="435.67001"
+       cy="-18"
+       rx="51.43"
+       ry="18"
+       id="ellipse66" />
+    <text
+       text-anchor="middle"
+       x="435.67001"
+       y="-15.5"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#ffffff"
+       id="text68">getphylo.main</text>
+  </g>
+  <g
+     id="edge3"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title71">getphylo_align-&gt;getphylo_main</title>
+    <style
+       id="style73">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 325.41,-77.92 c 21.18,11.31 50.96,27.23 74.23,39.67"
+       id="path75" />
+    <polygon
+       fill="#35a1a1"
+       stroke="#000000"
+       points="398.06,-35.13 401.36,-41.3 408.53,-33.5 "
+       id="polygon77" />
+  </g>
+  <g
+     id="node4"
+     class="node"
+     transform="translate(4,425.71)">
+    <title
+       id="title80">getphylo_console</title>
+    <style
+       id="style82">.edge&gt;path:hover{stroke-width:8}</style>
+    <ellipse
+       fill="#10f9f9"
+       stroke="#000000"
+       cx="298.67001"
+       cy="-328.48999"
+       rx="43.68"
+       ry="21.43"
+       id="ellipse84" />
+    <text
+       text-anchor="middle"
+       x="298.67001"
+       y="-331.48999"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text86">getphylo.</text>
+    <text
+       text-anchor="middle"
+       x="298.67001"
+       y="-320.48999"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text88">console</text>
+  </g>
+  <path
+     fill="none"
+     stroke="#000000"
+     d="m 346.32,100.39 c 46.53,5.23737 116.25,22.18182 136.35,76.25"
+     id="path95"
+     style="stroke-width:1.01338" />
+  <path
+     fill="none"
+     stroke="#000000"
+     d="m 482.67,176.64 c 4.4,11.52 -9.15,12.8 -19,20.22 -27.94,21.05 -42.05,14.95 -70,36 -9.84,7.42 -10.66,11.13 -19,20.21"
+     id="path97" />
+  <g
+     id="node5"
+     class="node"
+     transform="translate(4,425.71)">
+    <title
+       id="title100">getphylo_diamond</title>
+    <style
+       id="style102">.edge&gt;path:hover{stroke-width:8}</style>
+    <ellipse
+       fill="#31c4c4"
+       stroke="#000000"
+       cx="262.67001"
+       cy="-250.07001"
+       rx="43.68"
+       ry="21.43"
+       id="ellipse104" />
+    <text
+       text-anchor="middle"
+       x="262.67001"
+       y="-253.07001"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text106">getphylo.</text>
+    <text
+       text-anchor="middle"
+       x="262.67001"
+       y="-242.07001"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text108">diamond</text>
+  </g>
+  <g
+     id="edge5"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title111">getphylo_console-&gt;getphylo_diamond</title>
+    <style
+       id="style113">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 289.22,-307.41 c -3.93,8.34 -8.56,18.17 -12.85,27.27"
+       id="path115" />
+    <polygon
+       fill="#10f9f9"
+       stroke="#000000"
+       points="273.16,-281.55 279.5,-278.57 272.07,-271.01 "
+       id="polygon117" />
+  </g>
+  <g
+     id="node6"
+     class="node"
+     transform="translate(4,425.71)">
+    <title
+       id="title120">getphylo_extract</title>
+    <style
+       id="style122">.edge&gt;path:hover{stroke-width:8}</style>
+    <ellipse
+       fill="#38a8a8"
+       stroke="#000000"
+       cx="192.67"
+       cy="-171.64"
+       rx="43.68"
+       ry="21.43"
+       id="ellipse124" />
+    <text
+       text-anchor="middle"
+       x="192.67"
+       y="-174.64"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text126">getphylo.</text>
+    <text
+       text-anchor="middle"
+       x="192.67"
+       y="-163.64"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text128">extract</text>
+  </g>
+  <g
+     id="edge6"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title131">getphylo_console-&gt;getphylo_extract</title>
+    <style
+       id="style133">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 265.25,-314.61 c -19.28,9.17 -42.27,23.43 -55.58,43.33 -13.4,20.06 -17.26,47.36 -17.99,68.16"
+       id="path135" />
+    <polygon
+       fill="#10f9f9"
+       stroke="#000000"
+       points="188.17,-202.95 195.17,-202.86 191.54,-192.91 "
+       id="polygon137" />
+  </g>
+  <g
+     id="node7"
+     class="node"
+     transform="translate(4,425.71)">
+    <title
+       id="title140">getphylo_fasttree</title>
+    <style
+       id="style142">.edge&gt;path:hover{stroke-width:8}</style>
+    <ellipse
+       fill="#3ab0b0"
+       stroke="#000000"
+       cx="442.67001"
+       cy="-171.64"
+       rx="43.68"
+       ry="21.43"
+       id="ellipse144" />
+    <text
+       text-anchor="middle"
+       x="442.67001"
+       y="-174.64"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text146">getphylo.</text>
+    <text
+       text-anchor="middle"
+       x="442.67001"
+       y="-163.64"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text148">fasttree</text>
+  </g>
+  <g
+     id="edge7"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title151">getphylo_console-&gt;getphylo_fasttree</title>
+    <style
+       id="style153">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 478.67,-249.07 c 6.48,16.96 -1.71,35.37 -11.91,49.88"
+       id="path155" />
+    <polygon
+       fill="#10f9f9"
+       stroke="#000000"
+       points="463.91,-201.22 469.47,-196.97 460.62,-191.14 "
+       id="polygon157" />
+  </g>
+  <g
+     id="edge8"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title160">getphylo_console-&gt;getphylo_io</title>
+    <style
+       id="style162">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 266.85,-313.83 c -30.27,13 -75.84,32.56 -108.04,46.39"
+       id="path164" />
+    <polygon
+       fill="#10f9f9"
+       stroke="#000000"
+       points="157.09,-270.51 159.85,-264.08 149.28,-263.35 "
+       id="polygon166" />
+  </g>
+  <g
+     id="edge9"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title169">getphylo_console-&gt;getphylo_main</title>
+    <style
+       id="style171">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 514.67,-170.64 c -0.8,44.64 3.14,59.87 -19,98.64 -6.97,12.22 -17.81,23.06 -28.36,31.7"
+       id="path173" />
+    <polygon
+       fill="#10f9f9"
+       stroke="#000000"
+       points="465.11,-43.03 469.41,-37.5 459.36,-34.13 "
+       id="polygon175" />
+  </g>
+  <g
+     id="node10"
+     class="node"
+     transform="translate(4,425.71)">
+    <title
+       id="title178">getphylo_muscle</title>
+    <style
+       id="style180">.edge&gt;path:hover{stroke-width:8}</style>
+    <ellipse
+       fill="#3db8b8"
+       stroke="#000000"
+       cx="406.67001"
+       cy="-250.07001"
+       rx="43.68"
+       ry="21.43"
+       id="ellipse182" />
+    <text
+       text-anchor="middle"
+       x="406.67001"
+       y="-253.07001"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text184">getphylo.</text>
+    <text
+       text-anchor="middle"
+       x="406.67001"
+       y="-242.07001"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text186">muscle</text>
+  </g>
+  <g
+     id="edge10"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title189">getphylo_console-&gt;getphylo_muscle</title>
+    <style
+       id="style191">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 322.64,-310.53 c 15.24,10.78 35.16,24.88 51.78,36.64"
+       id="path193" />
+    <polygon
+       fill="#10f9f9"
+       stroke="#000000"
+       points="372.59,-270.9 376.63,-276.61 382.77,-267.98 "
+       id="polygon195" />
+  </g>
+  <g
+     id="node12"
+     class="node"
+     transform="translate(4,425.71)">
+    <title
+       id="title198">getphylo_screen</title>
+    <style
+       id="style200">.edge&gt;path:hover{stroke-width:8}</style>
+    <ellipse
+       fill="#2db4b4"
+       stroke="#000000"
+       cx="298.67001"
+       cy="-171.64"
+       rx="43.68"
+       ry="21.43"
+       id="ellipse202" />
+    <text
+       text-anchor="middle"
+       x="298.67001"
+       y="-174.64"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text204">getphylo.</text>
+    <text
+       text-anchor="middle"
+       x="298.67001"
+       y="-163.64"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text206">screen</text>
+  </g>
+  <g
+     id="edge11"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title209">getphylo_console-&gt;getphylo_screen</title>
+    <style
+       id="style211">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 306.28,-307.53 c 3.63,10.6 7.57,23.95 9.39,36.25 2.76,18.65 2.76,23.77 0,42.43 -1.29,8.75 -3.66,18.02 -6.22,26.46"
+       id="path213" />
+    <polygon
+       fill="#10f9f9"
+       stroke="#000000"
+       points="306.03,-203.2 312.69,-201.04 306.28,-192.61 "
+       id="polygon215" />
+  </g>
+  <g
+     id="node13"
+     class="node"
+     transform="translate(4,425.71)">
+    <title
+       id="title218">getphylo_trees</title>
+    <style
+       id="style220">.edge&gt;path:hover{stroke-width:8}</style>
+    <ellipse
+       fill="#3ab0b0"
+       stroke="#000000"
+       cx="435.67001"
+       cy="-93.209999"
+       rx="51.43"
+       ry="18"
+       id="ellipse222" />
+    <text
+       text-anchor="middle"
+       x="435.67001"
+       y="-90.709999"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text224">getphylo.trees</text>
+  </g>
+  <g
+     id="edge12"
+     class="edge"
+     transform="matrix(1,0,0,1.0261677,4,432.2276)">
+    <title
+       id="title227">getphylo_console-&gt;getphylo_trees</title>
+    <style
+       id="style229">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 478.67,-249.07 c 13.4,35.08 36.68,38.89 36,76.43"
+       id="path231" />
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 514.67,-170.64 c -0.44,24.76 -20.75,44.06 -40.65,57.07"
+       id="path233" />
+    <polygon
+       fill="#10f9f9"
+       stroke="#000000"
+       points="475.63,-110.45 465.27,-108.21 471.97,-116.42 "
+       id="polygon235" />
+  </g>
+  <g
+     id="edge13"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title238">getphylo_diamond-&gt;getphylo_extract</title>
+    <style
+       id="style240">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 245.37,-230.17 c -8.65,9.44 -19.25,21.01 -28.67,31.3"
+       id="path242" />
+    <polygon
+       fill="#31c4c4"
+       stroke="#000000"
+       points="213.95,-201.05 219.11,-196.32 209.78,-191.31 "
+       id="polygon244" />
+  </g>
+  <g
+     id="edge14"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title247">getphylo_diamond-&gt;getphylo_screen</title>
+    <style
+       id="style249">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 272.13,-228.99 c 3.93,8.34 8.56,18.18 12.85,27.28"
+       id="path251" />
+    <polygon
+       fill="#31c4c4"
+       stroke="#000000"
+       points="281.85,-200.14 288.18,-203.12 289.28,-192.59 "
+       id="polygon253" />
+  </g>
+  <g
+     id="edge15"
+     class="edge"
+     transform="matrix(1,0,0,1.035524,4,431.05671)">
+    <title
+       id="title256">getphylo_extract-&gt;getphylo_main</title>
+    <style
+       id="style258">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 187.14,-150.51 c -3.29,16.44 -5.03,39.58 5.53,56.3"
+       id="path260" />
+  </g>
+  <g
+     id="edge16"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title263">getphylo_fasttree-&gt;getphylo_trees</title>
+    <style
+       id="style265">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 440.8,-150.16 c -0.8,8.74 -1.75,19.07 -2.61,28.46"
+       id="path267" />
+    <polygon
+       fill="#3ab0b0"
+       stroke="#000000"
+       points="434.7,-121.92 441.67,-121.28 437.27,-111.64 "
+       id="polygon269" />
+  </g>
+  <g
+     id="edge17"
+     class="edge"
+     transform="matrix(1,0,0,1.0293427,4,428.71704)">
+    <title
+       id="title272">getphylo_io-&gt;getphylo_align</title>
+    <style
+       id="style274">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 120.67,-170.64 c 5.97,10.79 8.68,13.48 19,20.21 32.67,21.32 74.4,35.67 106.91,44.54"
+       id="path276" />
+    <polygon
+       fill="#0bd6d6"
+       stroke="#000000"
+       points="247.57,-109.25 256.35,-103.32 245.79,-102.48 "
+       id="polygon278" />
+  </g>
+  <g
+     id="edge18"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title281">getphylo_io-&gt;getphylo_extract</title>
+    <style
+       id="style283">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 135.59,-233.23 c 9.46,10.04 21.92,23.27 32.79,34.8"
+       id="path285" />
+    <polygon
+       fill="#0bd6d6"
+       stroke="#000000"
+       points="165.83,-196.03 170.93,-200.83 175.24,-191.15 "
+       id="polygon287" />
+  </g>
+  <g
+     id="edge19"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title290">getphylo_io-&gt;getphylo_fasttree</title>
+    <style
+       id="style292">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 156.58,-240.74 c 16.2,3.72 35.59,8.1 53.09,11.89 77.61,16.79 98.46,14.88 175,36 4.7,1.29 9.58,2.77 14.41,4.32"
+       id="path294" />
+    <polygon
+       fill="#0bd6d6"
+       stroke="#000000"
+       points="398.28,-185.1 400.49,-191.74 408.87,-185.26 "
+       id="polygon296" />
+  </g>
+  <path
+     fill="none"
+     stroke="#000000"
+     d="m 120.21,193.6 c -3.3,16.31 -5.68,41.13 4.46,59.47"
+     id="path303" />
+  <path
+     fill="none"
+     stroke="#000000"
+     d="m 124.67,253.07 c 22.59,42.97738 47.08,38.91536 72,80.43"
+     id="path305"
+     style="stroke-width:1.02583" />
+  <path
+     fill="none"
+     stroke="#000000"
+     d="m 196.67,333.5 c 20.06,31.73 121.06,53.65 186.38,64.77"
+     id="path307" />
+  <polygon
+     fill="#0bd6d6"
+     stroke="#000000"
+     points="379.91,-30.85 389.2,-25.75 378.76,-23.94 "
+     id="polygon309"
+     transform="translate(4,425.71)" />
+  <g
+     id="edge21"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title312">getphylo_io-&gt;getphylo_screen</title>
+    <style
+       id="style314">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 149.27,-236.79 c 29.25,12.56 74.98,32.19 108.14,46.43"
+       id="path316" />
+    <polygon
+       fill="#0bd6d6"
+       stroke="#000000"
+       points="256.27,-187.04 259.03,-193.47 266.84,-186.31 "
+       id="polygon318" />
+  </g>
+  <g
+     id="edge22"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title321">getphylo_muscle-&gt;getphylo_align</title>
+    <style
+       id="style323">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 400.92,-228.94 c -5.56,16.64 -15.37,40.09 -30.25,56.3"
+       id="path325" />
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 370.67,-170.64 c -16.37,17.84 -35.14,37.74 -49.41,52.77"
+       id="path327" />
+    <polygon
+       fill="#3db8b8"
+       stroke="#000000"
+       points="318.6,-120.16 323.67,-115.33 314.25,-110.5 "
+       id="polygon329" />
+  </g>
+  <g
+     id="node11"
+     class="node"
+     transform="translate(4,425.71)">
+    <title
+       id="title332">getphylo_parser</title>
+    <style
+       id="style334">.edge&gt;path:hover{stroke-width:8}</style>
+    <ellipse
+       fill="#47c2c2"
+       stroke="#000000"
+       cx="586.66998"
+       cy="-93.209999"
+       rx="43.68"
+       ry="21.43"
+       id="ellipse336" />
+    <text
+       text-anchor="middle"
+       x="586.66998"
+       y="-96.209999"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text338">getphylo.</text>
+    <text
+       text-anchor="middle"
+       x="586.66998"
+       y="-85.209999"
+       font-family="Helvetica, sans-Serif"
+       font-size="10px"
+       fill="#000000"
+       id="text340">parser</text>
+  </g>
+  <g
+     id="edge23"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title343">getphylo_parser-&gt;getphylo_main</title>
+    <style
+       id="style345">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 556.48,-77.57 c -23.84,11.56 -57.24,27.75 -82.88,40.18"
+       id="path347" />
+    <polygon
+       fill="#47c2c2"
+       stroke="#000000"
+       points="472.01,-40.51 475.06,-34.21 464.54,-32.99 "
+       id="polygon349" />
+  </g>
+  <g
+     id="edge24"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title352">getphylo_screen-&gt;getphylo_align</title>
+    <style
+       id="style354">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 298.67,-150.16 c 0,8.74 0,19.07 0,28.46"
+       id="path356" />
+    <polygon
+       fill="#2db4b4"
+       stroke="#000000"
+       points="295.17,-121.64 302.17,-121.64 298.67,-111.64 "
+       id="polygon358" />
+  </g>
+  <g
+     id="edge25"
+     class="edge"
+     transform="matrix(1,0,0,1.0321698,4,430.74071)">
+    <title
+       id="title361">getphylo_screen-&gt;getphylo_main</title>
+    <style
+       id="style363">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 267.95,-156.38 c -34.86,17.18 -85.64,45.77 -75.28,62.17"
+       id="path365" />
+  </g>
+  <g
+     id="edge26"
+     class="edge"
+     transform="translate(4,425.71)">
+    <title
+       id="title368">getphylo_trees-&gt;getphylo_main</title>
+    <style
+       id="style370">.edge&gt;path:hover{stroke-width:8}</style>
+    <path
+       fill="none"
+       stroke="#000000"
+       d="m 435.67,-74.86 c 0,8.48 0,18.88 0,28.41"
+       id="path372" />
+    <polygon
+       fill="#3ab0b0"
+       stroke="#000000"
+       points="432.17,-46.23 439.17,-46.23 435.67,-36.23 "
+       id="polygon374" />
   </g>
 </svg>
