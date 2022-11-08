@@ -12,37 +12,6 @@ Functions:
 
 import argparse
 
-def get_loci_tresholds():
-    '''get thresholds screening'''
-    args = parse_args()
-    presence_threshold = args.presence
-    minimum_loci = args.minloci
-    return presence_threshold, minimum_loci
-
-def get_seed_thresholds():
-    '''get thresholds used in identfying seed singletons'''
-    args = parse_args()
-    loci_to_find = args.find
-    if loci_to_find is not None:
-        loci_to_find = int(loci_to_find)
-    else:
-        loci_to_find = -1
-    loci_min_length = int(args.minlength)
-    loci_max_length = int(args.maxlength)
-    return loci_to_find, loci_min_length, loci_max_length
-
-def get_checkpoint():
-    '''get checkpoint from the parser'''
-    args = parse_args()
-    checkpoint = int(args.checkpoint)
-    return checkpoint
-
-def get_gbks():
-    '''get genbank path from the parser'''
-    args = parse_args()
-    gbks = args.gbks
-    return gbks
-
 def get_parser():
     ''''Create a parser object specific to getphylo'''
     parser = argparse.ArgumentParser(
@@ -52,51 +21,75 @@ def get_parser():
         epilog="Written by Dr. Thom Booth, 2022."
         )
     parser.add_argument(
-        '-s',
-        '--seed',
-        default=None,
-        help='path to a genbankfile with for the target organism (default: random)'
+        '-c',
+        '--checkpoint',
+        default=0,
+        type=int,
+        help=(
+            'interger indicating the checkpoint from which to continue the analysis (default:0)'
+            '(checkpoint info: '
+            '1: skip extraction of CDSs from genbank; '
+            '2: skip creation of diamond databases; '
+            '3: skip identifying singletons from seed genome'
+            '4: skip confirming singletons in other genomes'
+            '5: skip thresholding and identifying final loci for alignments'
+        )
+        )
+    parser.add_argument(
+        '-f',
+        '--find',
+        default=-1,
+        type=int,
+        help=(
+            'integer indicating the number of loci to find in the seed genome '
+            '(default: all suitable loci (-1))'
+        )
         )
     parser.add_argument(
         '-g',
         '--gbks',
         default="*.gbk",
-        help='list of genbank files to use in the phylogeny (default: *.gbk)'
-        )
-    parser.add_argument(
-        '-f',
-        '--find',
-        default=None,
-        help=(
-            'integer indicating the number of loci to find in the seed genome '
-            '(default: all suitable loci)'
-        )
-        )
-    parser.add_argument(
-        '-min',
-        '--minlength',
-        default=200,
-        help=(
-            'interger indicating the minimum length of loci to be included in the analysis '
-            '(default: 200)'
-        )
+        type=str,
+        help='string indicating the genbank files to use in the phylogeny (default: *.gbk)'
         )
     parser.add_argument(
         '-max',
         '--maxlength',
         default=2000,
+        type=int,
         help=(
             'interger indicating the minimum length of loci to be included in the analysis '
             '(default: 2000)'
         )
         )
     parser.add_argument(
+        '-min',
+        '--minlength',
+        default=200,
+        type=int,
+        help=(
+            'interger indicating the minimum length of loci to be included in the analysis '
+            '(default: 200)'
+        )
+        )
+    parser.add_argument(
         '-ml',
         '--minloci',
         default=1, #set types for args!!
+        type=int,
         help=(
             'minimum number of loci required to continue to alignment and tree building steps '
             '(default: 1)'
+        )
+        )
+    parser.add_argument(
+        '-o',
+        '--output',
+        default='output',
+        type=str,
+        help=(
+            'a string designating the name of the folder to output the results'
+            '(default: output)'
         )
         )
     parser.add_argument(
@@ -110,26 +103,13 @@ def get_parser():
         )
         )
     parser.add_argument(
-        '-c',
-        '--checkpoint',
-        default=0,
-        help=(
-            'interger indicating the checkpoint from which to continue the analysis (default:0)'
-            '(checkpoint info: '
-            '1: skip extraction of CDSs from genbank; '
-            '2: skip creation of diamond databases; '
-            '3: skip identifying singletons from seed genome'
-            '4: skip confirming singletons in other genomes'
-            '5: skip thresholding and identifying final loci for alignments'
-        )
+        '-s',
+        '--seed',
+        default=None,
+        type=str,
+        help='path to a genbankfile with for the target organism (default: random)'
         )
     return parser
-
-def get_seed():
-    '''get seed information from the parser'''
-    args = parse_args()
-    seed = args.seed
-    return seed
 
 def parse_args():
     '''get the arguments from the console via the parser'''

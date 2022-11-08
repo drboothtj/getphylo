@@ -9,44 +9,34 @@ extract_data(genbank_path, checkpoint)
 '''
 import os
 import glob
-from getphylo import console, diamond, io, parser
+from getphylo import console, diamond, io
 
-def build_diamond_databases():
+def build_diamond_databases(output):
     '''create diamond databases from from all the fasta files in ./fasta/*.fasta'''
     console.print_to_system("Creating diamond databases from extracted cdses...")
-    try:
-        os.mkdir('dmnd')
-    except OSError as error:
-        if error.errno == 17:
-            console.print_to_system(
-                "ALERT: The directory './dmnd/' already exists. Exiting!"
-                )
-            exit()
-        else:
-            raise
-    else:
-        for file in glob.glob("fasta/*.fasta"):
-            dmnd_database = io.change_extension(file, "dmnd").split('/')[1]
-            dmnd_database = ("dmnd/" + dmnd_database)
-            diamond.make_diamond_database(file, dmnd_database)
-
-def extract_cdses():
+    io.make_folder(f'{output}/dmnd')
+    for file in glob.glob(f'{output}/fasta/*.fasta'):
+        dmnd_database = io.change_extension(file, "dmnd").split('/')[2]
+        dmnd_database = (f'{output}/dmnd/' + dmnd_database)
+        diamond.make_diamond_database(file, dmnd_database)
+        
+def extract_cdses(gbks, output):
     '''produce a fasta file from each genbank provided'''
     try:
-        os.mkdir('fasta')
+        os.mkdir(f'{output}/fasta/')
     except OSError as error:
         if error.errno == 17:
-            console.print_to_system("ALERT: The directory './fasta/' already exists. Exiting!")
+            console.print_to_system(f'ALERT: The directory {output}/fasta already exists. Exiting!')
             exit()
         else:
             raise
     else:
         seen = set()
-        for filename in glob.glob(parser.get_gbks()):
+        for filename in glob.glob(gbks):
             console.print_to_system('Extracting CDS annotations from ' + filename)
-            get_cds_from_genbank(filename, seen)
+            get_cds_from_genbank(filename, output, seen)
 
-def get_cds_from_genbank(filename, seen):
+def get_cds_from_genbank(filename, output, seen):
     '''extract CDS translations from genbank files into ./fasta/*.fasta'''
     lines = []
     records = io.get_records_from_genbank(filename)
@@ -73,14 +63,14 @@ def get_cds_from_genbank(filename, seen):
     if not lines:
         console.print_to_system("ALERT: No CDS Features in" + filename)
     filename = io.change_extension(filename, "fasta")
-    filename = "fasta/" + filename
+    filename = f'{output}/fasta/{filename}'
     io.write_to_file(filename, lines)
 
-def extract_data(checkpoint):
+def extract_data(checkpoint, output, gbks):
     '''called from main to build fasta and diamond databases from the provided genbankfiles'''
     if checkpoint < 1:
         console.print_to_system("CHECKPOINT 0: Extracting CDSs...")
-        extract_cdses()
+        extract_cdses(gbks, output)
     if checkpoint < 2:
         console.print_to_system("CHECKPOINT 1: Building diamond databases...")
-        build_diamond_databases()
+        build_diamond_databases(output)

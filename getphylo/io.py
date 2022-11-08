@@ -10,6 +10,8 @@ Functions:
 '''
 import csv
 import glob
+import os
+from getphylo import console
 from Bio import SeqIO
 
 def count_files(filename: str):
@@ -26,6 +28,20 @@ def get_records_from_genbank(filename: str):
     '''use BioPython to get genbank records from a given file'''
     records = SeqIO.parse(filename, "genbank")
     return records
+
+def make_folder(name):
+    try:
+        os.mkdir(name)
+    except OSError as error:
+        if error.errno == 17:
+            console.print_to_system(
+                f'ALERT: The directory {name} already exists. Exiting!'
+                )
+            exit()
+        else:
+            raise
+
+
 
 def read_file(filename: str):
     '''read a file from the filename'''

@@ -8,12 +8,10 @@ set_seed()
 '''
 import glob
 from random import shuffle
-from getphylo import align, console, extract, parser, screen, trees
+from getphylo import align, console, extract, io, parser, screen, trees
 
-def set_seed():
+def set_seed(seed, checkpoint, gbks):
     '''get the seed genome name'''
-    seed = parser.get_seed()
-    checkpoint = parser.get_checkpoint()
     if seed is None:
         if checkpoint > 0:
             console.print_to_system(
@@ -21,7 +19,7 @@ def set_seed():
                 )
             exit()
         else:
-            gbks = glob.glob(parser.get_gbks())
+            gbks = glob.glob(gbks)
             seed = gbks[0]
             console.print_to_system(
                 f'No seed defined. Using first file in glob ({seed}) as seed.'
@@ -31,29 +29,34 @@ def set_seed():
 def main():
     '''main routine for getphylo'''
     console.print_to_system("Running getphylo version 0.0.1")
-    seed = set_seed()
-    console.print_to_system("The seed genome is " + seed)
-    checkpoint = parser.get_checkpoint()
+    #store arguments as args and get checkpoint and output directory, then get args as required
+    args = parser.parse_args()
+    checkpoint = args.checkpoint
+    output = args.output
+    io.make_folder(output)
+    #set seed
+    gbks = args.gbks
+    seed = args.seed
+    seed = set_seed(seed, checkpoint, gbks)
+    console.print_to_system("The seed genome is " + seed)    
+    #checkpoint 0 and 1 extracting the CDSs 
     if checkpoint < 2:
-        extract.extract_data(checkpoint)
+        extract.extract_data(checkpoint, output, gbks)
+    #checkpoint 2, 3 and 4 screening the target proteins
+    thresholds = [args.find, args.minlength, args.maxlength, args.presence, args.minloci]
     if checkpoint < 5:
-        final_loci = screen.get_target_proteins(checkpoint, seed)
+        final_loci = screen.get_target_proteins(checkpoint, output, seed, thresholds)
     if checkpoint > 4:
         final_loci = screen.get_loci_from_file('final_loci.txt')
+    #checkpoint 5, 5 and 7 extracting sequences and alignment
     if checkpoint < 8:
-        align.make_alignments(checkpoint, final_loci)
+        align.make_alignments(checkpoint, output, final_loci, gbks)
+    #checkpoint 8 building trees
     if checkpoint < 9: 
-        trees.make_trees()
+        trees.make_trees(output)
     console.print_to_system("Analysis complete. Thank you for using getphylo!")
 
-    #if checkpoint < Y align.main(checkpoint)
-    #if checkpoint < Y tree.main(checkpoint)
-    #add custom error types for files existing etc.
     #add logging
-    #allow screening multiple genomes for target loci (loop screening)
-    #structure as single diamond database
-    #generate bio utils library
-    #add reading and writing details at each cp
-    #add file/directory check as io function!
+
 if __name__ == "__main__":
     main()

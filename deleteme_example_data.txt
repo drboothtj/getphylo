@@ -1,0 +1,4 @@
+Bacteria - all
+Eukaryotes - MT or genomes
+BGCs -Super cluster
+Streptomyces - 10/100/1000
