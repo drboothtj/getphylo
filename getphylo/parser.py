@@ -120,3 +120,4 @@ def parse_args():
     #add extra dmnd options
     #add max threshold?
     #set types for args!!
+    

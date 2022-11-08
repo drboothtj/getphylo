@@ -7,7 +7,6 @@ set_seed()
 
 '''
 import glob
-from random import shuffle
 from getphylo import align, console, extract, io, parser, screen, trees
 
 def set_seed(seed, checkpoint, gbks):
@@ -38,8 +37,8 @@ def main():
     gbks = args.gbks
     seed = args.seed
     seed = set_seed(seed, checkpoint, gbks)
-    console.print_to_system("The seed genome is " + seed)    
-    #checkpoint 0 and 1 extracting the CDSs 
+    console.print_to_system("The seed genome is " + seed)
+    #checkpoint 0 and 1 extracting the CDSs
     if checkpoint < 2:
         extract.extract_data(checkpoint, output, gbks)
     #checkpoint 2, 3 and 4 screening the target proteins
@@ -52,7 +51,7 @@ def main():
     if checkpoint < 8:
         align.make_alignments(checkpoint, output, final_loci, gbks)
     #checkpoint 8 building trees
-    if checkpoint < 9: 
+    if checkpoint < 9:
         trees.make_trees(output)
     console.print_to_system("Analysis complete. Thank you for using getphylo!")
 

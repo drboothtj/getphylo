@@ -19,7 +19,7 @@ def get_fasta_for_alignments(loci_list, output):
             tsv = io.read_tsv(tsv_name)
             for line in tsv:
                 if locus in line[0]:
-                    sequence = screen.get_locus(filename, line[1]) 
+                    sequence = screen.get_locus(filename, line[1])
                     sequence_name = f'>{filename.split("/")[2].split(".")[0]}_{line[1]}'
                     write_lines.append(sequence_name)
                     write_lines.append(sequence)
@@ -82,6 +82,7 @@ def make_combined_alignment(gbks, output):
             combined_alignment.append(sequence_string)
         io.write_to_file(f'{output}/aligned_fasta/combined_alignment.fasta', combined_alignment)
         #add check to recommend removing data that is mostly Ns
+        #provide partition data!
 
 def make_alignments(checkpoint, output, loci, gbks):
     '''Main routine for align'''

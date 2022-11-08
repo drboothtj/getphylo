@@ -19,7 +19,7 @@ def build_diamond_databases(output):
         dmnd_database = io.change_extension(file, "dmnd").split('/')[2]
         dmnd_database = (f'{output}/dmnd/' + dmnd_database)
         diamond.make_diamond_database(file, dmnd_database)
-        
+
 def extract_cdses(gbks, output):
     '''produce a fasta file from each genbank provided'''
     try:
@@ -48,7 +48,7 @@ def get_cds_from_genbank(filename, output, seen):
                     if locus_tag in seen:
                         raise ValueError(f'{filename} contains duplicate: {locus_tag}')
                     seen.add(locus_tag)
-                    lines.append(">" + locus_tag.replace(".","_"))
+                    lines.append(">" + locus_tag.replace(".", "_"))
                     lines.append(str(feature.qualifiers.get("translation")[0]))
             except TypeError:
                 if feature.qualifiers.get("locus_tag") is None:

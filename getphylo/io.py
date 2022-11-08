@@ -11,8 +11,9 @@ Functions:
 import csv
 import glob
 import os
-from getphylo import console
 from Bio import SeqIO
+from getphylo import console
+
 
 def count_files(filename: str):
     '''count the number of files in a glob'''
@@ -30,6 +31,7 @@ def get_records_from_genbank(filename: str):
     return records
 
 def make_folder(name):
+    '''attempts to make a folder with the given name and returns an error if it already exists'''
     try:
         os.mkdir(name)
     except OSError as error:
@@ -40,8 +42,6 @@ def make_folder(name):
             exit()
         else:
             raise
-
-
 
 def read_file(filename: str):
     '''read a file from the filename'''
