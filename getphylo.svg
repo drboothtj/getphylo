@@ -26,6 +26,8 @@
        id="style44">.edge&gt;path:hover{stroke-width:8}</style>
     <style
        id="style93">.edge&gt;path:hover{stroke-width:8}</style>
+    <style
+       id="style229">.edge&gt;path:hover{stroke-width:8}</style>
   </defs>
   <sodipodi:namedview
      id="namedview380"
@@ -39,7 +41,7 @@
      showgrid="false"
      inkscape:zoom="1.2994186"
      inkscape:cx="359.00671"
-     inkscape:cy="361.70022"
+     inkscape:cy="177.00224"
      inkscape:window-width="1920"
      inkscape:window-height="1137"
      inkscape:window-x="-8"
@@ -594,30 +596,23 @@
        fill="#000000"
        id="text224">getphylo.trees</text>
   </g>
-  <g
-     id="edge12"
-     class="edge"
-     transform="matrix(1,0,0,1.0261677,4,432.2276)">
-    <title
-       id="title227">getphylo_console-&gt;getphylo_trees</title>
-    <style
-       id="style229">.edge&gt;path:hover{stroke-width:8}</style>
-    <path
-       fill="none"
-       stroke="#000000"
-       d="m 478.67,-249.07 c 13.4,35.08 36.68,38.89 36,76.43"
-       id="path231" />
-    <path
-       fill="none"
-       stroke="#000000"
-       d="m 514.67,-170.64 c -0.44,24.76 -20.75,44.06 -40.65,57.07"
-       id="path233" />
-    <polygon
-       fill="#10f9f9"
-       stroke="#000000"
-       points="475.63,-110.45 465.27,-108.21 471.97,-116.42 "
-       id="polygon235" />
-  </g>
+  <path
+     fill="none"
+     stroke="#000000"
+     d="m 482.67,176.63998 c 13.4,35.99797 36.68,39.90767 36,78.43002"
+     id="path231"
+     style="stroke-width:1.013" />
+  <path
+     fill="none"
+     stroke="#000000"
+     d="m 518.67,255.06998 c -0.44,24.76 -20.75,44.06 -40.65,57.07"
+     id="path233" />
+  <polygon
+     fill="#10f9f9"
+     stroke="#000000"
+     points="475.63,-110.45 465.27,-108.21 471.97,-116.42 "
+     id="polygon235"
+     transform="translate(4,425.70998)" />
   <g
      id="edge13"
      class="edge"
