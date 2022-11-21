@@ -32,7 +32,10 @@ def main():
     args = parser.parse_args()
     checkpoint = args.checkpoint
     output = args.output
-    io.make_folder(output)
+    try:
+        io.make_folder(output)
+    except:
+        console.print_to_system(f'ALERT: {output} already exists. Continuing analysis in that directory.')
     #set seed
     gbks = args.gbks
     seed = args.seed
@@ -46,7 +49,7 @@ def main():
     if checkpoint < 5:
         final_loci = screen.get_target_proteins(checkpoint, output, seed, thresholds)
     if checkpoint > 4:
-        final_loci = screen.get_loci_from_file('final_loci.txt')
+        final_loci = screen.get_loci_from_file(f'{output}/final_loci.txt')
     #checkpoint 5, 5 and 7 extracting sequences and alignment
     if checkpoint < 8:
         align.make_alignments(checkpoint, output, final_loci, gbks)

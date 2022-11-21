@@ -153,7 +153,7 @@ def write_pa_table(pa_table, loci, output):
     for data in transposed_data:
         data_string = ';'.join([str(datum) for datum in data])
         new_table.append(data_string)
-    io.write_to_file(f'{output}/presence_absence_table', new_table)
+    io.write_to_file(f'{output}/presence_absence_table.csv', new_table)
 
 def get_target_proteins(checkpoint, output, seed, thresholds):
     '''main routine for screen.py'''
@@ -163,7 +163,7 @@ def get_target_proteins(checkpoint, output, seed, thresholds):
     if checkpoint > 2:
         #since candidate loci is created before checkpoint 3
         #all later checkpoints require this list to be read in
-        candidate_loci = get_loci_from_file('tsv/seed_loci.txt')
+        candidate_loci = get_loci_from_file(f'{output}/tsv/seed_loci.txt')
     if checkpoint < 4:
         console.print_to_system("CHECKPOINT 3: Searching for singletons in other genomes...")
         search_candidates(output)
