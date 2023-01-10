@@ -14,5 +14,9 @@ There may be occasions where you need to change the default settings. A full lis
 
 `getphylo -h`
 
-## Example
-WIP
+## Examples
+See the ´example_data´ folder in this directory for three example trees produced by `getphylo`.
+
+1. A phylogeny of bacterial genomes
+2. A phylogeny of eukaryotic mitochondrial genomes
+3. A phylogeny of a biosynthetic super cluster
