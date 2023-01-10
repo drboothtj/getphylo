@@ -9,4 +9,4 @@ The first example is a genome level phylogeny of bacteria. It was generated in l
 The second example is a phylogeny of eukaryotic mitochondrial genomes. It was generated in less than X seconds.
 
 ## Example 3 - Biosynthetic Super Cluster
-The third example shows the evolutionary history of the anthrabenzoxocinone-borregomycin supercluster (bab) as described in our paper: ['Chlorinated metabolites from Streptomyces sp. highlight the role of biosynthetic mosaics and superclusters in the evolution of chemical diversity.'](https://doi.org/10.1039/D1OB00600B) It was generated in X seconds.
+The third example shows the evolutionary history of the anthrabenzoxocinone-borregomycin supercluster (*bab*) as described in our paper: ['Chlorinated metabolites from Streptomyces sp. highlight the role of biosynthetic mosaics and superclusters in the evolution of chemical diversity.'](https://doi.org/10.1039/D1OB00600B) It was generated in X seconds.
