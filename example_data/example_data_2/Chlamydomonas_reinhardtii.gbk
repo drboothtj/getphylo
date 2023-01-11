@@ -1,0 +1,954 @@
+LOCUS       NC_001638              15758 bp    DNA     linear   PLN 01-FEB-2010
+DEFINITION  Chlamydomonas reinhardtii mitochondrion, complete genome.
+ACCESSION   NC_001638
+VERSION     NC_001638.1
+DBLINK      Project: 21061
+            BioProject: PRJNA21061
+KEYWORDS    RefSeq.
+SOURCE      mitochondrion Chlamydomonas reinhardtii
+  ORGANISM  Chlamydomonas reinhardtii
+            Eukaryota; Viridiplantae; Chlorophyta; core chlorophytes;
+            Chlorophyceae; CS clade; Chlamydomonadales; Chlamydomonadaceae;
+            Chlamydomonas.
+REFERENCE   1  (bases 1 to 7969; 13505 to 15758)
+  AUTHORS   Vahrenholz,C., Riemen,G., Pratje,E., Dujon,B. and Michaelis,G.
+  TITLE     Mitochondrial DNA of Chlamydomonas reinhardtii: the structure of
+            the ends of the linear 15.8-kb genome suggests mechanisms for DNA
+            replication
+  JOURNAL   Curr. Genet. 24 (3), 241-247 (1993)
+   PUBMED   8221933
+REFERENCE   2  (bases 1 to 564; 14760 to 15758)
+  AUTHORS   Ma,D.P., King,Y.T., Kim,Y., Luckett,W.S. Jr., Boyle,J.A. and
+            Chang,Y.F.
+  TITLE     Amplification and characterization of an inverted repeat from the
+            Chlamydomonas reinhardtii mitochondrial genome
+  JOURNAL   Gene 119 (2), 253-257 (1992)
+   PUBMED   1398107
+REFERENCE   3  (bases 2818 to 15175)
+  AUTHORS   Boer,P.H. and Gray,M.W.
+  TITLE     Short dispersed repeats localized in spacer regions of
+            Chlamydomonas reinhardtii mitochondrial DNA
+  JOURNAL   Curr. Genet. 19 (4), 309-312 (1991)
+   PUBMED   1831072
+REFERENCE   4  (bases 287 to 1715)
+  AUTHORS   Bennoun,P., Delosme,M. and Kuck,U.
+  TITLE     Mitochondrial genetics of Chlamydomonas reinhardtii: resistance
+            mutations marking the cytochrome b gene
+  JOURNAL   Genetics 127 (2), 335-343 (1991)
+   PUBMED   2004707
+REFERENCE   5  (bases 533 to 1715)
+  AUTHORS   Michaelis,G., Vahrenholz,C. and Pratje,E.
+  TITLE     Mitochondrial DNA of Chlamydomonas reinhardtii: the gene for
+            apocytochrome b and the complete functional map of the 15.8 kb DNA
+  JOURNAL   Mol. Gen. Genet. 223 (2), 211-216 (1990)
+   PUBMED   2250648
+REFERENCE   6  (bases 490 to 1783)
+  AUTHORS   Ma,D.P., Yang,Y.W., King,T.Y. and Hasnain,S.E.
+  TITLE     The mitochondrial apocytochrome b gene from Chlamydomonas
+            reinhardtii
+  JOURNAL   Plant Mol. Biol. 15 (2), 357-359 (1990)
+   PUBMED   2103454
+REFERENCE   7  (bases 1495 to 3105)
+  AUTHORS   Ma,D.P., Yang,Y.W., King,Y.T. and Hasnain,S.E.
+  TITLE     Nucleotide sequence of cloned nad4 (urf4) gene from Chlamydomonas
+            reinhardtii mitochondrial DNA
+  JOURNAL   Gene 85 (2), 363-370 (1989)
+   PUBMED   2628173
+REFERENCE   8  (bases 1713 to 3044)
+  AUTHORS   Pratje,E., Vahrenholz,C., Buhler,S. and Michaelis,G.
+  TITLE     Mitochondrial DNA of Chlamydomonas reinhardtii: the ND4 gene
+            encoding a subunit of NADH dehydrogenase
+  JOURNAL   Curr. Genet. 16 (1), 61-64 (1989)
+   PUBMED   2791036
+REFERENCE   9  (bases 7800 to 8609)
+  AUTHORS   Boer,P.H. and Gray,M.W.
+  TITLE     Nucleotide sequence of a region encoding subunit 6 of NADH
+            dehydrogenase (ND6) and tRNA(Trp) in Chlamydomonas reinhardtii
+            mitochondrial DNA
+  JOURNAL   Nucleic Acids Res. 17 (10), 3993 (1989)
+   PUBMED   2734113
+REFERENCE   10 (bases 9211 to 9439; 13708 to 13923)
+  AUTHORS   Ma,D.P., Yang,Y.W. and Hasnain,S.E.
+  TITLE     Nucleotide sequence of Chlamydomonas reinhardtii mitochondrial
+            genes coding for tRNA(Gln) (UUG) and tRNA(Met) (CAU)
+  JOURNAL   Nucleic Acids Res. 17 (3), 1256 (1989)
+   PUBMED   2922267
+REFERENCE   11 (bases 7617 to 8585)
+  AUTHORS   Ma,D.P., Yang,Y.W. and Hasnain,S.E.
+  TITLE     Nucleotide sequence of Chlamydomonas reinhardtii mitochondrial
+            genes coding for subunit 6 of NADH dehydrogenase and tRNATrp
+  JOURNAL   Nucleic Acids Res. 16 (23), 11373 (1988)
+   PUBMED   3205746
+REFERENCE   12 (bases 8461 to 8534; 9235 to 9306; 13834 to 13905)
+  AUTHORS   Boer,P.H. and Gray,M.W.
+  TITLE     Transfer RNA genes and the genetic code in Chlamydomonas
+            reinhardtii mitochondria
+  JOURNAL   Curr. Genet. 14 (6), 583-590 (1988)
+   PUBMED   3242866
+REFERENCE   13 (bases 8729 to 9141; 9437 to 10332; 11258 to 11563; 12808 to
+            13710; 13921 to 15021)
+  AUTHORS   Boer,P.H. and Gray,M.W.
+  TITLE     Scrambled ribosomal RNA gene pieces in Chlamydomonas reinhardtii
+            mitochondrial DNA
+  JOURNAL   Cell 55 (3), 399-411 (1988)
+   PUBMED   2846180
+REFERENCE   14 (bases 10311 to 12935)
+  AUTHORS   Boer,P.H. and Gray,M.W.
+  TITLE     Genes encoding a subunit of respiratory NADH dehydrogenase (ND1)
+            and a reverse transcriptase-like protein (RTL) are linked to
+            ribosomal RNA gene pieces in Chlamydomonas reinhardtii
+            mitochondrial DNA
+  JOURNAL   EMBO J. 7 (11), 3501-3508 (1988)
+   PUBMED   2463163
+REFERENCE   15 (bases 2818 to 7969)
+  AUTHORS   Boer,P.H. and Gray,M.W.
+  TITLE     Nucleotide sequence of a protein coding region in Chlamydomonas
+            reinhardtii mitochondrial DNA
+  JOURNAL   Nucleic Acids Res. 14 (18), 7506-7507 (1986)
+   PUBMED   3020517
+REFERENCE   16 (bases 2818 to 5133)
+  AUTHORS   Boer,P.H. and Gray,M.W.
+  TITLE     The URF 5 gene of Chlamydomonas reinhardtii mitochondria: DNA
+            sequence and mode of transcription
+  JOURNAL   EMBO J. 5 (1), 21-28 (1986)
+   PUBMED   3007117
+REFERENCE   17 (bases 2818 to 6705)
+  AUTHORS   Kueck,U. and Neuhaus,H.
+  TITLE     Universal genetic code evidenced in mitochondria of Chlamydomonas
+            reinhardtii
+  JOURNAL   Appl. Microbiol. Biotechnol. 23, 462-469 (1986)
+REFERENCE   18 (bases 5276 to 5743)
+  AUTHORS   Boer,P.H., Bonen,L., Lee,R.W. and Gray,M.W.
+  TITLE     Genes for respiratory chain proteins and ribosomal RNAs are present
+            on a 16-kilobase-pair DNA species from Chlamydomonas reinhardtii
+            mitochondria
+  JOURNAL   Proc. Natl. Acad. Sci. U.S.A. 82 (10), 3340-3344 (1985)
+   PUBMED   2987921
+REFERENCE   19 (bases 2835 to 5635)
+  AUTHORS   Vahrenholz,C., Pratje,E., Michaelis,G. and Dujon,B.
+  TITLE     Mitochondrial DNA of Chlamydomonas reinhardtii: Sequence and
+            arrangement of URF5 and the gene for cytochrome oxidase subunit I
+  JOURNAL   Mol. Gen. Genet. 201, 213-224 (1985)
+REFERENCE   20 (bases 6700 to 7969)
+  AUTHORS   Pratje,E., Schnierer,S. and Dujon,B.
+  TITLE     Mitochondrial DNA of Chlamydomonas reinhardtii: the DNA sequence of
+            a region showing homology with mammalian URF2
+  JOURNAL   Curr. Genet. 9 (1), 75-82 (1984)
+   PUBMED   24173513
+REFERENCE   21 (bases 1 to 15758)
+  AUTHORS   Gray,M.W.
+  TITLE     Complete sequence of Chlamydomonas reinhardtii mitochondrial DNA
+  JOURNAL   Unpublished
+REFERENCE   22 (bases 1 to 15758)
+  CONSRTM   NCBI Genome Project
+  TITLE     Direct Submission
+  JOURNAL   Submitted (28-MAY-2008) National Center for Biotechnology
+            Information, NIH, Bethesda, MD 20894, USA
+REFERENCE   23 (bases 1 to 15758)
+  AUTHORS   Gray,M.W.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (29-NOV-1993) Michael W. Gray, Department of
+            Biochemistry, Dalhousie University, Sir Charles Tupper Medical
+            Building, College & Carleton, Halifax, Nova Scotia, B3H 4H7, Canada
+COMMENT     REVIEWED REFSEQ: This record has been curated by NCBI staff. The
+            reference sequence was derived from U03843.
+            COMPLETENESS: full length.
+FEATURES             Location/Qualifiers
+     source          1..15758
+                     /organism="Chlamydomonas reinhardtii"
+                     /organelle="mitochondrion"
+                     /mol_type="genomic DNA"
+                     /strain="CW-15-2"
+                     /db_xref="taxon:3055"
+                     /note="this consensus sequence was assembled from EMBL
+                     Accession Numbers X66484 ([2]) and X54860 ([5]). In the
+                     region 1-6234, three independent determinations are
+                     available for each discrepant position, and in each case
+                     two of the three determinations agree. The majority rule
+                     was used at each of these positions. In the region 7808 to
+                     15758, the sequence of Boer and Gray, EMBL Accession
+                     Number X54860 ([5]), was used at discrepant positions."
+     repeat_region   complement(1..532)
+                     /standard_name="TERMINVREP-LEFT"
+                     /note="terminal inverted repeat region, left end."
+                     /citation=[1]
+     misc_feature    complement(1..40)
+                     /standard_name="SSEXT-LEFT"
+                     /experiment="experimental evidence, no additional details
+                     recorded"
+                     /note="3' single-strand extension"
+                     /citation=[1]
+     gene            complement(545..1690)
+                     /gene="cob"
+                     /locus_tag="ChrepMp01"
+                     /db_xref="GeneID:801484"
+     CDS             complement(545..1690)
+                     /gene="cob"
+                     /locus_tag="ChrepMp01"
+                     /citation=[4]
+                     /codon_start=1
+                     /product="cytochrome b"
+                     /protein_id="NP_042564.1"
+                     /db_xref="GeneID:801484"
+                     /translation="MRMHNKIQLLSVLNTHLVAYPTPMNLNYSWNGGSLAGMMLASQM
+                     LTGILLAMHYVGHVDYAFASVQHLMTDVPSGMILRYAHANGASLFFIVVYLHVLRGMY
+                     YGSGAQPREIVWISGVVILLVMIITAFIGYVLPWGQMSFWGATVITSLATAIPVVGKH
+                     IMYWLWGGFSVDNPTLNRFYSFHYTLPLILAGLSVFHIAALHQYGSTNPLGVNSQSSL
+                     ISFGSYFGAKDLVGALFLALVFSILVFFYPDLLGHPDNLIPANPYSTPQHIVPEWYFL
+                     WVYAILRSIPNKAMGVLAIGLVFASLFAMPFIGLGGGKFRIITEWLYWTFLADVLLLT
+                     WLGGNEITPITSFVGQCCTAYLFFYLLVCQPLVGYLETQFAHGTQTN"
+     misc_difference 965^966
+                     /note="conflict"
+                     /citation=[6]
+                     /replace="a"
+     misc_difference 996
+                     /note="conflict"
+                     /citation=[6]
+                     /replace=""
+     misc_difference 1003
+                     /note="conflict"
+                     /citation=[6]
+                     /replace="a"
+     misc_difference 1129
+                     /note="conflict"
+                     /citation=[6]
+                     /replace="a"
+     gene            complement(1713..3044)
+                     /gene="nad4"
+                     /locus_tag="ChrepMp02"
+                     /db_xref="GeneID:801494"
+     CDS             complement(1713..3044)
+                     /gene="nad4"
+                     /locus_tag="ChrepMp02"
+                     /citation=[1]
+                     /codon_start=1
+                     /product="NADH dehydrogenase subunit 4"
+                     /protein_id="NP_042565.1"
+                     /db_xref="GeneID:801494"
+                     /translation="MFISVLLILFALCVTLIPEAHYHMVRVWSFVATIIPMWVVTWMW
+                     WNFDASGHGLQMLVILGRSHLAFGIDGVALSLMLLTTVLFPICMMLLRTVAGFMTFIL
+                     LEVLVLSALCVLDLLGFYILFEASLILLFLLIGRAPYGSLEAAYKIVLYTMAGSLVLL
+                     PTLFMIYSECGTTNVLYMTCAYNHQTVLGWGLLAVLAVKIPLMPVHLWLPEAHVAAPT
+                     AGSVLLAGVLLKLGGIGFLRFMLPVVPEFCVSVFPLVSTLCLVSFLFSTLSTLRQIDL
+                     KKIVAYSSIAHMSMVTLAIFSQSEFSAYSSSFLMIAHGLISPALFLIVGILYDRAHTK
+                     FILYFSGLGASMPIGSTLFFLFTLGNLAFPLFPNFIAEVLCMVSIFAVHELLAYVFCV
+                     CQVLGAAYGFWAFNRVVHGLPRGPADVTRTEFHTVLPLLIGAVWLGIKPMA"
+     misc_difference 2830
+                     /note="conflict"
+                     /citation=[17]
+                     /replace="g"
+     misc_difference 2834^2835
+                     /note="conflict"
+                     /citation=[17]
+                     /replace="a"
+     old_sequence    3058
+                     /citation=[3]
+                     /replace=""
+     misc_difference 3063
+                     /note="conflict"
+                     /citation=[17]
+                     /replace=""
+     old_sequence    3183..3187
+                     /citation=[3]
+                     /replace="caag"
+     gene            complement(3320..4960)
+                     /gene="nad5"
+                     /locus_tag="ChrepMp03"
+                     /db_xref="GeneID:801492"
+     CDS             complement(3320..4960)
+                     /gene="nad5"
+                     /locus_tag="ChrepMp03"
+                     /citation=[3]
+                     /codon_start=1
+                     /product="NADH dehydrogenase subunit 5"
+                     /protein_id="NP_042566.1"
+                     /db_xref="GeneID:801492"
+                     /translation="MFLLSVFFPLLGGLVNTSPIARFLGHRGSSIIAIGCMVVAFISS
+                     VVIYYEVVFMGCAVSVDVFGTWFSVGTFHAGWTFNFDLLTANMLFTVTGVSMAVHMYA
+                     CDYMRQDPHLNLFLGYLSYFTGFMCVLVAADNLLVMLVGWEGIGVCSYLLIGYWSHRL
+                     SAVKSAQKAILVNRVSDGLLMWGVLWVWYHLGSLEYDLLNVYSASGFVGLSILIGAMG
+                     KSAQILFHVWLADAMEGPTPVSALIHAATLVTAGVYLLVRLHIHDEMFVIIVGSLTAF
+                     MAGVFGATQSDLKRVIAYSTCSQLGYMMVSLGLGETGGEASMGHLMTHASFKAALFLA
+                     AGMVISGNGGNQHIARYGGSAHSAMFTMLTLMVASLSLIGWPELSGFYSKETILNLAA
+                     ICADPIADVAHTLLLLTAMLTSAYTTKLFYQCFMVDFSGSSVTPVRNVLPILAMAILL
+                     LDIMLKVWVGTNLLSGMLFFLPWGVKTLPFGLMVAGILTATAAVGSERFTLIRFCGSR
+                     WGFDQLFARSPVNPIFDLGRITWAIGDRGLLSVGNLRA"
+     misc_difference 3406
+                     /note="conflict"
+                     /citation=[1]
+                     /replace="a"
+     misc_difference 3485
+                     /note="conflict"
+                     /citation=[17]
+                     /replace="c"
+     old_sequence    4086
+                     /citation=[3]
+                     /replace="c"
+     old_sequence    4343..4344
+                     /citation=[3]
+                     /replace="cg"
+     gene            5042..6559
+                     /gene="cox1"
+                     /locus_tag="ChrepMp04"
+                     /db_xref="GeneID:801495"
+     CDS             5042..6559
+                     /gene="cox1"
+                     /locus_tag="ChrepMp04"
+                     /citation=[3]
+                     /codon_start=1
+                     /product="cytochrome oxidase subunit 1"
+                     /protein_id="NP_042567.1"
+                     /db_xref="GeneID:801495"
+                     /translation="MRWLYSTSHKDIGLLYLVFAFFGGLLGTSLSMLIRYELALPGRG
+                     LLDGNGQLYNVIITGHGIIMLLFMVMPALFGGFGNWLLPIMIGAPDMAFPRLNNISFW
+                     LNPPALALLLLSTLVEQGPGTGWTAYPPLSVQHSGTSVDLAILSLHLNGLSSILGAVN
+                     MLVTVAGLRAPGMKLLHMPLFVWAIALTAVLVILAVPVLAAALVMLLTDRNINTAYFC
+                     ESGDLILYQHLFWFFGHPEVYILILPAFGIVSQVVSFFSQKPVFGLTGMICAMGAISL
+                     LGFIVWAHHMFTVGLDLDTVAYFTSATMIIAVPTGMKIFSWMATIYSGRVWFTTPMWF
+                     AVGFICLFTLGGVTGVVLANAGVDMLVHDTYYVVAHFHYVLSMGAVFGIFAGVYFWGN
+                     LITGLGYHEGRAMVHFWLLFIGVNLTFFPQHFLGLAGMPRRMFDYADCFAGWNAVSSF
+                     GASISFISVIVFATTFQEAVRTVPRTATTLEWVLLATPAHHALSQVPVLRTASSH"
+     misc_difference 5365
+                     /gene="cox1"
+                     /locus_tag="ChrepMp04"
+                     /note="conflict"
+                     /citation=[1]
+                     /replace="a"
+     misc_difference 6204
+                     /gene="cox1"
+                     /locus_tag="ChrepMp04"
+                     /note="conflict"
+                     /citation=[1]
+                     /replace="g"
+     misc_difference 6235
+                     /gene="cox1"
+                     /locus_tag="ChrepMp04"
+                     /note="conflict"
+                     /citation=[1]
+                     /replace="t"
+     misc_difference 6301
+                     /gene="cox1"
+                     /locus_tag="ChrepMp04"
+                     /note="conflict"
+                     /citation=[1]
+                     /replace="t"
+     misc_difference 6324
+                     /gene="cox1"
+                     /locus_tag="ChrepMp04"
+                     /note="conflict"
+                     /citation=[1]
+                     /replace="t"
+     gene            6707..7855
+                     /gene="nad2"
+                     /locus_tag="ChrepMp05"
+                     /db_xref="GeneID:801491"
+     CDS             6707..7855
+                     /gene="nad2"
+                     /locus_tag="ChrepMp05"
+                     /citation=[3]
+                     /codon_start=1
+                     /product="NADH dehydrogenase subunit 2"
+                     /protein_id="NP_042568.1"
+                     /db_xref="GeneID:801491"
+                     /translation="MIELDLCFGLLLLILFGLLSLRNGHVSLAHIRFICQCWLVMITP
+                     LEVQDFALCILTVVLLQSFHSFEALLFLLLAYIGQLYMMHSCNLVSFYVCLEAQTLCV
+                     VVLCGLLARGASTSFSVEAALKFLLLSAMVSGMALFWFSAMYQRTGSLDMVGQETFWI
+                     LLVMLFKLGVAPMHMWSVDLYGSIPKSLLLYLSTAPKLSLFTFWASSWHHDFSVGVFI
+                     LFSMFIGSIGAYGQPALRSLFAYSTINEIGLLLLAVETAGFHTLYQHLGIYIITQLLL
+                     WNLTDKRLFALCAVSLAGLPPFAGFFGKAWIFWHAMSVQAFSLLAAALFCTLLSLVYY
+                     LRVIRLFWTAPVHTAASFTGAPNQTTLTSACAVALAFAPVMLVKPFVI"
+     misc_difference 7808..7809
+                     /gene="nad2"
+                     /locus_tag="ChrepMp05"
+                     /note="conflict"
+                     /citation=[11]
+                     /replace="cg"
+     misc_difference 7871..7872
+                     /note="conflict"
+                     /citation=[11]
+                     /replace=""
+     misc_difference 7895
+                     /note="conflict"
+                     /citation=[11]
+                     /replace=""
+     misc_difference 7906..7907
+                     /note="conflict"
+                     /citation=[11]
+                     /replace="t"
+     misc_difference 7909
+                     /note="conflict"
+                     /citation=[11]
+                     /replace="c"
+     misc_difference 7913
+                     /note="conflict"
+                     /citation=[11]
+                     /replace="a"
+     gene            7953..8441
+                     /gene="nad6"
+                     /locus_tag="ChrepMp06"
+                     /db_xref="GeneID:801500"
+     CDS             7953..8441
+                     /gene="nad6"
+                     /locus_tag="ChrepMp06"
+                     /citation=[3]
+                     /codon_start=1
+                     /product="NADH dehydrogenase subunit 6"
+                     /protein_id="NP_042569.1"
+                     /db_xref="GeneID:801500"
+                     /translation="MFFENSAILLCALLSIAVGYTKSPFMSLMYSVMLFINSSFVLMM
+                     LGFEFLALVNLLVYVGALAVLFLFVIMLLEIPATELRAYSRGWSTLGIFVFIINGVFQ
+                     ITPSMGPRGIITGLPGAESITNLGHALYLYFADLLILNSLVLTVALFGRFAIAPVRTT
+                     GR"
+     misc_difference 8007
+                     /gene="nad6"
+                     /locus_tag="ChrepMp06"
+                     /note="conflict"
+                     /citation=[11]
+                     /replace=""
+     misc_difference 8402..8403
+                     /gene="nad6"
+                     /locus_tag="ChrepMp06"
+                     /note="conflict"
+                     /citation=[11]
+                     /replace="ct"
+     misc_difference 8406..8408
+                     /gene="nad6"
+                     /locus_tag="ChrepMp06"
+                     /note="conflict"
+                     /citation=[11]
+                     /replace="gct"
+     gene            8461..8534
+                     /gene="trnW"
+                     /locus_tag="ChrepMt23"
+                     /db_xref="GeneID:801498"
+     tRNA            8461..8534
+                     /gene="trnW"
+                     /locus_tag="ChrepMt23"
+                     /product="tRNA-Trp"
+                     /citation=[3]
+                     /anticodon=(pos:8495..8497,aa:Trp,seq:cca)
+                     /codon_recognized="UGG"
+                     /db_xref="GeneID:801498"
+     misc_difference 8565
+                     /note="conflict"
+                     /citation=[11]
+                     /replace=""
+     gene            8729..8886
+                     /gene="rrnL6"
+                     /locus_tag="ChrepMr09"
+                     /db_xref="GeneID:801480"
+     rRNA            8729..8886
+                     /gene="rrnL6"
+                     /locus_tag="ChrepMr09"
+                     /product="L6 ribosomal RNA"
+                     /note="module encoding the L6 portion of the fragmented
+                     large subunit rRNA"
+                     /db_xref="GeneID:801480"
+     gene            8887..9001
+                     /gene="rrnS1"
+                     /locus_tag="ChrepMr10"
+                     /db_xref="GeneID:801485"
+     rRNA            8887..9001
+                     /gene="rrnS1"
+                     /locus_tag="ChrepMr10"
+                     /product="S1 ribosomal RNA"
+                     /note="module encoding the S1 portion of the fragmented
+                     small subunit rRNA"
+                     /citation=[3]
+                     /db_xref="GeneID:801485"
+     gene            9002..9141
+                     /gene="rrnL5"
+                     /locus_tag="ChrepMr11"
+                     /db_xref="GeneID:801497"
+     rRNA            9002..9141
+                     /gene="rrnL5"
+                     /locus_tag="ChrepMr11"
+                     /product="L5 ribosomal RNA"
+                     /note="module encoding the L5 portion of the fragmented
+                     large subunit rRNA"
+                     /citation=[3]
+                     /db_xref="GeneID:801497"
+     misc_difference 9213..9215
+                     /note="conflict"
+                     /citation=[10]
+                     /replace="gcc"
+     gene            9235..9306
+                     /gene="trnQ"
+                     /locus_tag="ChrepMt24"
+                     /db_xref="GeneID:801479"
+     tRNA            9235..9306
+                     /gene="trnQ"
+                     /locus_tag="ChrepMt24"
+                     /product="tRNA-Gln"
+                     /citation=[10]
+                     /anticodon=(pos:9267..9269,aa:Gln,seq:ttg)
+                     /codon_recognized="CAA"
+                     /db_xref="GeneID:801479"
+     misc_difference 9417
+                     /note="conflict"
+                     /citation=[10]
+                     /replace="g"
+     gene            9437..10115
+                     /gene="rrnL7"
+                     /locus_tag="ChrepMr12"
+                     /db_xref="GeneID:801481"
+     rRNA            9437..10115
+                     /gene="rrnL7"
+                     /locus_tag="ChrepMr12"
+                     /product="L7 ribosomal RNA"
+                     /note="module encoding the L7 portion of the fragmented
+                     large subunit rRNA"
+                     /citation=[3]
+                     /db_xref="GeneID:801481"
+     gene            10116..10332
+                     /gene="rrnS2"
+                     /locus_tag="ChrepMr13"
+                     /db_xref="GeneID:801490"
+     rRNA            10116..10332
+                     /gene="rrnS2"
+                     /locus_tag="ChrepMr13"
+                     /product="S2 ribosomal RNA"
+                     /note="module encoding the S2 portion of the fragmented
+                     small subunit rRNA"
+                     /citation=[3]
+                     /db_xref="GeneID:801490"
+     gene            10346..11224
+                     /gene="nad1"
+                     /locus_tag="ChrepMp07"
+                     /db_xref="GeneID:801499"
+     CDS             10346..11224
+                     /gene="nad1"
+                     /locus_tag="ChrepMp07"
+                     /citation=[3]
+                     /codon_start=1
+                     /product="NADH dehydrogenase subunit 1"
+                     /protein_id="NP_042570.1"
+                     /db_xref="GeneID:801499"
+                     /translation="MIVASILILIVPVLLSVAMFTLAERTVMASMQRRFGPQVSGISG
+                     LLQPFWDGLKLGVKEPVLPDSSSAGAFAASPMISFVLSQVAWVGICISDASFQGLVIM
+                     AISSLAVYGVMLAGWASNSKYAFLGCLRSVALMVSYELSLGAALLSIGLFVTDGTGMK
+                     CLNFAEMPTTPQYAMLPLCLIFLVCILAETKRDPFDLPEAELVAGYNVEYSSLGFALF
+                     FIAEYANMAVMSAIASIYFLGGFSALKITALFFAFVWTRGTLPRYRYDQFMRLGWKAF
+                     LPLTLAFFALHASVAI"
+     gene            11258..11371
+                     /gene="rrnL3a"
+                     /locus_tag="ChrepMr14"
+                     /db_xref="GeneID:801487"
+     rRNA            11258..11371
+                     /gene="rrnL3a"
+                     /locus_tag="ChrepMr14"
+                     /product="L3a ribosomal RNA"
+                     /note="module encoding the L3a portion of the fragmented
+                     large subunit rRNA"
+                     /citation=[3]
+                     /db_xref="GeneID:801487"
+     gene            11372..11563
+                     /gene="rrnL3b"
+                     /locus_tag="ChrepMr15"
+                     /db_xref="GeneID:801486"
+     rRNA            11372..11563
+                     /gene="rrnL3b"
+                     /locus_tag="ChrepMr15"
+                     /product="L3b ribosomal RNA"
+                     /note="module encoding the L3b portion of the fragmented
+                     large subunit rRNA"
+                     /citation=[3]
+                     /db_xref="GeneID:801486"
+     gene            11568..12674
+                     /gene="rtl"
+                     /locus_tag="ChrepMp08"
+                     /db_xref="GeneID:801489"
+     CDS             11568..12674
+                     /gene="rtl"
+                     /locus_tag="ChrepMp08"
+                     /note="RTL"
+                     /citation=[3]
+                     /codon_start=1
+                     /product="reverse transcriptase-like protein"
+                     /protein_id="NP_042571.1"
+                     /db_xref="GeneID:801489"
+                     /translation="MFTVNYILDLFHTINATEVQHTLMHKRPASLHEVLRLAGLLQGY
+                     KDFLSLTKQAEAFFQAGDYRSAFNTISKMWVHPQIVPALLLMECFETRELTVPYWYKS
+                     IKLRRQYIQKKNGGVRPIIVAHKGLRICMAVINRLLQSCCVSWSNQTFGFRPGFGTHH
+                     AVLHLAQKAQQMLNKQQQAVLVTFDLQAAYNSVDIKHLMQTLQLQYLPNDMKKLIWMW
+                     QHLPLAQLNAGINGLAQGYAYSPTLFAWYVDQLVGQHMDFTIYADNFAGVFLTQQDAQ
+                     FAVKEAQTLLQKSGLLIAPSSIKMHLLDKNQHSELNWLGHKVLFPSCTVKLQHHQLLV
+                     NQHSPQVWTIQKWDKMLRTLGWVQLALNADWRRF"
+     gene            12808..13300
+                     /gene="rrnL8"
+                     /locus_tag="ChrepMr16"
+                     /db_xref="GeneID:801493"
+     rRNA            12808..13300
+                     /gene="rrnL8"
+                     /locus_tag="ChrepMr16"
+                     /product="L8 ribosomal RNA"
+                     /note="module encoding the L8 portion of the fragmented
+                     large subunit rRNA"
+                     /citation=[3]
+                     /db_xref="GeneID:801493"
+     gene            13301..13710
+                     /gene="rrnS3"
+                     /locus_tag="ChrepMr17"
+                     /db_xref="GeneID:801483"
+     rRNA            13301..13710
+                     /gene="rrnS3"
+                     /locus_tag="ChrepMr17"
+                     /product="S3 ribosomal RNA"
+                     /note="module encoding the S3 portion of the fragmented
+                     small subunit rRNA"
+                     /citation=[3]
+                     /db_xref="GeneID:801483"
+     gene            13834..13905
+                     /gene="trnM"
+                     /locus_tag="ChrepMt25"
+                     /db_xref="GeneID:801496"
+     tRNA            13834..13905
+                     /gene="trnM"
+                     /locus_tag="ChrepMt25"
+                     /product="tRNA-Met"
+                     /citation=[10]
+                     /anticodon=(pos:13866..13868,aa:Met,seq:cat)
+                     /codon_recognized="AUG"
+                     /db_xref="GeneID:801496"
+     gene            13921..14047
+                     /gene="rrnL4"
+                     /locus_tag="ChrepMr18"
+                     /db_xref="GeneID:801482"
+     rRNA            13921..14047
+                     /gene="rrnL4"
+                     /locus_tag="ChrepMr18"
+                     /product="L4 ribosomal RNA"
+                     /note="module encoding the L4 portion of the fragmented
+                     large subunit rRNA"
+                     /citation=[3]
+                     /db_xref="GeneID:801482"
+     gene            14048..14505
+                     /gene="rrnS4"
+                     /locus_tag="ChrepMr19"
+                     /db_xref="GeneID:801488"
+     rRNA            14048..14505
+                     /gene="rrnS4"
+                     /locus_tag="ChrepMr19"
+                     /product="S4 ribosomal RNA"
+                     /note="module encoding the S4 portion of the fragmented
+                     small subunit rRNA"
+                     /citation=[3]
+                     /db_xref="GeneID:801488"
+     misc_difference 14280
+                     /gene="rrnS4"
+                     /locus_tag="ChrepMr19"
+                     /note="conflict"
+                     /citation=[1]
+                     /replace=""
+     gene            14506..14712
+                     /gene="rrnL1"
+                     /locus_tag="ChrepMr20"
+                     /db_xref="GeneID:801501"
+     rRNA            14506..14712
+                     /gene="rrnL1"
+                     /locus_tag="ChrepMr20"
+                     /product="L1 ribosomal RNA"
+                     /note="module encoding the L1 portion of the fragmented
+                     large subunit rRNA"
+                     /citation=[3]
+                     /db_xref="GeneID:801501"
+     gene            14713..14801
+                     /gene="rrnL2a"
+                     /locus_tag="ChrepMr21"
+                     /db_xref="GeneID:801477"
+     rRNA            14713..14801
+                     /gene="rrnL2a"
+                     /locus_tag="ChrepMr21"
+                     /product="L2a ribosomal RNA"
+                     /note="module encoding the L2a portion of the fragmented
+                     large subunit rRNA"
+                     /citation=[3]
+                     /db_xref="GeneID:801477"
+     gene            14802..15021
+                     /gene="rrnL2b"
+                     /locus_tag="ChrepMr22"
+                     /db_xref="GeneID:801478"
+     rRNA            14802..15021
+                     /gene="rrnL2b"
+                     /locus_tag="ChrepMr22"
+                     /product="L2b ribosomal RNA"
+                     /note="module encoding the L2b portion of the fragmented
+                     large subunit rRNA"
+                     /citation=[3]
+                     /db_xref="GeneID:801478"
+     repeat_region   15227..15758
+                     /note="terminal inverted repeat region, right end.; label:
+                     TERMINVREP-RGHT"
+                     /citation=[1]
+     misc_feature    15719..15758
+                     /standard_name="SSEXT-RGHT"
+                     /experiment="experimental evidence, no additional details
+                     recorded"
+                     /note="3' single-strand extension."
+                     /citation=[1]
+ORIGIN      
+        1 actacgcatg cctaagtgcg caaacagtat cggtttggtt gatctgcatc ctaccagccg
+       61 tcttctacga ctcgcacgat cctataggtg tttgggcggg ggtcctaaaa gtgcgaaaaa
+      121 gtgcttaagg tgccggtgtg tttttgtgtg ttttaggtga agtcgcaaac tctccccgtg
+      181 tagctagtct tgccctggtt actttggcgg cttgcgaagc acgcgtggag tagtgggccc
+      241 ccaccgcggt tcgatctcga cgatgctcgg ccagcagagc tggccgagct tggtgagttc
+      301 tatcgtgcgg tgtggaaggt ccttttctgc caatcctgag cggggtcacc taatatggca
+      361 gagggctgct aatgccctgt ggtgaagtgt gcgttgtaca tgtaatcgtt tgggtgctcg
+      421 gtgtcccctg ggtgttcaat ccgggtgagg agaacatgtg cccgttgggt agcctgagaa
+      481 gcccttatgg atcatcaacc ggaaccgcgt accgtaagtg taaaaagtgt gtcaatgcaa
+      541 aatattagtt ggtttgagta ccgtgggcaa actgagtctc caagtaacct acaagtggtt
+      601 gacaaacaag taggtagaag aataggtaag cagtgcagca ctgtccgacg aaagaggtaa
+      661 ttggagtaat ctcgttacca cccaaccagg tcaatagcaa tacatcagca aggaaagtcc
+      721 agtatagcca ctcagtgatg atgcggaatt taccaccgcc caaaccgatg aatggcatag
+      781 caaacaaact agcgaagact agaccaatag ccaatacgcc catagctttg tttggaatgg
+      841 aacgtagaat agcgtatacc cacaagaagt accactctgg tacaatgtgt tgtggggtgc
+      901 tatatgggtt agctgggatt aggttgtctg ggtgacccaa caagtctggg tagaagaaga
+      961 ctagaatgct gaacacaaga gccaagaaca aagcaccgac caggtcttta gcaccaaagt
+     1021 aagaaccgaa agaaattagg ctgctttggc tgttaacacc tagtgggtta gtactaccgt
+     1081 attggtgcaa ggcggcaatg tggaatacgc tcaaaccagc caagatgagt ggtagagtgt
+     1141 agtggaagct gtagaagcgg ttcaaggttg ggttatcaac actgaaacca ccccacaacc
+     1201 agtacatgat gtgtttacct actactggaa tggcagtagc caaactagta attacggtag
+     1261 caccccagaa agacatttgg ccccatggta gtacataacc aatgaaggcg gtgataatca
+     1321 ttaccaacaa gataacgaca ccactgatcc agacgatctc acgtggctga gcgccgctac
+     1381 cgtagtacat accacgcaat acgtgcaaat agactacaat aaagaacaag ctggcgccgt
+     1441 tagcgtgagc gtaacgcaag atcataccag aaggtacatc agtcattagg tgttgtacgc
+     1501 tagcaaaagc gtagtctacg tgacctacat agtgcatggc tagtagaata ccagtaagca
+     1561 tttgactagc tagcatcata ccagctagag aaccaccgtt ccaagaatag tttaggttca
+     1621 ttggagttgg gtaggctacc aaatgagtgt ttagtacact caacaattga attttgttat
+     1681 gcatacgcat tgtaaataat aaataacaaa gtttaagcca ttggtttaat acctagccat
+     1741 acagcaccaa ttagcaatgg taggacagta tggaactcag tacgagtaac gtcggcagga
+     1801 ccacgtggca aaccatgtac aacacggttg aaagcccaga agccgtaagc agcacctagt
+     1861 acttggcata cgcagaacac gtaagcaagc aactcgtgta cagcgaagat gcttaccatg
+     1921 cacaatacct cggcaatgaa gttagggaat agtgggaagg ccaagttacc caaagtaaac
+     1981 aagaagaaca aagtgcttcc gattggcatg ctagcaccta gaccgctgaa gtataggatg
+     2041 aatttagtat gagcgcggtc atacaagata cctacaatca agaacaaggc aggagaaatc
+     2101 aaaccgtgag caatcatcaa gaagctagag ctgtaagcac tgaactcgct ttggctgaaa
+     2161 atggcaaggg taaccataga catgtgagca atactagagt aagcaacgat tttctttaga
+     2221 tcaatttgac gtagagtact caaggtacta aacaagaagc tgaccaaaca cagagtagat
+     2281 actagtggga atacgctaac acagaactct ggtactacag gaagcatgaa acgcaagaaa
+     2341 ccgatgcctc ctagtttcaa tagtacacca gctagcaata cactaccagc agttggagca
+     2401 gctacgtgag cctctggcaa ccacaagtgt acaggcatca atggaatttt aacagcaagg
+     2461 acagctagca aaccccaacc aagtacagtt tggtggttat aagcacaggt catatatagt
+     2521 acgttagtag taccgcactc agaatagatc atgaacaagg taggcagcaa taccaaagaa
+     2581 ccggccatag tgtaaagtac aattttgtaa gcagcctcta ggcttccgta aggagcacgg
+     2641 ccaatcaaca agaaaagcaa gataagacta gcctcgaaca aaatgtagaa acccaataga
+     2701 tccaagacgc acaaggcact aagtactaga acctctagca aaataaaggt cataaaaccg
+     2761 gctacagtgc gcagcaacat catgcaaata gggaacaaaa cggtggtcaa tagcatcaag
+     2821 cttagagcta cgccatcgat accaaaagca aggtgactac gtcctaggat aaccaacatt
+     2881 tgtagaccgt gaccagaagc atcaaaattc caccacatcc aagtaactac ccacataggg
+     2941 ataatagtgg ctacaaaact ccaaacgcgg accatatgat aatgggcctc tggaatcaaa
+     3001 gtaacgcaca aagcaaacaa aatcaacaaa acagaaataa acatatgata aaataatagg
+     3061 atgctcgtcg gtgacgagca ccactattga gtgcctaggc actaataggt aaagattctt
+     3121 tttccagtct tcttttctgt atgggcgtct tagctaccta cgttcgtatg gctgctcagg
+     3181 gcagccatct tcgtgtgaaa aaaaaggact agtttgggta cgcaaatgta tttttttgga
+     3241 ctcaaacatt gaaacaagca cgcagtttaa ataaaaacaa actgctaaaa tcgaacgctg
+     3301 tcttatttgt aagacacgtt taagcacgca aattaccaac gcttagcaaa ccgcggtcac
+     3361 caatagccca agtgattcga cctaggtcaa agattgggtt tactggactg cgagcgaaca
+     3421 attgatcgaa accccagcga gagccacaga aacgaatcaa agtaaaacgc tcagaaccaa
+     3481 cagcagcagt ggcagtcaaa atgccggcaa ccatcaaacc aaaaggtaga gttttaacgc
+     3541 cccatggtag gaagaacaac ataccggaca acaagttggt acctacccat acttttagca
+     3601 taatgtctag caacaaaata gccatagcca aaattggcaa aacattgcga actggggtta
+     3661 cactagaacc agagaaatca accataaagc actgatagaa caacttagtg gtgtaagcac
+     3721 tggttagcat agcagttagc aatagcaaag tatgagcgac atcggcaatt ggatcagcgc
+     3781 aaatagcggc caagttcaag atggtctctt tagaatagaa accacttagc tctggccagc
+     3841 caatcaaact caaggaagcg accatcaagg ttagcatagt gaacatagca ctgtgagcac
+     3901 taccaccgta acgagcgatg tgctggttac caccgttacc gctaataacc ataccggcgg
+     3961 ccaagaatag agcggcttta aaactagcgt gagtcataag gtgacccatg ctagcctcac
+     4021 cgccagtctc gcctaggccc agactaacca tcatatagcc aagttgactg caagtactgt
+     4081 aagcaatgac acgtttcaaa tcactttgag tggcaccgaa cacaccagcc ataaaagcgg
+     4141 tcaagctacc tacgatgata acaaacatct catcgtggat atgcaagcgt acaagcaagt
+     4201 atacaccagc agtgaccaga gtagcggcgt gaattagggc ggatactggg gttgggccct
+     4261 ccatggcatc agcaagccaa acgtggaaca aaatctgagc ggatttaccc atagcaccaa
+     4321 tcaagataga aaggcctaca aagccgctgg cagaataaac gttaagcaaa tcatactcta
+     4381 gactacccaa atggtaccat acccacaaga caccccacat tagcaaacca tcactaacac
+     4441 ggttaaccaa aatggctttt tgagcacttt taacggcgga tagacgatga ctccagtaac
+     4501 cgatcaatag gtaggaacaa acaccgatac cctcccaacc aacaagcata accaacaagt
+     4561 tatcagcggc tacaagtacg cacataaaac cagtaaagta gcttagataa cccaaaaaca
+     4621 agttcaagtg gggatcttga cgcatgtagt cacaggcgta catgtgtacg gccatactta
+     4681 caccggtaac ggtgaatagc atgttggcgg ttagtaggtc gaagttaaaa gtccaaccgg
+     4741 catgaaaggt accgacggag aaccaagtac caaagacgtc gacgcttacc gcgcagccca
+     4801 taaatacaac ctcgtaatag attacaacgc tagagataaa ggctaccacc atgcagccaa
+     4861 tagcaataat actactacca cgatgaccta gaaaacgagc aattggggaa gtgttaacaa
+     4921 gaccacctag taggggaaag aaaacagaca acaaaaacat tggaaataat aaagaaatct
+     4981 ctctgttagc caattcattt atttgaacta aagaagaaga cattctaatt tattacataa
+     5041 tatgcgttgg ttgtattcta cttctcataa agatattggt ttgttgtact tggtattcgc
+     5101 cttctttggc ggtttgctag gtacttctct aagtatgttg attcgttacg agttggcttt
+     5161 gccaggtcgt ggcttgttgg acggtaacgg tcaactatat aacgtcatta ttaccggtca
+     5221 cggtattatc atgctattgt tcatggtaat gccagcccta ttcggtggtt ttggtaactg
+     5281 gttgctacca atcatgatcg gtgccccaga catggctttc cctcgtctaa acaacattag
+     5341 tttctggctg aacccaccag ccctggcttt gttgctattg tctactttgg tagagcaagg
+     5401 ccccggtact ggttggaccg cttatccacc actaagcgta caacacagcg gtactagcgt
+     5461 agatttggct attttgagct tgcacttgaa cggtttgagc tctattttgg gtgctgtcaa
+     5521 catgttggtc actgtagctg gtttgcgtgc cccaggtatg aaactgttgc acatgccatt
+     5581 gttcgtatgg gccattgctt tgactgctgt attggtcatt ttggccgtac cagtattggc
+     5641 tgccgctttg gttatgttgc tgactgaccg taacatcaac actgcttact tctgtgagtc
+     5701 tggtgatttg attttgtatc agcacttgtt ctggttcttt ggtcaccctg aggtctacat
+     5761 tttgatcttg ccagctttcg gtattgttag ccaagttgta agtttcttca gtcaaaaacc
+     5821 agtatttggt ttgactggta tgatttgcgc tatgggtgcc attagtttgc taggtttcat
+     5881 tgtatgggct catcacatgt ttaccgtcgg cctagatttg gacaccgtcg cttactttac
+     5941 tagcgctacc atgattattg ccgtaccaac tggtatgaaa attttcagct ggatggctac
+     6001 catctactct ggtcgcgtat ggttcaccac tccaatgtgg tttgctgtcg gttttatttg
+     6061 cctgtttact ctaggtggtg taactggtgt cgtactagct aacgctggtg ttgacatgct
+     6121 tgtacacgat acctactacg tagtagctca cttccactac gtcttgagta tgggtgccgt
+     6181 tttcggtatt ttcgctggtg tctacttctg gggtaaccta attactggtt tgggctacca
+     6241 cgagggtcgt gctatggtac acttctggtt gctattcatt ggtgtcaact tgaccttctt
+     6301 cccacaacac ttcttgggtt tggctggtat gccacgccgt atgttcgatt atgctgactg
+     6361 ctttgccggt tggaacgctg ttagtagctt cggtgctagc attagcttca tcagtgtaat
+     6421 cgtatttgcc actactttcc aagaggctgt tcgcaccgta cctcgtactg ctactactct
+     6481 agagtgggtt ttgctagcta ctccagctca ccacgccttg agtcaagtac cagtcttgcg
+     6541 tactgccagc tctcactaat gcagtttgtt tttctttaaa ctgctaggaa gcttattcaa
+     6601 agctttgcta cagctgtaac attcttctgg ggcgagctgt tacgcgtgtc ataacgtaaa
+     6661 aatctaataa gcttgtgttt ttttttctaa aatgttttgg aattctatga ttgagcttga
+     6721 cttgtgtttt ggtctgcttt tgttgatttt gttcggattg ttgtctttgc gcaacggcca
+     6781 tgtgtctttg gcccacatcc gttttatttg ccagtgttgg ctagttatga ttaccccact
+     6841 agaggtacag gattttgccc tatgtatttt gactgttgtt ttgttgcaaa gtttccacag
+     6901 ttttgaggct ttgttgttct tgctacttgc ctacatcggt caactatata tgatgcactc
+     6961 ttgtaatttg gtaagtttct acgtatgctt ggaggctcaa accttgtgtg ttgttgtatt
+     7021 gtgcggtcta ttggctcgtg gtgcctccac tagttttagt gttgaggctg ctctaaaatt
+     7081 cttgctacta agtgcaatgg tatccggtat ggctttgttc tggtttagcg ccatgtatca
+     7141 gcgaaccggt tctctagaca tggttggcca agagactttc tggattttgc tagtcatgtt
+     7201 gtttaagttg ggtgtagccc caatgcacat gtggagtgtt gatttgtacg gtagcattcc
+     7261 aaaaagtttg ctattgtact tgtctactgc cccaaaattg agcttgttca ctttctgggc
+     7321 ttcttcttgg caccatgact tctctgtagg tgtatttatc ttgttctcta tgtttattgg
+     7381 tagcattggc gcttatggtc aaccagcctt gcgtagcttg tttgcttata gtactattaa
+     7441 cgagattggc ttgttgctac tagctgttga gactgctgga ttccacaccc tatatcagca
+     7501 tttgggtatc tacattatta cccagttgct actatggaat ctaactgata aacgcttgtt
+     7561 tgctttgtgc gctgttagct tggccggctt gccaccattt gcaggtttct ttggtaaagc
+     7621 ttggatcttc tggcatgcta tgagcgtaca agccttcagt ttgttggctg ctgctttgtt
+     7681 ctgcactttg ttgagtttgg tttactattt gcgagttatt cgtctattct ggactgctcc
+     7741 agtccacact gccgctagtt ttaccggcgc tccaaatcaa accactctaa cctctgcctg
+     7801 cgcggtagcc ctagcttttg ctccggttat gttggttaaa ccattcgtta tttaggtggg
+     7861 ctgtaaggcc cccactaaat aactatgctc ggccagctcc gctcgccgag cttcgttatt
+     7921 taggaatact ttaatacgct tttttatata caatgttttt tgagaattct gctattttgt
+     7981 tgtgcgcttt gctaagcatt gccgtaggat acaccaagtc tccatttatg tctttgatgt
+     8041 attctgttat gctatttatc aactcttctt tcgtgttgat gatgctaggt tttgagttcc
+     8101 tagctttggt aaatctattg gtatacgttg gtgcattggc tgtactattc ctattcgtaa
+     8161 ttatgctact agagatccca gccactgagc tacgtgctta cagtcgtggt tggagtactt
+     8221 tgggtatttt cgtattcatc attaacggtg tattccaaat tactccatct atgggcccac
+     8281 gtggtattat tactggtttg ccaggagctg agtctattac caatttgggt catgctctat
+     8341 acttgtactt tgctgacttg ttgattttga acagcctggt tttgactgta gctctgtttg
+     8401 gtcgtttcgc cattgctcct gttcgtacta ccggtcgtta agacgtttgc ttttttcttt
+     8461 agaggtgtag cttagttggt taaagcgcaa gattccaaat cttgaaatcg agggttcgag
+     8521 tcctttcatc tctgtcgaat tttactcata ggatgctcgg ctggccgagc accgctatcg
+     8581 ggtactcggt ggaaccgagt actcaaaacc aaagtttaat gtgcaaacct cttctagtca
+     8641 acgacaaaaa cgacttacta aagaggaaag agtacaactt tgcgataatc tttatttaac
+     8701 tatattttaa aagcacgaat taaattacaa gtcataggta gcagaacgtt ctggaacaat
+     8761 tacgctgaaa acagtaccag aattgaagct gctaacataa gtaacactaa atggataaca
+     8821 tggccgtaag cccaaggttt tgcataacaa acagtgaata cggtttttaa ttaaaattat
+     8881 atatacaaat tagagtttgg tgctggctca gctttcatgc gccgagcggt ggtttataca
+     8941 tgcgagctta aaagattaag gccacgagtg cgtaatacgc gagtttaaat ttattataca
+     9001 aaaggtagag tctgcgttga acaccagaac ataggcttgg aagcagccac tgtgcttgga
+     9061 aagcgtaata gctcactggt ctagcagtac tccgcttata tatgtccggc actccaaatt
+     9121 gccgaagccc gcctatgaca ataccacctt agtggtttac tttataatac tattggggac
+     9181 tcggtgaaac cgagtaccct atagctcagt cgcagagctg gccgcgcatc ctattggggc
+     9241 atagccaagt ggtaaggcat tggactttga ctccaagatg catgggttcg aatcctattg
+     9301 ccccaggatt aagcttttac aaggtaccgg aaggcactcg ttacaatgct cggcttcgcc
+     9361 gaacggactg agccgcgttg gtttatttgc caagcaccaa gccactttta gaaaaacaat
+     9421 ttgttacttt ttattaatac cgtactgcaa accgactcag gtgggctagt atatatactc
+     9481 aggccataga atcaaccatg ttaaaggaac tcggcaaaat gcacgcgtga cctcggagga
+     9541 agcgtggcta aaaagactca gcaaatagcc gacagcgact gtttaccaaa aacacaggat
+     9601 agtgctaaca gacgtaaatt aagctgcaaa aagcggtttt atttttggat gtatactatc
+     9661 cgacgcctgc ccaaaggtga agaaaaacgg cggcagtaac tctaactgtc ctaaggtagc
+     9721 gaaattcctt gacgtttaat tggcgtcctt gcatgaatgg ctgaacgact gtcgggctgt
+     9781 ctctaacatg gaatctgtga atttgaaatc ttcgtgcaga tgcgaaggcg ctggcaaggg
+     9841 acgaagagac cctatgcagc ttcgctgggt gctaagagtt ggtcgtgaat tgttgtagtg
+     9901 ggttggaaac tgacaggttc aatacctgat taccacgtac ttctagacat ttactcttat
+     9961 cctcaagctt ttctgggacg gatgcttcct gaatagtaac gggagtgatc aatggtactg
+    10021 ctaacgactt aaatagaaag cagtgcttga ctgtaagaac cacagttcga gcagggacgc
+    10081 aagtcggcat taatgaccca gggtaacatt ttatcaagtt gctaggtgac ccaatacggg
+    10141 catcgggcaa aactcgcgta ggattagcga gctgggtcgc gacgccaata cagcggccca
+    10201 tggcttatcc ttagcctgtc ttaacggtac taggccacgg tggcactgaa aaggggccac
+    10261 ggttcttatg aacccagcag tgttgaattt tggacaatcg cttgaacggc ggatccagat
+    10321 gctgcttaca aatacattat atttcatgat cgttgcttct attttgattt tgattgttcc
+    10381 tgttttgttg agcgtcgcta tgtttactct agctgagcgc accgtaatgg cttctatgca
+    10441 acgccgtttc ggcccacaag tttccggtat cagtggcttg ctacagccgt tctgggatgg
+    10501 tttgaaattg ggtgttaaag agcctgttct acctgattcc agttctgccg gagccttcgc
+    10561 tgctagtcca atgattagtt ttgtactaag ccaagtcgct tgggttggca tttgcatttc
+    10621 cgatgcttct ttccagggct tggtaatcat ggctattagt agcttggctg tatatggtgt
+    10681 catgttggcc ggttgggcta gtaactctaa atacgctttc ttgggttgtc tgcgttctgt
+    10741 agcccttatg gtatcttatg agttgagttt gggtgctgct ttgctatcta tcggtctgtt
+    10801 cgtcactgac ggcactggta tgaaatgttt gaactttgct gagatgccta ccaccccaca
+    10861 atatgctatg ttgccgctat gcttgatttt cttggtatgt attctagctg agaccaaacg
+    10921 cgacccattt gatctaccag aggctgagtt ggttgctggt tataacgtag agtacagtag
+    10981 tttgggtttt gccctattct ttatcgccga gtacgctaac atggctgtaa tgagtgctat
+    11041 tgctagcatt tacttcttgg gtggcttcag cgcccttaaa attactgccc tgttcttcgc
+    11101 ttttgtatgg actcgcggta ctttgccacg ttatcgttac gaccaattca tgcgcctagg
+    11161 ttggaaagct ttcctaccgc taaccttggc tttcttcgcc ttgcatgcta gcgtagctat
+    11221 ctaatattat tttattctgc ttagactcat ctatacaatg agtgcctaag cactcaattt
+    11281 cggtgctcgg tgaaaccgag catccaatac taaagaaact ttactggctt agtactggga
+    11341 ccccattttt agtataccta cattatatac aacgtctatt ggacccgaaa ccgatcgatc
+    11401 tagcgacgtg caggtctgac tttaatcagg accgaacccg tgtctgttgc aagagactgg
+    11461 gatgacacgt ggctaggggt gaaaggccaa tcaagttcgg taatagctgg ttttctgcga
+    11521 aatctattca ggtaaagagt gtgtactaag accattaatt atatataatg tttactgtaa
+    11581 actacatttt ggatttgttc cacactatca atgctactga ggtgcagcat actctaatgc
+    11641 ataaacgccc ggcttctctg catgaggtac tacgactggc tggtctgcta caagggtaca
+    11701 aggactttct gagtctaact aaacaagccg aggctttctt ccaagccggt gactaccgtt
+    11761 ctgcttttaa caccattagc aaaatgtggg tgcatcctca gattgtgcct gccctgcttc
+    11821 taatggagtg ctttgagact cgcgagctaa ctgtgcctta ctggtacaaa agtataaaac
+    11881 tacgccgaca gtacatccag aaaaagaacg gaggggtccg tcctattatt gttgcccaca
+    11941 aaggcctacg catctgtatg gcagtgatca atcgtctatt gcaatcctgt tgcgtttctt
+    12001 ggtctaacca gacttttggc ttccgtcctg gttttggtac ccatcatgct gttttgcacc
+    12061 tagctcaaaa agctcaacaa atgcttaaca aacaacaaca agccgtactt gtcactttcg
+    12121 atttgcaagc cgcttataat tccgttgata ttaagcactt gatgcagact ctacagttgc
+    12181 aataccttcc caatgacatg aaaaaactca tttggatgtg gcagcacttg cctcttgctc
+    12241 agctaaacgc cggtatcaat ggacttgccc aaggttatgc ttatagccct acacttttcg
+    12301 cttggtatgt tgatcaattg gtgggccaac acatggactt tactatttat gcggataatt
+    12361 ttgcgggtgt attcctcacc caacaagatg cacaattcgc ggtcaaagag gcgcaaactc
+    12421 tgctacaaaa aagcggacta ttgatcgcac caagctccat taagatgcac ctgctggata
+    12481 aaaaccagca ctccgagttg aattggctag ggcacaaggt actgttcccc agttgcactg
+    12541 taaagctaca acaccaccag ctgctagtta accaacactc cccacaagta tggaccattc
+    12601 aaaaatggga taaaatgcta cgtacattgg gttgggtaca gcttgccttg aatgcagatt
+    12661 ggcgccgttt ctagtactag actaccattt acaagaatag gaggtgtaca tttaccttaa
+    12721 ctattaaagg actgtgtcgg cacccatcta gtgcggttca ccgagcaccc aaggtctagc
+    12781 tacgatttgc tatattatta gaaaattaaa taggtcgata aaactgcttt tctaaagaga
+    12841 gagagcacaa acgaattata cacagttacc ctgatcaacg gacaaaagct acgctaggga
+    12901 taacaggctt atccgccttt agagttccta tcgatgggcg ggtttggcac ctcgatgttg
+    12961 gatcatcgcg tcctgtggct gaaggaggtc gcaagggttg gattgttcgt ccattaaagc
+    13021 ggtacgtgat ctgagttcag accgtcgtga gacaggtcgg tttctatctt tgtcagcgaa
+    13081 aggcttgttt tctagtgagt ttgacactca cgccgaaacg cctatgcaca gttagccgct
+    13141 gggggcgagt acgaaaggac cagaccccta taaacctctg gtacacttgt tgtcatttac
+    13201 acggcatagc aagaaagcta agttttaaaa ggctagattg cctacattca ataacaccga
+    13261 atgaccccga cttacaaaag tttaggacta aattttatga attgtttgtg aacacccccc
+    13321 aagcacgtgc cagaagggtc ggtaaaacgt gcggtgtcag tataaagcgt cttgactagg
+    13381 caggcagcgc gtctgagcgt taatggtgaa cactttaaac gttgggtaat attcggagga
+    13441 tcggtcaaat gagaatattc cggatggaaa gccgaaggcg aaagcaccaa catcagagtc
+    13501 actaaagctt caacgcgtaa gtttgggtag cgaaccggat tagagacccg cagtagtcca
+    13561 aaccgtcaac acattatagt tttcaaatct ataacgcctg gtgatacggt ggcaacacta
+    13621 taaatcaaag caattggcag cgatagagat gcgcggtgga atatgctgtt taaatcgaat
+    13681 ttacgcgcaa aatcttacca ctttttatta tatgagtact cggtgtaacc gagtacccga
+    13741 tattggtgct cggccagcag ggctggccga gcaccatatg agtacaattg tacacgatag
+    13801 aagtgctcgg tgaaaccgag tatcatatta caaagacacg tagcttagtg gtaaagcact
+    13861 ggtctcataa gccagctatc gcaagttcga atctcgccgt gtctattaca tttttatact
+    13921 ataccggtag cgcaagcgaa tggtaatgga tctaatacaa cacattcaga caatcggcgg
+    13981 taaggtcaat tgtcaagagg agaacagtcc agaggcgagg ctaaggtgcc taacaattat
+    14041 tatatacaaa tagctcttgc attgctgaaa agttcgagcg ggacctcgcc cttagtgccg
+    14101 gtctttgcca cgttttctga acggtcgagc aagtcatcat ggggcttata gagtgggcta
+    14161 caggcgtatt acattggaca cccacaagtt ggataccaaa actgtccgaa tatacggatt
+    14221 ggagtagcaa aacgagagaa ctatacagtt cgtttgcatc gttatgcctt gctgaaacta
+    14281 gcctccatga agaaggaatc gcgagtaatc gtagatcatt agcgctacgg tgaaggtaac
+    14341 ctctattgtg cacacattgc ccgtcacctc cgataatagt attgtacagg aagaactatg
+    14401 gctacactta agtcgcggcc taggaacgta tgcgtgatat tagagttgga gtaagtcgta
+    14461 acaggttggg gtaggggaac ctgctccaga gtcaaattta tataaaaggg attgctgact
+    14521 gatagtgcaa acagtactgt gaaggaacta atgaaactgg gctaaaacac tataaacact
+    14581 aagtgcgcat tccaccaata cgtgagcatt cgcgcattac cattctccag aggatttaaa
+    14641 tgcacaaacc tatttatgcc ttttggcata tgattacact tcgttatata tcactcgttc
+    14701 aacattttta caaacagcta taatttagcg taccttttgc attatgggtt agctactcaa
+    14761 tagacgtgag ttaagcagaa agcttactga gattttttta taacgagagg ggccatcaca
+    14821 gagatgccct ctctgggttc ctttaaatgt tactaggacc ccaacgcgtg caacaacaca
+    14881 ctaaaggggt gggctgccta aaaaagcccg agagctgctg gttcaaccca cactctcaca
+    14941 agccccacat cggtattttt aggctaaaat ctatcagccc ttgtacgtaa cgattgcgac
+    15001 tacgcatgcc taagtgcgca aacagtatcg gtttggttga tctgcatcct accagccgtc
+    15061 ttctacgact cgcacgatcc tatattatat ataatactca tctcatttga actttactgg
+    15121 aggtgcctaa aagcacccac agagatgatc ggcactgccg atcatactgg aattccacag
+    15181 aatttacgca aagctcagag cacgagcaca gcagcaaacg ccacaaacac actttttaca
+    15241 cttacggtac gcggttccgg ttgatgatcc ataagggctt ctcaggctac ccaacgggca
+    15301 catgttctcc tcacccggat tgaacaccca ggggacaccg agcacccaaa cgattacatg
+    15361 tacaacgcac acttcaccac agggcattag cagccctctg ccatattagg tgaccccgct
+    15421 caggattggc agaaaaggac cttccacacc gcacgataga actcaccaag ctcggccagc
+    15481 tctgctggcc gagcatcgtc gagatcgaac cgcggtgggg gcccactact ccacgcgtgc
+    15541 ttcgcaagcc gccaaagtaa ccagggcaag actagctaca cggggagagt ttgcgacttc
+    15601 acctaaaaca cacaaaaaca caccggcacc ttaagcactt tttcgcactt ttaggacccc
+    15661 cgcccaaaca cctataggat cgtgcgagtc gtagaagacg gctggtagga tgcagatcaa
+    15721 ccaaaccgat actgtttgcg cacttaggca tgcgtagt
+//
+
