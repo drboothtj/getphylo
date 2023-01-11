@@ -8,7 +8,7 @@ The first example is a genome level phylogeny of bacteria. It was run with the c
 ## Example 2 - Eukaryotic Mitochondrial Genomes
 The second example is a phylogeny of eukaryotic mitochondrial genomes. It was run with the command `getphylo -p 50 -s Plasmodium_falciparum.gbk`. The combined tree was based on 2 loci and took 2 seconds.
 
-![Mitochondrial DNA tree](example_2/mtDNA_tree.png)
+![Mitochondrial DNA tree](example_data_2/mtDNA_tree.png)
 
 
 ## Example 3 - Biosynthetic Super Cluster
