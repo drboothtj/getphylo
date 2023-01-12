@@ -3,6 +3,8 @@ a python package for automated generation of heuristic phylogenetic trees from g
 
 ## Description
 
+##Installation
+
 ## Usage
 This package has been designed to be as easy to run as possible. Simply navigate to a working directory containing .gbk files and input:
 
