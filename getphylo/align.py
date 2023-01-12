@@ -68,7 +68,6 @@ def make_combined_alignment(gbks, output):
         loci = glob.glob(f'{output}/aligned_fasta/*.fasta')
         for taxon in taxa:
             taxon_name = taxon.split('.')[0]
-            combined_alignment.append(f'>{taxon_name}')
             sequence_data = []
             for locus in loci:
                 alignment = io.read_file(locus)
@@ -79,7 +78,11 @@ def make_combined_alignment(gbks, output):
                 else:
                     sequence_data.append('X' * locus_length)
             sequence_string = ''.join(sequence_data)
-            combined_alignment.append(sequence_string)
+            if sequence_string.count('X') == len(sequence_string):
+                console.print_to_system(f'[ALERT]: {taxon_name} has no sequence data and has been removed.') #maybe convert to a fatal error.
+            else:
+                combined_alignment.append(f'>{taxon_name}')
+                combined_alignment.append(sequence_string)
         io.write_to_file(f'{output}/aligned_fasta/combined_alignment.fasta', combined_alignment)
         #add check to recommend removing data that is mostly Xs
         #provide partition data!

@@ -1,4 +1,5 @@
 Fix logging
+add option to change 'locus_tag'
 Refactor to reduce dependencies
 remove sample if all Ns
 Example Data (rerun all in final version!)
