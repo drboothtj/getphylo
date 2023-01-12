@@ -77,11 +77,11 @@ def make_combined_alignment(gbks, output):
                 if len(locus_alignment) == locus_length:
                     sequence_data.append(locus_alignment)
                 else:
-                    sequence_data.append('N' * locus_length)
+                    sequence_data.append('X' * locus_length)
             sequence_string = ''.join(sequence_data)
             combined_alignment.append(sequence_string)
         io.write_to_file(f'{output}/aligned_fasta/combined_alignment.fasta', combined_alignment)
-        #add check to recommend removing data that is mostly Ns
+        #add check to recommend removing data that is mostly Xs
         #provide partition data!
 
 def make_alignments(checkpoint, output, loci, gbks):
