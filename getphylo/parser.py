@@ -56,6 +56,13 @@ def get_parser():
         help='string indicating the genbank files to use in the phylogeny (default: *.gbk)'
         )
     parser.add_argument(
+        '-ig',
+        '--ignore',
+        default=False,
+        type=bool,
+        help='Ignore missing annotations - NOT RECCOMMENDED (default: False)'
+        )
+    parser.add_argument(
         '-max',
         '--maxlength',
         default=2000,
@@ -111,6 +118,13 @@ def get_parser():
         default=None,
         type=str,
         help='path to a genbankfile with for the target organism (default: random)'
+        )
+    parser.add_argument(
+        '-t',
+        '--tag',
+        default="locus_tag",
+        type=str,
+        help='string indicating the GenBank annotations to extract (default: "locus_tag")'
         )
     return parser
 

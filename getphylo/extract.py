@@ -20,7 +20,7 @@ def build_diamond_databases(output):
         dmnd_database = (f'{output}/dmnd/' + dmnd_database)
         diamond.make_diamond_database(file, dmnd_database)
 
-def extract_cdses(gbks, output):
+def extract_cdses(gbks, output, tag_args):
     '''produce a fasta file from each genbank provided'''
     try:
         os.mkdir(f'{output}/fasta/')
@@ -34,28 +34,31 @@ def extract_cdses(gbks, output):
         seen = set()
         for filename in glob.glob(gbks):
             console.print_to_system('Extracting CDS annotations from ' + filename)
-            get_cds_from_genbank(filename, output, seen)
+            get_cds_from_genbank(filename, output, seen, tag_args)
 
-def get_cds_from_genbank(filename, output, seen):
+def get_cds_from_genbank(filename, output, seen, tag_args):
     '''extract CDS translations from genbank files into ./fasta/*.fasta'''
+    tag = tag_args[0]
+    ignore = tag_args[1]
     lines = []
     records = io.get_records_from_genbank(filename)
     for record in records:
         for feature in record.features:
             try:
                 if feature.type == "CDS":
-                    locus_tag = f'{record.id}_{feature.qualifiers.get("locus_tag")[0]}'
+                    locus_tag = f'{record.id}_{feature.qualifiers.get(tag)[0]}'
                     if locus_tag in seen:
                         raise ValueError(f'{filename} contains duplicate: {locus_tag}')
                     seen.add(locus_tag)
                     lines.append(">" + locus_tag.replace(".", "_"))
                     lines.append(str(feature.qualifiers.get("translation")[0]))
             except TypeError:
-                if feature.qualifiers.get("locus_tag") is None:
+                if feature.qualifiers.get(tag) is None:
                     console.print_to_system(
-                        "ALERT: No locus tag in " + record.id
+                        f'ALERT: Missing {tag} in {record.id}.'
                         )
-                    exit()
+                    if ignore == False:
+                        exit()
                 else:
                     console.print_to_system(
                         "ALERT: " + feature.qualifiers.get("locus_tag")[0] + 'has no translation!'
@@ -66,11 +69,11 @@ def get_cds_from_genbank(filename, output, seen):
     filename = f'{output}/fasta/{filename}'
     io.write_to_file(filename, lines)
 
-def extract_data(checkpoint, output, gbks):
+def extract_data(checkpoint, output, gbks, tag):
     '''called from main to build fasta and diamond databases from the provided genbankfiles'''
     if checkpoint < 1:
         console.print_to_system("CHECKPOINT 0: Extracting CDSs...")
-        extract_cdses(gbks, output)
+        extract_cdses(gbks, output, tag)
     if checkpoint < 2:
         console.print_to_system("CHECKPOINT 1: Building diamond databases...")
         build_diamond_databases(output)

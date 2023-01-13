@@ -45,10 +45,11 @@ def main():
     console.print_to_system("The seed genome is " + seed)
     #checkpoint 0 and 1 extracting the CDSs
     if checkpoint < 2:
-        extract.extract_data(checkpoint, output, gbks)
+        tag_args = [args.tag, args.ignore]
+        extract.extract_data(checkpoint, output, gbks, tag_args)
     #checkpoint 2, 3 and 4 screening the target proteins
-    thresholds = [args.find, args.minlength, args.maxlength, args.presence, args.minloci]
     if checkpoint < 5:
+        thresholds = [args.find, args.minlength, args.maxlength, args.presence, args.minloci]
         final_loci = screen.get_target_proteins(checkpoint, output, seed, thresholds)
     if checkpoint > 4:
         final_loci = screen.get_loci_from_file(f'{output}/final_loci.txt')
