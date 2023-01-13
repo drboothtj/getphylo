@@ -33,6 +33,9 @@ def get_parser():
             '3: skip identifying singletons from seed genome'
             '4: skip confirming singletons in other genomes'
             '5: skip thresholding and identifying final loci for alignments'
+            '6: skip extracting sequences for alignments'
+            '7: skip alignment'
+            '8: skip combining alignments'
         )
         )
     parser.add_argument(
