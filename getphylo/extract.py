@@ -57,14 +57,14 @@ def get_cds_from_genbank(filename, output, seen, tag_args):
                     console.print_to_system(
                         f'ALERT: Missing {tag} in {record.id}.'
                         )
-                    if ignore == False:
+                    if not ignore:
                         exit()
                 else:
                     console.print_to_system(
                         "ALERT: " + feature.qualifiers.get("locus_tag")[0] + 'has no translation!'
                         )
     if not lines:
-        console.print_to_system("ALERT: No CDS Features in" + filename)
+        console.print_to_system("ALERT: No CDS Features in " + filename)
     filename = io.change_extension(filename, "fasta")
     filename = f'{output}/fasta/{filename}'
     io.write_to_file(filename, lines)
