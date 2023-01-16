@@ -1,4 +1,6 @@
 Fix logging
 Refactor to reduce dependencies
+add fast mode only combined tree!
+add custom input folder
 Example Data (primates and BGCs)
 generate docs
