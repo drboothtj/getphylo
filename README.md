@@ -2,21 +2,29 @@
 a python package for automated generation of heuristic phylogenetic trees from genbank files
 
 ## Description
+WIP
 
 ## Installation
+
+**Important:** The following intructuons are for Linux and assume you have Python and pip installed already. For installation on different systems, please see the links provided for this individual dependences.
 
 ### Installation of getphylo
 
 #### Installation with PyPI
 Coming soon!
 
-#### Installation with Git
+#### Manual Installation
 
-[[biopython manually]]
+If you want to install `getphylo` manually, you can do so by cloning this repository.
+
+`git clone https://github.com/DrBoothTJ/getphylo`
+`cd getphylo`
+`python setup.py install`
 
 ### Installation of dependences
+**Important:**
 
-**Important:** Getphylo requires DIAMOND, MUSCLE and FastTree2 to be installed to work correctly. These must be installed mannually. [[pytho dependencies should be automatic but...with giut will need to be done manually]] Below are instructions to install each dependency:
+**Important:** Getphylo requires DIAMOND, MUSCLE and FastTree2 to be installed to work correctly. These must be installed manually. BioPython should be installed automatically. Below are instructions to install each dependency:
 
 #### Installing DIAMOND
 
