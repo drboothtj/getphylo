@@ -22,7 +22,6 @@ If you want to install `getphylo` manually, you can do so by cloning this reposi
 `python setup.py install`
 
 ### Installation of dependences
-**Important:**
 
 **Important:** Getphylo requires DIAMOND, MUSCLE and FastTree2 to be installed to work correctly. These must be installed manually. BioPython should be installed automatically. Below are instructions to install each dependency:
 
