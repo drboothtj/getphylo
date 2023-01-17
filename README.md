@@ -22,3 +22,4 @@ See the ´example_data´ folder in this directory for three example trees produc
 1. A phylogeny of bacterial genomes
 2. A phylogeny of eukaryotic mitochondrial genomes
 3. A phylogeny of a biosynthetic super cluster
+4. A phylogeny of primate genomes
