@@ -8,7 +8,7 @@ WIP
 
 **Important:** The following intructuons are for Linux and assume you have Python and pip installed already. For installation on different systems, please see the links provided for this individual dependences.
 
-### Installation of getphylo
+### 1. Installation of getphylo
 
 #### Installation with PyPI
 Coming soon!
@@ -21,7 +21,7 @@ If you want to install `getphylo` manually, you can do so by cloning this reposi
 `cd getphylo`
 `python setup.py install`
 
-### Installation of dependences
+### 2. Installation of dependences
 
 **Important:** Getphylo requires DIAMOND, MUSCLE and FastTree2 to be installed to work correctly. These must be installed manually. BioPython should be installed automatically. Below are instructions to install each dependency:
 
