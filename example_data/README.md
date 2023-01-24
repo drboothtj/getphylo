@@ -14,3 +14,8 @@ The second example is a phylogeny of eukaryotic mitochondrial genomes. It was ru
 
 ## Example 3 - Biosynthetic Super Cluster
 The third example shows the evolutionary history of the anthrabenzoxocinone-borregomycin supercluster (*bab*) as described in our paper: ['Chlorinated metabolites from Streptomyces sp. highlight the role of biosynthetic mosaics and superclusters in the evolution of chemical diversity.'](https://doi.org/10.1039/D1OB00600B) It was generated in X seconds.
+
+![Resorculin BGC tree](example_data_3/rsn_tree.png)
+
+## Example 3 - Biosynthetic Super Cluster
+The third example shows the evolutionary history of the anthrabenzoxocinone-borregomycin supercluster (*bab*) as described in our paper: ['Chlorinated metabolites from Streptomyces sp. highlight the role of biosynthetic mosaics and superclusters in the evolution of chemical diversity.'](https://doi.org/10.1039/D1OB00600B) It was generated in X seconds.
