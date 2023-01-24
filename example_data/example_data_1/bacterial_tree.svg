@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    version="1.1"
-   width="2880"
-   height="1320"
-   viewBox="0,0,2880,1320"
+   width="2146.1562"
+   height="2111.3518"
+   viewBox="0 0 2146.1562 2111.3518"
    id="svg268"
    sodipodi:docname="bacterial_tree.svg"
    inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
@@ -24,15 +24,20 @@
      showgrid="false"
      inkscape:zoom="0.38888889"
      inkscape:cx="929.57143"
-     inkscape:cy="537.42857"
+     inkscape:cy="1542.8571"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg268" />
+     inkscape:current-layer="svg268"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <g
-     id="g15995">
+     id="g15995"
+     transform="translate(-1.022346,433.87502)">
     <path
        d="m 410.14482,1014.5748 v 0"
        fill="none"
@@ -67,7 +72,7 @@
        font-weight=""
        font-size="25.2742px"
        text-anchor="end"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.33333333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text7">Escherichia coli</text>
     <path
        d="m 410.14482,1014.5748 0.74687,-0.1334"
@@ -124,7 +129,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="end"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text15">Shigella flexneri</text>
     <path
        d="m 397.30721,1019.3562 1.58448,-0.9149"
@@ -177,7 +182,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="end"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text23">Salmonella enterica</text>
     <path
        d="m 357.47846,1085.1734 61.96217,-73.8436"
@@ -230,7 +235,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="end"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text31">Pseudomonas fluorescens</text>
     <path
        d="M 534.08931,1065.209 589.41863,913.19295"
@@ -283,7 +288,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="start"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text39">Xanthomonas oryzae</text>
     <path
        d="M 623.69913,1140.1334 V 884.42819"
@@ -336,7 +341,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="start"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text47">Neisseria meningitidis</text>
     <path
        d="M 745.79667,1105.0282 652.85716,849.679"
@@ -389,7 +394,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="start"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text55">Caulobacter vibrioides</text>
     <path
        d="M 984.80275,1055.2291 717.85715,737.09573"
@@ -442,7 +447,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="start"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text63">Mycoplasma pneumoniae</text>
     <path
        d="M 1679.1192,757.2927 1532.625,672.71426"
@@ -495,7 +500,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="start"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text71">Helicobacter pylori</text>
     <path
        d="M 1751.0209,711.22335 1532.625,672.71425"
@@ -548,7 +553,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="start"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text79">Streptococcus pyogenes</text>
     <path
        d="m 1310.1908,572.53673 -35.5695,6.27187"
@@ -601,7 +606,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="start"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text87">Lactococcus lactis</text>
     <path
        d="m 1224.7756,501.88004 -90.4093,52.19782"
@@ -654,7 +659,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="start"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text95">Listeria monocytogenes</text>
     <path
        d="m 1050.225,464.08346 -75.51429,89.9944"
@@ -707,7 +712,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="start"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text103">Bacillus cereus</text>
     <path
        d="M 925.36795,415.98869 868.27692,572.84501"
@@ -760,7 +765,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="start"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text111">Corynebacterium glutamicum</text>
     <path
        d="M 600.69555,39.886188 V 247.29704"
@@ -813,7 +818,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="end"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text119">Mycobacterium tuberculosis</text>
     <path
        d="m 548.96181,105.15976 51.73374,142.13728"
@@ -866,7 +871,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="end"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text127">Streptomyces coelicolor</text>
     <path
        d="M 475.62108,173.76922 617.55673,342.92154"
@@ -919,7 +924,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="end"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text135">Bifidobacterium longum</text>
     <path
        d="M 398.76799,278.95247 646.28715,421.85772"
@@ -972,7 +977,7 @@
        font-weight=""
        font-size="25.4415px"
        text-anchor="end"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text143">Nostoc punctiforme</text>
     <path
        d="m 329.75355,507.04545 407.16738,71.79459"
@@ -1280,7 +1285,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text215">1</text>
     <text
        x="779.11688"
@@ -1299,7 +1304,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text217">1</text>
     <text
        x="1054.5386"
@@ -1317,7 +1322,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text219">1</text>
     <text
        x="938.00818"
@@ -1336,7 +1341,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text221">1</text>
     <text
        x="-113.09323"
@@ -1355,7 +1360,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text223">1</text>
     <text
        x="-44.281815"
@@ -1374,7 +1379,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text225">1</text>
     <text
        x="396.39957"
@@ -1393,7 +1398,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text227">1</text>
     <text
        x="1532.9973"
@@ -1412,7 +1417,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text229">1</text>
     <text
        x="564.39728"
@@ -1431,7 +1436,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text231">1</text>
     <text
        x="43.701305"
@@ -1450,7 +1455,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text233">1</text>
     <text
        x="-344.41504"
@@ -1469,7 +1474,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text235">1</text>
     <text
        x="809.65021"
@@ -1488,7 +1493,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text237">1</text>
     <text
        x="575.45874"
@@ -1507,7 +1512,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text239">1</text>
     <text
        x="-379.95953"
@@ -1526,7 +1531,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text241">1</text>
     <text
        x="1284.5566"
@@ -1545,7 +1550,7 @@
        font-weight="normal"
        font-size="20.3532px"
        text-anchor="middle"
-       style="mix-blend-mode:normal;-inkscape-font-specification:'Arial, Normal';font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:33.33333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;mix-blend-mode:normal"
        id="text243">1</text>
     <text
        xml:space="preserve"
@@ -1588,7 +1593,7 @@
        d="m 72.471177,89.959891 c 0,0 -62.223221,-386.511441 521.489863,-511.473781"
        id="path8624" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 56.571429,1087.7143 c 0,0 172.285711,876.8571 1141.714271,249.4286"
        id="path14880" />
   </g>
