@@ -129,7 +129,7 @@ def threshold_loci(target_loci, thresholds, output):
             presence_percent = (presence / len(glob.glob(f'{output}/tsvs/*.tsv'))) * 100
             thresholding_string = str(locus) + ";" + str(presence_percent) + ";" + str(unique)
             thresholding_data.append(thresholding_string)
-            if presence_percent >= presence_threshold and unique is True:
+            if presence_percent >= presence_threshold and is unique:
                 final_loci.append(locus)
         io.write_to_file(f'{output}/thresholding_data.txt', thresholding_data)
         write_pa_table(pa_table, target_loci, output)
@@ -154,6 +154,7 @@ def write_pa_table(pa_table, loci, output):
         data_string = ';'.join([str(datum) for datum in data])
         new_table.append(data_string)
     io.write_to_file(f'{output}/presence_absence_table.csv', new_table)
+    #check_table
 
 def get_target_proteins(checkpoint, output, seed, thresholds):
     '''main routine for screen.py'''

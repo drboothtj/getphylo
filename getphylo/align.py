@@ -51,7 +51,7 @@ def get_locus_alignment(alignment, taxon_name):
             seq_flag = False
         if '>' in line and taxon_name in line:
             seq_flag = True
-        if seq_flag is True and taxon_name not in line:
+        if seq_flag and taxon_name not in line:
             extracted_alignment.extend(line[:-1])
     return ''.join(extracted_alignment)
 
@@ -84,7 +84,6 @@ def make_combined_alignment(gbks, output):
                 combined_alignment.append(f'>{taxon_name}')
                 combined_alignment.append(sequence_string)
         io.write_to_file(f'{output}/aligned_fasta/combined_alignment.fasta', combined_alignment)
-        #add check to recommend removing data that is mostly Xs
         #provide partition data!
 
 def make_alignments(checkpoint, output, loci, gbks):
