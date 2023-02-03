@@ -8,8 +8,16 @@ import os
 import glob
 from getphylo import console, io, muscle, screen #remove dependency on screen
 
-def get_fasta_for_alignments(loci_list, output):
-    '''extracts sequences from fasta files for downstream alignment'''
+def make_fasta_for_alignments(loci_list:[str], output:str) -> None:
+    '''builds a .fasta file from sequences where there is a hit in the diamond search results
+    
+    Arguments:
+        loci_list: a list of locus tags to extract hits
+        output: the path of the output directory
+
+    Returns:
+        None
+    '''
     io.make_folder(f'{output}/unaligned_fasta')
     files = glob.glob(f'{output}/fasta/*.fasta')
     for locus in loci_list:
@@ -25,22 +33,35 @@ def get_fasta_for_alignments(loci_list, output):
                     write_lines.append(sequence)
         io.write_to_file(f'{output}/unaligned_fasta/{locus}.fasta', write_lines)
 
-def do_alignments(output):
-    '''run alignment file through muscle module'''
+def do_alignments(output:str) -> None:
+    '''runs alignment file through muscle module
+    
+    Arguments:
+        output: the path of the outut directory
+
+    Returns:
+        None
+    '''
     io.make_folder(f'{output}/aligned_fasta')
     for file in glob.glob(f'{output}/unaligned_fasta/*.fasta'):
         outfile = f'{output}/aligned_fasta/{file.split("/")[2]}'
         muscle.run_muscle(file, outfile)
 
-def get_locus_length(alignment):
-    '''return the length of the fasta locus'''
-    length = 0
+def get_locus_length(alignment:[str]) -> int:
+    '''returns the length of the fasta locus by counting sequence lines
+    
+    Arguments:
+        alignment: a list containing each line of a fasta file
+
+    Returns:
+        alignment_length: an int of the alignment length
+    '''
     for line in alignment[1:]:
         if '>' not in line:
-            length += len(line)-1
+            length = len(line)-1
         else:
             break
-    return length
+    return alignment_length
 
 def get_locus_alignment(alignment, taxon_name):
     '''extract individual loci alignments for the taxa'''
@@ -55,8 +76,13 @@ def get_locus_alignment(alignment, taxon_name):
             extracted_alignment.extend(line[:-1])
     return ''.join(extracted_alignment)
 
-def make_combined_alignment(gbks, output):
-    '''Create a combined alignment from single locus alignments'''
+def make_combined_alignment(gbks:[str], output:str) -> None:
+    '''Create a combined alignment from single locus alignments
+    
+        Arguments:
+        
+        Returns: None
+        '''
     if os.path.exists('aligned_fasta/combined_alignment.fasta'):
         console.print_to_system(
             'ALERT: aligned_fasta/combined_alignment.fasta already exists. Exiting!'
@@ -90,7 +116,7 @@ def make_alignments(checkpoint, output, loci, gbks):
     '''Main routine for align'''
     if checkpoint < 6:
         console.print_to_system("CHECKPOINT 5: Extracting sequences for alignment...")
-        get_fasta_for_alignments(loci, output)
+        make_fasta_for_alignments(loci, output)
     if checkpoint < 7:
         console.print_to_system("CHECKPOINT 6: Aligning sequences...")
         do_alignments(output)
