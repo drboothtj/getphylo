@@ -1,4 +1,0 @@
-locus;presence;unique
-NC_037526_1_DDI48_mgp2;100.0;True
-NC_037526_1_DDI48_mgp1;35.714285714285715;True
-NC_037526_1_DDI48_mgp3;100.0;True
