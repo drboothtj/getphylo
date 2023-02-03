@@ -129,7 +129,7 @@ def threshold_loci(target_loci, thresholds, output):
             presence_percent = (presence / len(glob.glob(f'{output}/tsvs/*.tsv'))) * 100
             thresholding_string = str(locus) + ";" + str(presence_percent) + ";" + str(unique)
             thresholding_data.append(thresholding_string)
-            if presence_percent >= presence_threshold and is unique:
+            if presence_percent >= presence_threshold and unique:
                 final_loci.append(locus)
         io.write_to_file(f'{output}/thresholding_data.txt', thresholding_data)
         write_pa_table(pa_table, target_loci, output)
