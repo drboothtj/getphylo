@@ -1,3 +1,0 @@
-[console_scripts]
-getphylo = getphylo.main:main
-

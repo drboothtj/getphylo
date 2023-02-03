@@ -1,7 +1,0 @@
-README.md
-setup.py
-getphylo.egg-info/PKG-INFO
-getphylo.egg-info/SOURCES.txt
-getphylo.egg-info/dependency_links.txt
-getphylo.egg-info/entry_points.txt
-getphylo.egg-info/top_level.txt
