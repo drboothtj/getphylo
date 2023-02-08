@@ -11,6 +11,8 @@ Functions:
 '''
 
 import argparse
+import logging
+from getphylo.utils.checkpoint import Checkpoint
 
 def get_parser():
     ''''Create a parser object specific to getphylo'''
@@ -23,19 +25,22 @@ def get_parser():
     parser.add_argument(
         '-c',
         '--checkpoint',
-        default=0,
-        type=int,
+        default='START',
+        type=str,
+        choices=[cp.name for cp in Checkpoint],
         help=(
-            'interger indicating the checkpoint from which to continue the analysis (default:0)'
-            '(checkpoint info: '
-            '1: skip extraction of CDSs from genbank; '
-            '2: skip creation of diamond databases; '
-            '3: skip identifying singletons from seed genome'
-            '4: skip confirming singletons in other genomes'
-            '5: skip thresholding and identifying final loci for alignments'
-            '6: skip extracting sequences for alignments'
-            '7: skip alignment'
-            '8: skip combining alignments'
+            'string indicating the checkpoint to start from'
+            'START = default'
+            'FASTA_EXTRACTED = Skip extracting fasta sequences from genbank files'
+            'DIAMOND_BUILT = Skip building diamond databases'
+            'SINGLETONS_IDENTIFIED = Skip identifying singletons from the seed genome'
+            'SINGLETONS_SEARCHED = Skip searching singletons against other genomes'
+            'SINGLETONS_THRESHOLDED = Skip thresholding of singletons'
+            'SINGLETONS_EXTRACTED = Skip extract fasta sequences for alignments'
+            'SINGLETONS_ALIGNED = Skip individual protein alignments'
+            'ALIGNMENTS_COMBINED = Skip combining alignments'
+            'TREES_BUILT = Skip building trees'
+            'DONE = Done'
         )
         )
     parser.add_argument(
@@ -60,8 +65,16 @@ def get_parser():
         '--ignore',
         default=False,
         type=bool,
-        help='Ignore missing annotations - NOT RECCOMMENDED (default: False)'
+        help='ignore missing annotations - NOT RECCOMMENDED (default: False)'
         )
+
+    parser.add_argument(
+        '-l',
+        '--logging',
+        default='WARNING',
+        choices=list(logging._nameToLevel.keys()),
+        help='set the logging level (default: WARNING)'
+    )
     parser.add_argument(
         '-max',
         '--maxlength',
@@ -85,7 +98,7 @@ def get_parser():
     parser.add_argument(
         '-ml',
         '--minloci',
-        default=1, #set types for args!!
+        default=1,
         type=int,
         help=(
             'minimum number of loci required to continue to alignment and tree building steps '
@@ -136,5 +149,4 @@ def parse_args():
 
     #add extra dmnd options
     #add max threshold?
-    #set types for args!!
     

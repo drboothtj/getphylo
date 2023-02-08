@@ -49,7 +49,7 @@ def main():
         Arguments: None
         Returns: None'''
     args = parser.parse_args()
-    logging.getLogger().setLevel(logging.INFO) #add args.logging_level
+    logging.getLogger().setLevel(args.logging) 
     
     gbks = args.gbks
     checkpoint = Checkpoint[args.checkpoint.upper()]
