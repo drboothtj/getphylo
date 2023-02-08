@@ -26,7 +26,7 @@ def initialize_logging():
         datefmt='%H:%M:%S') #maybe change to run time?
     logging.info("Running getphylo version 0.0.1")
 
-def check_seed(checkpoint, gbk_search_string: str) -> str:
+def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
     '''Set a seed for a new analysis and raise an error if continuing an old analysis.
         Arguments: 
             checkpoint: the checkpoint supplied by the user
