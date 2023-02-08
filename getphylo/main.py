@@ -8,6 +8,7 @@ set_seed()
 '''
 import glob
 import logging
+import os
 from typing import List
 from getphylo import align, extract, parser, screen, trees
 from getphylo.utils.errors import BadSeedError, NoFinalLociError
@@ -53,6 +54,7 @@ def main():
     gbks = args.gbks
     checkpoint = Checkpoint[args.checkpoint.upper()]
     seed = args.seed
+    output = os.path.abspath(args.output)
     
     if seed is None: check_seed(checkpoint, gbks)
     logging.info(f'The seed genome is {seed}.')
@@ -60,7 +62,6 @@ def main():
     ### Begin main workflow
     ### extract.py
     if checkpoint < DIAMOND_BUILT:
-        output = args.output
         try:
             io.make_folder(output)
         except:
@@ -69,7 +70,7 @@ def main():
                 )
         tag_args = [args.tag, args.ignore]
         extract.extract_data(checkpoint, output, gbks, tag_args)
-    ### screen.py
+    ### screen.pys
     if checkpoint < SINGLETONS_THRESHOLDED:
         thresholds = [args.find, args.minlength, args.maxlength, args.presence, args.minloci]
         final_loci = screen.get_target_proteins(checkpoint, output, seed, thresholds)
@@ -80,8 +81,9 @@ def main():
     except AssertionError:
         logging.info('Final loci not detected. This is normal if restarting from a later checkpoint.')
         try:
-            logging.info('Attempting to read f'{output}/final_loci.txt'')
-            final_loci = screen.get_loci_from_file(f'{output}/final_loci.txt')
+            final_loci_path = os.path.join(output, 'final_loci.txt')
+            logging.info(f'Attempting to read {final_loci_path}')
+            final_loci = screen.get_loci_from_file(final_loci_path)
         except:
             raise NoFinalLociError(
                 'Final loci could not be read from final_loci.txt.'
