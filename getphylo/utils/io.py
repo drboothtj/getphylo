@@ -15,7 +15,6 @@ import os
 import subprocess
 from typing import List
 from Bio import SeqIO
-from getphylo.utils import console
 
 def count_files(directory: str) -> int:
     '''Counts the number of files in a directory.
@@ -54,7 +53,7 @@ def make_folder(name: str) -> None:
         Returns:
             None'''
     if os.path.exists(name):
-        raise Exception (
+        raise FolderExistsError(
             f'ALERT: The directory {name} already exists.'
             )
     else:

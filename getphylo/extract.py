@@ -2,78 +2,107 @@
 Build fasta and diamond databases from genbank files
 
 Functions:
-build_diamond_databases()
-extract_cdses()
-get_cds_from_genbank(filename)
-extract_data(genbank_path, checkpoint)
+build_diamond_databases(output:str) -> None:
+extract_cdses(gbks: str, output: str, tag_label: str, ignore_tag: bool) -> None:
+get_cds_from_genbank(filename: str, output: str, tag_label: str, ignore_tag: bool) -> None:
+extract_data(
+    checkpoint: Checkpoint, output: str, gbks: str, tag_label: str, ignore_tag: bool
+    ) -> None:
 '''
+import logging
 import os
 import glob
-from getphylo import console, diamond, io
+from getphylo.ext import diamond
+from getphylo.utils import io
+from getphylo.utils.checkpoint import Checkpoint
+from getphylo.utils.errors import BadAnnotationError
 
-def build_diamond_databases(output):
-    '''create diamond databases from from all the fasta files in ./fasta/*.fasta'''
-    console.print_to_system("Creating diamond databases from extracted cdses...")
-    io.make_folder(f'{output}/dmnd')
-    for file in glob.glob(f'{output}/fasta/*.fasta'):
-        dmnd_database = io.change_extension(file, "dmnd").split('/')[2]
-        dmnd_database = (f'{output}/dmnd/' + dmnd_database)
+def build_diamond_databases(output: str) -> None:
+    '''Create diamond databases from from all the fasta files in .output/fasta/*.fasta
+        Arguments:
+            output: path to the output folder
+        Returns:
+            None'''
+    logging.info("Creating diamond databases from extracted cdses...")
+    dmnd_folder = os.path.join(output, 'dmnd')
+    io.make_folder(dmnd_folder)
+    fasta_files_path = os.path.join(output, 'fasta/*.fasta')
+    for file in glob.glob(fasta_files_path):
+        dmnd_database = io.change_extension(file, "dmnd")
+        dmnd_database = os.path.join(dmnd_folder, dmnd_database)
         diamond.make_diamond_database(file, dmnd_database)
 
-def extract_cdses(gbks, output, tag_args):
-    '''produce a fasta file from each genbank provided'''
-    try:
-        os.mkdir(f'{output}/fasta/')
-    except OSError as error:
-        if error.errno == 17:
-            console.print_to_system(f'ALERT: The directory {output}/fasta already exists. Exiting!')
-            exit()
-        else:
-            raise
-    else:
-        seen = set()
-        for filename in glob.glob(gbks):
-            console.print_to_system('Extracting CDS annotations from ' + filename)
-            get_cds_from_genbank(filename, output, seen, tag_args)
+def extract_cdses(gbks: str, output: str, tag_label: str, ignore_tag: bool) -> None:
+    '''Produce a fasta file from each genbank provided
+        Arguments:
+            gbks: search string for genbank files
+            output: path to the output directory
+            tag_args:
+        Returns:
+            None
+        '''
+    io.make_folder(os.path.join(output, 'fasta'))
+    for filename in glob.glob(gbks):
+        logging.info('Extracting CDS annotations from %(filename)s')
+        get_cds_from_genbank(filename, output, tag_label, ignore_tag)
 
-def get_cds_from_genbank(filename, output, seen, tag_args):
-    '''extract CDS translations from genbank files into ./fasta/*.fasta'''
-    tag = tag_args[0]
-    ignore = tag_args[1]
+def get_cds_from_genbank(filename: str, output: str, tag_label: str, ignore_tag: bool) -> None:
+    '''Extract CDS translations from genbank files into ./fasta/*.fasta
+        Arguments:
+            filename: the name of the genbank file being read
+            output: path to the output folder
+            tag_label: the string defining the tag label (e.g. 'locus_tag')
+            ignore_tag: bool flagging whether to ignore features with missing annotations
+        Returns: None
+    '''
     lines = []
+    seen = set()
     records = io.get_records_from_genbank(filename)
     for record in records:
         for feature in record.features:
             try:
                 if feature.type == "CDS":
-                    locus_tag = f'{record.id}_{feature.qualifiers.get(tag)[0]}'
+                    locus_tag = f'{record.id}_{feature.qualifiers.get(tag_label)[0]}'
                     if locus_tag in seen:
-                        raise ValueError(f'{filename} contains duplicate: {locus_tag}')
+                        raise BadAnnotationError(f'{filename} contains duplicate: {locus_tag}')
                     seen.add(locus_tag)
                     lines.append(">" + locus_tag.replace(".", "_"))
                     lines.append(str(feature.qualifiers.get("translation")[0]))
             except TypeError:
-                if feature.qualifiers.get(tag) is None:
-                    console.print_to_system(
-                        f'ALERT: Missing {tag} in {record.id}.'
+                if feature.qualifiers.get(tag_label) is None:
+                    logging.warning(
+                        'Missing %s in %s.', tag_label, record.id #feature id?
                         )
-                    if not ignore:
-                        exit()
+                    if not ignore_tag:
+                        raise BadAnnotationError(
+                            f'Some features are missing the {tag_label} annotations.'
+                            'Ensure the genbank file is correctly annotated or use --ignore flag.'
+                        )
                 else:
-                    console.print_to_system(
-                        "ALERT: " + feature.qualifiers.get("locus_tag")[0] + 'has no translation!'
+                    logging.warning(
+                        '%s has no translation!', feature.qualifiers.get(tag_label)[0]
+                        #only show once!
                         )
     if not lines:
-        console.print_to_system("ALERT: No CDS Features in " + filename)
+        raise BadAnnotationError(f'No CDS Features in {filename}')
     filename = io.change_extension(filename, "fasta")
-    filename = f'{output}/fasta/{filename}'
+    filename = os.path.join(output, 'fasta', filename)
     io.write_to_file(filename, lines)
 
-def extract_data(checkpoint, output, gbks, tag):
-    '''called from main to build fasta and diamond databases from the provided genbankfiles'''
-    if checkpoint < 1:
-        console.print_to_system("CHECKPOINT 0: Extracting CDSs...")
-        extract_cdses(gbks, output, tag)
-    if checkpoint < 2:
-        console.print_to_system("CHECKPOINT 1: Building diamond databases...")
+def extract_data(
+        checkpoint: Checkpoint, output: str, gbks: str, tag_label: str, ignore_tag: bool
+    ) -> None:
+    '''Called from main to build fasta and diamond databases from the provided genbankfiles
+        Arguments:
+            checkpoint: Checkpoint to begin the analysis
+            output: path to the output folder
+            gbks: search string for the genbank files
+            tag_label: the string defining the tag label (e.g. 'locus_tag')
+            ignore_tag: bool flagging whether to ignore features with missing annotations
+        Returns: None'''
+    if checkpoint < Checkpoint.FASTA_EXTRACTED:
+        logging.info("Checkpoint: Extracting CDSs...")
+        extract_cdses(gbks, output, tag_label, ignore_tag)
+    if checkpoint < Checkpoint.DIAMOND_BUILT:
+        logging.info("Checkpoint: Building diamond databases...")
         build_diamond_databases(output)
