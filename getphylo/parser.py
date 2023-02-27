@@ -2,12 +2,8 @@
 Create an argument parser using argparse
 
 Functions:
-    get_seed_thresholds -> loci_to_find, loci_min_length, loci_max_length
-    get_checkpoint() -> checkpoint
-    get_gbks() -> gbks
-    get_parser() -> parser
-    get_seed() -> seed
-    parse_args() -> args
+    get_parser() -> Parser
+    parse_args() -> List
 '''
 
 import argparse
@@ -29,18 +25,19 @@ def get_parser():
         type=str,
         choices=[cp.name for cp in Checkpoint],
         help=(
-            'string indicating the checkpoint to start from'
-            'START = default'
-            'FASTA_EXTRACTED = Skip extracting fasta sequences from genbank files'
-            'DIAMOND_BUILT = Skip building diamond databases'
-            'SINGLETONS_IDENTIFIED = Skip identifying singletons from the seed genome'
-            'SINGLETONS_SEARCHED = Skip searching singletons against other genomes'
-            'SINGLETONS_THRESHOLDED = Skip thresholding of singletons'
-            'SINGLETONS_EXTRACTED = Skip extract fasta sequences for alignments'
-            'SINGLETONS_ALIGNED = Skip individual protein alignments'
-            'ALIGNMENTS_COMBINED = Skip combining alignments'
-            'TREES_BUILT = Skip building trees'
-            'DONE = Done'
+            'string indicating the checkpoint to start from '
+            'START = default '
+            'FASTA_EXTRACTED = Skip extracting fasta sequences from genbank files '
+            'DIAMOND_BUILT = Skip building diamond databases '
+            'SINGLETONS_IDENTIFIED = Skip identifying singletons from the seed genome '
+            'SINGLETONS_SEARCHED = Skip searching singletons against other genomes '
+            'SINGLETONS_THRESHOLDED = Skip thresholding of singletons '
+            'SINGLETONS_EXTRACTED = Skip extract fasta sequences for alignments '
+            'SINGLETONS_ALIGNED = Skip individual protein alignments '
+            'ALIGNMENTS_COMBINED = Skip combining alignments '
+            'TREES_BUILT = Skip building trees '
+            'DONE = Done '
+            'default: %(default)s'
         )
         )
     parser.add_argument(
@@ -50,7 +47,7 @@ def get_parser():
         type=int,
         help=(
             'integer indicating the number of loci to find in the seed genome '
-            '(default: all suitable loci (-1))'
+            'default: %(default)s)'
         )
         )
     parser.add_argument(
@@ -58,22 +55,28 @@ def get_parser():
         '--gbks',
         default="*.gbk",
         type=str,
-        help='string indicating the genbank files to use in the phylogeny (default: *.gbk)'
+        help='string indicating the genbank files to use in the phylogeny. default: %(default)s'
         )
     parser.add_argument(
-        '-ig',
-        '--ignore',
+        '-ia',
+        '--ignore-bad-annotations',
         default=False,
         type=bool,
-        help='ignore missing annotations - NOT RECCOMMENDED (default: False)'
+        help='ignore missing annotations - NOT RECCOMMENDED (default: %(default)s)'
         )
-
+    parser.add_argument(
+        '-ir',
+        '--ignore-bad-records',
+        default=False,
+        type=bool,
+        help='ignore poorly formated records - NOT RECCOMMENDED (default: %(default)s)'
+        )
     parser.add_argument(
         '-l',
         '--logging',
         default='WARNING',
         choices=list(logging._nameToLevel.keys()),
-        help='set the logging level (default: WARNING)'
+        help='set the logging level (default: %(default)s)'
     )
     parser.add_argument(
         '-max',
@@ -82,7 +85,7 @@ def get_parser():
         type=int,
         help=(
             'interger indicating the minimum length of loci to be included in the analysis '
-            '(default: 2000)'
+            '(default: %(default)s)'
         )
         )
     parser.add_argument(
@@ -92,7 +95,7 @@ def get_parser():
         type=int,
         help=(
             'interger indicating the minimum length of loci to be included in the analysis '
-            '(default: 200)'
+            '(default: %(default)s)'
         )
         )
     parser.add_argument(
@@ -102,7 +105,7 @@ def get_parser():
         type=int,
         help=(
             'minimum number of loci required to continue to alignment and tree building steps '
-            '(default: 1)'
+            '(default: %(default)s)'
         )
         )
     parser.add_argument(
@@ -112,7 +115,7 @@ def get_parser():
         type=str,
         help=(
             'a string designating the name of the folder to output the results'
-            '(default: output)'
+            '(default: %(default)s)'
         )
         )
     parser.add_argument(
@@ -122,7 +125,7 @@ def get_parser():
         type=float,
         help=(
             'interger indicating the percentage of genomes each loci must be present in '
-            '(default: 100)'
+            '(default: %(default)s)'
         )
         )
     parser.add_argument(
@@ -130,14 +133,14 @@ def get_parser():
         '--seed',
         default=None,
         type=str,
-        help='path to a genbankfile with for the target organism (default: random)'
+        help='path to a genbankfile with for the target organism (default: %(default)s)'
         )
     parser.add_argument(
         '-t',
         '--tag',
         default="locus_tag",
         type=str,
-        help='string indicating the GenBank annotations to extract (default: "locus_tag")'
+        help='string indicating the GenBank annotations to extract (default: %(default)s)'
         )
     return parser
 

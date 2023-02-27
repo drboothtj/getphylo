@@ -57,7 +57,7 @@ def main():
     output = os.path.abspath(args.output)
 
     if seed is None:
-        check_seed(checkpoint, gbks)
+        seed = check_seed(checkpoint, gbks)
     logging.info('The seed genome is %s.', seed)
 
     ### Begin main workflow
@@ -69,7 +69,9 @@ def main():
             logging.warning(
                 'ALERT: %s already exists. Continuing analysis in that directory.', output
                 )
-        extract.extract_data(checkpoint, output, gbks, args.tag, args.ignore)
+        extract.extract_data(
+            checkpoint, output, gbks, args.tag, args.ignore_bad_annotations, args.ignore_bad_records
+            )
     ### screen.py
     if checkpoint < Checkpoint.SINGLETONS_THRESHOLDED:
         thresholds = [args.find, args.minlength, args.maxlength, args.presence, args.minloci]
