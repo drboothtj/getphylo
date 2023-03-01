@@ -18,6 +18,20 @@ class NoCandidateLociError(GetphyloError):
 
 class BadAnnotationError(GetphyloError):
     '''Called when a genbank files is poorly annotated (e.g. duplicate locus tags or missing annotations)'''
+    pass
+
+class BadRecordError(GetphyloError):
+    '''Called when BioPython cannot read records due to misformatting'''
+    pass
 
 class FolderExistsError(GetphyloError):
     '''Called by getphylo.utils.io.make_folder when a folder exists.'''
+    pass
+
+class FileAlreadyExistsError(GetphyloError):
+    '''Called by getphylo.screen when a attempting to write a file and that file already exists.'''
+    pass
+
+class InsufficientLociError(GetphyloError):
+    '''Called in screen if the number of loci are below the threshold defined by the user'''
+    pass

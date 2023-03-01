@@ -15,6 +15,18 @@ import os
 import subprocess
 from typing import List
 from Bio import SeqIO
+from getphylo.utils.errors import FolderExistsError
+
+def get_locus(file, locus) -> str:
+    #Do me
+    '''returns a sequence from a fasta file with the provided locus name'''
+    fasta = io.read_file(file)
+    line_number = 0
+    for line in fasta:
+        line_number += 1
+        if locus in line:
+            sequence = fasta[line_number]
+    return sequence
 
 def count_files(directory: str) -> int:
     '''Counts the number of files in a directory.
