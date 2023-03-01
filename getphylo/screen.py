@@ -2,25 +2,32 @@
 Screen fasta files and blast databases for singletons and extract sequences
 
 Functions:
+get_target_proteins(checkpoint: Checkpoint, output: str, seed: str, thresholds: List) -> None
 '''
 import os
 import glob
+import logging
 from collections import Counter
 from random import shuffle
-from getphylo import console, diamond, io
+from typing import List
 
-def get_locus(file, locus):
-    '''returns a sequence from a fasta file with the provided locus name'''
-    fasta = io.read_file(file)
-    line_number = 0
-    for line in fasta:
-        line_number += 1
-        if locus in line:
-            sequence = fasta[line_number]
-    return sequence
+from getphylo.ext import diamond
+from getphylo.utils import io
+from getphylo.utils.checkpoint import Checkpoint
+from getphylo.utils.errors import(
+    FileAlreadyExistsError,
+    InsufficientLociError,
+    NoCandidateLociError
+)
 
-def get_unique_hits_from_tsv(file):
-    '''finds unique hits from the provided dmnd result file'''
+def get_unique_hits_from_tsv(file: str) -> List:
+    '''
+    Finds unique hits from the provided dmnd result file.
+        Arguments:
+            file: path to tsv file
+        Returns:
+            unique_hits: list of hits that are unique in the genome
+    '''
     hits = []
     unique_hits = []
     lines = io.read_tsv(file)
@@ -32,26 +39,42 @@ def get_unique_hits_from_tsv(file):
             unique_hits.append(hit)
     return unique_hits
 
-def get_seed_paths(seed, output):
+def get_seed_paths(seed: str, output: str) -> tuple[str, str, str]:
     '''
-    ensures a seed is defined and provides file names for with
-    .fasta, .dmnd and .tsv extensions
+    Take the path to a genbank file and return files with .fasta, .dmnd and .tsv extensions.
+    Arguments:
+        seed: path to the seed genome
+        output: path to the output directory
+    Returns:
+        seed_fasta, seed_dmnd, seed_tsv
     '''
     seed_fasta = io.change_extension(seed, "fasta")
-    seed_fasta = f'{output}/fasta/{seed_fasta}'
-    seed_dmnd = f'{output}/dmnd/{io.change_extension(seed, "dmnd")}'
-    seed_tsv = f'{output}/tsv/{io.change_extension(seed, "tsv")}'
+    seed_fasta = os.path.join(output, 'fasta', seed_fasta)
+    seed_dmnd = io.change_extension(seed, "dmnd")
+    seed_dmnd = os.path.join(output, 'dmnd', seed_dmnd)
+    seed_tsv = io.change_extension(seed, "tsv")
+    seed_tsv = os.path.join(output, 'tsv', seed_tsv)
     return seed_fasta, seed_dmnd, seed_tsv
 
 def get_singletons_from_seed(seed, output, thresholds):
     #too many local variables
-    '''uses diamond to identify singletons in the seed genome'''
-    io.make_folder(f'{output}/tsv')
-    console.print_to_system("Identifying singletons in seed genome...")
+    '''
+    Use diamond to identify singletons in the seed genome.
+        Arguments:
+            seed: path to the seed genbank file
+            output: path to the output directory
+            thresholds: list of thresholds from the parser
+                [args.find, args.minlength, args.maxlength, args.presence, args.minloci]
+        Returns:
+            candidate_loci:
+                List of candidates selected from the seed genome
+    '''
+    io.make_folder(os.path.join(output, 'tsv'))
+    logging.info("Identifying singletons in seed genome...")
     seed_fasta, seed_dmnd, seed_tsv = get_seed_paths(seed, output)
     diamond.run_diamond_search(seed_fasta, seed_dmnd, seed_tsv)
     unique_loci = get_unique_hits_from_tsv(seed_tsv)
-    console.print_to_system("Found " + str(len(unique_loci)) + (" unique loci."))
+    logging.info("Found %s unique loci.", str(len(unique_loci)))
     shuffle(unique_loci)
     loci = 0
     loci_fasta = []
@@ -59,7 +82,7 @@ def get_singletons_from_seed(seed, output, thresholds):
     loci_to_find, loci_min_length, loci_max_length, _, _ = thresholds
     for locus in unique_loci:
         if loci_to_find < 0 or loci < loci_to_find:
-            sequence = get_locus(seed_fasta, locus)
+            sequence = io.get_locus(seed_fasta, locus)
             if loci_max_length > len(sequence) > loci_min_length:
                 candidate_loci.append(locus)
                 loci_fasta.append(">" + locus)
@@ -67,30 +90,53 @@ def get_singletons_from_seed(seed, output, thresholds):
                 loci += 1
         else:
             break
-    console.print_to_system(f'{loci} loci found. Writing to {output}/tsv/loci.fasta')
-    io.write_to_file(f'{output}/tsv/seed_loci.fasta', loci_fasta)
-    io.write_to_file(f'{output}/tsv/seed_loci.txt', candidate_loci)
+    txt_path = os.path.join(output, 'tsv/candidate_loci.txt')
+    fasta_path = os.path.join(output, 'tsv/candidate_loci.fasta')
+    logging.info('%s loci found. Writing to %s and %s.', loci, txt_path, fasta_path)
+    io.write_to_file(txt_path, candidate_loci)
+    io.write_to_file(fasta_path, loci_fasta)
     return candidate_loci
 
-def get_loci_from_file(file):
-    '''gets a list of loci from the provided text file'''
+def get_loci_from_file(file: str) -> List:
+    '''
+    Gets a list of loci from the provided text file.
+        Arguments:
+            file: the path of the file to be searched
+        Returns:
+            loci: a list of loci extracted from the text file
+    '''
     loci = io.read_file(file)
-    loci = [locus[:len(locus) -1] for locus in loci] #remove newline (fix, unsafe!)
+    loci = [locus.strip() for locus in loci]
     return loci
 
-def search_candidates(output):
-    '''searches for candidates in othe genomes'''
-    io.make_folder(f'{output}/tsvs')
-    console.print_to_system("Screening candidate loci against other genomes...")
-    diamond_databases = glob.glob(f'{output}/dmnd/*.dmnd')
+def search_candidates(output: str) -> None:
+    '''
+    Uses diamond blastP to search for the candidates in all other genomes.
+        Arguments:
+            output: path to the output folder
+        Returns:
+            None
+    '''
+    tsvs_folder = os.path.join(output, 'tsvs')
+    io.make_folder(tsvs_folder)
+    logging.info("Screening candidate loci against other genomes...")
+    diamond_databases = glob.glob(os.path.join(output, 'dmnd/*.dmnd'))
     for database in diamond_databases:
-        tsv_name = io.change_extension(database.split("/")[2], 'tsv')
-        tsv_name = f'{output}/tsvs/{tsv_name}'
-        diamond.run_diamond_search(f'{output}/tsv/seed_loci.fasta', database, tsv_name)
+        tsv_name = io.change_extension(os.path.basename(database), 'tsv')
+        tsv_name = os.path.join(tsvs_folder, tsv_name)
+        candidate_loci_path = os.path.join(output, 'tsv/candidate_loci.fasta')
+        diamond.run_diamond_search(candidate_loci_path, database, tsv_name)
     #allow fiddling with dmnd options
 
-def score_locus(locus, files):
-    '''scores the locus'''
+def score_locus(locus: str, files: List) -> tuple[int, bool, List]:
+    '''
+    Scores the presence and uniqueness of a locus.
+        Arguments:
+            locus:
+                the name of the locus being screened
+            files:
+                list of paths to blastP results
+    '''
     pa_data = []
     presence_counter = 0
     unique_flag = True
@@ -107,44 +153,92 @@ def score_locus(locus, files):
         pa_data.append(counter)
     return presence_counter, unique_flag, pa_data
 
-def threshold_loci(target_loci, thresholds, output):
-    #Too many local variables
-    '''Score loci for singleton status and presence in dataset'''
-    _, _, _, presence_threshold, minimum_loci = thresholds
-    if os.path.exists(f'{output}/final_loci.txt'):
-        console.print_to_system('ALERT: final_loci.txt already exists. Exiting!')
-        exit()
-        #either all return statements in a function should return an expression
-        #or none of them should.
-    else:
-        console.print_to_system("Thresholding targets...")
-        final_loci = []
-        pa_table = []
-        files = glob.glob(f'{output}/tsvs/*.tsv')
-        pa_table.append([file.split('/')[2].split('.')[0] for file in files])
-        thresholding_data = ["locus;" + "presence;" + "unique"]
-        for locus in target_loci:
-            presence, unique, pa_data = score_locus(locus, files)
-            pa_table.append(pa_data)
-            presence_percent = (presence / len(glob.glob(f'{output}/tsvs/*.tsv'))) * 100
-            thresholding_string = str(locus) + ";" + str(presence_percent) + ";" + str(unique)
-            thresholding_data.append(thresholding_string)
-            if presence_percent >= presence_threshold and unique:
-                final_loci.append(locus)
-        io.write_to_file(f'{output}/thresholding_data.txt', thresholding_data)
-        write_pa_table(pa_table, target_loci, output)
-        number_of_loci = len(final_loci)
-        console.print_to_system(str(number_of_loci) + " loci selected for MLST...")
-        if number_of_loci < minimum_loci:
-            console.print_to_system("Number of loci below defined threshold. Exiting...")
-            exit()
-            #either all return statements in a function should return an expression
-            #or none of them should.
-        io.write_to_file(f'{output}/final_loci.txt', final_loci)
-        return final_loci
+def process_final_loci(final_loci: List, minimum_loci: int, output: str) -> None:
+    '''
+    Assess that the number of loci meets the user defined threshold to continue analysis
+    and write the list of loci to file
+        Arguments:
+            output: path to the output directory
+            final_loci: list of loci names to be used for the alignment
+            minimum_loci:
+                the minimum number of loci that need to be selected to continue the analysis
+        Returns:
+            None
+    '''
+    number_of_loci = len(final_loci)
+    logging.info('%s loci selected for MLST...', number_of_loci)
+    if number_of_loci < minimum_loci:
+        logging.warning("The number of loci below defined threshold. Exiting...")
+        raise InsufficientLociError('The number of loci selected are below the defined threshold.')
+    filename = os.path.join(output, 'final_loci.txt')
+    io.write_to_file(filename, final_loci)
 
-def write_pa_table(pa_table, loci, output):
-    '''transposes and writes the presence absence table to the specified folder'''
+def do_thresholding(target_loci: List, presence_threshold: float, output: str) -> List:
+    '''
+    Apply thresholding to finalise the loci to use for analysis.
+    and write presence absence table for each loci.
+    Arguments:
+        target_loci: list of loci from the seed the genome to compare against other genomes
+        presence_threshold:
+            the percentage of genomes the loci needs to be present in to be selected for analysis
+    Returns:
+        None
+    '''
+    logging.info("Thresholding targets...")
+    final_loci = []
+    pa_table = []
+    files = glob.glob(os.path.join(output, 'tsvs/*.tsv'))
+    pa_table.append([os.path.split(os.path.basename(file))[0] for file in files])
+
+    thresholding_data = ["locus;" + "presence;" + "unique"]
+    for locus in target_loci:
+        presence, unique, pa_data = score_locus(locus, files)
+        pa_table.append(pa_data)
+        number_of_loci = len(files)
+        presence_percent = (presence / number_of_loci) * 100
+        thresholding_string = str(locus) + ";" + str(presence_percent) + ";" + str(unique)
+        thresholding_data.append(thresholding_string)
+        if presence_percent >= presence_threshold and unique:
+            final_loci.append(locus)
+    filename = os.path.join(output, 'thresholding_data')
+    io.write_to_file(filename, thresholding_data)
+    write_pa_table(pa_table, target_loci, output)
+    return final_loci
+
+
+def threshold_loci(target_loci: List, thresholds: List, output: str) -> List:
+    '''
+    Score loci for singleton status and presence in dataset
+        Arguments:
+            target_loci: list of loci from the seed the genome to compare against other genomes
+            thresholds: list of thresholds from the parser
+                [args.find, args.minlength, args.maxlength, args.presence, args.minloci]
+            output: path to the output directory
+        Returns:
+            final_loci: list of loci names to be used in the downstream analysis
+    '''
+    _, _, _, presence_threshold, minimum_loci = thresholds
+    filename = os.path.join(output, 'final_loci.txt')
+    if os.path.exists(filename):
+        logging.error('%s already exists. Exiting!', filename)
+        raise FileAlreadyExistsError(
+            '%s already exists. Please remove and restart from checkpoint.', filename
+            )
+    final_loci = do_thresholding(target_loci, presence_threshold, output)
+    process_final_loci(final_loci, minimum_loci, output)
+    return final_loci
+
+def write_pa_table(pa_table: List, loci: List, output: str) -> None:
+    '''
+    Transposes and writes the presence absence table to the specified folder
+        Arguments:
+            pa_table:
+                list of lists, list is the presence absence data corresponding to a single locus
+            loci: list of loci names
+            output: path of the output directory
+        Returns:
+            None
+    '''
     new_table = []
     header = ['strain']
     header.extend(loci)
@@ -153,22 +247,41 @@ def write_pa_table(pa_table, loci, output):
     for data in transposed_data:
         data_string = ';'.join([str(datum) for datum in data])
         new_table.append(data_string)
-    io.write_to_file(f'{output}/presence_absence_table.csv', new_table)
-    #check_table
+    filename = os.path.join(output, 'presence_absence_table.csv')
+    io.write_to_file(filename, new_table)
 
-def get_target_proteins(checkpoint, output, seed, thresholds):
-    '''main routine for screen.py'''
-    if checkpoint < 3:
-        console.print_to_system("CHECKPOINT 2: Identifying singletons...")
+def get_target_proteins(checkpoint: Checkpoint, output: str, seed: str, thresholds: List) -> None:
+    '''
+    The main routine for screen.py
+        Arguments:
+            checkpoint: the checkpoint provided by the user
+            output: path of the output directory
+            seed: the name of the file corresponding to the seed genome
+            thresholds: list of arguments containing threholding information:
+                [args.find, args.minlength, args.maxlength, args.presence, args.minloci]
+        Returns:
+            None
+    '''
+    logging.debug('The output directory is: %s', output)
+    assert len(thresholds) == 5
+    if checkpoint < Checkpoint.SINGLETONS_IDENTIFIED:
+        logging.info("Checkpoint: Identifying singletons...")
         candidate_loci = get_singletons_from_seed(seed, output, thresholds)
-    if checkpoint > 2:
-        #since candidate loci is created before checkpoint 3
-        #all later checkpoints require this list to be read in
-        candidate_loci = get_loci_from_file(f'{output}/tsv/seed_loci.txt')
-    if checkpoint < 4:
-        console.print_to_system("CHECKPOINT 3: Searching for singletons in other genomes...")
+    #candidate loci will not exist if restarted from a checkpoint
+    if not candidate_loci:
+        try:
+            candidate_loci = get_loci_from_file(os.path.join(output, 'tsv/candidate_loci.txt'))
+        except:
+            raise NoCandidateLociError(
+                'Candidate loci could not be read from candidate_loci.txt.'
+                'If restarting from a checkpoint ensure there is a final_loci.txt '
+                'file in the specified output folder.'
+            )
+    #continue sequential analysis
+    if checkpoint < Checkpoint.SINGLETONS_SEARCHED:
+        logging.info("Checkpoint: Searching for singletons in other genomes...")
         search_candidates(output)
-    if checkpoint < 5:
-        console.print_to_system("CHECKPOINT 4: Applying loci thresholds...")
+    if checkpoint < Checkpoint.SINGLETONS_THRESHOLDED:
+        logging.info("Checkpoint: Applying loci thresholds...")
         final_loci = threshold_loci(candidate_loci, thresholds, output)
-        return final_loci
+        return final_loci # fix all should return so move checking for final loci file into here!

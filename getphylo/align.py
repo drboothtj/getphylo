@@ -4,9 +4,25 @@ Create alignments from a folder of fasta files.
 Functions:
 
 '''
+import logging
 import os
 import glob
-from getphylo import console, io, muscle, screen #remove dependency on screen
+from typing import List, Tuple
+from getphylo.utils import io
+from getphylo.utils.checkpoint import Checkpoint
+from getphylo.ext import muscle
+
+def get_locus_from_tsv(locus: str, fasta_name: str) -> Tuple[str, str]:
+    tsv_name = fasta_name.replace("/fasta/", "/tsvs/")
+    tsv_name = io.change_extension(tsv_name, "tsv")
+    tsv = io.read_tsv(tsv_name)
+    for line in tsv:
+        if locus in line[0]:
+            sequence = io.get_locus(fasta_name, line[1])
+            organism = os.path.basename(fasta_name).rsplit(".", 1)[0]
+            sequence_name = f'>{organism}_{line[1]}'
+            return sequence_name, sequence
+    raise ValueError(f"locus {locus} not found in file: {tsv_name}")
 
 def make_fasta_for_alignments(loci_list:[str], output:str) -> None:
     '''builds a .fasta file from sequences where there is a hit in the diamond search results
@@ -18,19 +34,12 @@ def make_fasta_for_alignments(loci_list:[str], output:str) -> None:
     Returns:
         None
     '''
-    io.make_folder(f'{output}/unaligned_fasta')
     files = glob.glob(f'{output}/fasta/*.fasta')
+    assert files
     for locus in loci_list:
         write_lines = []
         for filename in files:
-            tsv_name = f'{output}/tsvs/{io.change_extension(filename.split("/")[2], "tsv")}'
-            tsv = io.read_tsv(tsv_name)
-            for line in tsv:
-                if locus in line[0]:
-                    sequence = screen.get_locus(filename, line[1])
-                    sequence_name = f'>{filename.split("/")[2].split(".")[0]}_{line[1]}'
-                    write_lines.append(sequence_name)
-                    write_lines.append(sequence)
+            write_lines.extend(get_locus_from_tsv(locus, tsv_name))
         io.write_to_file(f'{output}/unaligned_fasta/{locus}.fasta', write_lines)
 
 def do_alignments(output:str) -> None:
@@ -47,7 +56,7 @@ def do_alignments(output:str) -> None:
         outfile = f'{output}/aligned_fasta/{file.split("/")[2]}'
         muscle.run_muscle(file, outfile)
 
-def get_locus_length(alignment:[str]) -> int:
+def get_locus_length(alignment: List[str]) -> int:
     '''returns the length of the fasta locus by counting sequence lines
     
     Arguments:
@@ -56,9 +65,11 @@ def get_locus_length(alignment:[str]) -> int:
     Returns:
         alignment_length: an int of the alignment length
     '''
+    if not alignment:
+        raise ValueError('An alignment cannot be empty.')
     for line in alignment[1:]:
         if '>' not in line:
-            length = len(line)-1
+            alignment_length = len(line.strip())
         else:
             break
     return alignment_length
@@ -78,16 +89,17 @@ def get_locus_alignment(alignment, taxon_name):
 
 def make_combined_alignment(gbks:[str], output:str) -> None:
     '''Create a combined alignment from single locus alignments
-    
         Arguments:
-        
-        Returns: None
+            gbks: a list of genbank files
+            output: path  to output directory
+        Returns: 
+            None
         '''
     if os.path.exists('aligned_fasta/combined_alignment.fasta'):
-        console.print_to_system(
+        logging.error(
             'ALERT: aligned_fasta/combined_alignment.fasta already exists. Exiting!'
             )
-        exit()
+        exit() # handle in __main__.py
     else:
         combined_alignment = []
         taxa = glob.glob(gbks)
@@ -105,7 +117,7 @@ def make_combined_alignment(gbks:[str], output:str) -> None:
                     sequence_data.append('X' * locus_length)
             sequence_string = ''.join(sequence_data)
             if sequence_string.count('X') == len(sequence_string):
-                console.print_to_system(f'[ALERT]: {taxon_name} has no sequence data and has been removed.') #maybe convert to a fatal error.
+                logging.error(f'[ALERT]: {taxon_name} has no sequence data and has been removed.') #make fatal and add option to ignore
             else:
                 combined_alignment.append(f'>{taxon_name}')
                 combined_alignment.append(sequence_string)
@@ -114,12 +126,12 @@ def make_combined_alignment(gbks:[str], output:str) -> None:
 
 def make_alignments(checkpoint, output, loci, gbks):
     '''Main routine for align'''
-    if checkpoint < 6:
-        console.print_to_system("CHECKPOINT 5: Extracting sequences for alignment...")
+    if checkpoint < Checkpoint.SINGLETONS_EXTRACTED:
+        logging.info("Checkpoin: Extracting sequences for alignment...")
         make_fasta_for_alignments(loci, output)
-    if checkpoint < 7:
-        console.print_to_system("CHECKPOINT 6: Aligning sequences...")
+    if checkpoint < Checkpoint.SINGLETONS_ALIGNED:
+        logging.info("Checkpoint 6: Aligning sequences...")
         do_alignments(output)
-    if checkpoint < 8:
-        console.print_to_system("CHECKPOINT 7: Combining alignments")
+    if checkpoint < Checkpoint.ALIGNMENTS_COMBINED:
+        logging.info("Checkpoint 7: Combining alignments")
         make_combined_alignment(gbks, output)
