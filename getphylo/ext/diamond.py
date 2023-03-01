@@ -6,7 +6,8 @@ make_diamond_database(filename)
 run_diamond_search(filename)
 
 '''
-from getphylo.utils import console
+import logging 
+from getphylo.utils import io
 
 def make_diamond_database(filename: str, dmnd_database=None):
     '''Create a DIAMOND database from a fasta file'''
@@ -17,7 +18,8 @@ def make_diamond_database(filename: str, dmnd_database=None):
     makedb = "diamond makedb"
     input_ = " --in " + filename + ""
     command = makedb + database + input_
-    console.run_in_command_line(command)
+    logging.debug(command)
+    io.run_in_command_line(command)
 
 def run_diamond_search(filename: str, dmnd_database=None, outname=None):
     '''Run BLASTP through DIAMOND'''
@@ -33,4 +35,5 @@ def run_diamond_search(filename: str, dmnd_database=None, outname=None):
     query = " --query " + filename
     outfmt = " --outfmt 6 qseqid sseqid pident"
     command = blastp + database + query + output + outfmt
-    console.run_in_command_line(command)
+    logging.debug(command)
+    io.run_in_command_line(command)

@@ -4,7 +4,7 @@ Runs MUSCLE on a provided fasta file.
 Functions:
 
 '''
-from getphylo.utils import console
+from getphylo.utils import io
 
 def run_muscle(filename, outname=None):
     '''Run MUSCLE aligner on protein fasta file'''
@@ -14,4 +14,4 @@ def run_muscle(filename, outname=None):
         out = " -out " + outname
     _in = " -in " + filename
     command = "muscle" + _in + out
-    console.run_in_command_line(command)
+    io.run_in_command_line(command)
