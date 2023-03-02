@@ -1,6 +1,10 @@
+'''
+Checkpoint class used by getphylo.
+'''
 from enum import IntEnum
 
 class Checkpoint(IntEnum):
+    '''Checkpoint class as IntEnum'''
     START = 0
     FASTA_EXTRACTED = 100
     DIAMOND_BUILT = 200
@@ -12,4 +16,3 @@ class Checkpoint(IntEnum):
     ALIGNMENTS_COMBINED = 800
     TREES_BUILT = 900
     DONE = 1000
-

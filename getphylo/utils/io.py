@@ -2,12 +2,15 @@
 Read and write files
 
 Functions:
+    get_locus(file:str, locus:str) -> str
     count_files(directory: str) -> int
-    change_extension(filename:str, new_extension:str) -> str
-    get_records_from_genbank(filename:str) -> List[]
+    change_extension(filename: str, new_extension: str) -> str
+    get_records_from_genbank(filename: str) -> List
     make_folder(name: str) -> None
-    read_tsv(database_file) -> database
-    write_to_file(write_lines, write_name)
+    read_file(filename: str) -> List[str]
+    read_tsv(filename: str) -> List[str]
+    run_in_command_line(command: str)
+    write_to_file(filename: str, write_lines: List[str]) -> None
 '''
 import csv
 import glob
@@ -15,12 +18,19 @@ import os
 import subprocess
 from typing import List
 from Bio import SeqIO
+
 from getphylo.utils.errors import FolderExistsError
 
-def get_locus(file, locus) -> str:
-    #Do me
-    '''returns a sequence from a fasta file with the provided locus name'''
-    fasta = io.read_file(file)
+def get_locus(file: str, locus: str) -> str:
+    '''
+    Returns a sequence from a fasta file with the provided locus name.
+        Arguments:
+            file: path to .fasta file to search
+            locus: locus to search for
+        Returns:
+            sequence: the sequence of the locus searched for
+    '''
+    fasta = read_file(file)
     line_number = 0
     for line in fasta:
         line_number += 1
@@ -29,7 +39,8 @@ def get_locus(file, locus) -> str:
     return sequence
 
 def count_files(directory: str) -> int:
-    '''Counts the number of files in a directory.
+    '''
+    Counts the number of files in a directory.
         Arguments:
             directory: the path to the directory in which to count
         Returns:
@@ -51,7 +62,7 @@ def change_extension(filename: str, new_extension: str) -> str:
 
 def get_records_from_genbank(filename: str) -> List:
     '''Use BioPython to get genbank records from a given file.
-        Arguments: 
+        Arguments:
             filename: the filename of the genbank file
         Returns:
             records: a list genbank records'''
@@ -60,7 +71,7 @@ def get_records_from_genbank(filename: str) -> List:
 
 def make_folder(name: str) -> None:
     '''Attempts to make a folder with the given name but raises and exception if it already exists.
-        Arguments: 
+        Arguments:
             name: the name of the folder being created
         Returns:
             None'''
@@ -73,7 +84,7 @@ def make_folder(name: str) -> None:
 
 def read_file(filename: str) -> List[str]:
     '''Return a files contents as a list of lines
-        Arguments: 
+        Arguments:
             filename: The file to be read
         Returns:
             _file.readlines(): list of strings for each line of the file
@@ -81,8 +92,14 @@ def read_file(filename: str) -> List[str]:
     _file = open(filename, "r")
     return _file.readlines()
 
-def read_tsv(filename: str):
-    '''read lines from a .tsv file'''
+def read_tsv(filename: str) -> List[str]:
+    '''
+    Read lines from a .tsv file.
+        Arguments:
+            filename: the path to the file to be read
+        Returns:
+            list containing the lines of the .tsv file
+    '''
     contents = []
     with open(filename) as file:
         tsv_file = csv.reader(file, delimiter="\t")
@@ -91,14 +108,27 @@ def read_tsv(filename: str):
     return contents
 
 def run_in_command_line(command: str):
-    '''Convert a string into a command and run in the terminal'''
+    '''
+    Convert a string into a command and run in the terminal.
+        Aruments:
+            command: string containing the command for the terminal
+        Returns:
+            process: the process being run
+    '''
     command = command.split(" ")
     process = subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
     process.communicate()
     return process
 
-def write_to_file(filename: str, write_lines: list):
-    '''Write a list line by line into a new file'''
+def write_to_file(filename: str, write_lines: List[str]) -> None:
+    '''
+    Write a list line by line into a new file.
+        Arguments:
+            filename: path to the new file being written
+            write_lines: list of strings to be written to the file
+        Returns:
+            None
+    '''
     file = open(filename, "a")
     for line in write_lines:
         file.write(line + '\n')

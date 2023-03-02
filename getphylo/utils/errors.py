@@ -1,4 +1,6 @@
-'''Unique errors for getphylo'''
+'''
+Unique errors for getphylo.
+'''
 
 class GetphyloError(Exception):
     '''General class of errors unique to getphylo'''
@@ -17,7 +19,10 @@ class NoCandidateLociError(GetphyloError):
     pass
 
 class BadAnnotationError(GetphyloError):
-    '''Called when a genbank files is poorly annotated (e.g. duplicate locus tags or missing annotations)'''
+    '''
+        Called when a genbank files is poorly annotated
+        (e.g. duplicate locus tags or missing annotations)
+    '''
     pass
 
 class BadRecordError(GetphyloError):
