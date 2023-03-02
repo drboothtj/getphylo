@@ -9,7 +9,7 @@ import glob
 import logging
 from collections import Counter
 from random import shuffle
-from typing import List
+from typing import List, Tuple
 
 from getphylo.ext import diamond
 from getphylo.utils import io
@@ -39,7 +39,7 @@ def get_unique_hits_from_tsv(file: str) -> List:
             unique_hits.append(hit)
     return unique_hits
 
-def get_seed_paths(seed: str, output: str) -> tuple[str, str, str]:
+def get_seed_paths(seed: str, output: str) -> Tuple[str, str, str]:
     '''
     Take the path to a genbank file and return files with .fasta, .dmnd and .tsv extensions.
     Arguments:
@@ -128,7 +128,7 @@ def search_candidates(output: str) -> None:
         diamond.run_diamond_search(candidate_loci_path, database, tsv_name)
     #allow fiddling with dmnd options
 
-def score_locus(locus: str, files: List) -> tuple[int, bool, List]:
+def score_locus(locus: str, files: List) -> Tuple[int, bool, List]:
     '''
     Scores the presence and uniqueness of a locus.
         Arguments:
@@ -262,6 +262,7 @@ def get_target_proteins(checkpoint: Checkpoint, output: str, seed: str, threshol
         Returns:
             None
     '''
+    final_loci = None
     logging.debug('The output directory is: %s', output)
     assert len(thresholds) == 5
     if checkpoint < Checkpoint.SINGLETONS_IDENTIFIED:
@@ -284,4 +285,4 @@ def get_target_proteins(checkpoint: Checkpoint, output: str, seed: str, threshol
     if checkpoint < Checkpoint.SINGLETONS_THRESHOLDED:
         logging.info("Checkpoint: Applying loci thresholds...")
         final_loci = threshold_loci(candidate_loci, thresholds, output)
-        return final_loci # fix all should return so move checking for final loci file into here!
+    return final_loci
