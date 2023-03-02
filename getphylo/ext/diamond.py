@@ -2,15 +2,21 @@
 Make DIAMOND databases and run searches using DIAMOND
 
 Functions:
-make_diamond_database(filename)
-run_diamond_search(filename)
-
+    make_diamond_database(filename: str, dmnd_database=None) -> None
+    run_diamond_search(filename: str, dmnd_database=None, outname=None) -> None
 '''
-import logging 
+import logging
 from getphylo.utils import io
 
-def make_diamond_database(filename: str, dmnd_database=None):
-    '''Create a DIAMOND database from a fasta file'''
+def make_diamond_database(filename: str, dmnd_database=None) -> None:
+    '''
+    Create a DIAMOND database from a fasta file.
+        Arguments:
+            filename: path to the input file
+            dmnd_database: path to output directory
+        Returns:
+            None
+    '''
     if dmnd_database is None:
         database = " --db " + filename.split('.')[0] + ".dmnd"
     else:
@@ -21,8 +27,16 @@ def make_diamond_database(filename: str, dmnd_database=None):
     logging.debug(command)
     io.run_in_command_line(command)
 
-def run_diamond_search(filename: str, dmnd_database=None, outname=None):
-    '''Run BLASTP through DIAMOND'''
+def run_diamond_search(filename: str, dmnd_database=None, outname=None) -> None:
+    '''
+    Run BLASTP through DIAMOND.
+        Arguments:
+            filename: path to the input fasta file
+            dmnd_database: name of a database file to read
+            outname: name of the output file
+        Returns:
+            None
+    '''
     if dmnd_database is None:
         database = " --db " + filename.split('.')[0] + ".dmnd"
     else:
