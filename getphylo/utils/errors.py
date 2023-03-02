@@ -35,3 +35,7 @@ class FileAlreadyExistsError(GetphyloError):
 class InsufficientLociError(GetphyloError):
     '''Called in screen if the number of loci are below the threshold defined by the user'''
     pass
+
+class BadLocusError(GetphyloError):
+    '''Called in align when a locus is not present.'''
+    pass
