@@ -64,7 +64,7 @@ def get_singletons_from_seed(seed, output, thresholds):
             seed: path to the seed genbank file
             output: path to the output directory
             thresholds: list of thresholds from the parser
-                [args.find, args.minlength, args.maxlength, args.presence, args.minloci]
+                [args.find, args.minlength, args.maxlength, args.presence, args.minloci, args.maxloci]
         Returns:
             candidate_loci:
                 List of candidates selected from the seed genome
@@ -173,7 +173,7 @@ def process_final_loci(final_loci: List, minimum_loci: int, output: str) -> None
     filename = os.path.join(output, 'final_loci.txt')
     io.write_to_file(filename, final_loci)
 
-def do_thresholding(target_loci: List, presence_threshold: float, output: str) -> List:
+def do_thresholding(target_loci: List, presence_threshold: float, maximum_loci: int output: str) -> List:
     '''
     Apply thresholding to finalise the loci to use for analysis.
     and write presence absence table for each loci.
@@ -189,17 +189,19 @@ def do_thresholding(target_loci: List, presence_threshold: float, output: str) -
     pa_table = []
     files = glob.glob(os.path.join(output, 'tsvs/*.tsv'))
     pa_table.append([os.path.split(os.path.basename(file))[0] for file in files])
-
     thresholding_data = ["locus;" + "presence;" + "unique"]
+    if len(target_loci) < maximum_loci:
+        maximum_loci = target_loci
     for locus in target_loci:
-        presence, unique, pa_data = score_locus(locus, files)
-        pa_table.append(pa_data)
-        number_of_loci = len(files)
-        presence_percent = (presence / number_of_loci) * 100
-        thresholding_string = str(locus) + ";" + str(presence_percent) + ";" + str(unique)
-        thresholding_data.append(thresholding_string)
-        if presence_percent >= presence_threshold and unique:
-            final_loci.append(locus)
+        while len(final_loci) > maximum_loci:
+            presence, unique, pa_data = score_locus(locus, files)
+            pa_table.append(pa_data)
+            number_of_loci = len(files)
+            presence_percent = (presence / number_of_loci) * 100
+            thresholding_string = str(locus) + ";" + str(presence_percent) + ";" + str(unique)
+            thresholding_data.append(thresholding_string)
+            if presence_percent >= presence_threshold and unique:
+                final_loci.append(locus)
     filename = os.path.join(output, 'thresholding_data')
     io.write_to_file(filename, thresholding_data)
     write_pa_table(pa_table, target_loci, output)
@@ -212,19 +214,19 @@ def threshold_loci(target_loci: List, thresholds: List, output: str) -> List:
         Arguments:
             target_loci: list of loci from the seed the genome to compare against other genomes
             thresholds: list of thresholds from the parser
-                [args.find, args.minlength, args.maxlength, args.presence, args.minloci]
+                [args.find, args.minlength, args.maxlength, args.presence, args.minloci, args.maxloci]
             output: path to the output directory
         Returns:
             final_loci: list of loci names to be used in the downstream analysis
     '''
-    _, _, _, presence_threshold, minimum_loci = thresholds
+    _, _, _, presence_threshold, minimum_loci, maximum_loci = thresholds
     filename = os.path.join(output, 'final_loci.txt')
     if os.path.exists(filename):
         logging.error('%s already exists. Exiting!', filename)
         raise FileAlreadyExistsError(
-            '%s already exists. Please remove and restart from checkpoint.', filename
+            'File already exists. Please remove and restart from checkpoint.', filename
             )
-    final_loci = do_thresholding(target_loci, presence_threshold, output)
+    final_loci = do_thresholding(target_loci, presence_threshold, maximum_loci, output)
     process_final_loci(final_loci, minimum_loci, output)
     return final_loci
 
@@ -258,10 +260,11 @@ def get_target_proteins(checkpoint: Checkpoint, output: str, seed: str, threshol
             output: path of the output directory
             seed: the name of the file corresponding to the seed genome
             thresholds: list of arguments containing threholding information:
-                [args.find, args.minlength, args.maxlength, args.presence, args.minloci]
+                [args.find, args.minlength, args.maxlength, args.presence, args.minloci, args.maxloci]
         Returns:
             None
     '''
+    candidate_loci = None
     final_loci = None
     logging.debug('The output directory is: %s', output)
     assert len(thresholds) == 5

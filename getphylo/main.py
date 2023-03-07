@@ -2,9 +2,9 @@
 Main routine for getphylo
 
 Functions:
-initialize_logging() -> None
-check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str
-main()
+    initialize_logging() -> None
+    check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str
+    main()
 '''
 import glob
 import logging
@@ -20,7 +20,7 @@ def initialize_logging() -> None:
         Returns: None'''
     logging_level = logging.DEBUG
     logging.basicConfig(
-        #filename='getphylo.log',
+        filename='getphylo.log',
         level=logging_level,
         format='[%(asctime)s] %(levelname)-10s: %(message)s',
         datefmt='%H:%M:%S') #maybe change to run time?
@@ -50,7 +50,7 @@ def main():
         Returns: None'''
     args = parser.parse_args()
     logging.getLogger().setLevel(args.logging)
-
+    
     gbks = args.gbks
     checkpoint = Checkpoint[args.checkpoint.upper()]
     seed = args.seed
@@ -73,8 +73,9 @@ def main():
             checkpoint, output, gbks, args.tag, args.ignore_bad_annotations, args.ignore_bad_records
             )
     ### screen.py
+    final_loci = None
     if checkpoint < Checkpoint.SINGLETONS_THRESHOLDED:
-        thresholds = [args.find, args.minlength, args.maxlength, args.presence, args.minloci]
+        thresholds = [args.find, args.minlength, args.maxlength, args.presence, args.minloci, args.maxloci]
         final_loci = screen.get_target_proteins(checkpoint, output, seed, thresholds)
 
     ### before continuing check final loci is defined, otherwise read from file

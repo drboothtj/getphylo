@@ -99,12 +99,22 @@ def get_parser():
         )
         )
     parser.add_argument(
-        '-ml',
+        '-minl',
         '--minloci',
         default=1,
         type=int,
         help=(
             'minimum number of loci required to continue to alignment and tree building steps '
+            '(default: %(default)s)'
+        )
+        )
+    parser.add_argument(
+        '-maxl',
+        '--maxloci',
+        default=1,
+        type=int,
+        help=(
+            'maximum number of loci required to continue to alignment and tree building steps '
             '(default: %(default)s)'
         )
         )
@@ -149,7 +159,7 @@ def parse_args():
     arg_parser = get_parser()
     args = arg_parser.parse_args()
     return args
-
+    
     #add extra dmnd options
-    #add max threshold?
+    #add upper threshold
     

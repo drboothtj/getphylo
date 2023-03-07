@@ -84,35 +84,34 @@ def get_cds_from_genbank(
 
     try:
         records = io.get_records_from_genbank(filename)
+        for record in records:
+            for feature in record.features:
+                try:
+                    if feature.type == "CDS":
+                        locus_tag = f'{record.id}_{feature.qualifiers.get(tag_label)[0]}'
+                        if locus_tag in seen:
+                            raise BadAnnotationError(f'{filename} contains duplicate: {locus_tag}')
+                        seen.add(locus_tag)
+                        lines.append(">" + locus_tag.replace(".", "_"))
+                        lines.append(str(feature.qualifiers.get("translation")[0]))
+                except TypeError:
+                    if feature.qualifiers.get(tag_label) is None:
+                        logging.warning(
+                            'Missing %s in %s.', tag_label, record.id #feature id?
+                            )
+                        if not ignore_bad_annotations:
+                            raise BadAnnotationError(
+                                f'Some features are missing the {tag_label} annotations.'
+                                'Ensure the genbank file is correctly annotated or use'
+                                '--ignore-bad-annotations flag.'
+                            )
+                    else:
+                        logging.warning(
+                            '%s has no translation!', feature.qualifiers.get(tag_label)[0]
+                            #only show once!
+                            )
     except ValueError as error:
         raise BadRecordError(error)
-
-    for record in records:
-        for feature in record.features:
-            try:
-                if feature.type == "CDS":
-                    locus_tag = f'{record.id}_{feature.qualifiers.get(tag_label)[0]}'
-                    if locus_tag in seen:
-                        raise BadAnnotationError(f'{filename} contains duplicate: {locus_tag}')
-                    seen.add(locus_tag)
-                    lines.append(">" + locus_tag.replace(".", "_"))
-                    lines.append(str(feature.qualifiers.get("translation")[0]))
-            except TypeError:
-                if feature.qualifiers.get(tag_label) is None:
-                    logging.warning(
-                        'Missing %s in %s.', tag_label, record.id #feature id?
-                        )
-                    if not ignore_bad_annotations:
-                        raise BadAnnotationError(
-                            f'Some features are missing the {tag_label} annotations.'
-                            'Ensure the genbank file is correctly annotated or use'
-                            '--ignore-bad-annotations flag.'
-                        )
-                else:
-                    logging.warning(
-                        '%s has no translation!', feature.qualifiers.get(tag_label)[0]
-                        #only show once!
-                        )
     if not lines:
         raise BadAnnotationError(f'No CDS Features in {filename}')
     filename = io.change_extension(filename, "fasta")

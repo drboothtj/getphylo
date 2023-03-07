@@ -50,13 +50,14 @@ def make_fasta_for_alignments(loci_list: List[str], output:str) -> None:
     Returns:
         None
     '''
+    io.make_folder(os.path.join(output, 'unaligned_fasta'))
     files = glob.glob(os.path.join(output, 'fasta/*.fasta'))
     assert files
     for locus in loci_list:
         write_lines = []
         for filename in files:
             write_lines.extend(get_locus_from_tsv(locus, filename))
-        os.path.join(output, 'unaligned_fasta', locus + '.fasta')
+        outfile = os.path.join(output, 'unaligned_fasta', locus + '.fasta')
         io.write_to_file(outfile, write_lines)
 
 def do_alignments(output:str) -> None:
@@ -80,11 +81,12 @@ def get_locus_length(alignment: List[str]) -> int:
         Returns:
             alignment_length: an int reprisenting the alignment length
     '''
+    alignment_length = 0
     if not alignment:
         raise ValueError('An alignment cannot be empty.')
     for line in alignment[1:]:
-        if '>' not in line:
-            alignment_length = len(line.strip())
+        if '>' not in line:            
+            alignment_length += len(line.strip())
         else:
             break
     return alignment_length
@@ -161,7 +163,7 @@ def make_alignments(checkpoint: Checkpoint, output: str, loci: List, gbks: List)
             None
     '''
     if checkpoint < Checkpoint.SINGLETONS_EXTRACTED:
-        logging.info("Checkpoin: Extracting sequences for alignment...")
+        logging.info("Checkpoint: Extracting sequences for alignment...")
         make_fasta_for_alignments(loci, output)
     if checkpoint < Checkpoint.SINGLETONS_ALIGNED:
         logging.info("Checkpoint 6: Aligning sequences...")
