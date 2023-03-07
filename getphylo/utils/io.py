@@ -16,6 +16,7 @@ import csv
 import glob
 import os
 import subprocess
+import logging
 from typing import List
 from Bio import SeqIO
 
@@ -116,6 +117,7 @@ def run_in_command_line(command: str):
             process: the process being run
     '''
     command = command.split(" ")
+    logging.debug(command)
     process = subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
     process.communicate()
     return process
