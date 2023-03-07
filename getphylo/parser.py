@@ -159,7 +159,3 @@ def parse_args():
     arg_parser = get_parser()
     args = arg_parser.parse_args()
     return args
-    
-    #add extra dmnd options
-    #add upper threshold
-    

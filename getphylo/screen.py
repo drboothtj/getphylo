@@ -64,7 +64,8 @@ def get_singletons_from_seed(seed, output, thresholds):
             seed: path to the seed genbank file
             output: path to the output directory
             thresholds: list of thresholds from the parser
-                [args.find, args.minlength, args.maxlength, args.presence, args.minloci, args.maxloci]
+                [args.find, args.minlength, args.maxlength,
+                args.presence, args.minloci, args.maxloci]
         Returns:
             candidate_loci:
                 List of candidates selected from the seed genome
@@ -173,7 +174,9 @@ def process_final_loci(final_loci: List, minimum_loci: int, output: str) -> None
     filename = os.path.join(output, 'final_loci.txt')
     io.write_to_file(filename, final_loci)
 
-def do_thresholding(target_loci: List, presence_threshold: float, maximum_loci: int output: str) -> List:
+def do_thresholding(
+        target_loci: List, presence_threshold: float, maximum_loci: int, output: str
+    ) -> List:
     '''
     Apply thresholding to finalise the loci to use for analysis.
     and write presence absence table for each loci.
@@ -214,7 +217,8 @@ def threshold_loci(target_loci: List, thresholds: List, output: str) -> List:
         Arguments:
             target_loci: list of loci from the seed the genome to compare against other genomes
             thresholds: list of thresholds from the parser
-                [args.find, args.minlength, args.maxlength, args.presence, args.minloci, args.maxloci]
+                [args.find, args.minlength, args.maxlength,
+                args.presence, args.minloci, args.maxloci]
             output: path to the output directory
         Returns:
             final_loci: list of loci names to be used in the downstream analysis
@@ -260,7 +264,8 @@ def get_target_proteins(checkpoint: Checkpoint, output: str, seed: str, threshol
             output: path of the output directory
             seed: the name of the file corresponding to the seed genome
             thresholds: list of arguments containing threholding information:
-                [args.find, args.minlength, args.maxlength, args.presence, args.minloci, args.maxloci]
+                [args.find, args.minlength, args.maxlength,
+                args.presence, args.minloci, args.maxloci]
         Returns:
             None
     '''
