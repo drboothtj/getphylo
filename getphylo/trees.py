@@ -21,5 +21,7 @@ def make_trees(output: str) -> None:
     io.make_folder(tree_directory)
     logging.info("Building trees...")
     for filename in glob.glob(os.path.join(output, 'aligned_fasta/*.fasta')):
-        outfile = os.path.join(tree_directory, os.path.basename(io.change_extension(filename, "tree")))
+        outfile = os.path.join(
+            tree_directory, os.path.basename(io.change_extension(filename, "tree"))
+            )
         fasttree.run_fasttree(filename, outfile)

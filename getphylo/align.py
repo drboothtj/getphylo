@@ -39,9 +39,9 @@ def get_locus_from_tsv(locus: str, fasta_name: str) -> Tuple[str, str]:
             organism = os.path.basename(fasta_name).rsplit(".", 1)[0]
             sequence_name = f'>{organism}_{line[1]}'
             return sequence_name, sequence
-    raise BadLocusError("locus %s not found in file: %s", locus, tsv_name) 
+    raise BadLocusError("Locus %s not found in file: %s" % (locus, tsv_name))
 
-def make_fasta_for_alignments(loci_list: List[str], output:str) -> None:
+def make_fasta_for_alignments(loci_list: List[str], output: str) -> None:
     '''
     Builds a .fasta file from sequences where there is a hit in the diamond search results.
     Arguments:
@@ -60,7 +60,7 @@ def make_fasta_for_alignments(loci_list: List[str], output:str) -> None:
         outfile = os.path.join(output, 'unaligned_fasta', locus + '.fasta')
         io.write_to_file(outfile, write_lines)
 
-def do_alignments(output:str) -> None:
+def do_alignments(output: str) -> None:
     '''
     Runs the pre-aligned fasta file through the muscle module.
         Arguments:
@@ -85,7 +85,7 @@ def get_locus_length(alignment: List[str]) -> int:
     if not alignment:
         raise ValueError('An alignment cannot be empty.')
     for line in alignment[1:]:
-        if '>' not in line:            
+        if '>' not in line:
             alignment_length += len(line.strip())
         else:
             break
@@ -98,7 +98,8 @@ def get_locus_alignment(alignment, taxon_name) -> str:
             alignment: List of lines representing the alignment fasta
             taxon_name: the name of the taxon to extract lines for
         Returns:
-            extracted_alignment_string: the alignment of the specific loci and taxa combined as a string.
+            extracted_alignment_string:
+                the alignment of the specific loci and taxa combined as a string
     '''
     seq_flag = False
     extracted_alignment = []
@@ -117,7 +118,7 @@ def make_combined_alignment(gbks: List, output: str) -> None:
         Arguments:
             gbks: a list of genbank files
             output: path  to output directory
-        Returns: 
+        Returns:
             None
         '''
     combined_alignemnt_path = os.path.join(output, 'aligned_fasta/combined_alignment.fasta')
@@ -125,7 +126,7 @@ def make_combined_alignment(gbks: List, output: str) -> None:
         logging.error(
             'ALERT: aligned_fasta/combined_alignment.fasta already exists. Exiting!'
             )
-        raise FileAlreadyExistsError('%s alread exists.', combined_alignemnt_path)
+        raise FileAlreadyExistsError('%s alread exists.' % combined_alignemnt_path)
     else:
         combined_alignment = []
         taxa = glob.glob(gbks)

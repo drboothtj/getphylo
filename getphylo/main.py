@@ -50,7 +50,7 @@ def main():
         Returns: None'''
     args = parser.parse_args()
     logging.getLogger().setLevel(args.logging)
-    
+
     gbks = args.gbks
     checkpoint = Checkpoint[args.checkpoint.upper()]
     seed = args.seed
@@ -75,7 +75,9 @@ def main():
     ### screen.py
     final_loci = None
     if checkpoint < Checkpoint.SINGLETONS_THRESHOLDED:
-        thresholds = [args.find, args.minlength, args.maxlength, args.presence, args.minloci, args.maxloci]
+        thresholds = [
+            args.find, args.minlength, args.maxlength, args.presence, args.minloci, args.maxloci
+            ]
         final_loci = screen.get_target_proteins(checkpoint, output, seed, thresholds)
 
     ### before continuing check final loci is defined, otherwise read from file

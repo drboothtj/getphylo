@@ -196,7 +196,7 @@ def do_thresholding(
     if len(target_loci) < maximum_loci:
         maximum_loci = target_loci
     for locus in target_loci:
-        while len(final_loci) > maximum_loci:
+        while len(final_loci) < maximum_loci:
             presence, unique, pa_data = score_locus(locus, files)
             pa_table.append(pa_data)
             number_of_loci = len(files)
