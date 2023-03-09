@@ -104,6 +104,7 @@ def main():
 
     ### trees.py
     if checkpoint < Checkpoint.TREES_BUILT:
-        trees.make_trees(output)
+        build_all = args.build_all
+        trees.make_trees(output, build_all)
     logging.info("Analysis complete. Thank you for using getphylo!")
     

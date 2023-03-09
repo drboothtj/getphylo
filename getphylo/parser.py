@@ -19,6 +19,16 @@ def get_parser():
         epilog="Written by Dr. Thom Booth, 2022."
         )
     parser.add_argument(
+        '-b',
+        '--build-all',
+        default=-False,
+        type=bool,
+        help=(
+            'build phylogenetic trees for all loci, not just concatenated alignment '
+            'default: %(default)s)'
+        )
+        )
+    parser.add_argument(
         '-c',
         '--checkpoint',
         default='START',
