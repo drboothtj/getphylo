@@ -80,7 +80,7 @@ def get_singletons_from_seed(seed, output, thresholds):
     loci = 0
     loci_fasta = []
     candidate_loci = []
-    loci_to_find, loci_min_length, loci_max_length, _, _ = thresholds
+    loci_to_find, loci_min_length, loci_max_length, _, _, _ = thresholds
     for locus in unique_loci:
         if loci_to_find < 0 or loci < loci_to_find:
             sequence = io.get_locus(seed_fasta, locus)
@@ -194,17 +194,22 @@ def do_thresholding(
     pa_table.append([os.path.split(os.path.basename(file))[0] for file in files])
     thresholding_data = ["locus;" + "presence;" + "unique"]
     if len(target_loci) < maximum_loci:
-        maximum_loci = target_loci
+        maximum_loci = len(target_loci)
     for locus in target_loci:
-        while len(final_loci) < maximum_loci:
-            presence, unique, pa_data = score_locus(locus, files)
-            pa_table.append(pa_data)
-            number_of_loci = len(files)
-            presence_percent = (presence / number_of_loci) * 100
-            thresholding_string = str(locus) + ";" + str(presence_percent) + ";" + str(unique)
-            thresholding_data.append(thresholding_string)
-            if presence_percent >= presence_threshold and unique:
-                final_loci.append(locus)
+        logging.debug("final = %s, max = %s", len(final_loci), maximum_loci)
+        presence, unique, pa_data = score_locus(locus, files)
+        pa_table.append(pa_data)
+        number_of_loci = len(files)
+        presence_percent = (presence / number_of_loci) * 100
+        thresholding_string = str(locus) + ";" + str(presence_percent) + ";" + str(unique)
+        thresholding_data.append(thresholding_string)
+        if presence_percent >= presence_threshold and unique:
+            final_loci.append(locus)
+        if len(final_loci) >= maximum_loci:
+            logging.info('The maximum number of loci was reached.')
+            break
+    else:
+        logging.warning('Number of loci selected is lower than the maximum defined.')
     filename = os.path.join(output, 'thresholding_data')
     io.write_to_file(filename, thresholding_data)
     write_pa_table(pa_table, target_loci, output)
@@ -272,7 +277,6 @@ def get_target_proteins(checkpoint: Checkpoint, output: str, seed: str, threshol
     candidate_loci = None
     final_loci = None
     logging.debug('The output directory is: %s', output)
-    assert len(thresholds) == 5
     if checkpoint < Checkpoint.SINGLETONS_IDENTIFIED:
         logging.info("Checkpoint: Identifying singletons...")
         candidate_loci = get_singletons_from_seed(seed, output, thresholds)

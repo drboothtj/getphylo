@@ -20,7 +20,7 @@ def initialize_logging() -> None:
         Returns: None'''
     logging_level = logging.DEBUG
     logging.basicConfig(
-        filename='getphylo.log',
+        #filename='getphylo.log',
         level=logging_level,
         format='[%(asctime)s] %(levelname)-10s: %(message)s',
         datefmt='%H:%M:%S') #maybe change to run time?

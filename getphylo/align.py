@@ -36,7 +36,7 @@ def get_locus_from_tsv(locus: str, fasta_name: str) -> Tuple[str, str]:
     for line in tsv:
         if locus in line[0]:
             sequence = io.get_locus(fasta_name, line[1])
-            organism = os.path.basename(fasta_name).rsplit(".", 1)[0]
+            organism, _ = os.path.splitext(os.path.basename(fasta_name))
             sequence_name = f'>{organism}_{line[1]}'
             return sequence_name, sequence
     raise BadLocusError("Locus %s not found in file: %s" % (locus, tsv_name))
@@ -56,7 +56,12 @@ def make_fasta_for_alignments(loci_list: List[str], output: str) -> None:
     for locus in loci_list:
         write_lines = []
         for filename in files:
-            write_lines.extend(get_locus_from_tsv(locus, filename))
+            try:
+                logging.debug('locus: %s; filename: %s' % (locus, filename))
+                write_lines.extend(get_locus_from_tsv(locus, filename))
+                logging.debug('write_lines %s', write_lines)
+            except BadLocusError as error:
+                logging.warning(error)
         outfile = os.path.join(output, 'unaligned_fasta', locus + '.fasta')
         io.write_to_file(outfile, write_lines)
 
@@ -132,7 +137,7 @@ def make_combined_alignment(gbks: List, output: str) -> None:
         taxa = glob.glob(gbks)
         loci = glob.glob(os.path.join(output, 'aligned_fasta/*.fasta'))
         for taxon in taxa:
-            taxon_name = taxon.split('.')[0]
+            taxon_name = os.path.splitext(taxon)[0]
             sequence_data = []
             for locus in loci:
                 alignment = io.read_file(locus)

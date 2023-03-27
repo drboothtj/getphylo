@@ -121,7 +121,7 @@ def get_parser():
     parser.add_argument(
         '-maxl',
         '--maxloci',
-        default=1,
+        default=1000,
         type=int,
         help=(
             'maximum number of loci required to continue to alignment and tree building steps '
