@@ -48,6 +48,7 @@ def get_seed_paths(seed: str, output: str) -> Tuple[str, str, str]:
     Returns:
         seed_fasta, seed_dmnd, seed_tsv
     '''
+    seed = os.path.basename(seed)
     seed_fasta = io.change_extension(seed, "fasta")
     seed_fasta = os.path.join(output, 'fasta', seed_fasta)
     seed_dmnd = io.change_extension(seed, "dmnd")
@@ -191,7 +192,7 @@ def do_thresholding(
     final_loci = []
     pa_table = []
     files = glob.glob(os.path.join(output, 'tsvs/*.tsv'))
-    pa_table.append([os.path.split(os.path.basename(file))[0] for file in files])
+    pa_table.append([os.path.splitext(os.path.basename(file))[0] for file in files])
     thresholding_data = ["locus;" + "presence;" + "unique"]
     if len(target_loci) < maximum_loci:
         maximum_loci = len(target_loci)

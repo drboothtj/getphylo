@@ -114,7 +114,7 @@ def get_cds_from_genbank(
         raise BadRecordError(error)
     if not lines:
         raise BadAnnotationError(f'No CDS Features in {filename}')
-    filename = io.change_extension(filename, "fasta")
+    filename = io.change_extension(os.path.basename(filename), "fasta")
     filename = os.path.join(output, 'fasta', filename)
     io.write_to_file(filename, lines)
 

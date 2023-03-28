@@ -120,6 +120,8 @@ def run_in_command_line(command: str):
     logging.debug(command)
     process = subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
     process.communicate()
+    if process.returncode != 0:
+        raise RuntimeError('Failed to run: ' + str(command))
     return process
 
 def write_to_file(filename: str, write_lines: List[str]) -> None:

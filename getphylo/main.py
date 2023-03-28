@@ -30,7 +30,7 @@ def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
     '''Set a seed for a new analysis and raise an error if continuing an old analysis.
         Arguments:
             checkpoint: the checkpoint supplied by the user
-            gbk_search_string: the string used to filter the glob (e.g. *.gbk)
+            gbk_search_string: the string used to filter the glob (e.g. '*.gbk')
         Returns:
             seed: the filename of the selected seed genome'''
     if checkpoint > 0:

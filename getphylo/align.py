@@ -53,6 +53,7 @@ def make_fasta_for_alignments(loci_list: List[str], output: str) -> None:
     io.make_folder(os.path.join(output, 'unaligned_fasta'))
     files = glob.glob(os.path.join(output, 'fasta/*.fasta'))
     assert files
+    logging.debug(loci_list)
     for locus in loci_list:
         write_lines = []
         for filename in files:
@@ -62,6 +63,7 @@ def make_fasta_for_alignments(loci_list: List[str], output: str) -> None:
                 logging.debug('write_lines %s', write_lines)
             except BadLocusError as error:
                 logging.warning(error)
+                
         outfile = os.path.join(output, 'unaligned_fasta', locus + '.fasta')
         io.write_to_file(outfile, write_lines)
 
@@ -135,9 +137,10 @@ def make_combined_alignment(gbks: List, output: str) -> None:
     else:
         combined_alignment = []
         taxa = glob.glob(gbks)
+        assert taxa, gbks
         loci = glob.glob(os.path.join(output, 'aligned_fasta/*.fasta'))
         for taxon in taxa:
-            taxon_name = os.path.splitext(taxon)[0]
+            taxon_name = os.path.splitext(os.path.basename(taxon))[0]
             sequence_data = []
             for locus in loci:
                 alignment = io.read_file(locus)
@@ -148,6 +151,7 @@ def make_combined_alignment(gbks: List, output: str) -> None:
                 else:
                     sequence_data.append('X' * locus_length)
             sequence_string = ''.join(sequence_data)
+            assert sequence_data
             if sequence_string.count('X') == len(sequence_string):
                 logging.error('[ALERT]: %s has no sequence data and has been removed.', taxon_name)
                 #make fatal and add option to ignore
