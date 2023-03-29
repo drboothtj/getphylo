@@ -37,6 +37,7 @@ def get_locus(file: str, locus: str) -> str:
         line_number += 1
         if locus in line:
             sequence = fasta[line_number]
+        break
     return sequence
 
 def count_files(directory: str) -> int:

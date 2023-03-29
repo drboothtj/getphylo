@@ -128,7 +128,6 @@ def search_candidates(output: str) -> None:
         tsv_name = os.path.join(tsvs_folder, tsv_name)
         candidate_loci_path = os.path.join(output, 'tsv/candidate_loci.fasta')
         diamond.run_diamond_search(candidate_loci_path, database, tsv_name)
-    #allow fiddling with dmnd options
 
 def score_locus(locus: str, files: List) -> Tuple[int, bool, List]:
     '''
