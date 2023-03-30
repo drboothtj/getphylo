@@ -35,7 +35,7 @@ def get_locus_from_tsv(locus: str, fasta_name: str) -> Tuple[str, str]:
     tsv = io.read_tsv(tsv_name)
     for line in tsv:
         if locus in line[0]:
-            sequence = io.get_locus(fasta_name, line[1])
+            sequence = io.get_locus(fasta_name, line[1]) #read fasta out of loop!
             organism, _ = os.path.splitext(os.path.basename(fasta_name))
             sequence_name = f'>{organism}_{line[1]}'
             return sequence_name, sequence
@@ -76,9 +76,11 @@ def do_alignments(output: str) -> None:
             None
     '''
     io.make_folder(os.path.join(output, 'aligned_fasta'))
-    for file in glob.glob(os.path.join(output, 'unaligned_fasta/*.fasta')):
-        outfile = os.path.join(output, 'aligned_fasta', os.path.basename(file))
-        muscle.run_muscle(file, outfile)
+    args_list = []
+    for filename in glob.glob(os.path.join(output, 'unaligned_fasta/*.fasta')):
+        outfile = os.path.join(output, 'aligned_fasta', os.path.basename(filename))
+        args_list.append([filename, outfile])
+    io.run_in_parallel(muscle.run_muscle, args_list, 4) #add cpu arg
 
 def get_locus_length(alignment: List[str]) -> int:
     '''

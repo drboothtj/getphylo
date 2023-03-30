@@ -32,10 +32,13 @@ def build_diamond_databases(output: str) -> None:
     dmnd_folder = os.path.join(output, 'dmnd')
     io.make_folder(dmnd_folder)
     fasta_files_path = os.path.join(output, 'fasta/*.fasta')
-    for file in glob.glob(fasta_files_path):
-        dmnd_database = os.path.basename(io.change_extension(file, "dmnd"))
+    args_list = []
+    for filename in glob.glob(fasta_files_path):
+        dmnd_database = os.path.basename(io.change_extension(filename, "dmnd"))
         dmnd_database = os.path.join(dmnd_folder, dmnd_database)
-        diamond.make_diamond_database(file, dmnd_database)
+        args = [filename, dmnd_database]
+        args_list.append(args)
+    io.run_in_parallel(diamond.make_diamond_database, args_list, 4) #add argument
 
 def extract_cdses(
         gbks: str, output: str, tag_label: str,
@@ -50,22 +53,18 @@ def extract_cdses(
             None
         '''
     io.make_folder(os.path.join(output, 'fasta'))
-    files_valid = True
-    for filename in glob.glob(gbks):
-        logging.info('Extracting CDS annotations from %s', filename)
-        try:
-            get_cds_from_genbank(filename, output, tag_label, ignore_bad_annotations)
-        except GetphyloError as error:
-            logging.warning('%s raised error: %s', filename, error)
-            files_valid = False
-
-    if not files_valid:
-        if ignore_bad_records:
-            raise BadAnnotationError(
-                'Some files were not parsed correctly, check the logging file for more information.'
-                'If you want to skip these files,'
-                'rerun the analysis with the --ignore-bad-records flag.'
-                )
+    filenames = glob.glob(gbks)
+    args_list = [[filename,  output, tag_label, ignore_bad_annotations] for filename in filenames]
+    print(args_list)
+    try:
+        io.run_in_parallel(get_cds_from_genbank, args_list, 4)# make arguemt for cpu
+    except BadAnnotationError:
+            raise BadAnnotationError
+            (
+            'Some files were not parsed correctly, check the logging file for more information.'
+            'If you want to skip these files,'
+            'rerun the analysis with the --ignore-bad-records flag.'
+            )
 
 def get_cds_from_genbank(
         filename: str, output: str, tag_label: str, ignore_bad_annotations: bool
@@ -79,9 +78,10 @@ def get_cds_from_genbank(
                 bool flagging whether to ignore features with missing annotations
         Returns: None
     '''
+        
+    logging.info('Extracting CDS annotations from %s', filename)
     lines = []
     seen = set()
-
     try:
         records = io.get_records_from_genbank(filename)
         for record in records:

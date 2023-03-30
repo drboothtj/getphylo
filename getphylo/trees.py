@@ -21,11 +21,13 @@ def make_trees(output: str, build_all: bool) -> None:
     io.make_folder(tree_directory)
     logging.info("Building trees...")
     if build_all is True:
+        args_list = []
         for filename in glob.glob(os.path.join(output, 'aligned_fasta/*.fasta')):
             outfile = os.path.join(
                 tree_directory, os.path.basename(io.change_extension(filename, "tree"))
                 )
-            fasttree.run_fasttree(filename, outfile)
+            args_list.append(filename, outfile)
+            io.run_in_parallel(fasttree.run_fasttree, args_list, 4) #add cpu arg
     else:
         filename = os.path.join(output, 'aligned_fasta/combined_alignment.fasta')
         outfile = os.path.join(tree_directory, 'combined_alignment.tree')

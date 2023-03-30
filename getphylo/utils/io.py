@@ -14,13 +14,14 @@ Functions:
 '''
 import csv
 import glob
+import multiprocessing
 import os
 import subprocess
 import logging
-from typing import List
+from typing import Callable, Iterable, List
 from Bio import SeqIO
 
-from getphylo.utils.errors import FolderExistsError
+from getphylo.utils.errors import GetphyloError, FolderExistsError
 
 def get_locus(file: str, locus: str) -> str:
     '''
@@ -126,6 +127,22 @@ def run_in_command_line(command: str):
     if process.returncode != 0:
         raise RuntimeError('Failed to run: ' + str(command))
     return process
+
+def run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) -> List:
+    #if only 1 cpu or none defined run as normal
+    if cpus <= 1:
+        return_value = [function(*args) for args in args_list]
+    #otherwise run in parrallel
+    else:
+        for item in args_list:
+            try:
+                iter(item)
+            except TypeError as error:
+                raise GetphyloError(error)
+        with multiprocessing.Pool(cpus) as pool:
+            results = pool.starmap_async(function, args_list)
+            return_value = [result for result in results.get()]
+    return return_value
 
 def write_to_file(filename: str, write_lines: List[str]) -> None:
     '''
