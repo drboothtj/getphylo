@@ -74,6 +74,7 @@ def get_singletons_from_seed(seed, output, thresholds):
     io.make_folder(os.path.join(output, 'tsv'))
     logging.info("Identifying singletons in seed genome...")
     seed_fasta, seed_dmnd, seed_tsv = get_seed_paths(seed, output)
+    seed_fasta_contents = io.read_file(seed_fasta)
     diamond.run_diamond_search(seed_fasta, seed_dmnd, seed_tsv)
     unique_loci = get_unique_hits_from_tsv(seed_tsv)
     logging.info("Found %s unique loci.", str(len(unique_loci)))
@@ -82,9 +83,9 @@ def get_singletons_from_seed(seed, output, thresholds):
     loci_fasta = []
     candidate_loci = []
     loci_to_find, loci_min_length, loci_max_length, _, _, _ = thresholds
-    for locus in unique_loci:
+    for locus in unique_loci: 
         if loci_to_find < 0 or loci < loci_to_find:
-            sequence = io.get_locus(seed_fasta, locus)
+            sequence = io.get_locus(seed_fasta_contents, locus) 
             if loci_max_length > len(sequence) > loci_min_length:
                 candidate_loci.append(locus)
                 loci_fasta.append(">" + locus)
@@ -123,11 +124,14 @@ def search_candidates(output: str) -> None:
     io.make_folder(tsvs_folder)
     logging.info("Screening candidate loci against other genomes...")
     diamond_databases = glob.glob(os.path.join(output, 'dmnd/*.dmnd'))
+    args_list = []
     for database in diamond_databases:
         tsv_name = io.change_extension(os.path.basename(database), 'tsv')
         tsv_name = os.path.join(tsvs_folder, tsv_name)
         candidate_loci_path = os.path.join(output, 'tsv/candidate_loci.fasta')
-        diamond.run_diamond_search(candidate_loci_path, database, tsv_name)
+        args_item = [candidate_loci_path, database, tsv_name]
+        args_list.append(args_item)
+    io.run_in_parallel(diamond.run_diamond_search, args_list, 4)
 
 def score_locus(locus: str, files: List) -> Tuple[int, bool, List]:
     '''
@@ -196,7 +200,9 @@ def do_thresholding(
     if len(target_loci) < maximum_loci:
         maximum_loci = len(target_loci)
     for locus in target_loci:
-        logging.debug("final = %s, max = %s", len(final_loci), maximum_loci)
+        logging.debug(
+            "final = %s, max = %s, targets = %s", 
+            len(final_loci), maximum_loci, len(target_loci))
         presence, unique, pa_data = score_locus(locus, files)
         pa_table.append(pa_data)
         number_of_loci = len(files)
@@ -208,7 +214,7 @@ def do_thresholding(
         if len(final_loci) >= maximum_loci:
             logging.info('The maximum number of loci was reached.')
             break
-    else:
+    if len(final_loci) <= maximum_loci:
         logging.warning('Number of loci selected is lower than the maximum defined.')
     filename = os.path.join(output, 'thresholding_data')
     io.write_to_file(filename, thresholding_data)

@@ -23,16 +23,15 @@ from Bio import SeqIO
 
 from getphylo.utils.errors import GetphyloError, FolderExistsError
 
-def get_locus(file: str, locus: str) -> str:
+def get_locus(fasta: List[str], locus: str) -> str:
     '''
     Returns a sequence from a fasta file with the provided locus name.
         Arguments:
-            file: path to .fasta file to search
+            fasta: list of lines from in fasta format
             locus: locus to search for
         Returns:
-            sequence: the sequence of the locus searched for
+            sequence: the sequence of the locus
     '''
-    fasta = read_file(file)
     line_number = 0
     sequence = ''
     for line in fasta:

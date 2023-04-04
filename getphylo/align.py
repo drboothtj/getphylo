@@ -33,9 +33,10 @@ def get_locus_from_tsv(locus: str, fasta_name: str) -> Tuple[str, str]:
     tsv_name = fasta_name.replace("/fasta/", "/tsvs/")
     tsv_name = io.change_extension(tsv_name, "tsv")
     tsv = io.read_tsv(tsv_name)
+    fasta_contents = io.read_file(fasta_name)
     for line in tsv:
         if locus in line[0]:
-            sequence = io.get_locus(fasta_name, line[1]) #read fasta out of loop!
+            sequence = io.get_locus(fasta_contents, line[1])
             organism, _ = os.path.splitext(os.path.basename(fasta_name))
             sequence_name = f'>{organism}_{line[1]}'
             return sequence_name, sequence
