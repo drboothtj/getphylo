@@ -79,8 +79,9 @@ def main():
         thresholds = [
             args.find, args.minlength, args.maxlength, args.presence, args.minloci, args.maxloci,
             ]
-        final_loci = screen.get_target_proteins(checkpoint, output, seed, thresholds, args.cpus)
-
+        final_loci = screen.get_target_proteins(
+            checkpoint, output, seed, thresholds, args.cpus, args.random_seed_number
+            )
     ### before continuing check final loci is defined, otherwise read from file
     try:
         assert final_loci

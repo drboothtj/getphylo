@@ -8,7 +8,7 @@ import os
 import glob
 import logging
 from collections import Counter
-from random import shuffle
+import random 
 from typing import List, Tuple
 
 from getphylo.ext import diamond
@@ -57,7 +57,7 @@ def get_seed_paths(seed: str, output: str) -> Tuple[str, str, str]:
     seed_tsv = os.path.join(output, 'tsv', seed_tsv)
     return seed_fasta, seed_dmnd, seed_tsv
 
-def get_singletons_from_seed(seed, output, thresholds):
+def get_singletons_from_seed(seed, output, thresholds, random_seed_number):
     '''
     Use diamond to identify singletons in the seed genome.
         Arguments:
@@ -77,7 +77,10 @@ def get_singletons_from_seed(seed, output, thresholds):
     diamond.run_diamond_search(seed_fasta, seed_dmnd, seed_tsv)
     unique_loci = get_unique_hits_from_tsv(seed_tsv)
     logging.info("Found %s unique loci.", str(len(unique_loci)))
-    shuffle(unique_loci)
+    if random_seed_number is None: #random, random if no random seed set
+        random.shuffle(unique_loci)
+    else: #use the random seed provided
+        random.Random(random_seed_number).shuffle(unique_loci)
     loci = 0
     loci_fasta = []
     candidate_loci = []
@@ -268,7 +271,8 @@ def write_pa_table(pa_table: List, loci: List, output: str) -> None:
     io.write_to_file(filename, new_table)
 
 def get_target_proteins(
-        checkpoint: Checkpoint, output: str, seed: str, thresholds: List, cpus: int
+        checkpoint: Checkpoint, output: str, seed: str, thresholds: List,
+        cpus: int, random_seed_number: int
     ) -> None:
     '''
     The main routine for screen.py
@@ -287,7 +291,7 @@ def get_target_proteins(
     logging.debug('The output directory is: %s', output)
     if checkpoint < Checkpoint.SINGLETONS_IDENTIFIED:
         logging.info("Checkpoint: Identifying singletons...")
-        candidate_loci = get_singletons_from_seed(seed, output, thresholds)
+        candidate_loci = get_singletons_from_seed(seed, output, thresholds, random_seed_number)
     #candidate loci will not exist if restarted from a checkpoint
     if not candidate_loci:
         try:

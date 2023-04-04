@@ -164,6 +164,16 @@ def get_parser():
         )
         )
     parser.add_argument(
+        '-r',
+        '--random-seed-number',
+        default=None,
+        type=int,
+        help=(
+            'interger to be used as a seed for randomising loci selection, random if left as None'
+            '(default: None)'
+        )
+        )
+    parser.add_argument(
         '-s',
         '--seed',
         default=None,
