@@ -7,6 +7,8 @@ Functions:
 '''
 
 import argparse
+from argparse import RawTextHelpFormatter
+
 import logging
 from getphylo.utils.checkpoint import Checkpoint
 
@@ -14,9 +16,12 @@ def get_parser():
     ''''Create a parser object specific to getphylo'''
     parser = argparse.ArgumentParser(
         "getphylo",
-        description=
-        "getphylo: a python package to produce heuristic phylogentic trees from genomic data",
-        epilog="Written by Dr. Thom Booth, 2022."
+        description="""
+        getphylo: a python package to produce heuristic phylogentic trees from genomic data\n
+        example usage: getphylo -g 'input/*.gb' -c 4
+        """,
+        epilog="Written by Dr. Thom Booth, 2022.",
+        formatter_class=RawTextHelpFormatter
         )
     parser.add_argument(
         '-b',
@@ -25,29 +30,39 @@ def get_parser():
         type=bool,
         help=(
             'build phylogenetic trees for all loci, not just concatenated alignment '
-            'default: %(default)s)'
+            '(default: %(default)s)'
         )
         )
     parser.add_argument(
-        '-c',
+        '-cp',
         '--checkpoint',
         default='START',
         type=str,
         choices=[cp.name for cp in Checkpoint],
         help=(
             'string indicating the checkpoint to start from '
-            'START = default '
-            'FASTA_EXTRACTED = Skip extracting fasta sequences from genbank files '
-            'DIAMOND_BUILT = Skip building diamond databases '
-            'SINGLETONS_IDENTIFIED = Skip identifying singletons from the seed genome '
-            'SINGLETONS_SEARCHED = Skip searching singletons against other genomes '
-            'SINGLETONS_THRESHOLDED = Skip thresholding of singletons '
-            'SINGLETONS_EXTRACTED = Skip extract fasta sequences for alignments '
-            'SINGLETONS_ALIGNED = Skip individual protein alignments '
-            'ALIGNMENTS_COMBINED = Skip combining alignments '
-            'TREES_BUILT = Skip building trees '
-            'DONE = Done '
-            'default: %(default)s'
+            'START = default\n '
+            'FASTA_EXTRACTED = Skip extracting fasta sequences from genbank files\n '
+            'DIAMOND_BUILT = Skip building diamond databases\n '
+            'SINGLETONS_IDENTIFIED = Skip identifying singletons from the seed genome\n '
+            'SINGLETONS_SEARCHED = Skip searching singletons against other genomes\n '
+            'SINGLETONS_THRESHOLDED = Skip thresholding of singletons\n '
+            'SINGLETONS_EXTRACTED = Skip extract fasta sequences for alignments\n '
+            'SINGLETONS_ALIGNED = Skip individual protein alignments\n '
+            'ALIGNMENTS_COMBINED = Skip combining alignments\n '
+            'TREES_BUILT = Skip building trees\n '
+            'DONE = Done\n '
+            '(default: %(default)s)'
+        )
+        )
+    parser.add_argument(
+        '-c',
+        '--cpus',
+        default=1,
+        type=int,
+        help=(
+            'The number of cpus to use for paralleslisation '
+            '(default: %(default)s)'
         )
         )
     parser.add_argument(
@@ -57,7 +72,7 @@ def get_parser():
         type=int,
         help=(
             'integer indicating the number of loci to find in the seed genome '
-            'default: %(default)s)'
+            '(default: %(default)s)'
         )
         )
     parser.add_argument(
@@ -65,7 +80,7 @@ def get_parser():
         '--gbks',
         default="*.gbk",
         type=str,
-        help='string indicating the genbank files to use in the phylogeny. default: %(default)s'
+        help='string indicating the genbank files to use in the phylogeny (default: %(default)s)'
         )
     parser.add_argument(
         '-ia',
@@ -84,7 +99,7 @@ def get_parser():
     parser.add_argument(
         '-l',
         '--logging',
-        default='WARNING',
+        default='ERROR',
         choices=list(logging._nameToLevel.keys()),
         help='set the logging level (default: %(default)s)'
     )

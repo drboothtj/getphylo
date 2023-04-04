@@ -20,14 +20,16 @@ import glob
 from getphylo.ext import diamond
 from getphylo.utils import io
 from getphylo.utils.checkpoint import Checkpoint
-from getphylo.utils.errors import GetphyloError, BadAnnotationError, BadRecordError
+from getphylo.utils.errors import BadAnnotationError, BadRecordError
 
-def build_diamond_databases(output: str) -> None:
+def build_diamond_databases(output: str, cpus: int) -> None:
     '''Create diamond databases from from all the fasta files in .output/fasta/*.fasta
         Arguments:
             output: path to the output folder
+            cpus: number of cpus available
         Returns:
-            None'''
+            None
+    '''
     logging.info("Creating diamond databases from extracted cdses...")
     dmnd_folder = os.path.join(output, 'dmnd')
     io.make_folder(dmnd_folder)
@@ -38,29 +40,28 @@ def build_diamond_databases(output: str) -> None:
         dmnd_database = os.path.join(dmnd_folder, dmnd_database)
         args = [filename, dmnd_database]
         args_list.append(args)
-    io.run_in_parallel(diamond.make_diamond_database, args_list, 4) #add argument
+    io.run_in_parallel(diamond.make_diamond_database, args_list, cpus) #add argument
 
 def extract_cdses(
         gbks: str, output: str, tag_label: str,
-        ignore_bad_annotations: bool, ignore_bad_records: bool
+        ignore_bad_annotations: bool, ignore_bad_records: bool, cpus: int
     ) -> None:
     '''Produce a fasta file from each genbank provided
         Arguments:
             gbks: search string for genbank files
             output: path to the output directory
             tag_args:
+            cpus: number of cpus available
         Returns:
             None
         '''
     io.make_folder(os.path.join(output, 'fasta'))
     filenames = glob.glob(gbks)
-    args_list = [[filename,  output, tag_label, ignore_bad_annotations] for filename in filenames]
-    print(args_list)
+    args_list = [[filename, output, tag_label, ignore_bad_annotations] for filename in filenames]
     try:
-        io.run_in_parallel(get_cds_from_genbank, args_list, 4)# make arguemt for cpu
+        io.run_in_parallel(get_cds_from_genbank, args_list, cpus)
     except BadAnnotationError:
-            raise BadAnnotationError
-            (
+        raise BadAnnotationError(
             'Some files were not parsed correctly, check the logging file for more information.'
             'If you want to skip these files,'
             'rerun the analysis with the --ignore-bad-records flag.'
@@ -78,7 +79,7 @@ def get_cds_from_genbank(
                 bool flagging whether to ignore features with missing annotations
         Returns: None
     '''
-        
+
     logging.info('Extracting CDS annotations from %s', filename)
     lines = []
     seen = set()
@@ -120,7 +121,7 @@ def get_cds_from_genbank(
 
 def extract_data(
         checkpoint: Checkpoint, output: str, gbks: str, tag_label: str,
-        ignore_bad_annotations: bool, ignore_bad_records: bool
+        ignore_bad_annotations: bool, ignore_bad_records: bool, cpus: int
     ) -> None:
     '''Called from main to build fasta and diamond databases from the provided genbankfiles
         Arguments:
@@ -133,7 +134,7 @@ def extract_data(
         Returns: None'''
     if checkpoint < Checkpoint.FASTA_EXTRACTED:
         logging.info("Checkpoint: Extracting CDSs...")
-        extract_cdses(gbks, output, tag_label, ignore_bad_annotations, ignore_bad_records)
+        extract_cdses(gbks, output, tag_label, ignore_bad_annotations, ignore_bad_records, cpus)
     if checkpoint < Checkpoint.DIAMOND_BUILT:
         logging.info("Checkpoint: Building diamond databases...")
-        build_diamond_databases(output)
+        build_diamond_databases(output, cpus)

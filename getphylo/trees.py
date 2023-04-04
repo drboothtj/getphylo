@@ -10,7 +10,7 @@ import logging
 from getphylo.utils import io
 from getphylo.ext import fasttree
 
-def make_trees(output: str, build_all: bool) -> None:
+def make_trees(output: str, build_all: bool, cpus: int) -> None:
     '''Main routine for trees.
         Arguments:
             output: path to the output directory
@@ -27,7 +27,7 @@ def make_trees(output: str, build_all: bool) -> None:
                 tree_directory, os.path.basename(io.change_extension(filename, "tree"))
                 )
             args_list.append(filename, outfile)
-            io.run_in_parallel(fasttree.run_fasttree, args_list, 4) #add cpu arg
+            io.run_in_parallel(fasttree.run_fasttree, args_list, cpus)
     else:
         filename = os.path.join(output, 'aligned_fasta/combined_alignment.fasta')
         outfile = os.path.join(tree_directory, 'combined_alignment.tree')

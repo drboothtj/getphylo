@@ -70,15 +70,16 @@ def main():
                 'ALERT: %s already exists. Continuing analysis in that directory.', output
                 )
         extract.extract_data(
-            checkpoint, output, gbks, args.tag, args.ignore_bad_annotations, args.ignore_bad_records
+            checkpoint, output, gbks, args.tag, args.ignore_bad_annotations,
+            args.ignore_bad_records, args.cpus
             )
     ### screen.py
     final_loci = None
     if checkpoint < Checkpoint.SINGLETONS_THRESHOLDED:
         thresholds = [
-            args.find, args.minlength, args.maxlength, args.presence, args.minloci, args.maxloci
+            args.find, args.minlength, args.maxlength, args.presence, args.minloci, args.maxloci,
             ]
-        final_loci = screen.get_target_proteins(checkpoint, output, seed, thresholds)
+        final_loci = screen.get_target_proteins(checkpoint, output, seed, thresholds, args.cpus)
 
     ### before continuing check final loci is defined, otherwise read from file
     try:
@@ -100,10 +101,10 @@ def main():
 
     ### align.py
     if checkpoint < Checkpoint.ALIGNMENTS_COMBINED:
-        align.make_alignments(checkpoint, output, final_loci, gbks)
+        align.make_alignments(checkpoint, output, final_loci, gbks, args.cpus)
 
     ### trees.py
     if checkpoint < Checkpoint.TREES_BUILT:
         build_all = args.build_all
-        trees.make_trees(output, build_all)
+        trees.make_trees(output, build_all, args.cpus)
     logging.info("Analysis complete. Thank you for using getphylo!")

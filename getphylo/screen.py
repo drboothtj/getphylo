@@ -58,7 +58,6 @@ def get_seed_paths(seed: str, output: str) -> Tuple[str, str, str]:
     return seed_fasta, seed_dmnd, seed_tsv
 
 def get_singletons_from_seed(seed, output, thresholds):
-    #too many local variables
     '''
     Use diamond to identify singletons in the seed genome.
         Arguments:
@@ -83,9 +82,9 @@ def get_singletons_from_seed(seed, output, thresholds):
     loci_fasta = []
     candidate_loci = []
     loci_to_find, loci_min_length, loci_max_length, _, _, _ = thresholds
-    for locus in unique_loci: 
+    for locus in unique_loci:
         if loci_to_find < 0 or loci < loci_to_find:
-            sequence = io.get_locus(seed_fasta_contents, locus) 
+            sequence = io.get_locus(seed_fasta_contents, locus)
             if loci_max_length > len(sequence) > loci_min_length:
                 candidate_loci.append(locus)
                 loci_fasta.append(">" + locus)
@@ -112,11 +111,12 @@ def get_loci_from_file(file: str) -> List:
     loci = [locus.strip() for locus in loci]
     return loci
 
-def search_candidates(output: str) -> None:
+def search_candidates(output: str, cpus: int) -> None:
     '''
     Uses diamond blastP to search for the candidates in all other genomes.
         Arguments:
             output: path to the output folder
+            cpus: the number of cpus avaliable
         Returns:
             None
     '''
@@ -131,7 +131,7 @@ def search_candidates(output: str) -> None:
         candidate_loci_path = os.path.join(output, 'tsv/candidate_loci.fasta')
         args_item = [candidate_loci_path, database, tsv_name]
         args_list.append(args_item)
-    io.run_in_parallel(diamond.run_diamond_search, args_list, 4)
+    io.run_in_parallel(diamond.run_diamond_search, args_list, cpus)
 
 def score_locus(locus: str, files: List) -> Tuple[int, bool, List]:
     '''
@@ -201,7 +201,7 @@ def do_thresholding(
         maximum_loci = len(target_loci)
     for locus in target_loci:
         logging.debug(
-            "final = %s, max = %s, targets = %s", 
+            "final = %s, max = %s, targets = %s",
             len(final_loci), maximum_loci, len(target_loci))
         presence, unique, pa_data = score_locus(locus, files)
         pa_table.append(pa_data)
@@ -267,7 +267,9 @@ def write_pa_table(pa_table: List, loci: List, output: str) -> None:
     filename = os.path.join(output, 'presence_absence_table.csv')
     io.write_to_file(filename, new_table)
 
-def get_target_proteins(checkpoint: Checkpoint, output: str, seed: str, thresholds: List) -> None:
+def get_target_proteins(
+        checkpoint: Checkpoint, output: str, seed: str, thresholds: List, cpus: int
+    ) -> None:
     '''
     The main routine for screen.py
         Arguments:
@@ -299,7 +301,7 @@ def get_target_proteins(checkpoint: Checkpoint, output: str, seed: str, threshol
     #continue sequential analysis
     if checkpoint < Checkpoint.SINGLETONS_SEARCHED:
         logging.info("Checkpoint: Searching for singletons in other genomes...")
-        search_candidates(output)
+        search_candidates(output, cpus)
     if checkpoint < Checkpoint.SINGLETONS_THRESHOLDED:
         logging.info("Checkpoint: Applying loci thresholds...")
         final_loci = threshold_loci(candidate_loci, thresholds, output)

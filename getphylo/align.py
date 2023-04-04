@@ -64,11 +64,11 @@ def make_fasta_for_alignments(loci_list: List[str], output: str) -> None:
                 logging.debug('write_lines %s', write_lines)
             except BadLocusError as error:
                 logging.warning(error)
-                
+
         outfile = os.path.join(output, 'unaligned_fasta', locus + '.fasta')
         io.write_to_file(outfile, write_lines)
 
-def do_alignments(output: str) -> None:
+def do_alignments(output: str, cpus: int) -> None:
     '''
     Runs the pre-aligned fasta file through the muscle module.
         Arguments:
@@ -81,7 +81,7 @@ def do_alignments(output: str) -> None:
     for filename in glob.glob(os.path.join(output, 'unaligned_fasta/*.fasta')):
         outfile = os.path.join(output, 'aligned_fasta', os.path.basename(filename))
         args_list.append([filename, outfile])
-    io.run_in_parallel(muscle.run_muscle, args_list, 4) #add cpu arg
+    io.run_in_parallel(muscle.run_muscle, args_list, cpus) #add cpu arg
 
 def get_locus_length(alignment: List[str]) -> int:
     '''
@@ -164,7 +164,7 @@ def make_combined_alignment(gbks: List, output: str) -> None:
         io.write_to_file(combined_alignemnt_path, combined_alignment)
         #provide partition data!
 
-def make_alignments(checkpoint: Checkpoint, output: str, loci: List, gbks: List) -> None:
+def make_alignments(checkpoint: Checkpoint, output: str, loci: List, gbks: List, cpus: int) -> None:
     '''
     Main routine for align.
         Arguments:
@@ -180,7 +180,7 @@ def make_alignments(checkpoint: Checkpoint, output: str, loci: List, gbks: List)
         make_fasta_for_alignments(loci, output)
     if checkpoint < Checkpoint.SINGLETONS_ALIGNED:
         logging.info("Checkpoint 6: Aligning sequences...")
-        do_alignments(output)
+        do_alignments(output, cpus)
     if checkpoint < Checkpoint.ALIGNMENTS_COMBINED:
         logging.info("Checkpoint 7: Combining alignments")
         make_combined_alignment(gbks, output)
