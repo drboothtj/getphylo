@@ -19,7 +19,6 @@ from getphylo.utils import io
 from getphylo.utils.checkpoint import Checkpoint
 from getphylo.utils.errors import FileAlreadyExistsError, BadLocusError
 
-
 def get_locus_from_tsv(locus: str, fasta_name: str) -> Tuple[str, str]:
     '''
     Extracts specific loci for the alignment.
@@ -123,22 +122,43 @@ def get_locus_alignment(alignment, taxon_name) -> str:
     extracted_alignment_string = ''.join(extracted_alignment)
     return extracted_alignment_string
 
+def format_partition_data(partition_data: List) -> List:
+    '''
+    Takes the partition data [locus, locus_length] and reformats it as a partition file (e.g. p1 = 1-50, p2 = 51-110)
+        Arguments:
+            partition_data: a list of [locus, locus_length] lists
+        Returns:
+            partition_lines: list of lines in the partition format
+    '''
+    partition_lines = []
+    partition_start = 1
+    for partition in partition_data:
+        locus, length = partition[0], partition[1]
+        locus = os.path.splitext(os.path.basename(locus))[0]
+        partition_end = partition_start + length - 1
+        partition_lines.append('%s = %s-%s' % (locus, partition_start, partition_end))
+        partition_start += length
+    return partition_lines
+
 def make_combined_alignment(gbks: List, output: str) -> None:
-    '''Create a combined alignment from single locus alignments
+    '''
+    Create a combined alignment from single locus alignments
         Arguments:
             gbks: a list of genbank files
             output: path  to output directory
         Returns:
             None
-        '''
-    combined_alignemnt_path = os.path.join(output, 'aligned_fasta/combined_alignment.fasta')
-    if os.path.exists(combined_alignemnt_path):
+    '''
+    combined_alignment_path = os.path.join(output, 'aligned_fasta/combined_alignment.fasta')
+    partition_path = os.path.join(output, 'partition.txt')
+    if os.path.exists(combined_alignment_path):
         logging.error(
             'ALERT: aligned_fasta/combined_alignment.fasta already exists. Exiting!'
             )
         raise FileAlreadyExistsError('%s alread exists.' % combined_alignemnt_path)
     else:
         combined_alignment = []
+        partition_data = []
         taxa = glob.glob(gbks)
         assert taxa, gbks
         loci = glob.glob(os.path.join(output, 'aligned_fasta/*.fasta'))
@@ -148,6 +168,7 @@ def make_combined_alignment(gbks: List, output: str) -> None:
             for locus in loci:
                 alignment = io.read_file(locus)
                 locus_length = get_locus_length(alignment)
+                partition_data.append([locus, locus_length])
                 locus_alignment = get_locus_alignment(alignment, taxon_name)
                 if len(locus_alignment) == locus_length:
                     sequence_data.append(locus_alignment)
@@ -157,12 +178,12 @@ def make_combined_alignment(gbks: List, output: str) -> None:
             assert sequence_data
             if sequence_string.count('X') == len(sequence_string):
                 logging.error('[ALERT]: %s has no sequence data and has been removed.', taxon_name)
-                #make fatal and add option to ignore
             else:
                 combined_alignment.append(f'>{taxon_name}')
                 combined_alignment.append(sequence_string)
-        io.write_to_file(combined_alignemnt_path, combined_alignment)
-        #provide partition data!
+        partition_data = format_partition_data(partition_data)  
+        io.write_to_file(combined_alignment_path, combined_alignment)
+        io.write_to_file(partition_path, partition_data)
 
 def make_alignments(checkpoint: Checkpoint, output: str, loci: List, gbks: List, cpus: int) -> None:
     '''
