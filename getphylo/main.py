@@ -24,7 +24,7 @@ def initialize_logging() -> None:
         level=logging_level,
         format='[%(asctime)s] %(levelname)-10s: %(message)s',
         datefmt='%H:%M:%S')
-    logging.info("Running getphylo version 0.0.2")
+    logging.info("Running getphylo version 0.0.2.")
 
 def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
     '''Set a seed for a new analysis and raise an error if continuing an old analysis.
@@ -39,7 +39,7 @@ def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
     if not gbks:
         raise BadSeedError(f'No files found in {gbk_search_string}.')
     seed = gbks[0]
-    logging.info(
+    logging.warning(
         'No seed defined. Using first file in glob (%s) as seed.', seed
         )
     return seed
@@ -58,7 +58,7 @@ def main():
 
     if seed is None:
         seed = check_seed(checkpoint, gbks)
-    logging.info('The seed genome is %s.', seed)
+    logging.info('The seed genome is %s!', seed)
 
     ### Begin main workflow
     ### extract.py
@@ -108,4 +108,5 @@ def main():
     if checkpoint < Checkpoint.TREES_BUILT:
         build_all = args.build_all
         trees.make_trees(output, build_all, args.cpus)
+    logging.info("CHECKPOINT: DONE")
     logging.info("Analysis complete. Thank you for using getphylo!")

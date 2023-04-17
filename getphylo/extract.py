@@ -31,7 +31,6 @@ def build_diamond_databases(output: str, cpus: int) -> None:
         Returns:
             None
     '''
-    logging.info("Creating diamond databases from extracted cdses...")
     dmnd_folder = os.path.join(output, 'dmnd')
     io.make_folder(dmnd_folder)
     fasta_files_path = os.path.join(output, 'fasta/*.fasta')
@@ -82,10 +81,10 @@ def get_cds_from_genbank(
                 bool flagging whether to ignore features with missing annotations
         Returns: None
     '''
-
-    logging.info('Extracting CDS annotations from %s', filename)
+    logging.debug('Extracting CDS annotations from %s', filename)
     lines = []
     seen = set()
+    warning_flag = False
     try:
         records = io.get_records_from_genbank(filename)
         for record in records:
@@ -110,10 +109,9 @@ def get_cds_from_genbank(
                                 '--ignore-bad-annotations flag.'
                             )
                     else:
-                        logging.warning(
-                            '%s has no translation!', feature.qualifiers.get(tag_label)[0]
-                            #only show once!
-                            )
+                        warning_flag = True
+            if warning_flag == True:
+                logging.warning('%s has missing translations!', record.id)
     except ValueError as error:
         raise BadRecordError(error)
     if not lines:
@@ -138,8 +136,10 @@ def extract_data(
         Returns: None
     '''
     if checkpoint < Checkpoint.FASTA_EXTRACTED:
-        logging.info("Checkpoint: Extracting CDSs...")
+        logging.info("Extracting CDS in fasta format...")
         extract_cdses(gbks, output, tag_label, ignore_bad_annotations, ignore_bad_records, cpus)
+    logging.info("CHECKPOINT:FASTA_EXTRACTED")
     if checkpoint < Checkpoint.DIAMOND_BUILT:
-        logging.info("Checkpoint: Building diamond databases...")
+        logging.info("Building diamond databases...")
         build_diamond_databases(output, cpus)
+    logging.info("CHECKPOINT:DIAMOND_BUILT")

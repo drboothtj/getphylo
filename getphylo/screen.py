@@ -76,7 +76,7 @@ def get_singletons_from_seed(seed, output, thresholds, random_seed_number):
     seed_fasta_contents = io.read_file(seed_fasta)
     diamond.run_diamond_search(seed_fasta, seed_dmnd, seed_tsv)
     unique_loci = get_unique_hits_from_tsv(seed_tsv)
-    logging.info("Found %s unique loci.", str(len(unique_loci)))
+    logging.info("Found %s loci in the seed genome!", str(len(unique_loci)))
     if random_seed_number is None: #random, random if no random seed set
         random.shuffle(unique_loci)
     else: #use the random seed provided
@@ -97,7 +97,7 @@ def get_singletons_from_seed(seed, output, thresholds, random_seed_number):
             break
     txt_path = os.path.join(output, 'tsv/candidate_loci.txt')
     fasta_path = os.path.join(output, 'tsv/candidate_loci.fasta')
-    logging.info('%s loci found. Writing to %s and %s.', loci, txt_path, fasta_path)
+    logging.info('%s singletons found in the seed genome!' % loci)
     io.write_to_file(txt_path, candidate_loci)
     io.write_to_file(fasta_path, loci_fasta)
     return candidate_loci
@@ -125,7 +125,6 @@ def search_candidates(output: str, cpus: int) -> None:
     '''
     tsvs_folder = os.path.join(output, 'tsvs')
     io.make_folder(tsvs_folder)
-    logging.info("Screening candidate loci against other genomes...")
     diamond_databases = glob.glob(os.path.join(output, 'dmnd/*.dmnd'))
     args_list = []
     for database in diamond_databases:
@@ -174,7 +173,7 @@ def process_final_loci(final_loci: List, minimum_loci: int, output: str) -> None
             None
     '''
     number_of_loci = len(final_loci)
-    logging.info('%s loci selected for MLST...', number_of_loci)
+    logging.info('%s loci selected for MLST!', number_of_loci)
     if number_of_loci < minimum_loci:
         logging.warning("The number of loci below defined threshold. Exiting...")
         raise InsufficientLociError('The number of loci selected are below the defined threshold.')
@@ -194,7 +193,6 @@ def do_thresholding(
     Returns:
         None
     '''
-    logging.info("Thresholding targets...")
     final_loci = []
     pa_table = []
     files = glob.glob(os.path.join(output, 'tsvs/*.tsv'))
@@ -290,8 +288,8 @@ def get_target_proteins(
     final_loci = None
     logging.debug('The output directory is: %s', output)
     if checkpoint < Checkpoint.SINGLETONS_IDENTIFIED:
-        logging.info("Checkpoint: Identifying singletons...")
         candidate_loci = get_singletons_from_seed(seed, output, thresholds, random_seed_number)
+    logging.info("CHECKPOINT: SINGLETONS_IDENTIFIED")
     #candidate loci will not exist if restarted from a checkpoint
     if not candidate_loci:
         try:
@@ -304,9 +302,11 @@ def get_target_proteins(
             )
     #continue sequential analysis
     if checkpoint < Checkpoint.SINGLETONS_SEARCHED:
-        logging.info("Checkpoint: Searching for singletons in other genomes...")
+        logging.info("Screening candidate loci against other genomes...")
         search_candidates(output, cpus)
+    logging.info("CHECKPOINT: SINGLETONS_SEARCHED")
     if checkpoint < Checkpoint.SINGLETONS_THRESHOLDED:
-        logging.info("Checkpoint: Applying loci thresholds...")
+        logging.info("Thresholding candidate loci...")
         final_loci = threshold_loci(candidate_loci, thresholds, output)
+    logging.info("CHECKPOINT: SINGLETONS_THRESHOLDED")
     return final_loci

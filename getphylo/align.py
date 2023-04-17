@@ -197,11 +197,14 @@ def make_alignments(checkpoint: Checkpoint, output: str, loci: List, gbks: List,
             None
     '''
     if checkpoint < Checkpoint.SINGLETONS_EXTRACTED:
-        logging.info("Checkpoint: Extracting sequences for alignment...")
+        logging.info("Extracting sequences for alignment...")
         make_fasta_for_alignments(loci, output)
+    logging.info("CHECKPOINT: SINGLETONS_EXTRACTED")
     if checkpoint < Checkpoint.SINGLETONS_ALIGNED:
-        logging.info("Checkpoint 6: Aligning sequences...")
+        logging.info("Aligning sequences...")
         do_alignments(output, cpus)
+    logging.info("CHECKPOINT: SINGLETONS_ALIGNED")
     if checkpoint < Checkpoint.ALIGNMENTS_COMBINED:
-        logging.info("Checkpoint 7: Combining alignments")
+        logging.info("Making combined alingnment...")
         make_combined_alignment(gbks, output)
+    logging.info("CHECKPOINT: ALIGNMENTS_COMBINED")

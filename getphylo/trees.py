@@ -32,3 +32,4 @@ def make_trees(output: str, build_all: bool, cpus: int) -> None:
         filename = os.path.join(output, 'aligned_fasta/combined_alignment.fasta')
         outfile = os.path.join(tree_directory, 'combined_alignment.tree')
         fasttree.run_fasttree(filename, outfile)
+    logging.info("CHECKPOINT: TREES_BUILT")
