@@ -23,7 +23,8 @@ from getphylo.utils.checkpoint import Checkpoint
 from getphylo.utils.errors import BadAnnotationError, BadRecordError
 
 def build_diamond_databases(output: str, cpus: int) -> None:
-    '''Create diamond databases from from all the fasta files in .output/fasta/*.fasta
+    '''
+    Create diamond databases from from all the fasta files in .output/fasta/*.fasta
         Arguments:
             output: path to the output folder
             cpus: number of cpus available
@@ -40,13 +41,14 @@ def build_diamond_databases(output: str, cpus: int) -> None:
         dmnd_database = os.path.join(dmnd_folder, dmnd_database)
         args = [filename, dmnd_database]
         args_list.append(args)
-    io.run_in_parallel(diamond.make_diamond_database, args_list, cpus) #add argument
+    io.run_in_parallel(diamond.make_diamond_database, args_list, cpus) 
 
 def extract_cdses(
         gbks: str, output: str, tag_label: str,
         ignore_bad_annotations: bool, ignore_bad_records: bool, cpus: int
     ) -> None:
-    '''Produce a fasta file from each genbank provided
+    '''
+    Produce a fasta file from each genbank provided
         Arguments:
             gbks: search string for genbank files
             output: path to the output directory
@@ -54,7 +56,7 @@ def extract_cdses(
             cpus: number of cpus available
         Returns:
             None
-        '''
+    '''
     io.make_folder(os.path.join(output, 'fasta'))
     filenames = glob.glob(gbks)
     args_list = [[filename, output, tag_label, ignore_bad_annotations] for filename in filenames]
@@ -70,7 +72,8 @@ def extract_cdses(
 def get_cds_from_genbank(
         filename: str, output: str, tag_label: str, ignore_bad_annotations: bool
     ) -> None:
-    '''Extract CDS translations from genbank files into ./fasta/*.fasta
+    '''
+    Extract CDS translations from genbank files into ./fasta/*.fasta
         Arguments:
             filename: the name of the genbank file being read
             output: path to the output folder
@@ -98,7 +101,7 @@ def get_cds_from_genbank(
                 except TypeError:
                     if feature.qualifiers.get(tag_label) is None:
                         logging.warning(
-                            'Missing %s in %s.', tag_label, record.id #feature id?
+                            'Missing %s in %s.', tag_label, record.id
                             )
                         if not ignore_bad_annotations:
                             raise BadAnnotationError(
@@ -123,7 +126,8 @@ def extract_data(
         checkpoint: Checkpoint, output: str, gbks: str, tag_label: str,
         ignore_bad_annotations: bool, ignore_bad_records: bool, cpus: int
     ) -> None:
-    '''Called from main to build fasta and diamond databases from the provided genbankfiles
+    '''
+    Called from main to build fasta and diamond databases from the provided genbankfiles
         Arguments:
             checkpoint: Checkpoint to begin the analysis
             output: path to the output folder
@@ -131,7 +135,8 @@ def extract_data(
             tag_label: the string defining the tag label (e.g. 'locus_tag')
             ignore_bad_annotations:
                 bool flagging whether to ignore features with missing annotations
-        Returns: None'''
+        Returns: None
+    '''
     if checkpoint < Checkpoint.FASTA_EXTRACTED:
         logging.info("Checkpoint: Extracting CDSs...")
         extract_cdses(gbks, output, tag_label, ignore_bad_annotations, ignore_bad_records, cpus)

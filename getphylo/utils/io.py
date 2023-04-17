@@ -54,7 +54,8 @@ def count_files(directory: str) -> int:
     return number_of_files
 
 def change_extension(filename: str, new_extension: str) -> str:
-    '''Takes a file name and changes the extension to the string provided.
+    '''
+    Takes a file name and changes the extension to the string provided.
         Arguments:
             filename: the name of the file with the old extension
             new_extension: the new extension to replace with
@@ -65,20 +66,24 @@ def change_extension(filename: str, new_extension: str) -> str:
     return new_filename
 
 def get_records_from_genbank(filename: str) -> List:
-    '''Use BioPython to get genbank records from a given file.
+    '''
+    Use BioPython to get genbank records from a given file.
         Arguments:
             filename: the filename of the genbank file
         Returns:
-            records: a list genbank records'''
+            records: a list genbank records
+    '''
     records = SeqIO.parse(filename, "genbank")
     return records
 
 def make_folder(name: str) -> None:
-    '''Attempts to make a folder with the given name but raises and exception if it already exists.
+    '''
+    Attempts to make a folder with the given name but raises and exception if it already exists.
         Arguments:
             name: the name of the folder being created
         Returns:
-            None'''
+            None
+    '''
     if os.path.exists(name):
         raise FolderExistsError(
             f'ALERT: The directory {name} already exists.'
@@ -87,7 +92,8 @@ def make_folder(name: str) -> None:
         os.mkdir(name)
 
 def read_file(filename: str) -> List[str]:
-    '''Return a files contents as a list of lines
+    '''
+    Return a files contents as a list of lines
         Arguments:
             filename: The file to be read
         Returns:
@@ -128,10 +134,17 @@ def run_in_command_line(command: str):
     return process
 
 def run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) -> List:
-    #if only 1 cpu or none defined run as normal
+    '''
+    Run a given function on avaliable cpus. If only 1 cpu is available, run as normal.
+        Arguments:
+            function: the function to be called
+            args_list: Iterable of lists containing the arguments for each call of the function
+            cpus: the number of cpus available
+        Returns:
+            return_value: a list of return values for each call of the function
+    '''
     if cpus <= 1:
         return_value = [function(*args) for args in args_list]
-    #otherwise run in parrallel
     else:
         for item in args_list:
             try:
