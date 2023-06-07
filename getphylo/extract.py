@@ -113,9 +113,11 @@ def get_cds_from_genbank(
             if warning_flag == True:
                 logging.warning('%s has missing translations!', record.id)
     except ValueError as error:
-        raise BadRecordError(error)
+        if not ignore_bad_records:
+            raise BadRecordError(error)
     if not lines:
-        raise BadAnnotationError(f'No CDS Features in {filename}')
+        if not ignore_bad_annotations:
+            raise BadAnnotationError(f'No CDS Features in {filename}')
     filename = io.change_extension(os.path.basename(filename), "fasta")
     filename = os.path.join(output, 'fasta', filename)
     io.write_to_file(filename, lines)
