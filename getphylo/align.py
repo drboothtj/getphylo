@@ -130,13 +130,14 @@ def format_partition_data(partition_data: List) -> List:
         Returns:
             partition_lines: list of lines in the partition format
     '''
+    model = 'WAG'
     partition_lines = []
     partition_start = 1
     for partition in partition_data:
         locus, length = partition[0], partition[1]
         locus = os.path.splitext(os.path.basename(locus))[0]
         partition_end = partition_start + length - 1
-        partition_lines.append('%s = %s-%s' % (locus, partition_start, partition_end))
+        partition_lines.append('%s, %s = %s-%s' % (model, locus, partition_start, partition_end))
         partition_start += length
     return partition_lines
 
