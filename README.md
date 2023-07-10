@@ -2,7 +2,7 @@
 a python package for automated generation of heuristic phylogenetic trees from genbank files
 
 ## Description
-`getphylo` was designed to automatically build multi-locus phylogenetic trees from GenBank files. The workflow consists of the following steps: i) extract protein coding sequences; ii) screen for suilable markers; iii) align individual marker sequences and create a combined alignment; and iv) produce a tree from the combined alignment. Please see the 'parameters' section below for a full list of parameters.
+getphylo was designed to automatically build multi-locus phylogenetic trees from GenBank files. The workflow consists of the following steps: i) extract protein coding sequences; ii) screen for suilable markers; iii) align individual marker sequences and create a combined alignment; and iv) produce a tree from the combined alignment. Please see the 'parameters' section below for a full list of parameters.
 
 ## Installation
 
@@ -14,14 +14,13 @@ a python package for automated generation of heuristic phylogenetic trees from g
 ##### Installation with PyPI
 The easiest way to install `getphylo` is using the command: 
 
-`pip install getphylo` 
+`pip install getphylo`
 
-This will fetch and install the latest version form: https://pypi.org/project/getphylo/
+This will fetch and install the latest version from: https://pypi.org/project/getphylo/
 
-#### Install getphylo's dependencies
 #### 2. Installation of dependences
 
-**Important:** Getphylo requires DIAMOND, MUSCLE and FastTree2 to be installed to work correctly. These must be installed manually. BioPython should be installed automatically. Below are instructions to install each dependency:
+**Important:** getphylo requires DIAMOND, MUSCLE and FastTree2 to be installed to work correctly. These must be installed manually. BioPython should be installed automatically. Below are instructions to install each dependency:
 
 ##### 2. Install DIAMOND
 
@@ -52,20 +51,14 @@ You can install FastTree2 with the following command:
 Further instructions for installing FastTree2 can be found, here: http://www.microbesonline.org/fasttree/.
 
 
+
 ### B. Conda Installation
 
+##### 1. Create a new conda environment from the getphylo.yml file
+WIP
 
-
-
-
-
-
-
-
-
-
-#### Installation with Conda
-#####
+##### 2. Install getphylo
+See part A.1 for instructions.
 
 
 ## Usage
@@ -79,10 +72,73 @@ There may be occasions where you need to change the default settings. A full lis
 
 `getphylo -h`
 
-Below is a breif describtion of each flag.
+Below is a breif describtion of each parameter.
 
-### Flags
-WIP
+### Parameters
+The following is a complete list of parameters that can be used when running getphylo:
+
+
+#### Help and Logging
+`-h, --help            show this help message and exit`
+`-l {CRITICAL,FATAL,ERROR,WARN,WARNING,INFO,DEBUG,NOTSET}, --logging {CRITICAL,FATAL,ERROR,WARN,WARNING,INFO,DEBUG,NOTSET}
+                        set the logging level (default: ERROR)`
+
+EXPLAIN
+
+#### Input and Output 
+  ´-g GBKS, --gbks GBKS  string indicating the genbank files to use in the phylogeny (default: *.gbk)´
+  ´-o OUTPUT, --output OUTPUT
+                        a string designating the name of the folder to output the results(default: output)´
+  ´-s SEED, --seed SEED  path to a genbankfile with for the target organism (default: None)´
+  
+  ´-r RANDOM_SEED_NUMBER, --random-seed-number RANDOM_SEED_NUMBER
+                        interger to be used as a seed for randomising loci selection, random if left as None(default: None)´
+  ´-t TAG, --tag TAG     string indicating the GenBank annotations to extract (default: locus_tag)´
+
+#### Loci Thresholding Parameters
+  ´-f FIND, --find FIND  integer indicating the number of loci to find in the seed genome (default: -1)´
+  ´-max MAXLENGTH, --maxlength MAXLENGTH
+                        interger indicating the minimum length of loci to be included in the analysis (default: 2000)´
+  ´-min MINLENGTH, --minlength MINLENGTH
+                        interger indicating the minimum length of loci to be included in the analysis (default: 200)´
+  ´-minl MINLOCI, --minloci MINLOCI
+                        minimum number of loci required to continue to alignment and tree building steps (default: 1)´
+  ´-maxl MAXLOCI, --maxloci MAXLOCI
+                        maximum number of loci required to continue to alignment and tree building steps (default: 1000)´
+  ´-p PRESENCE, --presence PRESENCE
+                        interger indicating the percentage of genomes each loci must be present in (default: 100)´
+
+#### Tree Building
+`-b BUILD_ALL, --build-all BUILD_ALL
+                        build phylogenetic trees for all loci, not just concatenated alignment (default: 0)`
+
+#### Handeling Poorly Formatted Data
+`-ia IGNORE_BAD_ANNOTATIONS, --ignore-bad-annotations IGNORE_BAD_ANNOTATIONS
+                        ignore missing annotations - NOT RECCOMMENDED (default: False)`
+`-ir IGNORE_BAD_RECORDS, --ignore-bad-records IGNORE_BAD_RECORDS
+                        ignore poorly formated records - NOT RECCOMMENDED (default: False)`
+
+#### Checkpointing
+  `-cp {START,FASTA_EXTRACTED,DIAMOND_BUILT,SINGLETONS_IDENTIFIED,SINGLETONS_SEARCHED,SINGLETONS_THRESHOLDED,SINGLETONS_EXTRACTED,SINGLETONS_ALIGNED,ALIGNMENTS_COMBINED,TREES_BUILT,DONE}, --checkpoint {START,FASTA_EXTRACTED,DIAMOND_BUILT,SINGLETONS_IDENTIFIED,SINGLETONS_SEARCHED,SINGLETONS_THRESHOLDED,SINGLETONS_EXTRACTED,SINGLETONS_ALIGNED,ALIGNMENTS_COMBINED,TREES_BUILT,DONE}
+                        string indicating the checkpoint to start from START = default
+                         FASTA_EXTRACTED = Skip extracting fasta sequences from genbank files
+                         DIAMOND_BUILT = Skip building diamond databases
+                         SINGLETONS_IDENTIFIED = Skip identifying singletons from the seed genome
+                         SINGLETONS_SEARCHED = Skip searching singletons against other genomes
+                         SINGLETONS_THRESHOLDED = Skip thresholding of singletons
+                         SINGLETONS_EXTRACTED = Skip extract fasta sequences for alignments
+                         SINGLETONS_ALIGNED = Skip individual protein alignments
+                         ALIGNMENTS_COMBINED = Skip combining alignments
+                         TREES_BUILT = Skip building trees
+                         DONE = Done
+                         (default: START)`
+
+#### Performance                       
+`-c CPUS, --cpus CPUS  The number of cpus to use for paralleslisation (default: 1)`
+  
+  
+
+
 
 ## Examples
 See the ´example_data´ folder in this directory for three example trees produced by `getphylo`.
