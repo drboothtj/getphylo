@@ -74,26 +74,49 @@ There may be occasions where you need to change the default settings. A full lis
 
 Below is a breif describtion of each parameter.
 
-### Parameters
+[[MORE EXAMPLES OF BASIC USAGE]]
+
+## Parameters
 The following is a complete list of parameters that can be used when running getphylo:
 
 
-#### Help and Logging
-`-h, --help            show this help message and exit`
+### Help and Logging
+`-h, --help show this help message and exit`
+
+Provides a list of parameters and other information.
+
 `-l {CRITICAL,FATAL,ERROR,WARN,WARNING,INFO,DEBUG,NOTSET}, --logging {CRITICAL,FATAL,ERROR,WARN,WARNING,INFO,DEBUG,NOTSET}
                         set the logging level (default: ERROR)`
 
-EXPLAIN
+Set the logging level. Most users will only ever need the default setting (ERROR) or to set `-l INFO` for basic logging. `DEBUG` can also be used, but this is extremely verbose and is intended for development 
+purposes only.
 
-#### Input and Output 
-  ´-g GBKS, --gbks GBKS  string indicating the genbank files to use in the phylogeny (default: *.gbk)´
-  ´-o OUTPUT, --output OUTPUT
-                        a string designating the name of the folder to output the results(default: output)´
-  ´-s SEED, --seed SEED  path to a genbankfile with for the target organism (default: None)´
+### Input and Output 
+  `-g GBKS, --gbks GBKS  string indicating the genbank files to use in the phylogeny (default: *.gbk)`
+
+This will point getphylo to the input files. Ensure that the input is formatted as a string, e.g.: `'-g ./input/*.gb'`. 
   
-  ´-r RANDOM_SEED_NUMBER, --random-seed-number RANDOM_SEED_NUMBER
-                        interger to be used as a seed for randomising loci selection, random if left as None(default: None)´
-  ´-t TAG, --tag TAG     string indicating the GenBank annotations to extract (default: locus_tag)´
+  `-o OUTPUT, --output OUTPUT
+                        a string designating the name of the folder to output the results(default: output)`
+
+This points getphylo to a specified output folder. By default results will be stored at `./output`. getphylo will make a new directory if necissary.
+
+  `-s SEED, --seed SEED  path to a genbankfile with for the target organism (default: None)`
+
+This sets the 'seed genome.' By default getphyl choses the first genome alphabetically in the input file list. The seed genome will only impact the analysis in two specific scenarios. Firstly, if you are 
+analysing genomes of dramatically different sizes. In this case it is optimal to choose the smallest genome as this will make the run slightly faster as the starting list of possible marker genes will be lower. 
+Secondly, if you have the `--presence` parameter is set lower than 100. In this case, the seed genome may effect the resulting tree. In this case, it is advisable to use the outgroup as the seed. However, in the case it
+is valuable to run the analysis more than once using different seeds to ensure there is no effect. See the section on the `--presence` parameter below for more details.
+  
+  `-r RANDOM_SEED_NUMBER, --random-seed-number RANDOM_SEED_NUMBER
+                        interger to be used as a seed for randomising loci selection, random if left as None(default: None)`
+                        
+If a limit is set on the number of loci wiht `--maxloci`, getphylo will randomly select marker genes. The random seed paramater can be used to choose a custom seed for this shuffling event.
+                        
+  `-t TAG, --tag TAG     string indicating the GenBank annotations to extract (default: locus_tag)`
+
+This defines the genbank annotations for the protein sequences that getphylo will extract. getphylo searches for all CDS features with the provided tag. If your data does not contain `locus_tag` annotations, another 
+common tag to use is `protein_id`. Ensure all data is uniformly formatted, when using getphylo!
 
 #### Loci Thresholding Parameters
   ´-f FIND, --find FIND  integer indicating the number of loci to find in the seed genome (default: -1)´
@@ -140,7 +163,7 @@ EXPLAIN
 
 
 
-## Examples
+## Example Analysis and Datasets
 See the ´example_data´ folder in this directory for three example trees produced by `getphylo`.
 
 1. A phylogeny of bacterial genomes
