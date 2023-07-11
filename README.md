@@ -119,21 +119,44 @@ This defines the genbank annotations for the protein sequences that getphylo wil
 common tag to use is `protein_id`. Ensure all data is uniformly formatted, when using getphylo!
 
 #### Loci Thresholding Parameters
-  ´-f FIND, --find FIND  integer indicating the number of loci to find in the seed genome (default: -1)´
-  ´-max MAXLENGTH, --maxlength MAXLENGTH
-                        interger indicating the minimum length of loci to be included in the analysis (default: 2000)´
-  ´-min MINLENGTH, --minlength MINLENGTH
-                        interger indicating the minimum length of loci to be included in the analysis (default: 200)´
-  ´-minl MINLOCI, --minloci MINLOCI
-                        minimum number of loci required to continue to alignment and tree building steps (default: 1)´
-  ´-maxl MAXLOCI, --maxloci MAXLOCI
-                        maximum number of loci required to continue to alignment and tree building steps (default: 1000)´
-  ´-p PRESENCE, --presence PRESENCE
-                        interger indicating the percentage of genomes each loci must be present in (default: 100)´
+  `-f FIND, --find FIND  integer indicating the number of loci to find in the seed genome (default: -1)`
+  
+For large genomes, runtime can be reduced by limiting the number of loci to search for in the seed genome. This is **NOT RECCOMMENDED**.
+
+  `-max MAXLENGTH, --maxlength MAXLENGTH
+                        interger indicating the minimum length of loci to be included in the analysis (default: 2000)`
+
+Max length can be used to limit the maximum length of marker genes. This filter is limited to exclude longer genes with multiple domains (e.g. PKSs) that may confuse the analaysis. This can be raised to 
+include more loci.
+
+  `-min MINLENGTH, --minlength MINLENGTH
+                        interger indicating the minimum length of loci to be included in the analysis (default: 200)`
+
+Max length can be used to limit the maximum length of marker genes. This filter is limited to exclude short genes (e.g. pseudogenes) with multiple domains that may confuse the analaysis. This can be lowered to 
+include more loci.
+
+  `-minl MINLOCI, --minloci MINLOCI
+                        minimum number of loci required to continue to alignment and tree building steps (default: 1)`
+
+The minimum number of marker genes required for the workflow to continue. This can be used to prematurely end runs where limited number of marker genes are avaliable. 
+
+  `-maxl MAXLOCI, --maxloci MAXLOCI
+                        maximum number of loci required to continue to alignment and tree building steps (default: 1000)`
+
+The minimum number of marker genes required for the workflow to continue. You may wish to limit the total number to improve the performance of the analysis. For example, when analysing closely related taxa it 
+is possible to find 1000s of hits; this will increase runtime significantly and may cause memory issues on some machines.
+                    
+  `-p PRESENCE, --presence PRESENCE
+                        interger indicating the percentage of genomes each loci must be present in (default: 100)`
+
+The percentage of genomes the marker needs to be present in. **Use with caution!** This paramater is very useful when analysing distantly related strains as there may be few markers avalible in all genomes.
+Lowering the percentage has two potential drawbacks. Firstly, it will introduce missing data into the alignment which may decrease the quality of the resulting tree. Alignments should be checked by the user to assess quality. This will also make the list of markers dependent on the seed genome. This is not necisarrily a problem, but it is advisable to check the output from multiple seeds in this instance. 
 
 #### Tree Building
 `-b BUILD_ALL, --build-all BUILD_ALL
                         build phylogenetic trees for all loci, not just concatenated alignment (default: 0)`
+
+This instructs getphylo to run fasttree on all alignments. By default a tree is built from the combined alignment only. This parameter will increase the runtime significantly.
 
 #### Handeling Poorly Formatted Data
 `-ia IGNORE_BAD_ANNOTATIONS, --ignore-bad-annotations IGNORE_BAD_ANNOTATIONS
