@@ -174,10 +174,10 @@ def make_combined_alignment(gbks: List, output: str) -> None:
                 if len(locus_alignment) == locus_length:
                     sequence_data.append(locus_alignment)
                 else:
-                    sequence_data.append('X' * locus_length)
+                    sequence_data.append('?' * locus_length)
             sequence_string = ''.join(sequence_data)
             assert sequence_data
-            if sequence_string.count('X') == len(sequence_string):
+            if sequence_string.count('?') == len(sequence_string):
                 logging.error('[ALERT]: %s has no sequence data and has been removed.', taxon_name)
             else:
                 combined_alignment.append(f'>{taxon_name}')
