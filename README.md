@@ -21,7 +21,7 @@ This package has been designed to be as easy to run as possible. Simply navigate
 
 `getphylo`
 
-This will run the software on default settings and output all alignments and trees.
+This will run the software on default settings.
 
 A full list of options and flags can be viewed with:
 
