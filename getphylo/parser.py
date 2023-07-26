@@ -26,8 +26,7 @@ def get_parser():
     parser.add_argument(
         '-b',
         '--build-all',
-        default=-False,
-        type=bool,
+        action='store_true',
         help=(
             'build phylogenetic trees for all loci, not just concatenated alignment '
             '(default: %(default)s)'
@@ -85,15 +84,13 @@ def get_parser():
     parser.add_argument(
         '-ia',
         '--ignore-bad-annotations',
-        default=False,
-        type=bool,
+        action='store_true',
         help='ignore missing annotations - NOT RECCOMMENDED (default: %(default)s)'
         )
     parser.add_argument(
         '-ir',
         '--ignore-bad-records',
-        default=False,
-        type=bool,
+        action='store_true',
         help='ignore poorly formated records - NOT RECCOMMENDED (default: %(default)s)'
         )
     parser.add_argument(
