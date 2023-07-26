@@ -63,7 +63,7 @@ def extract_cdses(
         io.run_in_parallel(get_cds_from_genbank, args_list, cpus)
     except BadAnnotationError:
         raise BadAnnotationError(
-            'Some files were not parsed correctly, check the logging file for more information.'
+           'Some files were not parsed correctly, check the logging file for more information.'
             'If you want to skip these files,'
             'rerun the analysis with the --ignore-bad-records flag.'
             )
