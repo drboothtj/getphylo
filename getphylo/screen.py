@@ -2,13 +2,28 @@
 Screen fasta files and blast databases for singletons and extract sequences
 
 Functions:
-get_target_proteins(checkpoint: Checkpoint, output: str, seed: str, thresholds: List) -> None
+    get_unique_hits_from_tsv(file: str) -> List
+    get_seed_paths(seed: str, output: str) -> Tuple[str, str, str]
+    get_singletons_from_seed(seed, output, thresholds, random_seed_number)
+    get_loci_from_file(file: str) -> List
+    search_candidates(output: str, cpus: int) -> None
+    score_locus(locus: str, files: List) -> Tuple[int, bool, List]
+    process_final_loci(final_loci: List, minimum_loci: int, output: str) -> None
+    do_thresholding(
+        target_loci: List, presence_threshold: float, maximum_loci: int, output: str
+    ) -> List
+    threshold_loci(target_loci: List, thresholds: List, output: str) -> List
+    write_pa_table(pa_table: List, loci: List, output: str) -> None
+    get_target_proteins(
+        checkpoint: Checkpoint, output: str, seed: str, thresholds: List,
+        cpus: int, random_seed_number: int
+    ) -> None
 '''
 import os
 import glob
 import logging
 from collections import Counter
-import random 
+import random
 from typing import List, Tuple
 
 from getphylo.ext import diamond

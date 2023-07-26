@@ -2,17 +2,17 @@
 Build fasta and diamond databases from genbank files
 
 Functions:
-build_diamond_databases(output:str) -> None:
+build_diamond_databases(output:str) -> None
 extract_cdses(
     gbks: str, output: str, tag_label: str, ignore_bad_annotations: bool, ignore_bad_records: bool
-    ) -> None:
+    ) -> None
 get_cds_from_genbank(
-    filename: str, output: str, tag_label: str, ignore_bad_annotations: bool
-    ) -> None:
+    filename: str, output: str, tag_label: str, ignore_bad_annotations: bool,
+    ignore_bad_records: bool) -> None
 extract_data(
     checkpoint: Checkpoint, output: str, gbks: str, tag_label: str,
     ignore_bad_annotations: bool, ignore_bad_records: bool
-    ) -> None:
+    ) -> None
 '''
 import logging
 import os
@@ -40,7 +40,7 @@ def build_diamond_databases(output: str, cpus: int) -> None:
         dmnd_database = os.path.join(dmnd_folder, dmnd_database)
         args = [filename, dmnd_database]
         args_list.append(args)
-    io.run_in_parallel(diamond.make_diamond_database, args_list, cpus) 
+    io.run_in_parallel(diamond.make_diamond_database, args_list, cpus)
 
 def extract_cdses(
         gbks: str, output: str, tag_label: str,
@@ -58,7 +58,9 @@ def extract_cdses(
     '''
     io.make_folder(os.path.join(output, 'fasta'))
     filenames = glob.glob(gbks)
-    args_list = [[filename, output, tag_label, ignore_bad_annotations] for filename in filenames]
+    args_list = [[
+        filename, output, tag_label, ignore_bad_annotations, ignore_bad_records
+        ] for filename in filenames]
     try:
         io.run_in_parallel(get_cds_from_genbank, args_list, cpus)
     except BadAnnotationError:
@@ -69,8 +71,8 @@ def extract_cdses(
             )
 
 def get_cds_from_genbank(
-        filename: str, output: str, tag_label: str, ignore_bad_annotations: bool
-    ) -> None:
+        filename: str, output: str, tag_label: str, ignore_bad_annotations: bool,
+    ignore_bad_records: bool) -> None:
     '''
     Extract CDS translations from genbank files into ./fasta/*.fasta
         Arguments:
@@ -110,7 +112,7 @@ def get_cds_from_genbank(
                             )
                     else:
                         warning_flag = True
-            if warning_flag == True:
+            if warning_flag is True:
                 logging.warning('%s has missing translations!', record.id)
     except ValueError as error:
         if not ignore_bad_records:

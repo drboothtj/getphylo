@@ -88,8 +88,7 @@ def make_folder(name: str) -> None:
         raise FolderExistsError(
             f'ALERT: The directory {name} already exists.'
             )
-    else:
-        os.mkdir(name)
+    os.mkdir(name)
 
 def read_file(filename: str) -> List[str]:
     '''
@@ -99,8 +98,8 @@ def read_file(filename: str) -> List[str]:
         Returns:
             _file.readlines(): list of strings for each line of the file
     '''
-    _file = open(filename, "r")
-    return _file.readlines()
+    with open(filename) as _file:
+        return _file.readlines()
 
 def read_tsv(filename: str) -> List[str]:
     '''
@@ -127,11 +126,11 @@ def run_in_command_line(command: str):
     '''
     command = command.split(" ")
     logging.debug(command)
-    process = subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
-    process.communicate()
-    if process.returncode != 0:
-        raise RuntimeError('Failed to run: ' + str(command))
-    return process
+    with subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT) as process:
+        process.communicate()
+        if process.returncode != 0:
+            raise RuntimeError('Failed to run: ' + str(command))
+        return process
 
 def run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) -> List:
     '''
@@ -150,10 +149,10 @@ def run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) ->
             try:
                 iter(item)
             except TypeError as error:
-                raise GetphyloError(error)
+                raise GetphyloError from error
         with multiprocessing.Pool(cpus) as pool:
             results = pool.starmap_async(function, args_list)
-            return_value = [result for result in results.get()]
+            return_value = results.get()
     return return_value
 
 def write_to_file(filename: str, write_lines: List[str]) -> None:
@@ -165,7 +164,7 @@ def write_to_file(filename: str, write_lines: List[str]) -> None:
         Returns:
             None
     '''
-    file = open(filename, "a")
-    for line in write_lines:
-        file.write(line + '\n')
-    file.close()
+    with open(filename, "a") as _file:
+        for line in write_lines:
+            _file.write(line + '\n')
+        _file.close()

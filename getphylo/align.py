@@ -124,7 +124,8 @@ def get_locus_alignment(alignment, taxon_name) -> str:
 
 def format_partition_data(partition_data: List) -> List:
     '''
-    Takes the partition data [locus, locus_length] and reformats it as a partition file (e.g. p1 = 1-50, p2 = 51-110)
+    Takes the partition data [locus, locus_length] and reformats it as a partition file 
+    (e.g. p1 = 1-50, p2 = 51-110)
         Arguments:
             partition_data: a list of [locus, locus_length] lists
         Returns:
@@ -156,35 +157,37 @@ def make_combined_alignment(gbks: List, output: str) -> None:
         logging.error(
             'ALERT: aligned_fasta/combined_alignment.fasta already exists. Exiting!'
             )
-        raise FileAlreadyExistsError('%s alread exists.' % combined_alignemnt_path)
-    else:
-        combined_alignment = []
-        partition_data = []
-        taxa = glob.glob(gbks)
-        assert taxa, gbks
-        loci = glob.glob(os.path.join(output, 'aligned_fasta/*.fasta'))
-        for taxon in taxa:
-            taxon_name = os.path.splitext(os.path.basename(taxon))[0]
-            sequence_data = []
-            for locus in loci:
-                alignment = io.read_file(locus)
-                locus_length = get_locus_length(alignment)
+        raise FileAlreadyExistsError('%s alread exists.' % combined_alignment_path)
+    combined_alignment = []
+    partition_data = []
+    taxa = glob.glob(gbks)
+    assert taxa, gbks
+    loci = glob.glob(os.path.join(output, 'aligned_fasta/*.fasta'))
+    first_taxa = True
+    for taxon in taxa:
+        taxon_name = os.path.splitext(os.path.basename(taxon))[0]
+        sequence_data = []
+        for locus in loci:
+            alignment = io.read_file(locus)
+            locus_length = get_locus_length(alignment)
+            if first_taxa is True:
                 partition_data.append([locus, locus_length])
-                locus_alignment = get_locus_alignment(alignment, taxon_name)
-                if len(locus_alignment) == locus_length:
-                    sequence_data.append(locus_alignment)
-                else:
-                    sequence_data.append('?' * locus_length)
-            sequence_string = ''.join(sequence_data)
-            assert sequence_data
-            if sequence_string.count('?') == len(sequence_string):
-                logging.error('[ALERT]: %s has no sequence data and has been removed.', taxon_name)
+            locus_alignment = get_locus_alignment(alignment, taxon_name)
+            if len(locus_alignment) == locus_length:
+                sequence_data.append(locus_alignment)
             else:
-                combined_alignment.append(f'>{taxon_name}')
-                combined_alignment.append(sequence_string)
-        partition_data = format_partition_data(partition_data)  
-        io.write_to_file(combined_alignment_path, combined_alignment)
-        io.write_to_file(partition_path, partition_data)
+                sequence_data.append('?' * locus_length)
+        sequence_string = ''.join(sequence_data)
+        assert sequence_data
+        if sequence_string.count('?') == len(sequence_string):
+            logging.error('[ALERT]: %s has no sequence data and has been removed.', taxon_name)
+        else:
+            combined_alignment.append(f'>{taxon_name}')
+            combined_alignment.append(sequence_string)
+        first_taxa = False
+    partition_data = format_partition_data(partition_data)
+    io.write_to_file(combined_alignment_path, combined_alignment)
+    io.write_to_file(partition_path, partition_data)
 
 def make_alignments(checkpoint: Checkpoint, output: str, loci: List, gbks: List, cpus: int) -> None:
     '''
