@@ -36,3 +36,10 @@ See the ´example_data´ folder in this directory for three example trees produc
 2. A phylogeny of eukaryotic mitochondrial genomes
 3. A phylogeny of a biosynthetic super cluster
 4. A phylogeny of primate genomes
+
+## Citation
+If you use `getphylo`, please cite:
+
+> Booth, T. J., Shaw, S., & Weber, T. (2023). getphylo: rapid and automatic generation of multi-locus phylogenetic trees. BioRxiv, 2023.07.26.550493. 
+
+DOI: https://doi.org/10.1101/2023.07.26.550493
