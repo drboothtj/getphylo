@@ -30,12 +30,12 @@ A full list of options and flags can be viewed with:
 A [full list of parameters](https://github.com/drboothtj/getphylo/wiki/Parameter-List) and [further usage examples](https://github.com/drboothtj/getphylo/wiki/Advanced-Usage-(Case-Studies)) are availiable on the wiki.
 
 ## Example Analysis and Datasets
-See the ´example_data´ folder in this directory for three example trees produced by `getphylo`.
+Example outputs and benchmarking data can be found in the [getphylo benchmarking repository](https://github.com/drboothtj/getphylo_benchmarking). The example data includes:
 
-1. A phylogeny of bacterial genomes
-2. A phylogeny of eukaryotic mitochondrial genomes
-3. A phylogeny of a biosynthetic super cluster
-4. A phylogeny of primate genomes
+1. A phylogeny of bacterial genomes,
+2. A phylogeny of a biosynthetic super cluster,
+3. A phylogeny of primate genomes,
+4. A phylogeny of Eurotiomycete fungi.
 
 ## Citation
 If you use `getphylo`, please cite:
