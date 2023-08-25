@@ -71,8 +71,8 @@ def extract_cdses(
             )
 
 def get_cds_from_genbank(
-        filename: str, output: str, tag_label: str, ignore_bad_annotations: bool,
-    ignore_bad_records: bool) -> None:
+        filename: str, output: str, tag_label: str, ignore_bad_annotations: bool = False,
+    ignore_bad_records: bool = False) -> None:
     '''
     Extract CDS translations from genbank files into ./fasta/*.fasta
         Arguments:
@@ -97,8 +97,13 @@ def get_cds_from_genbank(
                         if locus_tag in seen:
                             raise BadAnnotationError(f'{filename} contains duplicate: {locus_tag}')
                         seen.add(locus_tag)
-                        lines.append(">" + locus_tag.replace(".", "_"))
-                        lines.append(str(feature.qualifiers.get("translation")[0]))
+                        locus_name = ">" + locus_tag.replace(".", "_")
+                        locus_translation = str(feature.qualifiers.get("translation")[0])
+                        if locus_translation is None:
+                            warning_flag = True
+                        else:
+                            lines.append(locus_name)
+                            lines.append(locus_translation)
                 except TypeError:
                     if feature.qualifiers.get(tag_label) is None:
                         logging.warning(
@@ -112,8 +117,8 @@ def get_cds_from_genbank(
                             )
                     else:
                         warning_flag = True
-            if warning_flag is True:
-                logging.warning('%s has missing translations!', record.id)
+                if warning_flag is True:
+                    logging.warning('%s has missing translations!', record.id)
     except ValueError as error:
         if not ignore_bad_records:
             raise BadRecordError(error)
