@@ -123,37 +123,7 @@ def format_partition_data(partition_data: List) -> List:
         partition_start += length
     return partition_lines
 
-def read_fasta(filename: str) -> dict[str, str]:
-    '''
-    Reads a fasta file into a dictionary
-        Arguments:
-            filename: the path to the FASTA file to read
-        Returns:
-            a dictionary mapping sequence ID to sequence
-    '''
-    pairs = {}
-    with open(filename, "r", encoding="utf-8") as fasta:
-        current_seq: list[str] = []
-        current_id: str = ""
-        for line in fasta:
-            line = line.strip()
-            if not line:
-                continue
-            if line[0] == '>':
-                if current_id and current_seq:
-                    pairs[current_id] = "".join(current_seq)
-                current_id = line[1:].replace(" ", "_")
-                current_seq.clear()
-            else:
-                if not current_id:
-                    raise ValueError("Sequence before identifier in fasta file")
-                current_seq.append(line)
-    if current_id and current_seq:
-        pairs[current_id] = "".join(current_seq)
-    if not pairs:
-        raise ValueError("Fasta file contains no sequences")
-    return pairs
-
+#io.read_fasta_to_dict
 
 def make_combined_alignment(gbks: str, output: str) -> None:
     '''
@@ -184,7 +154,7 @@ def make_combined_alignment(gbks: str, output: str) -> None:
         all_taxa.add(taxa_name)
         assert t.endswith("fasta"), "handle more file types later"
         try:
-            content = read_fasta(t)
+            content = io.read_fasta_to_dict(t)
         except ValueError:
             print(t)
             raise
@@ -202,7 +172,7 @@ def make_combined_alignment(gbks: str, output: str) -> None:
     max_seq_length = 0
     for locus in loci:
         # load the file
-        this_alignment = read_fasta(locus)
+        this_alignment = io.read_fasta_to_dict(locus)
         # we only care about the taxa each sequence came from, not the full identifier
         alignments.append({taxa_by_locus_tag[k]: v for k, v in this_alignment.items()})
         assert len(alignments[-1]) == len(this_alignment)  # and no taxa present multiple times in an alignment

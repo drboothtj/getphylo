@@ -21,7 +21,38 @@ import logging
 from typing import Callable, Iterable, List
 from Bio import SeqIO
 
-from getphylo.utils.errors import GetphyloError, FolderExistsError
+from getphylo.utils.errors import GetphyloError, 
+
+def read_fasta_to_dict(filename: str) -> dict[str, str]:
+    '''
+    Reads a fasta file into a dictionary
+        Arguments:
+            filename: the path to the FASTA file to read
+        Returns:
+            a dictionary mapping sequence ID to sequence
+    '''
+    pairs = {}
+    with open(filename, "r", encoding="utf-8") as fasta:
+        current_seq: list[str] = []
+        current_id: str = ""
+        for line in fasta:
+            line = line.strip()
+            if not line:
+                continue
+            if line[0] == '>':
+                if current_id and current_seq:
+                    pairs[current_id] = "".join(current_seq)
+                current_id = line[1:].replace(" ", "_")
+                current_seq.clear()
+            else:
+                if not current_id:
+                    raise ValueError("Sequence before identifier in fasta file")
+                current_seq.append(line)
+    if current_id and current_seq:
+        pairs[current_id] = "".join(current_seq)
+    if not pairs:
+        raise ValueError("Fasta file contains no sequences")
+    return pairs
 
 def get_locus(fasta: List[str], locus: str) -> str:
     '''
