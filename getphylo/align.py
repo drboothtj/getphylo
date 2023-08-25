@@ -5,7 +5,6 @@ Functions:
     get_locus_from_tsv(locus: str, fasta_name: str) -> Tuple[str, str]
     make_fasta_for_alignments(loci_list: List[str], output:str) -> None
     do_alignments(output:str) -> None
-    get_locus_length(alignment: List[str]) -> int
     get_locus_alignment(alignment, taxon_name) -> str
     make_combined_alignment(gbks: List, output: str) -> None
     make_alignments(checkpoint: Checkpoint, output: str, loci: List, gbks: List) -> None
@@ -82,24 +81,6 @@ def do_alignments(output: str, cpus: int) -> None:
         args_list.append([filename, outfile])
     io.run_in_parallel(muscle.run_muscle, args_list, cpus) #add cpu arg
 
-def get_locus_length(alignment: List[str]) -> int:
-    '''
-    Returns the length of the fasta locus by counting sequence lines.
-        Arguments:
-            alignment: a list containing each line of a fasta file
-        Returns:
-            alignment_length: an int reprisenting the alignment length
-    '''
-    alignment_length = 0
-    if not alignment:
-        raise ValueError('An alignment cannot be empty.')
-    for line in alignment[1:]:
-        if '>' not in line:
-            alignment_length += len(line.strip())
-        else:
-            break
-    return alignment_length
-
 def get_locus_alignment(alignment, taxon_name) -> str:
     '''
     Extract an alignment for a loci for a taxa.
@@ -142,11 +123,43 @@ def format_partition_data(partition_data: List) -> List:
         partition_start += length
     return partition_lines
 
-def make_combined_alignment(gbks: List, output: str) -> None:
+def read_fasta(filename: str) -> dict[str, str]:
+    '''
+    Reads a fasta file into a dictionary
+        Arguments:
+            filename: the path to the FASTA file to read
+        Returns:
+            a dictionary mapping sequence ID to sequence
+    '''
+    pairs = {}
+    with open(filename, "r", encoding="utf-8") as fasta:
+        current_seq: list[str] = []
+        current_id: str = ""
+        for line in fasta:
+            line = line.strip()
+            if not line:
+                continue
+            if line[0] == '>':
+                if current_id and current_seq:
+                    pairs[current_id] = "".join(current_seq)
+                current_id = line[1:].replace(" ", "_")
+                current_seq.clear()
+            else:
+                if not current_id:
+                    raise ValueError("Sequence before identifier in fasta file")
+                current_seq.append(line)
+    if current_id and current_seq:
+        pairs[current_id] = "".join(current_seq)
+    if not pairs:
+        raise ValueError("Fasta file contains no sequences")
+    return pairs
+
+
+def make_combined_alignment(gbks: str, output: str) -> None:
     '''
     Create a combined alignment from single locus alignments
         Arguments:
-            gbks: a list of genbank files
+            gbks: a path of genbank files (e.g. 'inputs/*.gbk')
             output: path  to output directory
         Returns:
             None
@@ -157,37 +170,84 @@ def make_combined_alignment(gbks: List, output: str) -> None:
         logging.error(
             'ALERT: aligned_fasta/combined_alignment.fasta already exists. Exiting!'
             )
-        raise FileAlreadyExistsError('%s alread exists.' % combined_alignment_path)
+        raise FileAlreadyExistsError('%s already exists.' % combined_alignment_path)
     combined_alignment = []
     partition_data = []
     taxa = glob.glob(gbks)
     assert taxa, gbks
+
+    # create a system to work out the taxa name from a fasta identifier
+    taxa_by_locus_tag = {}
+    all_taxa = set()
+    for t in taxa:
+        taxa_name = os.path.splitext(os.path.basename(t))[0]
+        all_taxa.add(taxa_name)
+        assert t.endswith("fasta"), "handle more file types later"
+        try:
+            content = read_fasta(t)
+        except ValueError:
+            print(t)
+            raise
+
+        for l in content:
+            l = f"{taxa_name}_{l}"
+            taxa_by_locus_tag[l] = taxa_name
+
+    assert "GCF_008931305.1_ASM893130v1_genomic_NZ_CP042324_1_FQ762_RS02160" in taxa_by_locus_tag
+
+    # every fasta header in aligned fastas is a unique combo of filename, record name, and locus tag
     loci = glob.glob(os.path.join(output, 'aligned_fasta/*.fasta'))
-    first_taxa = True
-    for taxon in taxa:
-        taxon_name = os.path.splitext(os.path.basename(taxon))[0]
-        sequence_data = []
-        for locus in loci:
-            alignment = io.read_file(locus)
-            locus_length = get_locus_length(alignment)
-            if first_taxa is True:
-                partition_data.append([locus, locus_length])
-            locus_alignment = get_locus_alignment(alignment, taxon_name)
-            if len(locus_alignment) == locus_length:
-                sequence_data.append(locus_alignment)
-            else:
-                sequence_data.append('?' * locus_length)
-        sequence_string = ''.join(sequence_data)
-        assert sequence_data
-        if sequence_string.count('?') == len(sequence_string):
-            logging.error('[ALERT]: %s has no sequence data and has been removed.', taxon_name)
-        else:
-            combined_alignment.append(f'>{taxon_name}')
-            combined_alignment.append(sequence_string)
-        first_taxa = False
-    partition_data = format_partition_data(partition_data)
+    # read all the fastas and get the maximum length of any of them
+    alignments: list[dict[str, str]] = []
+    max_seq_length = 0
+    for locus in loci:
+        # load the file
+        this_alignment = read_fasta(locus)
+        # we only care about the taxa each sequence came from, not the full identifier
+        alignments.append({taxa_by_locus_tag[k]: v for k, v in this_alignment.items()})
+        assert len(alignments[-1]) == len(this_alignment)  # and no taxa present multiple times in an alignment
+        # each fasta better have the same length for all sequences
+        seqs = list(this_alignment.values())
+        length = len(seqs[0])  # should be the same for sequence in this alignment
+        assert all(len(s) == length for s in seqs)
+        # if it's longer than any other file's sequence length, update the max
+        if length > max_seq_length:
+            max_seq_length = length
+
+    # find all taxas in any alignments
+    taxas_in_any_alignment = set()
+    for alignment in alignments:
+        taxas_in_any_alignment.update(alignment)
+
+    # for any taxa, if there's no member of it present in any alignment, warn the user
+    missing_taxa = all_taxa - taxas_in_any_alignment
+    for taxon_name in sorted(missing_taxa):
+        logging.error('[ALERT]: %s was not present in any alignment and has been removed.', taxon_name)
+
+    # build a combined fasta of all alignments, padding the end of shorter sequences with '?'
+    # so that they're all the same length
+    for taxon_name in taxas_in_any_alignment:
+        for alignment in alignments:
+            if taxon_name not in alignment:
+                alignment[taxon_name] = len(list(alignment.values())[0]) * "?"
+
+    # every taxa should now be present in every alignment
+    assert all(len(alignment) == len(taxas_in_any_alignment) for alignment in alignments)
+
+    # concatenate the alignments
+    concatenated = {}
+    for taxon_name in taxas_in_any_alignment:
+        line = []
+        for alignment in alignments:
+            line.append(alignment[taxon_name])
+        concatenated[taxon_name] = "".join(line)
+
+    combined_alignment = [f">{taxon_name}\n{seq}" for taxon_name, seq in concatenated.items()]
+
     io.write_to_file(combined_alignment_path, combined_alignment)
-    io.write_to_file(partition_path, partition_data)
+    # TODO
+    # partition_data = format_partition_data(partition_data)
+#    io.write_to_file(partition_path, partition_data)
 
 def make_alignments(checkpoint: Checkpoint, output: str, loci: List, gbks: List, cpus: int) -> None:
     '''
