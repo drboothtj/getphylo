@@ -43,3 +43,8 @@ If you use `getphylo`, please cite:
 > Booth, T. J., Shaw, S., & Weber, T. (2023). getphylo: rapid and automatic generation of multi-locus phylogenetic trees. BioRxiv, 2023.07.26.550493. 
 
 DOI: https://doi.org/10.1101/2023.07.26.550493
+
+## Patch Notes
+### Version  0
+- 0.1.0 - beta version initial release
+- 0.1.1 - added support for MUSCLE5
