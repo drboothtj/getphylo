@@ -18,6 +18,32 @@ from getphylo.utils import io
 from getphylo.utils.checkpoint import Checkpoint
 from getphylo.utils.errors import FileAlreadyExistsError, BadLocusError
 
+def get_taxa_by_locus_tag(taxa_fasta_files):
+    '''
+    creates a dictionary listing the taxa name and all loci in that taxa
+        arguments: 
+            taxa_fasta_files = a list of paths to the fasta file
+        returns:
+            all_taxa = a list of taxa
+            taxa_by_locus_tag = dictionary of taxa and all locus_tags
+
+    '''
+    taxa_by_locus_tag = {}
+    all_taxa = set()
+    for taxa in taxa_fasta_files:
+        taxa_name = os.path.splitext(os.path.basename(taxa))[0]
+        all_taxa.add(taxa_name)
+        assert taxa.endswith("fasta"), "handle more file types later"
+        try:
+            content = io.read_fasta_to_dict(taxa)
+        except ValueError:
+            raise
+        for l in content:
+            l = f"{taxa_name}_{l}"
+            taxa_by_locus_tag[l] = taxa_name
+    return all_taxa, taxa_by_locus_tag
+
+
 def get_locus_from_tsv(locus: str, fasta_name: str) -> Tuple[str, str]:
     '''
     Extracts specific loci for the alignment.
@@ -135,36 +161,27 @@ def make_combined_alignment(gbks: str, output: str) -> None:
             None
     '''
     combined_alignment_path = os.path.join(output, 'aligned_fasta/combined_alignment.fasta')
+    taxa_fasta_path = os.path.join(output, 'fasta')
     partition_path = os.path.join(output, 'partition.txt')
     if os.path.exists(combined_alignment_path):
         logging.error(
             'ALERT: aligned_fasta/combined_alignment.fasta already exists. Exiting!'
             )
         raise FileAlreadyExistsError('%s already exists.' % combined_alignment_path)
-    combined_alignment = []
     partition_data = []
-    taxa = glob.glob(gbks)
-    assert taxa, gbks
+    taxa_files = glob.glob(gbks)
+    assert taxa_files, gbks
+    taxa_fasta_files = [
+        os.path.join(taxa_fasta_path, (os.path.splitext(os.path.basename(taxa_file))[0] + '.fasta')) for taxa_file in taxa_files
+        ]
+    assert len(taxa_files) == len(taxa_fasta_files)
 
-    # create a system to work out the taxa name from a fasta identifier
-    taxa_by_locus_tag = {}
-    all_taxa = set()
-    for t in taxa:
-        taxa_name = os.path.splitext(os.path.basename(t))[0]
-        all_taxa.add(taxa_name)
-        assert t.endswith("fasta"), "handle more file types later"
-        try:
-            content = io.read_fasta_to_dict(t)
-        except ValueError:
-            print(t)
-            raise
+    #Note: We need a dictionary that contains both taxa names and loci names
+    #This work around is okay for now, but we should move this to an earlier step
+    #in a future version of getphylo
 
-        for l in content:
-            l = f"{taxa_name}_{l}"
-            taxa_by_locus_tag[l] = taxa_name
-
-    assert "GCF_008931305.1_ASM893130v1_genomic_NZ_CP042324_1_FQ762_RS02160" in taxa_by_locus_tag
-
+    all_taxa, taxa_by_locus_tag = get_taxa_by_locus_tag(taxa_fasta_files)
+    
     # every fasta header in aligned fastas is a unique combo of filename, record name, and locus tag
     loci = glob.glob(os.path.join(output, 'aligned_fasta/*.fasta'))
     # read all the fastas and get the maximum length of any of them

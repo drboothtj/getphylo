@@ -26,7 +26,7 @@ def make_trees(output: str, build_all: bool, cpus: int) -> None:
             outfile = os.path.join(
                 tree_directory, os.path.basename(io.change_extension(filename, "tree"))
                 )
-            args_list.append(filename, outfile)
+            args_list.append([filename, outfile])
             io.run_in_parallel(fasttree.run_fasttree, args_list, cpus)
     else:
         filename = os.path.join(output, 'aligned_fasta/combined_alignment.fasta')

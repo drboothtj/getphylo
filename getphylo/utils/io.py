@@ -21,7 +21,7 @@ import logging
 from typing import Callable, Iterable, List
 from Bio import SeqIO
 
-from getphylo.utils.errors import GetphyloError, 
+from getphylo.utils.errors import GetphyloError, FolderExistsError
 
 def read_fasta_to_dict(filename: str) -> dict[str, str]:
     '''
