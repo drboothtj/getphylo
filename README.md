@@ -48,3 +48,5 @@ DOI: https://doi.org/10.1101/2023.07.26.550493
 ### Version  0
 - 0.1.0 - beta version initial release
 - 0.1.1 - added support for MUSCLE5
+- 0.1.2 - now raises an error is translations are present but empty
+	- error messages from the extract module are now more informative
