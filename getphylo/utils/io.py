@@ -151,7 +151,11 @@ def run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) ->
                 iter(item)
             except TypeError as error:
                 raise GetphyloError from error
+<<<<<<< HEAD
         try:
+=======
+        try:        
+>>>>>>> 53bfa44f6ae3ac5a10b71ad4e748a45cc03a4ef6
             with multiprocessing.Pool(cpus) as pool:
                 results = pool.starmap_async(function, args_list)
                 return_value = results.get()

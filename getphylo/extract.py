@@ -62,6 +62,10 @@ def extract_cdses(
         filename, output, tag_label, ignore_bad_annotations, ignore_bad_records
         ] for filename in filenames]
     io.run_in_parallel(get_cds_from_genbank, args_list, cpus)
+<<<<<<< HEAD
+=======
+   
+>>>>>>> 53bfa44f6ae3ac5a10b71ad4e748a45cc03a4ef6
 
 def get_cds_from_genbank(
         filename: str, output: str, tag_label: str, ignore_bad_annotations: bool,
@@ -93,9 +97,13 @@ def get_cds_from_genbank(
                         lines.append(">" + locus_tag.replace(".", "_"))
                         translation = str(feature.qualifiers.get("translation")[0])
                         if translation == "":
+<<<<<<< HEAD
                             raise BadAnnotationError(
                                 f'{locus_tag} in {filename} contains an empty translation!'
                                 )
+=======
+                            raise BadAnnotationError(f'{locus_tag} in {filename} contains an empty translation!')
+>>>>>>> 53bfa44f6ae3ac5a10b71ad4e748a45cc03a4ef6
                         else:
                             lines.append(translation)
                 except TypeError:
