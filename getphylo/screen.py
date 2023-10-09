@@ -309,7 +309,7 @@ def get_target_proteins(
     if not candidate_loci:
         try:
             candidate_loci = get_loci_from_file(os.path.join(output, 'tsv/candidate_loci.txt'))
-        except:
+        except Exception:
             raise NoCandidateLociError(
                 'Candidate loci could not be read from candidate_loci.txt.'
                 'If restarting from a checkpoint ensure there is a final_loci.txt '
