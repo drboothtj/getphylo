@@ -1,5 +1,5 @@
 '''
-Read and write files
+Input and output operations for getphylo.
 
 Functions:
     get_locus(file:str, locus:str) -> str
@@ -10,6 +10,7 @@ Functions:
     read_file(filename: str) -> List[str]
     read_tsv(filename: str) -> List[str]
     run_in_command_line(command: str)
+    run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) -> List
     write_to_file(filename: str, write_lines: List[str]) -> None
 '''
 import csv
@@ -150,9 +151,12 @@ def run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) ->
                 iter(item)
             except TypeError as error:
                 raise GetphyloError from error
-        with multiprocessing.Pool(cpus) as pool:
-            results = pool.starmap_async(function, args_list)
-            return_value = results.get()
+        try:        
+            with multiprocessing.Pool(cpus) as pool:
+                results = pool.starmap_async(function, args_list)
+                return_value = results.get()
+        except Exception:
+            raise
     return return_value
 
 def write_to_file(filename: str, write_lines: List[str]) -> None:

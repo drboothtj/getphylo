@@ -61,14 +61,8 @@ def extract_cdses(
     args_list = [[
         filename, output, tag_label, ignore_bad_annotations, ignore_bad_records
         ] for filename in filenames]
-    try:
-        io.run_in_parallel(get_cds_from_genbank, args_list, cpus)
-    except BadAnnotationError:
-        raise BadAnnotationError(
-           'Some files were not parsed correctly, check the logging file for more information.'
-            'If you want to skip these files,'
-            'rerun the analysis with the --ignore-bad-records flag.'
-            )
+    io.run_in_parallel(get_cds_from_genbank, args_list, cpus)
+   
 
 def get_cds_from_genbank(
         filename: str, output: str, tag_label: str, ignore_bad_annotations: bool,
@@ -98,7 +92,11 @@ def get_cds_from_genbank(
                             raise BadAnnotationError(f'{filename} contains duplicate: {locus_tag}')
                         seen.add(locus_tag)
                         lines.append(">" + locus_tag.replace(".", "_"))
-                        lines.append(str(feature.qualifiers.get("translation")[0]))
+                        translation = str(feature.qualifiers.get("translation")[0])
+                        if translation == "":
+                            raise BadAnnotationError(f'{locus_tag} in {filename} contains an empty translation!')
+                        else:
+                            lines.append(translation)
                 except TypeError:
                     if feature.qualifiers.get(tag_label) is None:
                         logging.warning(
