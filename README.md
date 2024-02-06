@@ -51,6 +51,8 @@ DOI: https://doi.org/10.1101/2023.07.26.550493
 - 0.1.1 
 	- added support for MUSCLE5
 - 0.1.2 
-	- now raises an error is translations are present but empty
+	- now raises an error if translations are present but empty
 	- error messages from the extract module are now more informative
-	- fixed a fatal issue with --build-all 
+	- fixed a fatal issue with --build-all
+- 0.2.0
+	- now supports iqtree using the --tree parameter

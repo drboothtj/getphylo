@@ -24,7 +24,7 @@ def initialize_logging() -> None:
         level=logging_level,
         format='[%(asctime)s] %(levelname)-10s: %(message)s',
         datefmt='%H:%M:%S')
-    logging.info("Running getphylo version 0.1.2.")
+    logging.info("Running getphylo version 0.2.0.")
 
 def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
     '''Set a seed for a new analysis and raise an error if continuing an old analysis.
@@ -107,6 +107,6 @@ def main():
     ### trees.py
     if checkpoint < Checkpoint.TREES_BUILT:
         build_all = args.build_all
-        trees.make_trees(output, build_all, args.cpus)
+        trees.make_trees(output, build_all, args.method, args.cpus)
     logging.info("CHECKPOINT: DONE")
     logging.info("Analysis complete. Thank you for using getphylo!")

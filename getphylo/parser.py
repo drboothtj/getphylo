@@ -101,6 +101,17 @@ def get_parser():
         help='set the logging level (default: %(default)s)'
     )
     parser.add_argument(
+        '-m',
+        '--method',
+        default='fasttree',
+        choices=['fasttree', 'iqtree'],
+        help=(
+            'choose the phylogenetic method '
+            '- NOTE: Using iqtree will test individual gene modeles but will exponentially increase the run time '
+            '(default: %(default)s)'
+        )
+    )
+    parser.add_argument(
         '-max',
         '--maxlength',
         default=2000,
