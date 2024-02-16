@@ -23,23 +23,33 @@ def get_parser():
         epilog="Written by Dr. Thom Booth, 2022.",
         formatter_class=RawTextHelpFormatter
         )
-    parser.add_argument(
-        '-b',
-        '--build-all',
-        action='store_true',
+    return parser
+
+def get_config_parser(arg_parser):
+    '''
+    xxx
+    '''
+    config_parser = arg_parser.add_argument_group(
+            'basic configuration', 'basic configuration of getphylo'
+            )
+    config_parser.add_argument(
+        '-c',
+        '--cpus',
+        default=1,
+        type=int,
         help=(
-            'build phylogenetic trees for all loci, not just concatenated alignment '
+            'The number of cpus to use for paralleslisation\n'
             '(default: %(default)s)'
         )
         )
-    parser.add_argument(
+    config_parser.add_argument(
         '-cp',
         '--checkpoint',
         default='START',
         type=str,
         choices=[cp.name for cp in Checkpoint],
         help=(
-            'string indicating the checkpoint to start from '
+            'string indicating the checkpoint to start from:\n'
             'START = default\n '
             'FASTA_EXTRACTED = Skip extracting fasta sequences from genbank files\n '
             'DIAMOND_BUILT = Skip building diamond databases\n '
@@ -54,151 +64,242 @@ def get_parser():
             '(default: %(default)s)'
         )
         )
-    parser.add_argument(
-        '-c',
-        '--cpus',
-        default=1,
-        type=int,
-        help=(
-            'The number of cpus to use for paralleslisation '
-            '(default: %(default)s)'
-        )
-        )
-    parser.add_argument(
-        '-f',
-        '--find',
-        default=-1,
-        type=int,
-        help=(
-            'integer indicating the number of loci to find in the seed genome '
-            '(default: %(default)s)'
-        )
-        )
-    parser.add_argument(
-        '-g',
-        '--gbks',
-        default="*.gbk",
-        type=str,
-        help='string indicating the genbank files to use in the phylogeny (default: %(default)s)'
-        )
-    parser.add_argument(
-        '-ia',
-        '--ignore-bad-annotations',
-        action='store_true',
-        help='ignore missing annotations - NOT RECCOMMENDED (default: %(default)s)'
-        )
-    parser.add_argument(
-        '-ir',
-        '--ignore-bad-records',
-        action='store_true',
-        help='ignore poorly formated records - NOT RECCOMMENDED (default: %(default)s)'
-        )
-    parser.add_argument(
+    config_parser.add_argument(
         '-l',
         '--logging',
         default='ERROR',
-        choices=list(logging._nameToLevel.keys()),
-        help='set the logging level (default: %(default)s)'
+        choices=[logging.getLevelName(level) for level in [logging.DEBUG, logging.INFO, logging.WARNING]],
+        help='set the logging level\n'
+        '(default: %(default)s)'
     )
-    parser.add_argument(
+    return arg_parser
+    
+def get_phylo_parser(arg_parser):
+    phylo_parser = arg_parser.add_argument_group(
+        'phylogenetics', 'parameters for building phylogentic trees'
+        )
+    phylo_parser.add_argument(
+    '-b',
+    '--build-all',
+    action='store_true',
+    help=(
+        'build phylogenetic trees for all loci, not just concatenated alignment\n'
+        'NOTE: not recommended to use in combination with iqtree\n'
+        '(default: %(default)s)'
+    )
+    )
+    phylo_parser.add_argument(
         '-m',
         '--method',
         default='fasttree',
         choices=['fasttree', 'iqtree'],
         help=(
-            'choose the phylogenetic method '
-            '- NOTE: Using iqtree will test individual gene modeles but will exponentially increase the run time '
+            'choose the phylogenetic method\n'
+            'NOTE: Using iqtree will test individual gene models\n but will exponentially increase the run time\n'
+            'NOTE: Not recommended to use in combination with --build-all\n'
             '(default: %(default)s)'
         )
     )
-    parser.add_argument(
+    return arg_parser
+
+def get_records_parser(arg_parser):
+    '''
+    Create an argument group for ignoring malformed record and annotations.
+        Arguments:
+            arg_parser: the basic argument parser
+        Returns:
+            arg_parser: the argument parser with arguments added
+    '''
+    record_parser = arg_parser.add_argument_group(
+            'records and annotations - NOT RECOMMENDED', 
+            'deal with malformed records and annotations \n' +
+            'its is NOT RECOMMENDED to use these options unless you are confident with their usage'
+            )
+    record_parser.add_argument(
+        '-ia',
+        '--ignore-bad-annotations',
+        action='store_true',
+        help='ignore missing annotations - NOT RECOMMENDED\n (default: %(default)s)'
+        )
+    record_parser.add_argument(
+        '-ir',
+        '--ignore-bad-records',
+        action='store_true',
+        help='ignore poorly formated records - NOT RECOMMENDED\n (default: %(default)s)'
+        )
+    return arg_parser
+
+def get_search_parser(arg_parser):
+    '''
+    Create an argument group for changing search parameters
+        Arguments:
+            arg_parser: the basic argument parser
+        Returns:
+            arg_parser: the argument parser with arguments added
+    '''
+    search_parser = arg_parser.add_argument_group(
+            'search filtering', 
+            'alter the parameters of the orthologue search'
+            )    
+    search_parser.add_argument(
+        '-f',
+        '--find',
+        default=-1,
+        type=int,
+        help=(
+            'integer indicating the number of loci to find in the seed genome\n'
+            '(default: %(default)s)'
+        )
+        )
+    search_parser.add_argument(
         '-max',
         '--maxlength',
         default=2000,
         type=int,
         help=(
-            'interger indicating the minimum length of loci to be included in the analysis '
+            'interger indicating the minimum length of loci to be included in the analysis\n'
             '(default: %(default)s)'
         )
         )
-    parser.add_argument(
+    search_parser.add_argument(
         '-min',
         '--minlength',
         default=200,
         type=int,
         help=(
-            'interger indicating the minimum length of loci to be included in the analysis '
+            'interger indicating the minimum length of loci to be included in the analysis\n'
             '(default: %(default)s)'
         )
         )
-    parser.add_argument(
+    search_parser.add_argument(
         '-minl',
         '--minloci',
         default=1,
         type=int,
         help=(
-            'minimum number of loci required to continue to alignment and tree building steps '
+            'minimum number of loci required to continue to alignment and tree building steps\n'
             '(default: %(default)s)'
         )
         )
-    parser.add_argument(
+    search_parser.add_argument(
         '-maxl',
         '--maxloci',
         default=1000,
         type=int,
         help=(
-            'maximum number of loci required to continue to alignment and tree building steps '
+            'maximum number of loci required to continue to alignment and tree building steps\n'
             '(default: %(default)s)'
         )
         )
-    parser.add_argument(
-        '-o',
-        '--output',
-        default='output',
-        type=str,
-        help=(
-            'a string designating the name of the folder to output the results'
-            '(default: %(default)s)'
-        )
-        )
-    parser.add_argument(
+    search_parser.add_argument(
         '-p',
         '--presence',
         default=100,
         type=float,
         help=(
-            'interger indicating the percentage of genomes each loci must be present in '
+            'interger indicating the percentage of genomes each loci must be present in\n'
             '(default: %(default)s)'
         )
         )
-    parser.add_argument(
+    return arg_parser
+    
+def get_seed_parser(arg_parser):
+    '''
+    Create an argument group for changing search parameters
+        Arguments:
+            arg_parser: the basic argument parser
+        Returns:
+            arg_parser: the argument parser with arguments added
+    '''
+    seed_parser = arg_parser.add_argument_group(
+            'seed parameters', 
+            'seed options for the genome or loci seed'
+            )
+    seed_parser.add_argument(
         '-r',
         '--random-seed-number',
         default=None,
         type=int,
         help=(
-            'interger to be used as a seed for randomising loci selection, random if left as None'
+            'interger to be used as a seed for randomising loci selection\n'
+            'random if left as None\n'
             '(default: None)'
         )
         )
-    parser.add_argument(
+    seed_parser.add_argument(
         '-s',
         '--seed',
         default=None,
         type=str,
-        help='path to a genbankfile with for the target organism (default: %(default)s)'
+        help='path to a genbankfile with for the target organism\n'
+        'first in glob if left as None\n'
+        'NOTE: using the smallest genome will generally result in lower runtimes\n'
+        'NOTE: this will only effect the results if -p is used\n'
+        '(default: %(default)s)'
         )
-    parser.add_argument(
+    return arg_parser
+
+def get_io_parser(arg_parser):
+    '''
+    Create an argument group for changing input and output parameters
+        Arguments:
+            arg_parser: the basic argument parser
+        Returns:
+            arg_parser: the argument parser with arguments added
+    '''
+    io_parser = arg_parser.add_argument_group(
+            'basic input and output', 
+            'set options for input and output'
+            )
+    io_parser.add_argument(
+        '-g',
+        '--gbks',
+        default="*.gbk",
+        type=str,
+        help='string indicating the genbank files to use in the phylogeny\n'
+        '(default: %(default)s)'
+        )
+    io_parser.add_argument(
+        '-o',
+        '--output',
+        default='output',
+        type=str,
+        help=(
+            'a string designating the name of the folder to output the results\n'
+            '(default: %(default)s)'
+        )
+    )
+    io_parser.add_argument(
         '-t',
         '--tag',
         default="locus_tag",
         type=str,
-        help='string indicating the GenBank annotations to extract (default: %(default)s)'
+        help='string indicating the GenBank annotations to extract\n'
+        '(default: %(default)s)'
         )
-    return parser
+    return arg_parser
+
+def get_arguments(arg_parser):
+    '''
+    Add arguments and argument groups to the parser
+        Arguments:
+            arg_parser: the basic argument parser
+        Returns:
+            arg_parser: the argument parser with arguments added
+    '''
+    arg_parser = get_io_parser(arg_parser)
+    arg_parser = get_config_parser(arg_parser)
+    arg_parser = get_search_parser(arg_parser)
+    arg_parser = get_phylo_parser(arg_parser)
+    arg_parser = get_seed_parser(arg_parser)
+    arg_parser = get_records_parser(arg_parser)
+    return arg_parser
 
 def parse_args():
-    '''get the arguments from the console via the parser'''
+    '''
+    get the arguments from the console via the parser
+    '''
     arg_parser = get_parser()
+    arg_parser = get_arguments(arg_parser)
     args = arg_parser.parse_args()
     return args
