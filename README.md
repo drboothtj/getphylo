@@ -56,3 +56,7 @@ DOI: https://doi.org/10.1101/2023.07.26.550493
 	- fixed a fatal issue with --build-all
 - 0.2.0
 	- now supports iqtree using the --method parameter
+- 0.2.1
+	- now able to provide custom paths for binary dependencies
+	- parser now has argument groups and is more readable
+	- file exists error message more informative
