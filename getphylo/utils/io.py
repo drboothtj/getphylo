@@ -87,7 +87,7 @@ def make_folder(name: str) -> None:
     '''
     if os.path.exists(name):
         raise FolderExistsError(
-            f'ALERT: The directory {name} already exists.'
+            f'The directory {name} already exists. For saftey, please remove the folder before continuing.'
             )
     os.mkdir(name)
 

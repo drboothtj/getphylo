@@ -55,4 +55,4 @@ DOI: https://doi.org/10.1101/2023.07.26.550493
 	- error messages from the extract module are now more informative
 	- fixed a fatal issue with --build-all
 - 0.2.0
-	- now supports iqtree using the --tree parameter
+	- now supports iqtree using the --method parameter
