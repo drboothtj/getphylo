@@ -15,8 +15,8 @@ def run_fasttree(filename, outfile=None, fasttree_location='fasttree') -> None:
             outfile: path to the output file
         Returns:
             None
-    ''' 
-    
+    '''
+
     if outfile is None:
         out = " -out " + io.change_extension(filename, "tree") + " "
     else:

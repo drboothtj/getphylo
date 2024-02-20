@@ -7,7 +7,9 @@ Functions:
 '''
 from getphylo.utils import io
 
-def run_iqtree(alignment_path: str, out_path: str, partition_path: str=None, iqtree_location: str='iqtree') -> None:
+def run_iqtree(
+    alignment_path: str, out_path: str, partition_path: str=None, iqtree_location: str='iqtree'
+    ) -> None:
     '''
     Run fasttree on a protein alignment.
         Arguments:
@@ -25,6 +27,8 @@ def run_iqtree(alignment_path: str, out_path: str, partition_path: str=None, iqt
     #do a run with or without partition file
     if partition_path is not None:
         partition = " ".join(['-spp', partition_path])
-        io.run_in_command_line(" ".join([command, alignment, partition, out_path, model, bootstraps]))
+        io.run_in_command_line(
+            " ".join([command, alignment, partition, out_path, model, bootstraps])
+            )
     else:
         io.run_in_command_line(" ".join([command, alignment, out_path, model, bootstraps]))

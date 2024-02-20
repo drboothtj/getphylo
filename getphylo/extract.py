@@ -64,7 +64,7 @@ def extract_cdses(
     io.run_in_parallel(get_cds_from_genbank, args_list, cpus)
 
 def get_cds_from_genbank(
-        filename: str, output: str, tag_label: str, ignore_bad_annotations: bool,
+    filename: str, output: str, tag_label: str, ignore_bad_annotations: bool,
     ignore_bad_records: bool) -> None:
     '''
     Extract CDS translations from genbank files into ./fasta/*.fasta
@@ -96,8 +96,7 @@ def get_cds_from_genbank(
                             raise BadAnnotationError(
                                 f'{locus_tag} in {filename} contains an empty translation!'
                                 )
-                        else:
-                            lines.append(translation)
+                        lines.append(translation)
                 except TypeError:
                     if feature.qualifiers.get(tag_label) is None:
                         logging.warning(
@@ -125,7 +124,7 @@ def get_cds_from_genbank(
 
 def extract_data(
         checkpoint: Checkpoint, output: str, gbks: str, tag_label: str,
-        ignore_bad_annotations: bool, ignore_bad_records: bool, cpus: int, 
+        ignore_bad_annotations: bool, ignore_bad_records: bool, cpus: int,
         diamond_location: str
     ) -> None:
     '''

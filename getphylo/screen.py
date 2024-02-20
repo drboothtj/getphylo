@@ -307,7 +307,9 @@ def get_target_proteins(
     final_loci = None
     logging.debug('The output directory is: %s', output)
     if checkpoint < Checkpoint.SINGLETONS_IDENTIFIED:
-        candidate_loci = get_singletons_from_seed(seed, output, thresholds, random_seed_number, diamond_location)
+        candidate_loci = get_singletons_from_seed(
+            seed, output, thresholds, random_seed_number, diamond_location
+            )
     logging.info("CHECKPOINT: SINGLETONS_IDENTIFIED")
     #candidate loci will not exist if restarted from a checkpoint
     if not candidate_loci:

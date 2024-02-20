@@ -8,7 +8,6 @@ Functions:
 
 import argparse
 from argparse import RawTextHelpFormatter
-from typing import List
 
 import logging
 from getphylo.utils.checkpoint import Checkpoint
@@ -28,7 +27,11 @@ def get_parser():
 
 def get_config_parser(arg_parser):
     '''
-    xxx
+    Create an argument group for basic config details.
+        Arguments:
+            arg_parser: the basic argument parser
+        Returns:
+            arg_parser: the argument parser with arguments added
     '''
     config_parser = arg_parser.add_argument_group(
             'basic configuration', 'basic configuration of getphylo'
@@ -69,13 +72,22 @@ def get_config_parser(arg_parser):
         '-l',
         '--logging',
         default='ERROR',
-        choices=[logging.getLevelName(level) for level in [logging.DEBUG, logging.INFO, logging.WARNING]],
+        choices=[
+            logging.getLevelName(level) for level in [logging.DEBUG, logging.INFO, logging.WARNING]
+            ],
         help='set the logging level\n'
         '(default: %(default)s)'
     )
     return arg_parser
-    
+
 def get_phylo_parser(arg_parser):
+    '''
+    Create an argument group for phylogenetic analysis
+        Arguments:
+            arg_parser: the basic argument parser
+        Returns:
+            arg_parser: the argument parser with arguments added
+    '''
     phylo_parser = arg_parser.add_argument_group(
         'phylogenetics', 'parameters for building phylogentic trees'
         )
@@ -96,7 +108,8 @@ def get_phylo_parser(arg_parser):
         choices=['fasttree', 'iqtree'],
         help=(
             'choose the phylogenetic method\n'
-            'NOTE: Using iqtree will test individual gene models\n but will exponentially increase the run time\n'
+            'NOTE: Using iqtree will test individual gene models\n'
+            'but will exponentially increase the run time\n'
             'NOTE: Not recommended to use in combination with --build-all\n'
             '(default: %(default)s)'
         )
@@ -141,7 +154,7 @@ def get_search_parser(arg_parser):
     search_parser = arg_parser.add_argument_group(
             'search filtering', 
             'alter the parameters of the orthologue search'
-            )    
+            )
     search_parser.add_argument(
         '-f',
         '--find',
@@ -203,7 +216,7 @@ def get_search_parser(arg_parser):
         )
         )
     return arg_parser
-    
+
 def get_seed_parser(arg_parser):
     '''
     Create an argument group for changing search parameters
@@ -281,6 +294,13 @@ def get_io_parser(arg_parser):
     return arg_parser
 
 def get_exe_parser(arg_parser):
+    '''
+    Create an argument group for providing custom executable paths
+        Arguments:
+            arg_parser: the basic argument parser
+        Returns:
+            arg_parser: the argument parser with arguments added
+    '''
     exe_parser = arg_parser.add_argument_group(
             'executables'
             'define custom executable paths, give the full path or just the command if set in PATH', 

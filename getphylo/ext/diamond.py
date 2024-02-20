@@ -27,7 +27,9 @@ def make_diamond_database(filename: str, dmnd_database=None, diamond_location='d
     logging.debug(command)
     io.run_in_command_line(command)
 
-def run_diamond_search(filename: str, dmnd_database=None, outname=None, diamond_location='diamond') -> None:
+def run_diamond_search(
+    filename: str, dmnd_database=None, outname=None, diamond_location='diamond'
+    ) -> None:
     '''
     Run BLASTP through DIAMOND.
         Arguments:

@@ -128,16 +128,19 @@ def run_in_command_line(command: str):
     command = command.split(" ")
     logging.debug(command)
     try:
-        with subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT) as process:
+        with subprocess.Popen(
+            command, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
+            ) as process:
             process.communicate()
             if process.returncode != 0:
                 raise RuntimeError('Failed to run: ' + str(command))
             return process
-    except FileNotFoundError as e:
-        print(e)
+    except FileNotFoundError as error:
+        print(error)
         raise BadExecutableError(
-            'getphylo could not find an executable, please ensure the correct paths to all executables are provided'
-            ) from e
+            'getphylo could not find an executable, ' +
+            'please ensure the correct paths to all executables are provided'
+            ) from error
 
 def run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) -> List:
     '''
@@ -157,7 +160,7 @@ def run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) ->
                 iter(item)
             except TypeError as error:
                 raise GetphyloError from error
-        try:        
+        try:
             with multiprocessing.Pool(cpus) as pool:
                 results = pool.starmap_async(function, args_list)
                 return_value = results.get()

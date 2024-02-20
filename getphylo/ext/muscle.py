@@ -20,7 +20,7 @@ def get_muscle_version(muscle_location: str = 'muscle') -> float:
                 a float reprisenting the first two parts of the MUSCLE version number
     '''
     with subprocess.Popen(
-        ["muscle", "-version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        [muscle_location, "-version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE
         ) as process:
         out, _ = process.communicate()
     # only the first line matters

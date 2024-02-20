@@ -8,13 +8,15 @@ Functions:
 import os
 import glob
 import logging
+from typing import List
+
 from getphylo.utils import io
 from getphylo.ext import fasttree, iqtree
 from getphylo.utils.errors import GetphyloError
-from typing import List
 
-
-def build_all_trees(files: List, cpus: int, method: str, tree_directory: str, output: str) -> None:
+def build_all_trees(
+    files: List, cpus: int, method: str, tree_directory: str, output: str, tree_builder:str
+    ) -> None:
     '''
     builds all trees in from a list of files
         Arguments:
@@ -38,7 +40,7 @@ def build_all_trees(files: List, cpus: int, method: str, tree_directory: str, ou
             outfile = os.path.join(
                 tree_directory, os.path.basename(os.path.splitext(filename)[0])
                 )
-            args_list.append([filename, outfile, tree_builder])
+            args_list.append([filename, outfile, partition, tree_builder])
         io.run_in_parallel(iqtree.run_iqtree, args_list, cpus)
     else:
         raise GetphyloError(method + ' is not a phylogenetic tool.')

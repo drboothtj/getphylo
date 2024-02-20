@@ -189,7 +189,9 @@ def make_combined_alignment(gbks: List, output: str) -> None:
     io.write_to_file(combined_alignment_path, combined_alignment)
     io.write_to_file(partition_path, partition_data)
 
-def make_alignments(checkpoint: Checkpoint, output: str, loci: List, gbks: List, cpus: int, muscle_location: str) -> None:
+def make_alignments(
+    checkpoint: Checkpoint, output: str, loci: List, gbks: List, cpus: int, muscle_location: str
+    ) -> None:
     '''
     Main routine for align.
         Arguments:
