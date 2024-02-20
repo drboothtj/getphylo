@@ -7,7 +7,7 @@ Functions:
 '''
 from getphylo.utils import io
 
-def run_iqtree(alignment_path: str, out_path: str, partition_path: str=None) -> None:
+def run_iqtree(alignment_path: str, out_path: str, partition_path: str=None, iqtree_location: str='iqtree') -> None:
     '''
     Run fasttree on a protein alignment.
         Arguments:
@@ -17,7 +17,7 @@ def run_iqtree(alignment_path: str, out_path: str, partition_path: str=None) -> 
         Returns:
             None
     '''
-    command = 'iqtree'
+    command = iqtree_location
     alignment = " ".join(['-s', alignment_path])
     out_path = " ".join(['-pre', out_path])
     model = '-m MFP'

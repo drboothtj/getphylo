@@ -44,3 +44,7 @@ class InsufficientLociError(GetphyloError):
 class BadLocusError(GetphyloError):
     '''Called in align when a locus is not present.'''
     pass
+
+class BadExecutableError(GetphyloError):
+    '''Called when a non-existant executable path is provided'''
+    pass

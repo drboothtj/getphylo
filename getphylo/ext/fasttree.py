@@ -7,7 +7,7 @@ Functions:
 '''
 from getphylo.utils import io
 
-def run_fasttree(filename, outfile=None) -> None:
+def run_fasttree(filename, outfile=None, fasttree_location='fasttree') -> None:
     '''
     Run fasttree on a protein alignment.
         Arguments:
@@ -15,10 +15,11 @@ def run_fasttree(filename, outfile=None) -> None:
             outfile: path to the output file
         Returns:
             None
-    '''
+    ''' 
+    
     if outfile is None:
         out = " -out " + io.change_extension(filename, "tree") + " "
     else:
         out = " -out " + outfile + " "
-    command = "fasttree"
+    command = fasttree_location
     io.run_in_command_line(command + out + filename)

@@ -8,6 +8,7 @@ Functions:
 
 import argparse
 from argparse import RawTextHelpFormatter
+from typing import List
 
 import logging
 from getphylo.utils.checkpoint import Checkpoint
@@ -63,7 +64,7 @@ def get_config_parser(arg_parser):
             'DONE = Done\n '
             '(default: %(default)s)'
         )
-        )
+    )
     config_parser.add_argument(
         '-l',
         '--logging',
@@ -279,6 +280,53 @@ def get_io_parser(arg_parser):
         )
     return arg_parser
 
+def get_exe_parser(arg_parser):
+    exe_parser = arg_parser.add_argument_group(
+            'executables'
+            'define custom executable paths, give the full path or just the command if set in PATH', 
+            )
+    exe_parser.add_argument(
+        '-d',
+        '--diamond',
+        default="diamond",
+        type=str,
+        help=(
+        'path to DIAMOND executable \n'
+        '(default: %(default)s)'
+        )
+    )
+    exe_parser.add_argument(
+        '-mu',
+        '--muscle',
+        default="muscle",
+        type=str,
+        help=(
+        'path to MUSCLE executable \n'
+        '(default: %(default)s)'
+        )
+    )
+    exe_parser.add_argument(
+        '-ft',
+        '--fasttree',
+        default="fasttree",
+        type=str,
+        help=(
+        'path to fasttree2 executable \n'
+        '(default: %(default)s)'
+        )
+    )
+    exe_parser.add_argument(
+        '-iq',
+        '--iqtree',
+        default="iqtree",
+        type=str,
+        help=(
+        'path to IQ-TREE executable \n'
+        '(default: %(default)s)'
+        )
+    )
+    return arg_parser
+
 def get_arguments(arg_parser):
     '''
     Add arguments and argument groups to the parser
@@ -293,6 +341,7 @@ def get_arguments(arg_parser):
     arg_parser = get_phylo_parser(arg_parser)
     arg_parser = get_seed_parser(arg_parser)
     arg_parser = get_records_parser(arg_parser)
+    arg_parser = get_exe_parser(arg_parser)
     return arg_parser
 
 def parse_args():

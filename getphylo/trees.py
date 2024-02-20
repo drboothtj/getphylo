@@ -30,7 +30,7 @@ def build_all_trees(files: List, cpus: int, method: str, tree_directory: str, ou
             outfile = os.path.join(
                 tree_directory, os.path.basename(io.change_extension(filename, "tree"))
                 )
-            args_list.append([filename, outfile])
+            args_list.append([filename, outfile, tree_builder])
         io.run_in_parallel(fasttree.run_fasttree, args_list, cpus)
     elif method == 'iqtree':
         partition = os.path.join(output, 'partition.txt')
@@ -38,12 +38,12 @@ def build_all_trees(files: List, cpus: int, method: str, tree_directory: str, ou
             outfile = os.path.join(
                 tree_directory, os.path.basename(os.path.splitext(filename)[0])
                 )
-            args_list.append([filename, outfile])
+            args_list.append([filename, outfile, tree_builder])
         io.run_in_parallel(iqtree.run_iqtree, args_list, cpus)
     else:
         raise GetphyloError(method + ' is not a phylogenetic tool.')
 
-def make_trees(output: str, build_all: bool, method: str, cpus: int) -> None:
+def make_trees(output: str, build_all: bool, method: str, cpus: int, tree_builder: str) -> None:
     '''Main routine for trees.
         Arguments:
             output: path to the output directory
@@ -55,16 +55,16 @@ def make_trees(output: str, build_all: bool, method: str, cpus: int) -> None:
     logging.info("Building trees...")
     if build_all is True:
         files = glob.glob(os.path.join(output, 'aligned_fasta/*.fasta'))
-        build_all_trees(files, cpus, method, tree_directory, output)
+        build_all_trees(files, cpus, method, tree_directory, output, tree_builder)
     else:
         filename = os.path.join(output, 'aligned_fasta/combined_alignment.fasta')
         if method == 'fasttree':
             output = os.path.join(tree_directory, 'combined_alignment.tree')
-            fasttree.run_fasttree(filename, output)
+            fasttree.run_fasttree(filename, output, tree_builder)
         elif method == 'iqtree':
             partition = os.path.join(output, 'partition.txt')
             output = os.path.join(tree_directory, 'combined_alignment')
-            iqtree.run_iqtree(filename, output, partition)
+            iqtree.run_iqtree(filename, output, partition, tree_builder)
         else:
             raise GetphyloError(method + ' is not a phylogenetic tool.')
     logging.info("CHECKPOINT: TREES_BUILT")

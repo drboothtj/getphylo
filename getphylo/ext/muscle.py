@@ -10,7 +10,7 @@ import subprocess
 import logging
 from getphylo.utils import io
 
-def get_muscle_version() -> float:
+def get_muscle_version(muscle_location: str = 'muscle') -> float:
     '''
     get the muscle version from the command line
         arguments:
@@ -38,7 +38,7 @@ def get_muscle_version() -> float:
         raise RuntimeError("cannot determine version of MUSCLE") from error
 
 
-def run_muscle(filename: str, outname=None) -> None:
+def run_muscle(filename: str, outname=None, muscle_location: str = 'muscle') -> None:
     '''
     Run MUSCLE aligner on protein fasta file.
         Arguments:
@@ -49,7 +49,7 @@ def run_muscle(filename: str, outname=None) -> None:
     '''
     if outname is None:
         outname = "aligned_" + filename
-    args = ["muscle"]
+    args = [muscle_location]
     # change the argument format depending on the version of MUSCLE
     # also, MUSCLE 5 is much slower than previous versions so print a warning!
     if get_muscle_version() >= 5.0:

@@ -8,7 +8,7 @@ Functions:
 import logging
 from getphylo.utils import io
 
-def make_diamond_database(filename: str, dmnd_database=None) -> None:
+def make_diamond_database(filename: str, dmnd_database=None, diamond_location='diamond') -> None:
     '''
     Create a DIAMOND database from a fasta file.
         Arguments:
@@ -21,13 +21,13 @@ def make_diamond_database(filename: str, dmnd_database=None) -> None:
         database = " --db " + filename.split('.')[0] + ".dmnd"
     else:
         database = " --db " + dmnd_database
-    makedb = "diamond makedb"
+    makedb = " makedb"
     input_ = " --in " + filename + ""
-    command = makedb + database + input_
+    command = diamond_location + makedb + database + input_
     logging.debug(command)
     io.run_in_command_line(command)
 
-def run_diamond_search(filename: str, dmnd_database=None, outname=None) -> None:
+def run_diamond_search(filename: str, dmnd_database=None, outname=None, diamond_location='diamond') -> None:
     '''
     Run BLASTP through DIAMOND.
         Arguments:
@@ -45,9 +45,10 @@ def run_diamond_search(filename: str, dmnd_database=None, outname=None) -> None:
         output = " --out " + dmnd_database.split('.')[0] + ".tsv"
     else:
         output = " --out " + outname
-    blastp = "diamond blastp"
+    diamond = diamond_location
+    blastp = " blastp"
     query = " --query " + filename
     outfmt = " --outfmt 6 qseqid sseqid pident"
-    command = blastp + database + query + output + outfmt
+    command = diamond + blastp + database + query + output + outfmt
     logging.debug(command)
     io.run_in_command_line(command)

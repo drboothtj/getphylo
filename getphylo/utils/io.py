@@ -22,7 +22,7 @@ import logging
 from typing import Callable, Iterable, List
 from Bio import SeqIO
 
-from getphylo.utils.errors import GetphyloError, FolderExistsError
+from getphylo.utils.errors import GetphyloError, FolderExistsError, BadExecutableError
 
 def get_locus(fasta: List[str], locus: str) -> str:
     '''
@@ -127,11 +127,17 @@ def run_in_command_line(command: str):
     '''
     command = command.split(" ")
     logging.debug(command)
-    with subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT) as process:
-        process.communicate()
-        if process.returncode != 0:
-            raise RuntimeError('Failed to run: ' + str(command))
-        return process
+    try:
+        with subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT) as process:
+            process.communicate()
+            if process.returncode != 0:
+                raise RuntimeError('Failed to run: ' + str(command))
+            return process
+    except FileNotFoundError as e:
+        print(e)
+        raise BadExecutableError(
+            'getphylo could not find an executable, please ensure the correct paths to all executables are provided'
+            ) from e
 
 def run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) -> List:
     '''

@@ -22,7 +22,7 @@ from getphylo.utils import io
 from getphylo.utils.checkpoint import Checkpoint
 from getphylo.utils.errors import BadAnnotationError, BadRecordError
 
-def build_diamond_databases(output: str, cpus: int) -> None:
+def build_diamond_databases(output: str, cpus: int, diamond_location: str) -> None:
     '''
     Create diamond databases from from all the fasta files in .output/fasta/*.fasta
         Arguments:
@@ -38,7 +38,7 @@ def build_diamond_databases(output: str, cpus: int) -> None:
     for filename in glob.glob(fasta_files_path):
         dmnd_database = os.path.basename(io.change_extension(filename, "dmnd"))
         dmnd_database = os.path.join(dmnd_folder, dmnd_database)
-        args = [filename, dmnd_database]
+        args = [filename, dmnd_database, diamond_location]
         args_list.append(args)
     io.run_in_parallel(diamond.make_diamond_database, args_list, cpus)
 
@@ -125,7 +125,8 @@ def get_cds_from_genbank(
 
 def extract_data(
         checkpoint: Checkpoint, output: str, gbks: str, tag_label: str,
-        ignore_bad_annotations: bool, ignore_bad_records: bool, cpus: int
+        ignore_bad_annotations: bool, ignore_bad_records: bool, cpus: int, 
+        diamond_location: str
     ) -> None:
     '''
     Called from main to build fasta and diamond databases from the provided genbankfiles
@@ -144,5 +145,5 @@ def extract_data(
     logging.info("CHECKPOINT:FASTA_EXTRACTED")
     if checkpoint < Checkpoint.DIAMOND_BUILT:
         logging.info("Building diamond databases...")
-        build_diamond_databases(output, cpus)
+        build_diamond_databases(output, cpus, diamond_location)
     logging.info("CHECKPOINT:DIAMOND_BUILT")

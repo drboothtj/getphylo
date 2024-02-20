@@ -67,7 +67,7 @@ def make_fasta_for_alignments(loci_list: List[str], output: str) -> None:
         outfile = os.path.join(output, 'unaligned_fasta', locus + '.fasta')
         io.write_to_file(outfile, write_lines)
 
-def do_alignments(output: str, cpus: int) -> None:
+def do_alignments(output: str, cpus: int, muscle_location: str) -> None:
     '''
     Runs the pre-aligned fasta file through the muscle module.
         Arguments:
@@ -79,7 +79,7 @@ def do_alignments(output: str, cpus: int) -> None:
     args_list = []
     for filename in glob.glob(os.path.join(output, 'unaligned_fasta/*.fasta')):
         outfile = os.path.join(output, 'aligned_fasta', os.path.basename(filename))
-        args_list.append([filename, outfile])
+        args_list.append([filename, outfile, muscle_location])
     io.run_in_parallel(muscle.run_muscle, args_list, cpus) #add cpu arg
 
 def get_locus_length(alignment: List[str]) -> int:
@@ -189,14 +189,15 @@ def make_combined_alignment(gbks: List, output: str) -> None:
     io.write_to_file(combined_alignment_path, combined_alignment)
     io.write_to_file(partition_path, partition_data)
 
-def make_alignments(checkpoint: Checkpoint, output: str, loci: List, gbks: List, cpus: int) -> None:
+def make_alignments(checkpoint: Checkpoint, output: str, loci: List, gbks: List, cpus: int, muscle_location: str) -> None:
     '''
     Main routine for align.
         Arguments:
             checkpoint: checkpoint defined by the user
             output: path to the output directory
             loci: list of loci to align
-            gbks: list of the input genbank files
+            gbks: list of the input genbank filesx
+            muscle_location: the path to muscle executable
         Returns:
             None
     '''
@@ -206,7 +207,7 @@ def make_alignments(checkpoint: Checkpoint, output: str, loci: List, gbks: List,
     logging.info("CHECKPOINT: SINGLETONS_EXTRACTED")
     if checkpoint < Checkpoint.SINGLETONS_ALIGNED:
         logging.info("Aligning sequences...")
-        do_alignments(output, cpus)
+        do_alignments(output, cpus, muscle_location)
     logging.info("CHECKPOINT: SINGLETONS_ALIGNED")
     if checkpoint < Checkpoint.ALIGNMENTS_COMBINED:
         logging.info("Making combined alingnment...")
