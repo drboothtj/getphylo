@@ -52,7 +52,7 @@ def run_muscle(filename: str, outname=None, muscle_location: str = 'muscle') -> 
     args = [muscle_location]
     # change the argument format depending on the version of MUSCLE
     # also, MUSCLE 5 is much slower than previous versions so print a warning!
-    if get_muscle_version() >= 5.0:
+    if get_muscle_version(muscle_location) >= 5.0:
         logging.warning(
             'You are using a MUSCLE version 5 or later. '
             'Be aware that MUSCLE 5 is much slower than previous versions.'
