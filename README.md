@@ -33,7 +33,7 @@ A [full list of parameters](https://github.com/drboothtj/getphylo/wiki/Parameter
 Example outputs and benchmarking data can be found in the [getphylo benchmarking repository](https://github.com/drboothtj/getphylo_benchmarking). The example data includes:
 
 1. A phylogeny of bacterial genomes,
-2. A phylogeny of a biosynthetic super cluster,
+2. A phylogeny of a biosynthetic gene cluster,
 3. A phylogeny of primate genomes,
 4. A phylogeny of Eurotiomycete fungi.
 
