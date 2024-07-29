@@ -6,6 +6,10 @@ class GetphyloError(Exception):
     '''General class of errors unique to getphylo'''
     pass
 
+class BadInputError(GetphyloError):
+    '''Called when user provides bad input'''
+    pass
+    
 class BadSeedError(GetphyloError):
     '''Called when a seed cannot be correctly set'''
     pass

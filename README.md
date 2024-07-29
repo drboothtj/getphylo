@@ -60,3 +60,6 @@ DOI: https://doi.org/10.1101/2023.07.26.550493
 	- now able to provide custom paths for binary dependencies
 	- parser now has argument groups and is more readable
 	- file exists error message more informative
+- 0.2.2
+  - added error message when users attempt to input directory instead of a search string
+

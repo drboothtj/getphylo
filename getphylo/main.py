@@ -11,7 +11,7 @@ import logging
 import os
 from getphylo import align, extract, parser, screen, trees
 from getphylo.utils import io
-from getphylo.utils.errors import BadSeedError, FolderExistsError, NoFinalLociError
+from getphylo.utils.errors import BadInputError, BadSeedError, FolderExistsError, NoFinalLociError
 from getphylo.utils.checkpoint import Checkpoint
 
 def initialize_logging() -> None:
@@ -56,6 +56,10 @@ def main():
     seed = args.seed
     output = os.path.abspath(args.output)
 
+    if os.path.isdir(gbks):
+        raise BadInputError(
+            gbks + ' is a directory. Please provide a search string (e.g. \'my_dir/*.gbk\').'
+            )
     if seed is None:
         seed = check_seed(checkpoint, gbks)
     logging.info('The seed genome is %s!', seed)
