@@ -24,7 +24,7 @@ def initialize_logging() -> None:
         level=logging_level,
         format='[%(asctime)s] %(levelname)-10s: %(message)s',
         datefmt='%H:%M:%S')
-    logging.info("Running getphylo version 0.2.1.")
+    logging.info("Running getphylo version 0.2.2.")
 
 def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
     '''Set a seed for a new analysis and raise an error if continuing an old analysis.
