@@ -18,8 +18,11 @@ def run_fasttree(filename, outfile=None, fasttree_location='fasttree') -> None:
     '''
 
     if outfile is None:
-        out = " -out " + io.change_extension(filename, "tree") + " "
+        out = io.change_extension(filename, "tree")
     else:
-        out = " -out " + outfile + " "
-    command = fasttree_location
-    io.run_in_command_line(command + out + filename)
+        out = outfile
+    io.run_in_command_line([
+        fasttree_location,
+        "-out", out,
+        filename,
+    ])

@@ -60,5 +60,4 @@ def run_muscle(filename: str, outname=None, muscle_location: str = 'muscle') -> 
         args.extend(["-align", filename, "-output", outname])
     else:
         args.extend(["-in", filename, "-out", outname])
-    command = " ".join(args)
-    io.run_in_command_line(command)
+    io.run_in_command_line(args)

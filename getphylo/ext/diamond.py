@@ -18,12 +18,14 @@ def make_diamond_database(filename: str, dmnd_database=None, diamond_location='d
             None
     '''
     if dmnd_database is None:
-        database = " --db " + filename.split('.')[0] + ".dmnd"
+        database = filename.split('.')[0] + ".dmnd"
     else:
-        database = " --db " + dmnd_database
-    makedb = " makedb"
-    input_ = " --in " + filename + ""
-    command = diamond_location + makedb + database + input_
+        database = dmnd_database
+    command = [
+        diamond_location, "makedb",
+        "--db", database,
+        "--in", filename,
+    ]
     logging.debug(command)
     io.run_in_command_line(command)
 
@@ -40,17 +42,19 @@ def run_diamond_search(
             None
     '''
     if dmnd_database is None:
-        database = " --db " + filename.split('.')[0] + ".dmnd"
+        database = filename.split('.')[0] + ".dmnd"
     else:
-        database = " --db " + dmnd_database
+        database = dmnd_database
     if outname is None:
-        output = " --out " + dmnd_database.split('.')[0] + ".tsv"
+        output = dmnd_database.split('.')[0] + ".tsv"
     else:
-        output = " --out " + outname
-    diamond = diamond_location
-    blastp = " blastp"
-    query = " --query " + filename
-    outfmt = " --outfmt 6 qseqid sseqid pident"
-    command = diamond + blastp + database + query + output + outfmt
+        output = outname
+    command = [
+        diamond_location, "blastp",
+        "--query", filename,
+        "--db", database,
+        "--out", output,
+        "--outfmt", "6", "qseqid", "sseqid", "pident",
+    ]
     logging.debug(command)
     io.run_in_command_line(command)

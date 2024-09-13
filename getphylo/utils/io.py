@@ -9,7 +9,7 @@ Functions:
     make_folder(name: str) -> None
     read_file(filename: str) -> List[str]
     read_tsv(filename: str) -> List[str]
-    run_in_command_line(command: str)
+    run_in_command_line(command: Union[str, list[str])
     run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) -> List
     write_to_file(filename: str, write_lines: List[str]) -> None
 '''
@@ -117,15 +117,15 @@ def read_tsv(filename: str) -> List[str]:
             contents.append(line)
     return contents
 
-def run_in_command_line(command: str):
+def run_in_command_line(command: list[str]):
     '''
     Convert a string into a command and run in the terminal.
         Aruments:
-            command: string containing the command for the terminal
+            command: a list of strings, one for each command line argument
         Returns:
             process: the process being run
     '''
-    command = command.split(" ")
+    assert isinstance(command, list)
     logging.debug(command)
     try:
         with subprocess.Popen(

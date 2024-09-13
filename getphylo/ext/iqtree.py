@@ -27,8 +27,6 @@ def run_iqtree(
     #do a run with or without partition file
     if partition_path is not None:
         partition = " ".join(['-spp', partition_path])
-        io.run_in_command_line(
-            " ".join([command, alignment, partition, out_path, model, bootstraps])
-            )
+        io.run_in_command_line([command, alignment, partition, out_path, model, bootstraps])
     else:
-        io.run_in_command_line(" ".join([command, alignment, out_path, model, bootstraps]))
+        io.run_in_command_line([command, alignment, out_path, model, bootstraps])
