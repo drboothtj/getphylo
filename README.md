@@ -62,4 +62,7 @@ DOI: https://doi.org/10.1101/2023.07.26.550493
 	- file exists error message more informative
 - 0.2.2
   - added error message when users attempt to input directory instead of a search string
-
+- 0.3.0
+  - now supports modifying blastp thresholds, including parameters for identity and coverage
+  - fixed typos in parser
+  - fix crashing when provided with directories with spaces in the names
