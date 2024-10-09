@@ -1,9 +1,17 @@
 '''
 Create an argument parser using argparse
-
-Functions:
-    get_parser() -> Parser
-    parse_args() -> List
+    Functions:
+        get_parser() -> ArgumentParser
+        get_config_parser(arg_parser) -> ArgumentParser
+        get_blast_parser(arg_parser) -> ArgumentParser
+        get_phylo_parser(arg_parser) -> ArgumentParser
+        get_records_parser(arg_parser) -> ArgumentParser
+        get_search_parser(arg_parser) -> ArgumentParser
+        get_seed_parser(arg_parser) -> ArgumentParser
+        get_io_parser(arg_parser) -> ArgumentParser
+        get_exe_parser(arg_parser) -> ArgumentParser
+        get_arguments(arg_parser) -> ArgumentParser
+        def parse_args() -> ArgumentParser
 '''
 
 import argparse
@@ -17,7 +25,7 @@ def get_parser():
     parser = argparse.ArgumentParser(
         "getphylo",
         description="""
-        getphylo: a python package to produce heuristic phylogentic trees from genomic data\n
+        getphylo: a python package to produce heuristic phylogenetic trees from genomic data\n
         example usage: getphylo -g 'input/*.gb' -c 4
         """,
         epilog="Written by Dr. Thom Booth, 2022.",
@@ -42,7 +50,7 @@ def get_config_parser(arg_parser):
         default=1,
         type=int,
         help=(
-            'The number of cpus to use for paralleslisation\n'
+            'The number of cpus to use for parallelisation\n'
             '(default: %(default)s)'
         )
         )
@@ -79,6 +87,47 @@ def get_config_parser(arg_parser):
         '(default: %(default)s)'
     )
     return arg_parser
+
+def get_blast_parser(arg_parser):
+    '''
+    Create an argument group for blastp parameters
+        Arguments:
+            arg_parser: the basic argument parser
+        Returns:
+            arg_parser: the argument parser with arguments added
+    '''
+    phylo_parser = arg_parser.add_argument_group(
+        'blastp', 'parameters for blasp'
+        )
+    phylo_parser.add_argument(
+    '-id',
+    '--identity',
+    default=None,
+    help=(
+        'minimum identity score for blastp\n'
+        '(default: %(default)s)'
+    )
+    )
+    phylo_parser.add_argument(
+    '-qc',
+    '--query-coverage',
+    default=None,
+    help=(
+        'minimum query coverage for blastp\n'
+        '(default: %(default)s)'
+    )
+    )
+    phylo_parser.add_argument(
+    '-sc',
+    '--subject-coverage',
+    default=None,
+    help=(
+        'minimum subject coverage for blastp\n'
+        '(default: %(default)s)'
+    )
+    )
+    return arg_parser
+
 
 def get_phylo_parser(arg_parser):
     '''
@@ -127,7 +176,7 @@ def get_records_parser(arg_parser):
     record_parser = arg_parser.add_argument_group(
             'records and annotations - NOT RECOMMENDED', 
             'deal with malformed records and annotations \n' +
-            'its is NOT RECOMMENDED to use these options unless you are confident with their usage'
+            'it is NOT RECOMMENDED to use these options unless you are confident with their usage'
             )
     record_parser.add_argument(
         '-ia',
@@ -171,7 +220,7 @@ def get_search_parser(arg_parser):
         default=2000,
         type=int,
         help=(
-            'interger indicating the minimum length of loci to be included in the analysis\n'
+            'integer indicating the minimum length of loci to be included in the analysis\n'
             '(default: %(default)s)'
         )
         )
@@ -181,7 +230,7 @@ def get_search_parser(arg_parser):
         default=200,
         type=int,
         help=(
-            'interger indicating the minimum length of loci to be included in the analysis\n'
+            'integer indicating the minimum length of loci to be included in the analysis\n'
             '(default: %(default)s)'
         )
         )
@@ -211,7 +260,7 @@ def get_search_parser(arg_parser):
         default=100,
         type=float,
         help=(
-            'interger indicating the percentage of genomes each loci must be present in\n'
+            'the percentage of genomes each loci must be present in\n'
             '(default: %(default)s)'
         )
         )
@@ -235,7 +284,7 @@ def get_seed_parser(arg_parser):
         default=None,
         type=int,
         help=(
-            'interger to be used as a seed for randomising loci selection\n'
+            'integer to be used as a seed for randomising loci selection\n'
             'random if left as None\n'
             '(default: None)'
         )
@@ -302,8 +351,8 @@ def get_exe_parser(arg_parser):
             arg_parser: the argument parser with arguments added
     '''
     exe_parser = arg_parser.add_argument_group(
-            'executables'
-            'define custom executable paths, give the full path or just the command if set in PATH', 
+            'executables',
+            'define custom executable paths; the full path or the command if set in PATH\n', 
             )
     exe_parser.add_argument(
         '-d',
@@ -358,6 +407,7 @@ def get_arguments(arg_parser):
     arg_parser = get_io_parser(arg_parser)
     arg_parser = get_config_parser(arg_parser)
     arg_parser = get_search_parser(arg_parser)
+    arg_parser = get_blast_parser(arg_parser)
     arg_parser = get_phylo_parser(arg_parser)
     arg_parser = get_seed_parser(arg_parser)
     arg_parser = get_records_parser(arg_parser)
