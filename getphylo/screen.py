@@ -4,9 +4,12 @@ Screen fasta files and blast databases for singletons and extract sequences
 Functions:
     get_unique_hits_from_tsv(file: str) -> List
     get_seed_paths(seed: str, output: str) -> Tuple[str, str, str]
-    get_singletons_from_seed(seed, output, thresholds, random_seed_number)
+    get_singletons_from_seed(
+        seed, output, thresholds, random_seed_number,
+        diamond_args:Tuple[str,float,float,float]
+    )
     get_loci_from_file(file: str) -> List
-    search_candidates(output: str, cpus: int) -> None
+    search_candidates(output: str, cpus: int, diamond_args: Tuple[str,float,float,float]) -> None
     score_locus(locus: str, files: List) -> Tuple[int, bool, List]
     process_final_loci(final_loci: List, minimum_loci: int, output: str) -> None
     do_thresholding(
@@ -16,7 +19,7 @@ Functions:
     write_pa_table(pa_table: List, loci: List, output: str) -> None
     get_target_proteins(
         checkpoint: Checkpoint, output: str, seed: str, thresholds: List,
-        cpus: int, random_seed_number: int
+        cpus: int, random_seed_number: int, diamond_args: Tuple[str,float,float,float]
     ) -> None
 '''
 import os
@@ -72,7 +75,7 @@ def get_seed_paths(seed: str, output: str) -> Tuple[str, str, str]:
     seed_tsv = os.path.join(output, 'tsv', seed_tsv)
     return seed_fasta, seed_dmnd, seed_tsv
 
-def get_singletons_from_seed(seed, output, thresholds, random_seed_number, diamond_location):
+def get_singletons_from_seed(seed, output, thresholds, random_seed_number, diamond_args):
     '''
     Use diamond to identify singletons in the seed genome.
         Arguments:
@@ -89,7 +92,7 @@ def get_singletons_from_seed(seed, output, thresholds, random_seed_number, diamo
     logging.info("Identifying singletons in seed genome...")
     seed_fasta, seed_dmnd, seed_tsv = get_seed_paths(seed, output)
     seed_fasta_contents = io.read_file(seed_fasta)
-    diamond.run_diamond_search(seed_fasta, seed_dmnd, seed_tsv, diamond_location)
+    diamond.run_diamond_search(seed_fasta, seed_dmnd, seed_tsv, diamond_args) ### add others here!
     unique_loci = get_unique_hits_from_tsv(seed_tsv)
     logging.info("Found %s loci in the seed genome!", str(len(unique_loci)))
     if random_seed_number is None: #random, random if no random seed set
@@ -129,7 +132,7 @@ def get_loci_from_file(file: str) -> List:
     loci = [locus.strip() for locus in loci]
     return loci
 
-def search_candidates(output: str, cpus: int, diamond_location: str) -> None:
+def search_candidates(output: str, cpus: int, diamond_args) -> None:
     '''
     Uses diamond blastP to search for the candidates in all other genomes.
         Arguments:
@@ -147,7 +150,7 @@ def search_candidates(output: str, cpus: int, diamond_location: str) -> None:
         tsv_name = io.change_extension(os.path.basename(database), 'tsv')
         tsv_name = os.path.join(tsvs_folder, tsv_name)
         candidate_loci_path = os.path.join(output, 'tsv/candidate_loci.fasta')
-        args_item = [candidate_loci_path, database, tsv_name, diamond_location]
+        args_item = [candidate_loci_path, database, tsv_name, diamond_args]
         args_list.append(args_item)
     io.run_in_parallel(diamond.run_diamond_search, args_list, cpus)
 
@@ -286,7 +289,7 @@ def write_pa_table(pa_table: List, loci: List, output: str) -> None:
 
 def get_target_proteins(
         checkpoint: Checkpoint, output: str, seed: str, thresholds: List,
-        cpus: int, random_seed_number: int, diamond_location: str
+        cpus: int, random_seed_number: int, diamond_args: Tuple[str,float,float,float]
     ) -> None:
     '''
     The main routine for screen.py
@@ -308,7 +311,7 @@ def get_target_proteins(
     logging.debug('The output directory is: %s', output)
     if checkpoint < Checkpoint.SINGLETONS_IDENTIFIED:
         candidate_loci = get_singletons_from_seed(
-            seed, output, thresholds, random_seed_number, diamond_location
+            seed, output, thresholds, random_seed_number, diamond_args
             )
     logging.info("CHECKPOINT: SINGLETONS_IDENTIFIED")
     #candidate loci will not exist if restarted from a checkpoint
@@ -324,7 +327,7 @@ def get_target_proteins(
     #continue sequential analysis
     if checkpoint < Checkpoint.SINGLETONS_SEARCHED:
         logging.info("Screening candidate loci against other genomes...")
-        search_candidates(output, cpus, diamond_location)
+        search_candidates(output, cpus, diamond_args)
     logging.info("CHECKPOINT: SINGLETONS_SEARCHED")
     if checkpoint < Checkpoint.SINGLETONS_THRESHOLDED:
         logging.info("Thresholding candidate loci...")

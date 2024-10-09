@@ -102,6 +102,7 @@ def get_blast_parser(arg_parser):
     phylo_parser.add_argument(
     '-id',
     '--identity',
+    type=float,
     default=None,
     help=(
         'minimum identity score for blastp\n'
@@ -111,6 +112,7 @@ def get_blast_parser(arg_parser):
     phylo_parser.add_argument(
     '-qc',
     '--query-coverage',
+    type=float,
     default=None,
     help=(
         'minimum query coverage for blastp\n'
@@ -120,6 +122,7 @@ def get_blast_parser(arg_parser):
     phylo_parser.add_argument(
     '-sc',
     '--subject-coverage',
+    type=float,
     default=None,
     help=(
         'minimum subject coverage for blastp\n'

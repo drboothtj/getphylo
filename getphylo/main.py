@@ -55,6 +55,7 @@ def main():
     checkpoint = Checkpoint[args.checkpoint.upper()]
     seed = args.seed
     output = os.path.abspath(args.output)
+    diamond_args = (args.diamond, args.identity, args.query_coverage, args.subject_coverage)
 
     if os.path.isdir(gbks):
         raise BadInputError(
@@ -84,7 +85,7 @@ def main():
             args.find, args.minlength, args.maxlength, args.presence, args.minloci, args.maxloci,
             ]
         final_loci = screen.get_target_proteins(
-            checkpoint, output, seed, thresholds, args.cpus, args.random_seed_number, args.diamond
+            checkpoint, output, seed, thresholds, args.cpus, args.random_seed_number, diamond_args
             )
     ### before continuing check final loci is defined, otherwise read from file
     try:
