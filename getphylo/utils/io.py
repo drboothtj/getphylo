@@ -126,7 +126,6 @@ def run_in_command_line(command: List[str]) -> None:
         Returns:
             process: the process being run
     '''
-    print(command)
     logging.debug(command)
     try:
         with subprocess.Popen(
@@ -139,7 +138,6 @@ def run_in_command_line(command: List[str]) -> None:
                     + 'with the following error ' + str(stderr))
             return process
     except FileNotFoundError as error:
-        print(error)
         raise BadExecutableError(
             'getphylo could not find an executable, ' +
             'please ensure the correct paths to all executables are provided'
