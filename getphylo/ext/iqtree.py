@@ -19,16 +19,14 @@ def run_iqtree(
         Returns:
             None
     '''
-    command = iqtree_location
-    alignment = " ".join(['-s', alignment_path])
-    out_path = " ".join(['-pre', out_path])
-    model = '-m MFP'
-    bootstraps = '-bb 1000'
-    #do a run with or without partition file
+    command = [
+            iqtree_location,
+            '-s', alignment_path,
+            '-pre', out_path, 
+            '-m', 'MFP',
+            '-bb', '1000'
+            ]
     if partition_path is not None:
-        partition = " ".join(['-spp', partition_path])
-        io.run_in_command_line(
-            " ".join([command, alignment, partition, out_path, model, bootstraps])
-            )
-    else:
-        io.run_in_command_line(" ".join([command, alignment, out_path, model, bootstraps]))
+        command.append('-spp')
+        command.append(partition_path)
+    io.run_in_command_line(command)

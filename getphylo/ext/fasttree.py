@@ -2,7 +2,7 @@
 Run fasttree.
 
 Functions:
-    run_fasttree(filename, outfile=None) -> None
+    run_fasttree(filename, outfile=None, fasttree_location='fasttree') -> None
 
 '''
 from getphylo.utils import io
@@ -18,8 +18,12 @@ def run_fasttree(filename, outfile=None, fasttree_location='fasttree') -> None:
     '''
 
     if outfile is None:
-        out = " -out " + io.change_extension(filename, "tree") + " "
+        out = io.change_extension(filename, "tree")
     else:
-        out = " -out " + outfile + " "
-    command = fasttree_location
-    io.run_in_command_line(command + out + filename)
+        out = outfile
+    command = [
+        fasttree_location,
+        "-out", out,
+        filename
+    ]
+    io.run_in_command_line(command)

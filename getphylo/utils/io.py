@@ -9,7 +9,7 @@ Functions:
     make_folder(name: str) -> None
     read_file(filename: str) -> List[str]
     read_tsv(filename: str) -> List[str]
-    run_in_command_line(command: str)
+    run_in_command_line(List[str])
     run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) -> List
     write_to_file(filename: str, write_lines: List[str]) -> None
 '''
@@ -87,7 +87,8 @@ def make_folder(name: str) -> None:
     '''
     if os.path.exists(name):
         raise FolderExistsError(
-            f'The directory {name} already exists. For saftey, please remove the folder before continuing.'
+            f'The directory {name} already exists.'
+            'For saftey, please remove the folder before continuing.'
             )
     os.mkdir(name)
 
@@ -117,23 +118,25 @@ def read_tsv(filename: str) -> List[str]:
             contents.append(line)
     return contents
 
-def run_in_command_line(command: str):
+def run_in_command_line(command: List[str]) -> None:
     '''
     Convert a string into a command and run in the terminal.
         Aruments:
-            command: string containing the command for the terminal
+            command: list of strings containing the command for the terminal
         Returns:
             process: the process being run
     '''
-    command = command.split(" ")
+    print(command)
     logging.debug(command)
     try:
         with subprocess.Popen(
-            command, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
+            command, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE
             ) as process:
-            process.communicate()
+            _, stderr =process.communicate()
             if process.returncode != 0:
-                raise RuntimeError('Failed to run: ' + str(command))
+                raise RuntimeError(
+                    'Failed to run: ' + str(command)
+                    + 'with the following error ' + str(stderr))
             return process
     except FileNotFoundError as error:
         print(error)

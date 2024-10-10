@@ -10,7 +10,7 @@ Functions:
 import logging
 from getphylo.utils import io
 
-def make_diamond_database(filename: str, dmnd_database=None, diamond_location='diamond') -> None:
+def make_diamond_database(infile: str, dmnd_database=None, diamond_location='diamond') -> None:
     '''
     Create a DIAMOND database from a fasta file.
         Arguments:
@@ -20,12 +20,14 @@ def make_diamond_database(filename: str, dmnd_database=None, diamond_location='d
             None
     '''
     if dmnd_database is None:
-        database = " --db " + filename.split('.')[0] + ".dmnd"
+        database_name = infile.split('.')[0] + ".dmnd"
     else:
-        database = " --db " + dmnd_database
-    makedb = " makedb"
-    input_ = " --in " + filename + ""
-    command = diamond_location + makedb + database + input_
+        database_name = dmnd_database
+    command = [
+        diamond_location, "makedb",
+        "--db", database_name, 
+        "--in", infile
+        ]
     logging.debug(command)
     io.run_in_command_line(command)
 
@@ -43,27 +45,29 @@ def run_diamond_search(
             None
     '''
     if dmnd_database is None:
-        database = " --db " + filename.split('.')[0] + ".dmnd"
+        database = filename.split('.')[0] + ".dmnd"
     else:
-        database = " --db " + dmnd_database
+        database = dmnd_database
     if outname is None:
-        output = " --out " + dmnd_database.split('.')[0] + ".tsv"
+        output = dmnd_database.split('.')[0] + ".tsv"
     else:
-        output = " --out " + outname
-    diamond = diamond_args[0]
-    blastp = " blastp"
-    query = " --query " + filename
-    outfmt = " --outfmt 6 qseqid sseqid pident"
-    command = diamond + blastp + database + query + output + outfmt
+        output = outname
+    command = [
+        diamond_args[0], "blastp",
+        "--db", database,
+        "--query", filename,
+        "--out", output,
+        "--outfmt", "6", "qseqid", "sseqid", "pident"
+        ]
     #there must be a nicer way of doing this but it works for now!
     if diamond_args[1] is not None:
-        identity = " --id " + str(diamond_args[1])
-        command += identity
+        command.append("--id")
+        command.append(str(diamond_args[1]))
     if diamond_args[2] is not None:
-        q_cover = " --query_cover " + str(diamond_args[2])
-        command += q_cover
+        command.append("--query_cover")
+        command.append(str(diamond_args[2]))
     if diamond_args[3] is not None:
-        s_cover = " --subject_cover " + str(diamond_args[3])
-        command += s_cover
+        command.append("--subject_cover")
+        command.append(str(diamond_args[3]))
     logging.debug(command)
     io.run_in_command_line(command)

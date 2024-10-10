@@ -49,7 +49,6 @@ def run_muscle(filename: str, outname=None, muscle_location: str = 'muscle') -> 
     '''
     if outname is None:
         outname = "aligned_" + filename
-    args = [muscle_location]
     # change the argument format depending on the version of MUSCLE
     # also, MUSCLE 5 is much slower than previous versions so print a warning!
     if get_muscle_version(muscle_location) >= 5.0:
@@ -57,8 +56,15 @@ def run_muscle(filename: str, outname=None, muscle_location: str = 'muscle') -> 
             'You are using a MUSCLE version 5 or later. '
             'Be aware that MUSCLE 5 is much slower than previous versions.'
         )
-        args.extend(["-align", filename, "-output", outname])
+        command = [
+            muscle_location,
+            "-align", filename, 
+            "-output", outname
+        ]
     else:
-        args.extend(["-in", filename, "-out", outname])
-    command = " ".join(args)
+        command = [
+            muscle_location,
+            "-in", filename, 
+            "-out", outname
+        ]
     io.run_in_command_line(command)
