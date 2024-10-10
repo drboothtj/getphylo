@@ -97,7 +97,7 @@ def get_blast_parser(arg_parser):
             arg_parser: the argument parser with arguments added
     '''
     phylo_parser = arg_parser.add_argument_group(
-        'blastp', 'parameters for blasp'
+        'blastp', 'parameters for blastp'
         )
     phylo_parser.add_argument(
     '-id',
