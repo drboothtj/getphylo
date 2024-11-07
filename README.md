@@ -65,4 +65,6 @@ DOI: https://doi.org/10.1101/2023.07.26.550493
 - 0.3.0
   - now supports modifying blastp thresholds, including parameters for identity and coverage
   - fixed typos in parser
-  - fix crashing when provided with directories with spaces in the names
+  - fixed crashing when provided with directories with spaces in the names
+- 0.3.1
+  - fixed issue with the query and subject cover in diamond

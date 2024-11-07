@@ -64,10 +64,10 @@ def run_diamond_search(
         command.append("--id")
         command.append(str(diamond_args[1]))
     if diamond_args[2] is not None:
-        command.append("--query_cover")
+        command.append("--query-cover")
         command.append(str(diamond_args[2]))
     if diamond_args[3] is not None:
-        command.append("--subject_cover")
+        command.append("--subject-cover")
         command.append(str(diamond_args[3]))
     logging.debug(command)
     io.run_in_command_line(command)
