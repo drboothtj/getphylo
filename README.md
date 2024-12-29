@@ -70,4 +70,5 @@ DOI: https://doi.org/10.1101/2023.07.26.550493
   - fixed issue with the query and subject cover in diamond
 - 0.3.2
   - added version info to setup.py and README for none-python dependencies
-  -
+  - now raises error if the user provides too few input files
+  - now raises an error if an invalid phylogentic method is provided (e.g. not fasttree or iqtree)
