@@ -14,7 +14,7 @@ This will fetch and install the latest version from: https://pypi.org/project/ge
 
 For full installation instructions, please see the [getphylo wiki](https://github.com/drboothtj/getphylo/wiki/Installation).
 
-**Important:** getphylo requires DIAMOND, MUSCLE and FastTree2 to be installed to work correctly. These must be installed manually. Further instructions are [availiable on the wiki](https://github.com/drboothtj/getphylo/wiki/Installation).
+**Important:** getphylo requires DIAMOND(>=v2.0.14.152), MUSCLE(>=v3.8.1551) and FastTree2(>=2.1.11) to be installed to work correctly. These must be installed manually. Further instructions are [availiable on the wiki](https://github.com/drboothtj/getphylo/wiki/Installation).
 
 ## Quick-start
 This package has been designed to be as easy to run as possible. Simply navigate to a working directory containing .gbk files and input:

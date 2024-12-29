@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="getphylo",
-    version="0.3.1",
+    version="0.3.2",
     author="Thomas J. Booth",
     author_email="thoboo@biosustain.dtu.dk",
     packages=find_packages(),
@@ -15,6 +15,6 @@ setup(
     url="https://github.com/DrBoothTJ/getphylo",
     license='GNU General Public License v3.0',
     python_requires='>=3.7',
-    install_requires=['Bio'],
+    install_requires=['Bio>=1.7'],
     entry_points={'console_scripts': ["getphylo=getphylo.__main__:entrypoint"]}
 )
