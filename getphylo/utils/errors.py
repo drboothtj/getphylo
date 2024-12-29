@@ -9,7 +9,7 @@ class GetphyloError(Exception):
 class BadInputError(GetphyloError):
     '''Called when user provides bad input'''
     pass
-    
+
 class BadSeedError(GetphyloError):
     '''Called when a seed cannot be correctly set'''
     pass
@@ -52,3 +52,9 @@ class BadLocusError(GetphyloError):
 class BadExecutableError(GetphyloError):
     '''Called when a non-existant executable path is provided'''
     pass
+
+class BadMethodError(GetphyloError):
+    '''
+    Called if a phylogentic tool is defined that is not 'fasttree' or 'iqtree'
+    Note: It shouldn't be feasable for the user.
+    '''

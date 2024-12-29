@@ -4,6 +4,7 @@ Main routine for getphylo
 Functions:
     initialize_logging() -> None
     check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str
+    check_gbks(gbks: str) -> None
     main()
 '''
 import glob
@@ -11,7 +12,13 @@ import logging
 import os
 from getphylo import align, extract, parser, screen, trees
 from getphylo.utils import io
-from getphylo.utils.errors import BadInputError, BadSeedError, FolderExistsError, NoFinalLociError
+from getphylo.utils.errors import (
+    BadInputError,
+    BadMethodError,
+    BadSeedError,
+    FolderExistsError,
+    NoFinalLociError
+    )
 from getphylo.utils.checkpoint import Checkpoint
 
 def initialize_logging() -> None:
@@ -24,15 +31,17 @@ def initialize_logging() -> None:
         level=logging_level,
         format='[%(asctime)s] %(levelname)-10s: %(message)s',
         datefmt='%H:%M:%S')
-    logging.info("Running getphylo version 0.3.1.")
+    logging.info("Running getphylo version 0.3.2.")
 
 def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
-    '''Set a seed for a new analysis and raise an error if continuing an old analysis.
+    '''
+    Set a seed for a new analysis and raise an error if continuing an old analysis.
         Arguments:
             checkpoint: the checkpoint supplied by the user
             gbk_search_string: the string used to filter the glob (e.g. '*.gbk')
         Returns:
-            seed: the filename of the selected seed genome'''
+            seed: the filename of the selected seed genome
+    '''
     if checkpoint > 0:
         raise BadSeedError('A checkpoint has been set! Please ensure the seed is defined.')
     gbks = glob.glob(gbk_search_string)
@@ -44,6 +53,23 @@ def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
         )
     return seed
 
+def check_gbks(gbks: str) -> None:
+    '''
+    check at least three files are  found by the provided search string
+    otherwise, raise BadInputError
+        arguments:
+            gbks: search string from the parser
+        returns:
+            None
+    '''
+    gbk_count = len(glob.glob(gbks))
+    if gbk_count < 3:
+        raise BadInputError(
+            'getphylo requires at least 3 input sequences. '
+            f'{gbk_count} provided. '
+            'Please, check input search sting parameter (-g) and try again.'
+            )
+
 def main():
     '''main routine for getphylo
         Arguments: None
@@ -52,6 +78,7 @@ def main():
     logging.getLogger().setLevel(args.logging)
 
     gbks = args.gbks
+    check_gbks(gbks)
     checkpoint = Checkpoint[args.checkpoint.upper()]
     seed = args.seed
     output = os.path.abspath(args.output)
@@ -116,6 +143,10 @@ def main():
             tree_builder = args.fasttree
         elif args.method == 'iqtree':
             tree_builder = args.iqtree
+        else:
+            raise BadMethodError(
+                'Neither fasttree or iqtree was selected.'
+                'It should not be possible for you to generate this error - please report!')
         trees.make_trees(output, build_all, args.method, args.cpus, tree_builder)
     logging.info("CHECKPOINT: DONE")
     logging.info("Analysis complete. Thank you for using getphylo!")
