@@ -72,3 +72,7 @@ DOI: https://doi.org/10.1101/2023.07.26.550493
   - added version info to setup.py and README for none-python dependencies
   - now raises error if the user provides too few input files
   - now raises an error if an invalid phylogentic method is provided (e.g. not fasttree or iqtree)
+### Version 1
+- 1.0.0
+  - full release for Booth et al.
+  - fixed handling CDSs with empty translations
