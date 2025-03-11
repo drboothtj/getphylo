@@ -1,3 +1,4 @@
+![getphylo logo](https://github.com/drboothtj/getphylo/blob/main/getphylo_logo.png?raw=True)
 # getphylo: GEnbank To PHYLOgeny
 a python package for automated generation of heuristic phylogenetic trees from genbank files
 
@@ -40,9 +41,8 @@ Example outputs and benchmarking data can be found in the [getphylo benchmarking
 ## Citation
 If you use `getphylo`, please cite:
 
-> Booth, T. J., Shaw, S., & Weber, T. (2023). getphylo: rapid and automatic generation of multi-locus phylogenetic trees. BioRxiv, 2023.07.26.550493. 
-
-DOI: https://doi.org/10.1101/2023.07.26.550493
+Booth, T.J., Shaw, S., Cruz-Morales, P. and Weber, T. getphylo: rapid and automatic generation of multi-locus phylogenetic trees. *BMC Bioinformatics* **26**, 21 (2025).
+DOI: https://doi.org/10.1186/s12859-025-06035-1
 
 ## Patch Notes
 ### Version  0
@@ -74,5 +74,5 @@ DOI: https://doi.org/10.1101/2023.07.26.550493
   - now raises an error if an invalid phylogentic method is provided (e.g. not fasttree or iqtree)
 ### Version 1
 - 1.0.0
-  - full release for Booth et al.
+  - full release for Booth et al. *BMC Bioinformatics* **26**, 21 (2025).
   - fixed handling CDSs with empty translations
