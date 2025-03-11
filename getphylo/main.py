@@ -31,7 +31,7 @@ def initialize_logging() -> None:
         level=logging_level,
         format='[%(asctime)s] %(levelname)-10s: %(message)s',
         datefmt='%H:%M:%S')
-    logging.info("Running getphylo version 0.3.2.")
+    logging.info("Running getphylo version 1.0.0.")
 
 def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
     '''
