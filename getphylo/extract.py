@@ -84,32 +84,38 @@ def get_cds_from_genbank(
         records = io.get_records_from_genbank(filename)
         for record in records:
             for feature in record.features:
-                try:
-                    if feature.type == "CDS":
-                        locus_tag = f'{record.id}_{feature.qualifiers.get(tag_label)[0]}'
-                        if locus_tag in seen:
-                            raise BadAnnotationError(f'{filename} contains duplicate: {locus_tag}')
-                        seen.add(locus_tag)
-                        lines.append(">" + locus_tag.replace(".", "_"))
-                        translation = str(feature.qualifiers.get("translation")[0])
-                        if translation == "":
-                            raise BadAnnotationError(
-                                f'{locus_tag} in {filename} contains an empty translation!'
-                                )
-                        lines.append(translation)
-                except TypeError:
-                    if feature.qualifiers.get(tag_label) is None:
-                        logging.warning(
-                            'Missing %s in %s.', tag_label, record.id
-                            )
-                        if not ignore_bad_annotations:
-                            raise BadAnnotationError(
-                                f'Some features are missing the {tag_label} annotations.'
-                                'Ensure the genbank file is correctly annotated or use'
-                                '--ignore-bad-annotations flag.'
-                            )
-                    else:
+                if feature.type != "CDS":
+                    continue
+
+                if not feature.qualifiers.get(tag_label):
+                    logging.warning(
+                        'Missing %s in %s.', tag_label, record.id
+                        )
+                    if not ignore_bad_annotations:
+                        raise BadAnnotationError(
+                            f'Some features are missing the {tag_label} annotations.'
+                            'Ensure the genbank file is correctly annotated or use'
+                            '--ignore-bad-annotations flag.'
+                        )
+                    continue
+
+                locus_tag = f'{record.id}_{feature.qualifiers[tag_label][0]}'
+                if locus_tag in seen:
+                    raise BadAnnotationError(f'{filename} contains duplicate: {locus_tag}')
+                seen.add(locus_tag)
+
+                translation = str(feature.qualifiers.get("translation", [""])[0])
+                if translation == "":
+                    if ignore_bad_annotations:
                         warning_flag = True
+                        continue
+                    raise BadAnnotationError(
+                        f'{locus_tag} in {filename} contains an empty translation!'
+                        )
+
+                lines.append(">" + locus_tag.replace(".", "_"))
+                lines.append(translation)
+
             if warning_flag is True:
                 logging.warning('%s has missing translations!', record.id)
     except ValueError as error:
