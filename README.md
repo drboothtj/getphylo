@@ -76,3 +76,6 @@ DOI: https://doi.org/10.1186/s12859-025-06035-1
 - 1.0.0
   - full release for Booth et al. *BMC Bioinformatics* **26**, 21 (2025).
   - fixed handling CDSs with empty translations
+- 1.0.1
+  - fixed the functionality of -ir/--ignore-bad-records, it will now skip records in the analysis that contain poorly formatted locus tags
+  - -ir/--ignore-bad-records now only works if used in tandem with -ia/--ignore-bad-annotations, help text updated to reflect this

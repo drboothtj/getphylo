@@ -101,29 +101,34 @@ def get_cds_from_genbank(
 
                 locus_tag = f'{record.id}_{feature.qualifiers[tag_label][0]}'
                 if locus_tag in seen:
+                    warning_flag = True
+                    if ignore_bad_annotations:
+                        continue
                     raise BadAnnotationError(f'{filename} contains duplicate: {locus_tag}')
                 seen.add(locus_tag)
 
                 translation = str(feature.qualifiers.get("translation", [""])[0])
                 if translation == "":
+                    warning_flag = True
                     if ignore_bad_annotations:
-                        warning_flag = True
                         continue
                     raise BadAnnotationError(
                         f'{locus_tag} in {filename} contains an empty translation!'
                         )
-
                 lines.append(">" + locus_tag.replace(".", "_"))
                 lines.append(translation)
-
-            if warning_flag is True:
-                logging.warning('%s has missing translations!', record.id)
     except ValueError as error:
         if not ignore_bad_records:
             raise BadRecordError(error)
+        return
     if not lines:
-        if not ignore_bad_annotations:
-            raise BadAnnotationError(f'No CDS Features in {filename}')
+        if not ignore_bad_records:
+            raise BadRecordError(f'No CDS Features in {filename}')
+        return
+    if warning_flag is True:
+        logging.warning('%s has bad annotations!', record.id)
+        if ignore_bad_records is True:
+            return
     filename = io.change_extension(os.path.basename(filename), "fasta")
     filename = os.path.join(output, 'fasta', filename)
     io.write_to_file(filename, lines)

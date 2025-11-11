@@ -191,7 +191,10 @@ def get_records_parser(arg_parser):
         '-ir',
         '--ignore-bad-records',
         action='store_true',
-        help='ignore poorly formated records - NOT RECOMMENDED\n (default: %(default)s)'
+        help=(
+            'ignore poorly formated records - NOT RECOMMENDED\n (default: %(default)s)\n'
+            'NOTE: This will only work if -ia is also set'
+        )
         )
     return arg_parser
 
