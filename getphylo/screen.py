@@ -236,7 +236,7 @@ def do_thresholding(
             break
     if len(final_loci) <= maximum_loci:
         logging.warning('Number of loci selected is lower than the maximum defined.')
-    filename = os.path.join(output, 'thresholding_data')
+    filename = os.path.join(output, 'thresholding_data.csv')
     io.write_to_file(filename, thresholding_data)
     write_pa_table(pa_table, target_loci, output)
     return final_loci
