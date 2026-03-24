@@ -29,7 +29,6 @@ def initialize_logging() -> None:
         '''
     logging_level = logging.DEBUG
     logging.basicConfig(
-        #filename='getphylo.log',
         level=logging_level,
         format='[%(asctime)s] %(levelname)-10s: %(message)s',
         datefmt='%H:%M:%S',
@@ -52,10 +51,11 @@ def check_executables(args) -> None:
     io.run_in_command_line([args.diamond, 'help'])
     logging.debug("Checking muscle...")
     io.run_in_command_line([args.muscle])
-
     if args.method =="fasttree":
+        logging.debug("Checking fasttree...")
         io.run_in_command_line([args.fasttree])
     elif args.method =="iqtree":
+        logging.debug("Checking iqtree...")
         io.run_in_command_line([args.iqtree])
     else:
         raise BadMethodError(
