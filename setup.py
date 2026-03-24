@@ -5,9 +5,9 @@ with open("README.md", "r") as fh:
 
 setup(
     name="getphylo",
-    version="1.0.2",
+    version="1.1.0",
     author="Thomas J. Booth",
-    author_email="thoboo@biosustain.dtu.dk",
+    author_email="thoboo@.dtu.dk",
     packages=find_packages(),
     description="a python package for automated generation of heuristic phylogenetic trees from genbank files",
     long_description=description,

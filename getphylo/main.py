@@ -22,7 +22,7 @@ from getphylo.utils.errors import (
     )
 from getphylo.utils.checkpoint import Checkpoint
 
-def initialize_logging() -> None:
+def initialize_logging() -> None: #move call to main.py so we can add other arguments
     '''Set up and configure logging.
         Arguments: None
         Returns: None
@@ -34,9 +34,9 @@ def initialize_logging() -> None:
         datefmt='%H:%M:%S',
         handlers=[
             logging.StreamHandler(),
-            logging.FileHandler('getphylo.log')
+            logging.FileHandler('getphylo.log') #make customisable
         ])
-    logging.info("Running getphylo version 1.0.2.")
+    logging.info("Running getphylo version 1.1.0.")
 
 #make check a seperate module!
 def check_executables(args) -> None:
@@ -104,9 +104,11 @@ def check_gbks(gbks: str) -> None:
             )
 
 def main():
-    '''main routine for getphylo
+    '''
+    main routine for getphylo
         Arguments: None
-        Returns: None'''
+        Returns: None
+    '''
     args = parser.parse_args()
     logging.getLogger().setLevel(args.logging)
     #ALWAYS SET LOGGING LEVEL FIRST!
