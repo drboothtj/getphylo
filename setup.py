@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="getphylo",
-    version="1.0.1",
+    version="1.0.2",
     author="Thomas J. Booth",
     author_email="thoboo@biosustain.dtu.dk",
     packages=find_packages(),
