@@ -33,6 +33,30 @@ def initialize_logging() -> None:
         datefmt='%H:%M:%S')
     logging.info("Running getphylo version 1.0.2.")
 
+def check_executables(args) -> None:
+    '''
+    check excutables are defined and break early if not
+        arguments:
+            args: the args from the args parsers
+        returns:
+            None
+    '''
+    logging.debug("Checking diamond...")
+    io.run_in_command_line([args.diamond, 'help'])
+    logging.debug("Checking muscle...")
+    io.run_in_command_line([args.muscle])
+
+    if args.method =="fasttree":
+        io.run_in_command_line([args.fasttree])
+    elif args.method =="iqtree":
+        io.run_in_command_line([args.iqtree])
+    else:
+        raise BadMethodError(
+            'Neither fasttree or iqtree was selected.'
+            'It should not be possible for you to generate this error - please report!'
+            )
+    logging.debug("Executables checked successfully.")
+
 def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
     '''
     Set a seed for a new analysis and raise an error if continuing an old analysis.
@@ -76,9 +100,10 @@ def main():
         Returns: None'''
     args = parser.parse_args()
     logging.getLogger().setLevel(args.logging)
-
+    #ALWAYS SET LOGGING LEVEL FIRST!
+    check_executables(args)
     gbks = args.gbks
-    check_gbks(gbks)
+    check_gbks(gbks) #make a check module to keep it clean
     checkpoint = Checkpoint[args.checkpoint.upper()]
     seed = args.seed
     output = os.path.abspath(args.output)

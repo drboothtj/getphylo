@@ -138,10 +138,7 @@ def run_in_command_line(command: List[str]) -> None:
                     + 'with the following error ' + str(stderr))
             return process
     except FileNotFoundError as error:
-        raise BadExecutableError(
-            'getphylo could not find an executable, ' +
-            'please ensure the correct paths to all executables are provided'
-            ) from error
+        raise BadExecutableError(command)
 
 def run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) -> List:
     '''

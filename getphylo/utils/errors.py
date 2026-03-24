@@ -51,6 +51,12 @@ class BadLocusError(GetphyloError):
 
 class BadExecutableError(GetphyloError):
     '''Called when a non-existant executable path is provided'''
+    def __init__(self, command):
+        self.command = command
+        super().__init__(
+        f'getphylo could not find the executable "{self.command[0]}", ' +
+        'please ensure the correct paths to all executables are provided'
+        )
     pass
 
 class BadMethodError(GetphyloError):
