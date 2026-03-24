@@ -45,6 +45,16 @@ Booth, T.J., Shaw, S., Cruz-Morales, P. and Weber, T. getphylo: rapid and automa
 DOI: https://doi.org/10.1186/s12859-025-06035-1
 
 ## Patch Notes
+### Version 1
+- 1.0.2
+  - fixed typos in the parser
+- 1.0.1
+  - fixed the functionality of `-ir`/`--ignore-bad-records`, it will now skip records in the analysis that contain poorly formatted locus tags
+  - `-ir`/`--ignore-bad-records` now only works if used in tandem with `-ia`/`--ignore-bad-annotations`, help text updated to reflect this
+- 1.0.0
+  - full release for Booth et al. *BMC Bioinformatics* **26**, 21 (2025).
+  - fixed handling CDSs with empty translations
+
 ### Version  0
 - 0.1.0 
 	- beta version initial release
@@ -53,9 +63,9 @@ DOI: https://doi.org/10.1186/s12859-025-06035-1
 - 0.1.2 
 	- now raises an error if translations are present but empty
 	- error messages from the extract module are now more informative
-	- fixed a fatal issue with --build-all
+	- fixed a fatal issue with `--build-all`
 - 0.2.0
-	- now supports iqtree using the --method parameter
+	- now supports iqtree using the `--method` parameter
 - 0.2.1
 	- now able to provide custom paths for binary dependencies
 	- parser now has argument groups and is more readable
@@ -72,10 +82,3 @@ DOI: https://doi.org/10.1186/s12859-025-06035-1
   - added version info to setup.py and README for none-python dependencies
   - now raises error if the user provides too few input files
   - now raises an error if an invalid phylogentic method is provided (e.g. not fasttree or iqtree)
-### Version 1
-- 1.0.0
-  - full release for Booth et al. *BMC Bioinformatics* **26**, 21 (2025).
-  - fixed handling CDSs with empty translations
-- 1.0.1
-  - fixed the functionality of -ir/--ignore-bad-records, it will now skip records in the analysis that contain poorly formatted locus tags
-  - -ir/--ignore-bad-records now only works if used in tandem with -ia/--ignore-bad-annotations, help text updated to reflect this

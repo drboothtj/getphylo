@@ -226,7 +226,7 @@ def get_search_parser(arg_parser):
         default=2000,
         type=int,
         help=(
-            'integer indicating the minimum length of loci to be included in the analysis\n'
+            'integer indicating the maximum length of loci to be included in the analysis\n'
             '(default: %(default)s)'
         )
         )
