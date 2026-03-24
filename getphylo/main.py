@@ -3,6 +3,7 @@ Main routine for getphylo
 
 Functions:
     initialize_logging() -> None
+    check_executables(args) -> None
     check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str
     check_gbks(gbks: str) -> None
     main()
@@ -24,15 +25,21 @@ from getphylo.utils.checkpoint import Checkpoint
 def initialize_logging() -> None:
     '''Set up and configure logging.
         Arguments: None
-        Returns: None'''
+        Returns: None
+        '''
     logging_level = logging.DEBUG
     logging.basicConfig(
         #filename='getphylo.log',
         level=logging_level,
         format='[%(asctime)s] %(levelname)-10s: %(message)s',
-        datefmt='%H:%M:%S')
+        datefmt='%H:%M:%S',
+        handlers=[
+            logging.StreamHandler(),
+            logging.FileHandler('getphylo.log')
+        ])
     logging.info("Running getphylo version 1.0.2.")
 
+#make check a seperate module!
 def check_executables(args) -> None:
     '''
     check excutables are defined and break early if not
@@ -57,6 +64,7 @@ def check_executables(args) -> None:
             )
     logging.debug("Executables checked successfully.")
 
+#make check a seperate module
 def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
     '''
     Set a seed for a new analysis and raise an error if continuing an old analysis.
@@ -77,6 +85,7 @@ def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
         )
     return seed
 
+#make check a seperate module
 def check_gbks(gbks: str) -> None:
     '''
     check at least three files are  found by the provided search string
