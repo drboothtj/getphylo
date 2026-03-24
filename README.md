@@ -47,38 +47,42 @@ DOI: https://doi.org/10.1186/s12859-025-06035-1
 ## Patch Notes
 ### Version 1
 - 1.0.2
+  - added execultable checks to break early if executables are not defined correctly
+  - updated exacutable error message to be informative about which executable is missing
+  - getphylo now writes a copy of the log to getphylo.log
+  - added missing '.csv' extension to thresholding_data file
   - fixed typos in the parser
 - 1.0.1
   - fixed the functionality of `-ir`/`--ignore-bad-records`, it will now skip records in the analysis that contain poorly formatted locus tags
   - `-ir`/`--ignore-bad-records` now only works if used in tandem with `-ia`/`--ignore-bad-annotations`, help text updated to reflect this
 - 1.0.0
-  - full release for Booth et al. *BMC Bioinformatics* **26**, 21 (2025).
+  - full release for Booth et al. *BMC Bioinformatics* **26**, 21 (2025)
   - fixed handling CDSs with empty translations
 
 ### Version  0
-- 0.1.0 
-	- beta version initial release
-- 0.1.1 
-	- added support for MUSCLE5
-- 0.1.2 
-	- now raises an error if translations are present but empty
-	- error messages from the extract module are now more informative
-	- fixed a fatal issue with `--build-all`
-- 0.2.0
-	- now supports iqtree using the `--method` parameter
-- 0.2.1
-	- now able to provide custom paths for binary dependencies
-	- parser now has argument groups and is more readable
-	- file exists error message more informative
-- 0.2.2
-  - added error message when users attempt to input directory instead of a search string
-- 0.3.0
-  - now supports modifying blastp thresholds, including parameters for identity and coverage
-  - fixed typos in parser
-  - fixed crashing when provided with directories with spaces in the names
-- 0.3.1
-  - fixed issue with the query and subject cover in diamond
 - 0.3.2
   - added version info to setup.py and README for none-python dependencies
   - now raises error if the user provides too few input files
   - now raises an error if an invalid phylogentic method is provided (e.g. not fasttree or iqtree)
+- 0.3.1
+  - fixed issue with the query and subject cover in diamond
+- 0.3.0
+  - now supports modifying blastp thresholds, including parameters for identity and coverage
+  - fixed typos in parser
+  - fixed crashing when provided with directories with spaces in the names
+- 0.2.2
+  - added error message when users attempt to input directory instead of a search string
+- 0.2.1
+	- now able to provide custom paths for binary dependencies
+	- parser now has argument groups and is more readable
+	- file exists error message more informative
+- 0.2.0
+	- now supports iqtree using the `--method` parameter
+- 0.1.2 
+	- now raises an error if translations are present but empty
+	- error messages from the extract module are now more informative
+	- fixed a fatal issue with `--build-all`
+- 0.1.1
+	- added support for MUSCLE5
+- 0.1.0
+	- beta version initial release
