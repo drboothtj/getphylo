@@ -57,10 +57,15 @@ class BadExecutableError(GetphyloError):
         f'getphylo could not find the executable "{self.command[0]}", ' +
         'please ensure the correct paths to all executables are provided'
         )
-    pass
 
 class BadMethodError(GetphyloError):
     '''
     Called if a phylogentic tool is defined that is not 'fasttree' or 'iqtree'
     Note: It shouldn't be feasable for the user.
     '''
+    def __init__(self, method):
+        self.method = method
+        super().__init__(
+        f'You somehow selected {self.method} as the method.'
+        'It should not be possible for you to generate this error - please report!'
+        )

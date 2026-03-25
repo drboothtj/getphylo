@@ -58,10 +58,7 @@ def check_executables(args) -> None:
         logging.debug("Checking iqtree...")
         io.run_in_command_line([args.iqtree])
     else:
-        raise BadMethodError(
-            'Neither fasttree or iqtree was selected.'
-            'It should not be possible for you to generate this error - please report!'
-            )
+        raise BadMethodError(args.method)
     logging.debug("Executables checked successfully.")
 
 #make check a seperate module
@@ -180,9 +177,7 @@ def main():
         elif args.method == 'iqtree':
             tree_builder = args.iqtree
         else:
-            raise BadMethodError(
-                'Neither fasttree or iqtree was selected.'
-                'It should not be possible for you to generate this error - please report!')
+            raise BadMethodError(args.method)
         trees.make_trees(output, build_all, args.method, args.cpus, tree_builder)
     logging.info("CHECKPOINT: DONE")
     logging.info("Analysis complete. Thank you for using getphylo!")
