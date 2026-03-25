@@ -11,15 +11,13 @@ Functions:
 import glob
 import logging
 import os
-from getphylo import align, extract, parser, screen, trees
+from getphylo import align, check, extract, parser, screen, trees
 from getphylo.utils import io
 from getphylo.utils.errors import (
-    BadInputError,
     BadMethodError,
-    BadSeedError,
     FolderExistsError,
     NoFinalLociError
-    )
+    ) #move all to check
 from getphylo.utils.checkpoint import Checkpoint
 
 def initialize_logging() -> None: #move call to main.py so we can add other arguments
@@ -38,68 +36,6 @@ def initialize_logging() -> None: #move call to main.py so we can add other argu
         ])
     logging.info("Running getphylo version 1.1.0.")
 
-#make check a seperate module!
-def check_executables(args) -> None:
-    '''
-    check excutables are defined and break early if not
-        arguments:
-            args: the args from the args parsers
-        returns:
-            None
-    '''
-    logging.debug("Checking diamond...")
-    io.run_in_command_line([args.diamond, 'help'])
-    logging.debug("Checking muscle...")
-    io.run_in_command_line([args.muscle])
-    if args.method =="fasttree":
-        logging.debug("Checking fasttree...")
-        io.run_in_command_line([args.fasttree])
-    elif args.method =="iqtree":
-        logging.debug("Checking iqtree...")
-        io.run_in_command_line([args.iqtree])
-    else:
-        raise BadMethodError(args.method)
-    logging.debug("Executables checked successfully.")
-
-#make check a seperate module
-def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
-    '''
-    Set a seed for a new analysis and raise an error if continuing an old analysis.
-        Arguments:
-            checkpoint: the checkpoint supplied by the user
-            gbk_search_string: the string used to filter the glob (e.g. '*.gbk')
-        Returns:
-            seed: the filename of the selected seed genome
-    '''
-    if checkpoint > 0:
-        raise BadSeedError('A checkpoint has been set! Please ensure the seed is defined.')
-    gbks = glob.glob(gbk_search_string)
-    if not gbks:
-        raise BadSeedError(f'No files found in {gbk_search_string}.')
-    seed = gbks[0]
-    logging.warning(
-        'No seed defined. Using first file in glob (%s) as seed.', seed
-        )
-    return seed
-
-#make check a seperate module
-def check_gbks(gbks: str) -> None:
-    '''
-    check at least three files are  found by the provided search string
-    otherwise, raise BadInputError
-        arguments:
-            gbks: search string from the parser
-        returns:
-            None
-    '''
-    gbk_count = len(glob.glob(gbks))
-    if gbk_count < 3:
-        raise BadInputError(
-            'getphylo requires at least 3 input sequences. '
-            f'{gbk_count} provided. '
-            'Please, check input search sting parameter (-g) and try again.'
-            )
-
 def main():
     '''
     main routine for getphylo
@@ -108,21 +44,18 @@ def main():
     '''
     args = parser.parse_args()
     logging.getLogger().setLevel(args.logging)
-    #ALWAYS SET LOGGING LEVEL FIRST!
-    check_executables(args)
+    ###ALWAYS SET LOGGING LEVEL FIRST!
+
     gbks = args.gbks
-    check_gbks(gbks) #make a check module to keep it clean
     checkpoint = Checkpoint[args.checkpoint.upper()]
     seed = args.seed
     output = os.path.abspath(args.output)
     diamond_args = (args.diamond, args.identity, args.query_coverage, args.subject_coverage)
 
-    if os.path.isdir(gbks):
-        raise BadInputError(
-            gbks + ' is a directory. Please provide a search string (e.g. \'my_dir/*.gbk\').'
-            )
+    check.check_gbks(gbks) #make a check module to keep it clean
+    check.check_executables(args)
     if seed is None:
-        seed = check_seed(checkpoint, gbks)
+        seed = check.check_seed(checkpoint, gbks)
     logging.info('The seed genome is %s!', seed)
 
     ### Begin main workflow
