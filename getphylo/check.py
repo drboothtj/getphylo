@@ -1,11 +1,15 @@
 '''
 check inputs for getphylo
     functions:
-        !!!
+        check_executables(args) -> None
+        check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str
+        check_gbks(gbks: str) -> None
 '''
 import logging
 import glob
 import os
+
+from shutil import copy as cp
 
 from getphylo.utils import io
 from getphylo.utils.checkpoint import Checkpoint
@@ -14,9 +18,7 @@ from getphylo.utils.errors import (
     BadMethodError,
     BadSeedError, #too generic
     FolderExistsError,
-    NoFinalLociError
     )
-
 
 def check_executables(args) -> None:
     '''
@@ -40,6 +42,27 @@ def check_executables(args) -> None:
         raise BadMethodError(args.method)
     logging.debug("Executables checked successfully.")
 
+def check_input(gbks: str) -> None:
+    '''
+    check at least three files are found by the provided search string
+    otherwise, raise BadInputError
+        arguments:
+            gbks: search string from the parser
+        returns:
+            None
+    '''
+    gbk_count = len(glob.glob(gbks))
+    if os.path.isdir(gbks):
+        raise BadInputError(
+            gbks + ' is a directory. Please provide a search string (e.g. \'my_dir/*.gbk\').'
+            )
+    if gbk_count < 3:
+        raise BadInputError(
+            'getphylo requires at least 3 input sequences. '
+            f'{gbk_count} provided. '
+            'Please, check input search sting parameter (-g/-f) and try again.'
+            )
+
 def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
     '''
     Set a seed for a new analysis and raise an error if continuing an old analysis.
@@ -60,23 +83,62 @@ def check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str:
         )
     return seed
 
-def check_gbks(gbks: str) -> None:
+def check_fastas(files: str, seed: str, output: str, checkpoint: Checkpoint) -> str:
     '''
-    check at least three files are  found by the provided search string
-    otherwise, raise BadInputError
+    handles fasta file inputs by creating copies within the correct file structure
+    also sets the checkpoint if appropriate
         arguments:
-            gbks: search string from the parser
+            files: the glob string for the fasta files (e.g. *.fasta)
+            seed: the name of the seed file, if provided, else None
+            output: path to output dir
         returns:
-            None
+            checkpoint: checkpoint adjusted to FASTA_EXTRACTED if necissary
+            seed: selected seed from fasta input
     '''
-    gbk_count = len(glob.glob(gbks))
-    if gbk_count < 3:
-        raise BadInputError(
-            'getphylo requires at least 3 input sequences. '
-            f'{gbk_count} provided. '
-            'Please, check input search sting parameter (-g) and try again.'
+    check_input(files)
+    logging.warning(
+        'fasta has been set, ignoring genbank files and using %s as input', files
+    )
+    fastas = glob.glob(files)
+    if seed is None:
+        seed = fastas[0]
+    fasta_path = os.path.join(output, 'fasta')
+    io.make_folder(fasta_path)
+    for file in fastas:
+        cp(file, os.path.join(fasta_path, os.path.splitext(os.path.basename(file))[0] + '.fasta'))
+    checkpoint = max(checkpoint, Checkpoint.FASTA_EXTRACTED)
+    return checkpoint, files, seed
+
+def initialise_analysis(args) -> (Checkpoint, str, str):
+    '''
+    perform initialisation checks
+        arguments:
+            args: arguments object from argparse
+        returns:
+            checkpoint: getphylo checkpoint
+            files: glob string for the input files
+            seed: seed genome for the analysis
+    '''
+    logging.debug('Performing initialisation checks...')
+    output = os.path.abspath(args.output)
+    checkpoint = args.checkpoint
+    try:
+        io.make_folder(output)
+    except FolderExistsError:
+        logging.warning(
+            '%s already exists. Continuing analysis in that directory.', output
             )
-    if os.path.isdir(gbks):
-        raise BadInputError(
-            gbks + ' is a directory. Please provide a search string (e.g. \'my_dir/*.gbk\').'
+    seed = args.seed
+    if args.fasta:
+        checkpoint, files, seed = check_fastas(
+            args.fasta, seed, output, Checkpoint[args.checkpoint.upper()]
             )
+    else:
+        files = args.gbks
+        check_input(files)
+    if seed is None:
+        seed = check_seed(checkpoint, files)
+    logging.info('The seed genome is %s!', seed)
+    check_executables(args)
+    logging.debug('Initialisation checks passed!')
+    return checkpoint, files, seed

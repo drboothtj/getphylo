@@ -211,7 +211,7 @@ def get_search_parser(arg_parser):
             'alter the parameters of the orthologue search'
             )
     search_parser.add_argument(
-        '-f',
+        '-fi',
         '--find',
         default=-1,
         type=int,
@@ -320,6 +320,14 @@ def get_io_parser(arg_parser):
             'basic input and output', 
             'set options for input and output'
             )
+    io_parser.add_argument(
+        '-f',
+        '--fasta',
+        default=None,
+        type=str,
+        help='string indicating the fasta amino acid files to use in the phylogeny\n'
+        '(default: %(default)s)'
+        )
     io_parser.add_argument(
         '-g',
         '--gbks',

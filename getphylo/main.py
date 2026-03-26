@@ -3,21 +3,15 @@ Main routine for getphylo
 
 Functions:
     initialize_logging() -> None
-    check_executables(args) -> None
-    check_seed(checkpoint: Checkpoint, gbk_search_string: str) -> str
-    check_gbks(gbks: str) -> None
     main()
 '''
-import glob
 import logging
 import os
 from getphylo import align, check, extract, parser, screen, trees
-from getphylo.utils import io
 from getphylo.utils.errors import (
     BadMethodError,
-    FolderExistsError,
     NoFinalLociError
-    ) #move all to check
+    ) #move all to check in some way
 from getphylo.utils.checkpoint import Checkpoint
 
 def initialize_logging() -> None: #move call to main.py so we can add other arguments
@@ -43,32 +37,20 @@ def main():
         Returns: None
     '''
     args = parser.parse_args()
-    logging.getLogger().setLevel(args.logging)
+
+    logging.getLogger().setLevel(args.logging) #default to upper (in parser)!
     ###ALWAYS SET LOGGING LEVEL FIRST!
 
-    gbks = args.gbks
-    checkpoint = Checkpoint[args.checkpoint.upper()]
-    seed = args.seed
     output = os.path.abspath(args.output)
     diamond_args = (args.diamond, args.identity, args.query_coverage, args.subject_coverage)
 
-    check.check_gbks(gbks) #make a check module to keep it clean
-    check.check_executables(args)
-    if seed is None:
-        seed = check.check_seed(checkpoint, gbks)
-    logging.info('The seed genome is %s!', seed)
+    checkpoint, files, seed = check.initialise_analysis(args)
 
     ### Begin main workflow
     ### extract.py
     if checkpoint < Checkpoint.DIAMOND_BUILT:
-        try:
-            io.make_folder(output)
-        except FolderExistsError:
-            logging.warning(
-                'ALERT: %s already exists. Continuing analysis in that directory.', output
-                )
         extract.extract_data(
-            checkpoint, output, gbks, args.tag, args.ignore_bad_annotations,
+            checkpoint, output, files, args.tag, args.ignore_bad_annotations,
             args.ignore_bad_records, args.cpus, args.diamond
             )
     ### screen.py
@@ -100,7 +82,7 @@ def main():
 
     ### align.py
     if checkpoint < Checkpoint.ALIGNMENTS_COMBINED:
-        align.make_alignments(checkpoint, output, final_loci, gbks, args.cpus, args.muscle)
+        align.make_alignments(checkpoint, output, final_loci, files, args.cpus, args.muscle)
 
     ### trees.py
     if checkpoint < Checkpoint.TREES_BUILT:
