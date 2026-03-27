@@ -20,7 +20,13 @@ class NoFinalLociError(GetphyloError):
 
 class NoCandidateLociError(GetphyloError):
     '''Called when candidate_loci is empty and cannot be read from final_loci.txt'''
-    pass
+    def __init__(self, path):
+        self.path = path
+        super().__init__(
+            f'Candidate loci could not be read from {self.path}. '
+            'If restarting from a checkpoint ensure there is a final_loci.txt '
+            'file in the specified output folder.'
+            )
 
 class BadAnnotationError(GetphyloError):
     '''

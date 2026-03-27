@@ -316,14 +316,11 @@ def get_target_proteins(
     logging.info("CHECKPOINT: SINGLETONS_IDENTIFIED")
     #candidate loci will not exist if restarted from a checkpoint
     if not candidate_loci:
+        loci_path = os.path.join(output, 'tsv/candidate_loci.txt')
         try:
-            candidate_loci = get_loci_from_file(os.path.join(output, 'tsv/candidate_loci.txt'))
-        except Exception:
-            raise NoCandidateLociError(
-                'Candidate loci could not be read from candidate_loci.txt.'
-                'If restarting from a checkpoint ensure there is a final_loci.txt '
-                'file in the specified output folder.'
-            )
+            candidate_loci = get_loci_from_file(loci_path)
+        except Exception as e:
+            raise NoCandidateLociError(loci_path) from e
     #continue sequential analysis
     if checkpoint < Checkpoint.SINGLETONS_SEARCHED:
         logging.info("Screening candidate loci against other genomes...")
