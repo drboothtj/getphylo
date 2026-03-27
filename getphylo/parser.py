@@ -86,6 +86,21 @@ def get_config_parser(arg_parser):
         help='set the logging level\n'
         '(default: %(default)s)'
     )
+    config_parser.add_argument(
+        '-lp',
+        '--log-path',
+        type=str,
+        default='getphylo.log',
+        help='path to the log file\n'
+        '(default: %(default)s)'
+    )
+    config_parser.add_argument(
+        '-ls',
+        '--supress-logging',
+        action='store_true',
+        help='set to avoid writing the log to a file\n'
+        '(default: %(default)s)'
+    )
     return arg_parser
 
 def get_blast_parser(arg_parser):

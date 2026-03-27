@@ -14,20 +14,22 @@ from getphylo.utils.errors import (
     ) #move all to check in some way
 from getphylo.utils.checkpoint import Checkpoint
 
-def initialize_logging() -> None: #move call to main.py so we can add other arguments
+def initialize_logging(filename: str, supress: bool) -> None:
     '''Set up and configure logging.
         Arguments: None
         Returns: None
-        '''
+    '''
+    handlers = [logging.StreamHandler()]
+    if not supress:
+        handlers.append(logging.FileHandler(filename))
+
     logging_level = logging.DEBUG
     logging.basicConfig(
         level=logging_level,
         format='[%(asctime)s] %(levelname)-10s: %(message)s',
         datefmt='%H:%M:%S',
-        handlers=[
-            logging.StreamHandler(),
-            logging.FileHandler('getphylo.log') #make customisable
-        ])
+        handlers=handlers
+    )
     logging.info("Running getphylo version 1.1.0.")
 
 def main():
@@ -37,9 +39,9 @@ def main():
         Returns: None
     '''
     args = parser.parse_args()
-
-    logging.getLogger().setLevel(args.logging) #default to upper (in parser)!
-    ###ALWAYS SET LOGGING LEVEL FIRST!
+    initialize_logging(args.log_path, args.supress_logging)
+    ###Logging level is set later to ensure welcome message is printed
+    logging.getLogger().setLevel(args.logging)
 
     output = os.path.abspath(args.output)
     diamond_args = (args.diamond, args.identity, args.query_coverage, args.subject_coverage)

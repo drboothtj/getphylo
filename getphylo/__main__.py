@@ -7,7 +7,6 @@ from getphylo.utils.errors import GetphyloError
 
 def entrypoint():
     '''Entry point for getphylo'''
-    main.initialize_logging()
     try:
         start_time = datetime.now()
         main.main()
