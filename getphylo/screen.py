@@ -115,7 +115,7 @@ def get_singletons_from_seed(seed, output, thresholds, random_seed_number, diamo
             break
     txt_path = os.path.join(output, 'tsv/candidate_loci.txt')
     fasta_path = os.path.join(output, 'tsv/candidate_loci.fasta')
-    logging.info('%s singletons found in the seed genome!' % loci)
+    logging.info('%s singletons found in the seed genome!', loci)
     io.write_to_file(txt_path, candidate_loci)
     io.write_to_file(fasta_path, loci_fasta)
     return candidate_loci
@@ -217,8 +217,7 @@ def do_thresholding(
     files = glob.glob(os.path.join(output, 'tsvs/*.tsv'))
     pa_table.append([os.path.splitext(os.path.basename(file))[0] for file in files])
     thresholding_data = ["locus;" + "presence;" + "unique"]
-    if len(target_loci) < maximum_loci:
-        maximum_loci = len(target_loci)
+    maximum_loci = min(maximum_loci, len(target_loci))
     for locus in target_loci:
         logging.debug(
             "final = %s, max = %s, targets = %s",
