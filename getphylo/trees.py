@@ -12,7 +12,7 @@ from typing import List
 
 from getphylo.utils import io
 from getphylo.ext import fasttree, iqtree
-from getphylo.utils.errors import GetphyloError
+from getphylo.utils.errors import BadMethodError
 
 def build_all_trees(
     files: List, cpus: int, method: str, tree_directory: str, output: str, tree_builder:str
@@ -43,7 +43,7 @@ def build_all_trees(
             args_list.append([filename, outfile, partition, tree_builder])
         io.run_in_parallel(iqtree.run_iqtree, args_list, cpus)
     else:
-        raise GetphyloError(method + ' is not a phylogenetic tool.')
+        raise BadMethodError(method)
 
 def make_trees(output: str, build_all: bool, method: str, cpus: int, tree_builder: str) -> None:
     '''Main routine for trees.
@@ -68,5 +68,5 @@ def make_trees(output: str, build_all: bool, method: str, cpus: int, tree_builde
             output = os.path.join(tree_directory, 'combined_alignment')
             iqtree.run_iqtree(filename, output, partition, tree_builder)
         else:
-            raise GetphyloError(method + ' is not a phylogenetic tool.')
+            raise BadMethodError(method)
     logging.info("CHECKPOINT: TREES_BUILT")
