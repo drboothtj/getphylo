@@ -5,6 +5,12 @@ a python package for automated generation of heuristic phylogenetic trees from g
 ## Description
 getphylo was designed to automatically build multi-locus phylogenetic trees from GenBank files. The workflow consists of the following steps: i) extract protein coding sequences; ii) screen for suitable markers; iii) align individual marker sequences and create a combined alignment; and iv) produce a tree from the combined alignment. Please see the 'parameters' section below for a full list of parameters.
 
+## Citation
+If you use `getphylo`, please cite:
+
+Booth, T.J., Shaw, S., Cruz-Morales, P. and Weber, T. getphylo: rapid and automatic generation of multi-locus phylogenetic trees. *BMC Bioinformatics* **26**, 21 (2025).
+DOI: https://doi.org/10.1186/s12859-025-06035-1
+
 ## Installation
 
 The easiest way to install `getphylo` is using the command: 
@@ -38,14 +44,21 @@ Example outputs and benchmarking data can be found in the [getphylo benchmarking
 3. A phylogeny of primate genomes,
 4. A phylogeny of Eurotiomycete fungi.
 
-## Citation
-If you use `getphylo`, please cite:
-
-Booth, T.J., Shaw, S., Cruz-Morales, P. and Weber, T. getphylo: rapid and automatic generation of multi-locus phylogenetic trees. *BMC Bioinformatics* **26**, 21 (2025).
-DOI: https://doi.org/10.1186/s12859-025-06035-1
+## Special Thanks
+Special thanks to Dr. Tue Sparholt Jørgensen for his help testing version 1.1.0.
 
 ## Patch Notes
 ### Version 1
+#### Version 1.1
+- 1.1.0
+  - starting the analysis from fasta amino acid input is now possible using `-f` or `--fasta`
+  - fixed associated issues with handling fasta files (e.g. handling line wrapping)
+  - the short option for the find parameter reassigned to `-fi`, the long option remains assigned to `--find`
+  - added check module to perform preanalysis checks
+  - added options to parametise logging, `lp`/`logging-path` to define a custom path for the log file and `ls`/`supress-logging` prevent writing at all.
+  - [[updated how errors are handeled internally]]
+  - significant speed increase!
+  #### Version 1.0
 - 1.0.2
   - added execultable checks to break early if executables are not defined correctly
   - updated exacutable error message to be informative about which executable is missing
