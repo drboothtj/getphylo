@@ -99,7 +99,7 @@ def get_cds_from_genbank(
                         )
                     continue
 
-                locus_tag = f'{record.id}_{feature.qualifiers[tag_label][0]}'
+                locus_tag = f'{feature.qualifiers[tag_label][0]}'
                 if locus_tag in seen:
                     warning_flag = True
                     if ignore_bad_annotations:

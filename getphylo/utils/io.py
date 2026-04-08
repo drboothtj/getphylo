@@ -24,7 +24,15 @@ from Bio import SeqIO
 
 from getphylo.utils.errors import GetphyloError, FolderExistsError, BadExecutableError
 
-def get_locus(fasta: List[str], locus: str) -> str:
+def read_fasta(filename: str):
+    '''
+    read fasta file as a biopython object
+        Arguments:
+            filename: the path to the fasta file
+    '''
+    return SeqIO.index(filename, "fasta")
+
+def get_locus(fasta, locus: str):
     '''
     Returns a sequence from a fasta file with the provided locus name.
         Arguments:
@@ -33,15 +41,9 @@ def get_locus(fasta: List[str], locus: str) -> str:
         Returns:
             sequence: the sequence of the locus
     '''
-    line_number = 0
-    sequence = ''
-    for line in fasta:
-        line_number += 1
-        if locus in line:
-            sequence = fasta[line_number]
-            break
-    assert sequence
-    return sequence
+    if locus in fasta:
+        return str(fasta[locus].seq)
+    raise KeyError(f"Locus '{locus}' not found") #make more specific
 
 def count_files(directory: str) -> int:
     '''

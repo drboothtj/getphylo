@@ -91,7 +91,7 @@ def get_singletons_from_seed(seed, output, thresholds, random_seed_number, diamo
     io.make_folder(os.path.join(output, 'tsv'))
     logging.info("Identifying singletons in seed genome...")
     seed_fasta, seed_dmnd, seed_tsv = get_seed_paths(seed, output)
-    seed_fasta_contents = io.read_file(seed_fasta)
+    seed_fasta_contents = io.read_fasta(seed_fasta)
     diamond.run_diamond_search(seed_fasta, seed_dmnd, seed_tsv, diamond_args) ### add others here!
     unique_loci = get_unique_hits_from_tsv(seed_tsv)
     logging.info("Found %s loci in the seed genome!", str(len(unique_loci)))
@@ -111,11 +111,15 @@ def get_singletons_from_seed(seed, output, thresholds, random_seed_number, diamo
                 loci_fasta.append(">" + locus)
                 loci_fasta.append(sequence)
                 loci += 1
+            else:
+                logging.warning(f'{locus} failed the size filter with size: {len(sequence)}')
         else:
             break
     txt_path = os.path.join(output, 'tsv/candidate_loci.txt')
     fasta_path = os.path.join(output, 'tsv/candidate_loci.fasta')
     logging.info('%s singletons found in the seed genome!', loci)
+    #break if there are no singletons!!
+    #assert candidate_loci and raise an error if it fails
     io.write_to_file(txt_path, candidate_loci)
     io.write_to_file(fasta_path, loci_fasta)
     return candidate_loci
