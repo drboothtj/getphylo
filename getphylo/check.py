@@ -10,6 +10,7 @@ import glob
 import os
 
 from shutil import copy as cp
+from typing import Tuple
 
 from getphylo.utils import io
 from getphylo.utils.checkpoint import Checkpoint
@@ -109,7 +110,7 @@ def check_fastas(files: str, seed: str, output: str, checkpoint: Checkpoint) -> 
     checkpoint = max(checkpoint, Checkpoint.FASTA_EXTRACTED)
     return checkpoint, files, seed
 
-def initialise_analysis(args) -> (Checkpoint, str, str):
+def initialise_analysis(args) -> Tuple[Checkpoint, str, str]:
     '''
     perform initialisation checks
         arguments:
@@ -121,7 +122,7 @@ def initialise_analysis(args) -> (Checkpoint, str, str):
     '''
     logging.debug('Performing initialisation checks...')
     output = os.path.abspath(args.output)
-    checkpoint = args.checkpoint
+    checkpoint = Checkpoint[args.checkpoint]
     try:
         io.make_folder(output)
     except FolderExistsError:
