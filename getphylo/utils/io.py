@@ -120,26 +120,29 @@ def read_tsv(filename: str) -> List[str]:
             contents.append(line)
     return contents
 
-def run_in_command_line(command: List[str]) -> None:
+def run_in_command_line(command: List[str], return_codes: List[int]=None) -> None:
     '''
     Convert a string into a command and run in the terminal.
         Aruments:
             command: list of strings containing the command for the terminal
+            return_codes: list of intergers reprisenting acceptable return codes
         Returns:
             process: the process being run
     '''
+    if return_codes is None:
+        return_codes = [0] #has to be invoked to avoid having a mutable default value
     logging.debug(command)
     try:
         with subprocess.Popen(
             command, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE
             ) as process:
             _, stderr =process.communicate()
-            if process.returncode != 0:
+            if process.returncode not in return_codes:
                 raise RuntimeError(
                     'Failed to run: ' + str(command)
                     + 'with the following error ' + str(stderr))
             return process
-    except FileNotFoundError as error:
+    except FileNotFoundError:
         raise BadExecutableError(command)
 
 def run_in_parallel(function: Callable, args_list: Iterable[List], cpus: int) -> List:

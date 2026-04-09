@@ -32,10 +32,11 @@ def check_executables(args) -> None:
     logging.debug("Checking diamond...")
     io.run_in_command_line([args.diamond, 'help'])
     logging.debug("Checking muscle...")
-    io.run_in_command_line([args.muscle])
+    io.run_in_command_line([args.muscle, '-version'])
     if args.method =="fasttree":
         logging.debug("Checking fasttree...")
-        io.run_in_command_line([args.fasttree])
+        io.run_in_command_line([args.fasttree], [0, 1])
+        #fasttree has no help command so we allow for a non-zero exit code
     elif args.method =="iqtree":
         logging.debug("Checking iqtree...")
         io.run_in_command_line([args.iqtree])
